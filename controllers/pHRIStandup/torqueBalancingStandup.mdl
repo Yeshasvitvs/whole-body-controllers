@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.3304"
+    ComputedModelVersion    "1.3335"
     NumModelReferences	    0
     NumTestPointedSignals   0
     NumProvidedFunctions    0
@@ -65,11 +65,11 @@ Model {
 	Object {
 	  $ObjectID		  5
 	  IsActive		  [1]
-	  ViewObjType		  "SimulinkSubsys"
-	  LoadSaveID		  "5032"
+	  ViewObjType		  "SimulinkTopLevel"
+	  LoadSaveID		  "0"
 	  Extents		  [2477.0, 1265.0]
-	  ZoomFactor		  [1.6297760210803689]
-	  Offset		  [-358.32271561742118, -75.59013742926436]
+	  ZoomFactor		  [1.5920205920205921]
+	  Offset		  [514.55780113177047, 120.20614389652388]
 	}
 	Object {
 	  $ObjectID		  6
@@ -113,9 +113,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "yeshi"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Feb 20 16:32:38 2018"
-  RTWModifiedTimeStamp	  441045157
-  ModelVersionFormat	  "1.%<AutoIncrement:3304>"
+  LastModifiedDate	  "Tue Feb 20 18:12:36 2018"
+  RTWModifiedTimeStamp	  441051134
+  ModelVersionFormat	  "1.%<AutoIncrement:3335>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1224,7 +1224,7 @@ Model {
   System {
     Name		    "torqueBalancingStandup"
     Location		    [1415, 24, 3926, 1440]
-    Open		    off
+    Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
     ScreenColor		    "white"
@@ -1235,15 +1235,15 @@ Model {
     TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "423"
+    ZoomFactor		    "159"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "5193"
+    SIDHighWatermark	    "5245"
     Block {
       BlockType		      SubSystem
       Name		      "Human System"
       SID		      "5032"
-      Ports		      [0, 6]
-      Position		      [1345, 448, 1465, 727]
+      Ports		      [0, 18]
+      Position		      [1435, 164, 1600, 886]
       ZOrder		      -14
       BlockMirror	      on
       RequestExecContextInheritance off
@@ -1251,7 +1251,7 @@ Model {
       System {
 	Name			"Human System"
 	Location		[1415, 24, 3926, 1440]
-	Open			on
+	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -1262,7 +1262,7 @@ Model {
 	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"163"
+	ZoomFactor		"155"
 	Block {
 	  BlockType		  Reference
 	  Name			  "Configuration"
@@ -1282,7 +1282,7 @@ Model {
 	  Name			  "Contact Kinematics"
 	  SID			  "5168"
 	  Ports			  [4, 12]
-	  Position		  [580, 254, 720, 596]
+	  Position		  [580, 254, 730, 736]
 	  ZOrder		  -29
 	  RequestExecContextInheritance	off
 	  Variant		  off
@@ -2393,7 +2393,7 @@ Model {
 	      BlockType		      Inport
 	      Name		      "qj"
 	      SID		      "5187"
-	      Position		      [-17, 63, 13, 77]
+	      Position		      [-15, 63, 15, 77]
 	      ZOrder		      573
 	      Port		      "2"
 	      IconDisplay	      "Port number"
@@ -2443,7 +2443,7 @@ Model {
 	    }
 	    Block {
 	      BlockType		      Outport
-	      Name		      "human_M"
+	      Name		      "M"
 	      SID		      "5192"
 	      Position		      [345, 48, 375, 62]
 	      ZOrder		      578
@@ -2451,7 +2451,7 @@ Model {
 	    }
 	    Block {
 	      BlockType		      Outport
-	      Name		      "human_biasTorques"
+	      Name		      "biasTorques"
 	      SID		      "5193"
 	      Position		      [345, 183, 375, 197]
 	      ZOrder		      579
@@ -2462,7 +2462,7 @@ Model {
 	      ZOrder		      359
 	      SrcBlock		      "Get Bias Forces"
 	      SrcPort		      1
-	      DstBlock		      "human_biasTorques"
+	      DstBlock		      "biasTorques"
 	      DstPort		      1
 	    }
 	    Line {
@@ -2510,7 +2510,7 @@ Model {
 	      ZOrder		      358
 	      SrcBlock		      "Mass Matrix"
 	      SrcPort		      1
-	      DstBlock		      "human_M"
+	      DstBlock		      "M"
 	      DstPort		      1
 	    }
 	    Line {
@@ -2541,7 +2541,7 @@ Model {
 	  Name			  "Joint Torques"
 	  SID			  "5037"
 	  Ports			  [0, 1]
-	  Position		  [890, -9, 1010, 19]
+	  Position		  [590, -44, 710, -16]
 	  ZOrder		  574
 	  BackgroundColor	  "[0.827500, 0.576500, 0.603900]"
 	  LibraryVersion	  "1.497"
@@ -2598,37 +2598,37 @@ Model {
 	}
 	Block {
 	  BlockType		  Outport
-	  Name			  "w_h_human_b"
+	  Name			  "w_h__b"
 	  SID			  "5038"
-	  Position		  [-175, 228, -145, 242]
+	  Position		  [515, -37, 545, -23]
 	  ZOrder		  575
 	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Outport
-	  Name			  "human_qj"
+	  Name			  "qj"
 	  SID			  "5039"
-	  Position		  [-60, 243, -30, 257]
+	  Position		  [425, -7, 455, 7]
 	  ZOrder		  576
-	  BlockMirror		  on
+	  NamePlacement		  "alternate"
 	  Port			  "2"
 	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Outport
-	  Name			  "human_nu_b"
+	  Name			  "nu_b"
 	  SID			  "5041"
-	  Position		  [-245, 158, -215, 172]
+	  Position		  [385, 73, 415, 87]
 	  ZOrder		  578
-	  BlockMirror		  on
+	  NamePlacement		  "alternate"
 	  Port			  "3"
 	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Outport
-	  Name			  "human_dqj"
+	  Name			  "dqj"
 	  SID			  "5148"
-	  Position		  [-60, 348, -30, 362]
+	  Position		  [290, 238, 320, 252]
 	  ZOrder		  582
 	  BlockMirror		  on
 	  Port			  "4"
@@ -2636,90 +2636,335 @@ Model {
 	}
 	Block {
 	  BlockType		  Outport
-	  Name			  "human_M"
+	  Name			  "M"
 	  SID			  "5035"
-	  Position		  [-195, 298, -165, 312]
+	  Position		  [785, 53, 815, 67]
 	  ZOrder		  572
 	  Port			  "5"
 	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Outport
-	  Name			  "human_h"
+	  Name			  "biasTorques"
 	  SID			  "5036"
-	  Position		  [-215, 398, -185, 412]
+	  Position		  [785, 138, 815, 152]
 	  ZOrder		  573
 	  Port			  "6"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "w_H_lFootContact"
+	  SID			  "5208"
+	  Position		  [840, 268, 870, 282]
+	  ZOrder		  583
+	  Port			  "7"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "w_H_rFootContact"
+	  SID			  "5209"
+	  Position		  [840, 308, 870, 322]
+	  ZOrder		  584
+	  Port			  "8"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "JLFoot"
+	  SID			  "5210"
+	  Position		  [840, 348, 870, 362]
+	  ZOrder		  585
+	  Port			  "9"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "JRFoot"
+	  SID			  "5211"
+	  Position		  [840, 388, 870, 402]
+	  ZOrder		  586
+	  Port			  "10"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "dJLFootnu"
+	  SID			  "5212"
+	  Position		  [840, 428, 870, 442]
+	  ZOrder		  587
+	  Port			  "11"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "dJRFootnu"
+	  SID			  "5213"
+	  Position		  [840, 468, 870, 482]
+	  ZOrder		  588
+	  Port			  "12"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "w_H_lArmContact"
+	  SID			  "5214"
+	  Position		  [840, 508, 870, 522]
+	  ZOrder		  589
+	  Port			  "13"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "w_H_rArmContact"
+	  SID			  "5215"
+	  Position		  [840, 548, 870, 562]
+	  ZOrder		  590
+	  Port			  "14"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "JLArm"
+	  SID			  "5216"
+	  Position		  [840, 588, 870, 602]
+	  ZOrder		  591
+	  Port			  "15"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "JRArm"
+	  SID			  "5217"
+	  Position		  [840, 628, 870, 642]
+	  ZOrder		  592
+	  Port			  "16"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "dJLArmnu"
+	  SID			  "5218"
+	  Position		  [840, 668, 870, 682]
+	  ZOrder		  593
+	  Port			  "17"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "dJRArmnu"
+	  SID			  "5219"
+	  Position		  [840, 708, 870, 722]
+	  ZOrder		  594
+	  Port			  "18"
 	  IconDisplay		  "Port number"
 	}
 	Line {
 	  ZOrder		  270
 	  SrcBlock		  "Joint Positions"
 	  SrcPort		  1
-	  Points		  [93, 0; 0, 55]
+	  Points		  [21, 0]
 	  Branch {
-	    ZOrder		    371
-	    DstBlock		    "Dynamics"
-	    DstPort		    2
+	    ZOrder		    387
+	    Points		    [0, -25]
+	    DstBlock		    "qj"
+	    DstPort		    1
 	  }
 	  Branch {
-	    ZOrder		    360
-	    Points		    [0, 305]
-	    DstBlock		    "Contact Kinematics"
-	    DstPort		    2
+	    ZOrder		    386
+	    Points		    [72, 0; 0, 55]
+	    Branch {
+	      ZOrder		      371
+	      DstBlock		      "Dynamics"
+	      DstPort		      2
+	    }
+	    Branch {
+	      ZOrder		      360
+	      Points		      [0, 355]
+	      DstBlock		      "Contact Kinematics"
+	      DstPort		      2
+	    }
 	  }
 	}
 	Line {
 	  ZOrder		  276
 	  SrcBlock		  "base velocity"
 	  SrcPort		  1
-	  Points		  [101, 0]
+	  Points		  [19, 0]
 	  Branch {
-	    ZOrder		    370
-	    DstBlock		    "Dynamics"
-	    DstPort		    3
+	    ZOrder		    389
+	    Points		    [0, -40]
+	    DstBlock		    "nu_b"
+	    DstPort		    1
 	  }
 	  Branch {
-	    ZOrder		    369
-	    Points		    [0, 350]
-	    DstBlock		    "Contact Kinematics"
-	    DstPort		    3
+	    ZOrder		    388
+	    Points		    [82, 0]
+	    Branch {
+	      ZOrder		      370
+	      DstBlock		      "Dynamics"
+	      DstPort		      3
+	    }
+	    Branch {
+	      ZOrder		      369
+	      Points		      [0, 435]
+	      DstBlock		      "Contact Kinematics"
+	      DstPort		      3
+	    }
 	  }
 	}
 	Line {
 	  ZOrder		  277
 	  SrcBlock		  "Joint Velocities"
 	  SrcPort		  1
-	  Points		  [49, 0]
+	  Points		  [18, 0]
 	  Branch {
-	    ZOrder		    373
-	    Points		    [0, -20]
-	    DstBlock		    "Dynamics"
-	    DstPort		    4
+	    ZOrder		    391
+	    Points		    [0, 65]
+	    DstBlock		    "dqj"
+	    DstPort		    1
 	  }
 	  Branch {
-	    ZOrder		    372
-	    Points		    [0, 375]
-	    DstBlock		    "Contact Kinematics"
-	    DstPort		    4
+	    ZOrder		    390
+	    Points		    [31, 0]
+	    Branch {
+	      ZOrder		      373
+	      Points		      [0, -20]
+	      DstBlock		      "Dynamics"
+	      DstPort		      4
+	    }
+	    Branch {
+	      ZOrder		      372
+	      Points		      [0, 495]
+	      DstBlock		      "Contact Kinematics"
+	      DstPort		      4
+	    }
 	  }
 	}
 	Line {
 	  ZOrder		  269
 	  SrcBlock		  "base pose"
 	  SrcPort		  1
-	  Points		  [160, 0; 0, 70]
+	  Points		  [160, 0]
 	  Branch {
-	    ZOrder		    361
-	    Points		    [0, 260]
-	    DstBlock		    "Contact Kinematics"
+	    ZOrder		    385
+	    DstBlock		    "w_h__b"
 	    DstPort		    1
 	  }
 	  Branch {
-	    ZOrder		    352
-	    DstBlock		    "Dynamics"
-	    DstPort		    1
+	    ZOrder		    384
+	    Points		    [0, 70]
+	    Branch {
+	      ZOrder		      361
+	      Points		      [0, 275]
+	      DstBlock		      "Contact Kinematics"
+	      DstPort		      1
+	    }
+	    Branch {
+	      ZOrder		      352
+	      DstBlock		      "Dynamics"
+	      DstPort		      1
+	    }
 	  }
+	}
+	Line {
+	  ZOrder		  382
+	  SrcBlock		  "Dynamics"
+	  SrcPort		  1
+	  DstBlock		  "M"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  383
+	  SrcBlock		  "Dynamics"
+	  SrcPort		  2
+	  DstBlock		  "biasTorques"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  392
+	  SrcBlock		  "Contact Kinematics"
+	  SrcPort		  1
+	  DstBlock		  "w_H_lFootContact"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  393
+	  SrcBlock		  "Contact Kinematics"
+	  SrcPort		  2
+	  DstBlock		  "w_H_rFootContact"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  394
+	  SrcBlock		  "Contact Kinematics"
+	  SrcPort		  3
+	  DstBlock		  "JLFoot"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  395
+	  SrcBlock		  "Contact Kinematics"
+	  SrcPort		  4
+	  DstBlock		  "JRFoot"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  396
+	  SrcBlock		  "Contact Kinematics"
+	  SrcPort		  5
+	  DstBlock		  "dJLFootnu"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  397
+	  SrcBlock		  "Contact Kinematics"
+	  SrcPort		  6
+	  DstBlock		  "dJRFootnu"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  399
+	  SrcBlock		  "Contact Kinematics"
+	  SrcPort		  7
+	  DstBlock		  "w_H_lArmContact"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  400
+	  SrcBlock		  "Contact Kinematics"
+	  SrcPort		  8
+	  DstBlock		  "w_H_rArmContact"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  401
+	  SrcBlock		  "Contact Kinematics"
+	  SrcPort		  9
+	  DstBlock		  "JLArm"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  402
+	  SrcBlock		  "Contact Kinematics"
+	  SrcPort		  10
+	  DstBlock		  "JRArm"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  403
+	  SrcBlock		  "Contact Kinematics"
+	  SrcPort		  11
+	  DstBlock		  "dJLArmnu"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  404
+	  SrcBlock		  "Contact Kinematics"
+	  SrcPort		  12
+	  DstBlock		  "dJRArmnu"
+	  DstPort		  1
 	}
       }
     }
@@ -2727,8 +2972,8 @@ Model {
       BlockType		      SubSystem
       Name		      "Robot System"
       SID		      "5016"
-      Ports		      [6]
-      Position		      [1000, 451, 1140, 724]
+      Ports		      [18]
+      Position		      [990, 160, 1140, 890]
       ZOrder		      -12
       BlockMirror	      on
       RequestExecContextInheritance off
@@ -2747,12 +2992,12 @@ Model {
 	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"150"
+	ZoomFactor		"123"
 	Block {
 	  BlockType		  Inport
-	  Name			  "w_H_human_b"
+	  Name			  "human_w_H_b"
 	  SID			  "5046"
-	  Position		  [365, 628, 395, 642]
+	  Position		  [1425, 103, 1455, 117]
 	  ZOrder		  556
 	  IconDisplay		  "Port number"
 	}
@@ -2760,7 +3005,7 @@ Model {
 	  BlockType		  Inport
 	  Name			  "human_qj"
 	  SID			  "5047"
-	  Position		  [365, 673, 395, 687]
+	  Position		  [1430, 148, 1460, 162]
 	  ZOrder		  557
 	  Port			  "2"
 	  IconDisplay		  "Port number"
@@ -2769,7 +3014,7 @@ Model {
 	  BlockType		  Inport
 	  Name			  "human_nu_b"
 	  SID			  "5048"
-	  Position		  [365, 718, 395, 732]
+	  Position		  [1430, 193, 1460, 207]
 	  ZOrder		  558
 	  Port			  "3"
 	  IconDisplay		  "Port number"
@@ -2778,7 +3023,7 @@ Model {
 	  BlockType		  Inport
 	  Name			  "human_dqj"
 	  SID			  "5149"
-	  Position		  [365, 758, 395, 772]
+	  Position		  [1430, 233, 1460, 247]
 	  ZOrder		  559
 	  Port			  "4"
 	  IconDisplay		  "Port number"
@@ -2787,18 +3032,126 @@ Model {
 	  BlockType		  Inport
 	  Name			  "human_M\n"
 	  SID			  "5044"
-	  Position		  [365, 793, 395, 807]
+	  Position		  [1430, 268, 1460, 282]
 	  ZOrder		  554
 	  Port			  "5"
 	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Inport
-	  Name			  "human_h\n"
+	  Name			  "human_biasTorques\n"
 	  SID			  "5045"
-	  Position		  [365, 838, 395, 852]
+	  Position		  [1430, 313, 1460, 327]
 	  ZOrder		  555
 	  Port			  "6"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "human_w_H_lFootContact"
+	  SID			  "5233"
+	  Position		  [1430, 358, 1460, 372]
+	  ZOrder		  608
+	  Port			  "7"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "human_w_H_rFootContact"
+	  SID			  "5234"
+	  Position		  [1430, 408, 1460, 422]
+	  ZOrder		  609
+	  Port			  "8"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "human_JLFoot"
+	  SID			  "5235"
+	  Position		  [1440, 468, 1470, 482]
+	  ZOrder		  610
+	  Port			  "9"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "human_JRFoot"
+	  SID			  "5236"
+	  Position		  [1450, 518, 1480, 532]
+	  ZOrder		  611
+	  Port			  "10"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "human_dJLFootnu"
+	  SID			  "5237"
+	  Position		  [1450, 588, 1480, 602]
+	  ZOrder		  612
+	  Port			  "11"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "human_dJRFootnu"
+	  SID			  "5239"
+	  Position		  [1465, 648, 1495, 662]
+	  ZOrder		  614
+	  Port			  "12"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "human_w_H_lArmContact"
+	  SID			  "5240"
+	  Position		  [1470, 708, 1500, 722]
+	  ZOrder		  615
+	  Port			  "13"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "human_w_H_rArmContact"
+	  SID			  "5241"
+	  Position		  [1465, 773, 1495, 787]
+	  ZOrder		  616
+	  Port			  "14"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "human_JLArm"
+	  SID			  "5242"
+	  Position		  [1475, 833, 1505, 847]
+	  ZOrder		  617
+	  Port			  "15"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "human_JRArm"
+	  SID			  "5243"
+	  Position		  [1490, 883, 1520, 897]
+	  ZOrder		  618
+	  Port			  "16"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "human_dJLArmnu"
+	  SID			  "5244"
+	  Position		  [1495, 948, 1525, 962]
+	  ZOrder		  619
+	  Port			  "17"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "human_dJRArmnu"
+	  SID			  "5245"
+	  Position		  [1510, 1003, 1540, 1017]
+	  ZOrder		  620
+	  Port			  "18"
 	  IconDisplay		  "Port number"
 	}
 	Block {
@@ -2820,7 +3173,7 @@ Model {
 	  Name			  "Dump and visualize"
 	  SID			  "2275"
 	  Ports			  []
-	  Position		  [920, 126, 1050, 159]
+	  Position		  [1210, 156, 1340, 189]
 	  ZOrder		  547
 	  ForegroundColor	  "blue"
 	  BackgroundColor	  "[0.333333, 1.000000, 1.000000]"
@@ -5236,8 +5589,8 @@ Model {
 	  BlockType		  SubSystem
 	  Name			  "Dynamics and Kinematics"
 	  SID			  "2341"
-	  Ports			  [4, 14]
-	  Position		  [410, 24, 560, 351]
+	  Ports			  [4, 20]
+	  Position		  [415, 32, 595, 533]
 	  ZOrder		  541
 	  BackgroundColor	  "[0.000000, 1.000000, 0.498039]"
 	  RequestExecContextInheritance	off
@@ -5256,7 +5609,7 @@ Model {
 	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "203"
+	    ZoomFactor		    "103"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "w_H_b"
@@ -5287,7 +5640,7 @@ Model {
 	      BlockType		      Inport
 	      Name		      "state "
 	      SID		      "4982"
-	      Position		      [-465, 338, -435, 352]
+	      Position		      [-465, 858, -435, 872]
 	      ZOrder		      901
 	      Port		      "4"
 	      IconDisplay	      "Port number"
@@ -5737,8 +6090,8 @@ Model {
 	      BlockType		      SubSystem
 	      Name		      "Kinematics"
 	      SID		      "4321"
-	      Ports		      [4, 11]
-	      Position		      [-370, 29, -155, 401]
+	      Ports		      [4, 17]
+	      Position		      [-355, 35, -155, 985]
 	      ZOrder		      837
 	      RequestExecContextInheritance off
 	      Variant		      off
@@ -6341,8 +6694,22 @@ Model {
 		  Value			  "Config.iCubStandUp"
 		}
 		Block {
+		  BlockType		  Reference
+		  Name			  "Jacobian com"
+		  SID			  "2378"
+		  Ports			  [2, 1]
+		  Position		  [105, 210, 270, 250]
+		  ZOrder		  835
+		  ShowName		  off
+		  LibraryVersion	  "1.497"
+		  SourceBlock		  "WBToolboxLibrary/wholeBodyModel/Jacobians/Jacobian"
+		  SourceType		  "Jacobian"
+		  ContentPreviewEnabled	  off
+		  frameName		  "Frames.COM"
+		}
+		Block {
 		  BlockType		  SubSystem
-		  Name			  "Contacts kinematics"
+		  Name			  "Leg Contacts kinematics"
 		  SID			  "4845"
 		  Ports			  [5, 6]
 		  Position		  [100, 361, 275, 634]
@@ -6350,7 +6717,7 @@ Model {
 		  RequestExecContextInheritance	off
 		  Variant		  off
 		  System {
-		    Name		    "Contacts kinematics"
+		    Name		    "Leg Contacts kinematics"
 		    Location		    [1415, 24, 3926, 1440]
 		    Open		    off
 		    ModelBrowserVisibility  off
@@ -6363,7 +6730,7 @@ Model {
 		    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 		    TiledPageScale	    1
 		    ShowPageBoundaries	    off
-		    ZoomFactor		    "231"
+		    ZoomFactor		    "230"
 		    Block {
 		    BlockType		    Inport
 		    Name		    "w_H_b"
@@ -6642,7 +7009,7 @@ Model {
 		    }
 		    Block {
 		    BlockType		    Outport
-		    Name		    "w_H_lContact"
+		    Name		    "w_H_lLegContact"
 		    SID			    "4869"
 		    Position		    [470, 238, 500, 252]
 		    ZOrder		    556
@@ -6650,7 +7017,7 @@ Model {
 		    }
 		    Block {
 		    BlockType		    Outport
-		    Name		    "w_H_rContact"
+		    Name		    "w_H_rLegContact"
 		    SID			    "4870"
 		    Position		    [470, 123, 500, 137]
 		    ZOrder		    557
@@ -6659,7 +7026,7 @@ Model {
 		    }
 		    Block {
 		    BlockType		    Outport
-		    Name		    "JL"
+		    Name		    "JLLeg"
 		    SID			    "4871"
 		    Position		    [880, 203, 910, 217]
 		    ZOrder		    558
@@ -6668,7 +7035,7 @@ Model {
 		    }
 		    Block {
 		    BlockType		    Outport
-		    Name		    "JR"
+		    Name		    "JRLeg"
 		    SID			    "4872"
 		    Position		    [880, 78, 910, 92]
 		    ZOrder		    559
@@ -6677,7 +7044,7 @@ Model {
 		    }
 		    Block {
 		    BlockType		    Outport
-		    Name		    "dJLnu"
+		    Name		    "dJLLegnu"
 		    SID			    "4873"
 		    Position		    [880, 493, 910, 507]
 		    ZOrder		    560
@@ -6686,7 +7053,7 @@ Model {
 		    }
 		    Block {
 		    BlockType		    Outport
-		    Name		    "dJRnu"
+		    Name		    "dJRLegnu"
 		    SID			    "4874"
 		    Position		    [880, 373, 910, 387]
 		    ZOrder		    561
@@ -6725,14 +7092,14 @@ Model {
 		    ZOrder		    5
 		    SrcBlock		    "Switch1"
 		    SrcPort		    1
-		    DstBlock		    "w_H_lContact"
+		    DstBlock		    "w_H_lLegContact"
 		    DstPort		    1
 		    }
 		    Line {
 		    ZOrder		    6
 		    SrcBlock		    "Switch"
 		    SrcPort		    1
-		    DstBlock		    "w_H_rContact"
+		    DstBlock		    "w_H_rLegContact"
 		    DstPort		    1
 		    }
 		    Line {
@@ -6926,14 +7293,14 @@ Model {
 		    ZOrder		    44
 		    SrcBlock		    "Switch2"
 		    SrcPort		    1
-		    DstBlock		    "JR"
+		    DstBlock		    "JRLeg"
 		    DstPort		    1
 		    }
 		    Line {
 		    ZOrder		    45
 		    SrcBlock		    "Switch3"
 		    SrcPort		    1
-		    DstBlock		    "JL"
+		    DstBlock		    "JLLeg"
 		    DstPort		    1
 		    }
 		    Line {
@@ -7132,14 +7499,14 @@ Model {
 		    ZOrder		    84
 		    SrcBlock		    "Switch4"
 		    SrcPort		    1
-		    DstBlock		    "dJRnu"
+		    DstBlock		    "dJRLegnu"
 		    DstPort		    1
 		    }
 		    Line {
 		    ZOrder		    85
 		    SrcBlock		    "Switch5"
 		    SrcPort		    1
-		    DstBlock		    "dJLnu"
+		    DstBlock		    "dJLLegnu"
 		    DstPort		    1
 		    }
 		    Line {
@@ -7150,20 +7517,6 @@ Model {
 		    DstPort		    3
 		    }
 		  }
-		}
-		Block {
-		  BlockType		  Reference
-		  Name			  "Jacobian com"
-		  SID			  "2378"
-		  Ports			  [2, 1]
-		  Position		  [105, 210, 270, 250]
-		  ZOrder		  835
-		  ShowName		  off
-		  LibraryVersion	  "1.497"
-		  SourceBlock		  "WBToolboxLibrary/wholeBodyModel/Jacobians/Jacobian"
-		  SourceType		  "Jacobian"
-		  ContentPreviewEnabled	  off
-		  frameName		  "Frames.COM"
 		}
 		Block {
 		  BlockType		  SubSystem
@@ -7502,6 +7855,60 @@ Model {
 		  Port			  "11"
 		  IconDisplay		  "Port number"
 		}
+		Block {
+		  BlockType		  Outport
+		  Name			  "w_H_lArmContact"
+		  SID			  "5195"
+		  Position		  [380, 718, 410, 732]
+		  ZOrder		  892
+		  Port			  "12"
+		  IconDisplay		  "Port number"
+		}
+		Block {
+		  BlockType		  Outport
+		  Name			  "w_H_rArmContact"
+		  SID			  "5197"
+		  Position		  [380, 778, 410, 792]
+		  ZOrder		  893
+		  Port			  "13"
+		  IconDisplay		  "Port number"
+		}
+		Block {
+		  BlockType		  Outport
+		  Name			  "JLArm"
+		  SID			  "5198"
+		  Position		  [380, 838, 410, 852]
+		  ZOrder		  894
+		  Port			  "14"
+		  IconDisplay		  "Port number"
+		}
+		Block {
+		  BlockType		  Outport
+		  Name			  "JRArm"
+		  SID			  "5199"
+		  Position		  [380, 898, 410, 912]
+		  ZOrder		  895
+		  Port			  "15"
+		  IconDisplay		  "Port number"
+		}
+		Block {
+		  BlockType		  Outport
+		  Name			  "dJLArmnu"
+		  SID			  "5200"
+		  Position		  [380, 958, 410, 972]
+		  ZOrder		  896
+		  Port			  "16"
+		  IconDisplay		  "Port number"
+		}
+		Block {
+		  BlockType		  Outport
+		  Name			  "dJRArmnu"
+		  SID			  "5201"
+		  Position		  [380, 1018, 410, 1032]
+		  ZOrder		  897
+		  Port			  "17"
+		  IconDisplay		  "Port number"
+		}
 		Line {
 		  ZOrder		  129
 		  SrcBlock		  "nu"
@@ -7535,7 +7942,7 @@ Model {
 		    }
 		    Branch {
 		    ZOrder		    582
-		    DstBlock		    "Contacts kinematics"
+		    DstBlock		    "Leg Contacts kinematics"
 		    DstPort		    1
 		    }
 		  }
@@ -7590,7 +7997,7 @@ Model {
 		    }
 		    Branch {
 		    ZOrder		    584
-		    DstBlock		    "Contacts kinematics"
+		    DstBlock		    "Leg Contacts kinematics"
 		    DstPort		    2
 		    }
 		    }
@@ -7642,7 +8049,7 @@ Model {
 		  }
 		  Branch {
 		    ZOrder		    588
-		    DstBlock		    "Contacts kinematics"
+		    DstBlock		    "Leg Contacts kinematics"
 		    DstPort		    4
 		  }
 		}
@@ -7659,7 +8066,7 @@ Model {
 		  }
 		  Branch {
 		    ZOrder		    586
-		    DstBlock		    "Contacts kinematics"
+		    DstBlock		    "Leg Contacts kinematics"
 		    DstPort		    3
 		  }
 		}
@@ -7676,48 +8083,48 @@ Model {
 		  }
 		  Branch {
 		    ZOrder		    283
-		    DstBlock		    "Contacts kinematics"
+		    DstBlock		    "Leg Contacts kinematics"
 		    DstPort		    5
 		  }
 		}
 		Line {
 		  ZOrder		  270
-		  SrcBlock		  "Contacts kinematics"
+		  SrcBlock		  "Leg Contacts kinematics"
 		  SrcPort		  1
 		  DstBlock		  "w_H_l_contact"
 		  DstPort		  1
 		}
 		Line {
 		  ZOrder		  271
-		  SrcBlock		  "Contacts kinematics"
+		  SrcBlock		  "Leg Contacts kinematics"
 		  SrcPort		  2
 		  DstBlock		  "w_H_r_contact"
 		  DstPort		  1
 		}
 		Line {
 		  ZOrder		  272
-		  SrcBlock		  "Contacts kinematics"
+		  SrcBlock		  "Leg Contacts kinematics"
 		  SrcPort		  5
 		  DstBlock		  "JDot_nu_l_contact"
 		  DstPort		  1
 		}
 		Line {
 		  ZOrder		  273
-		  SrcBlock		  "Contacts kinematics"
+		  SrcBlock		  "Leg Contacts kinematics"
 		  SrcPort		  6
 		  DstBlock		  "JDot_nu_r_contact"
 		  DstPort		  1
 		}
 		Line {
 		  ZOrder		  274
-		  SrcBlock		  "Contacts kinematics"
+		  SrcBlock		  "Leg Contacts kinematics"
 		  SrcPort		  3
 		  DstBlock		  "J_l_contact"
 		  DstPort		  1
 		}
 		Line {
 		  ZOrder		  275
-		  SrcBlock		  "Contacts kinematics"
+		  SrcBlock		  "Leg Contacts kinematics"
 		  SrcPort		  4
 		  DstBlock		  "J_r_contact"
 		  DstPort		  1
@@ -7734,6 +8141,48 @@ Model {
 		  SrcBlock		  "Arm External Forces"
 		  SrcPort		  2
 		  DstBlock		  "w_H_RArm"
+		  DstPort		  1
+		}
+		Line {
+		  ZOrder		  618
+		  SrcBlock		  "Arm Contacts Kinematics"
+		  SrcPort		  1
+		  DstBlock		  "w_H_lArmContact"
+		  DstPort		  1
+		}
+		Line {
+		  ZOrder		  619
+		  SrcBlock		  "Arm Contacts Kinematics"
+		  SrcPort		  2
+		  DstBlock		  "w_H_rArmContact"
+		  DstPort		  1
+		}
+		Line {
+		  ZOrder		  620
+		  SrcBlock		  "Arm Contacts Kinematics"
+		  SrcPort		  3
+		  DstBlock		  "JLArm"
+		  DstPort		  1
+		}
+		Line {
+		  ZOrder		  621
+		  SrcBlock		  "Arm Contacts Kinematics"
+		  SrcPort		  4
+		  DstBlock		  "JRArm"
+		  DstPort		  1
+		}
+		Line {
+		  ZOrder		  622
+		  SrcBlock		  "Arm Contacts Kinematics"
+		  SrcPort		  5
+		  DstBlock		  "dJLArmnu"
+		  DstPort		  1
+		}
+		Line {
+		  ZOrder		  623
+		  SrcBlock		  "Arm Contacts Kinematics"
+		  SrcPort		  6
+		  DstBlock		  "dJRArmnu"
 		  DstPort		  1
 		}
 	      }
@@ -7768,7 +8217,7 @@ Model {
 	      BlockType		      Outport
 	      Name		      "w_H_l_contact"
 	      SID		      "4878"
-	      Position		      [-70, 28, -40, 42]
+	      Position		      [-50, 63, -20, 77]
 	      ZOrder		      890
 	      Port		      "4"
 	      IconDisplay	      "Port number"
@@ -7777,7 +8226,7 @@ Model {
 	      BlockType		      Outport
 	      Name		      "w_H_r_contact"
 	      SID		      "4879"
-	      Position		      [-70, 63, -40, 77]
+	      Position		      [-50, 118, -20, 132]
 	      ZOrder		      891
 	      Port		      "5"
 	      IconDisplay	      "Port number"
@@ -7786,7 +8235,7 @@ Model {
 	      BlockType		      Outport
 	      Name		      "J_l_contact"
 	      SID		      "4880"
-	      Position		      [-70, 98, -40, 112]
+	      Position		      [-50, 173, -20, 187]
 	      ZOrder		      892
 	      Port		      "6"
 	      IconDisplay	      "Port number"
@@ -7795,7 +8244,7 @@ Model {
 	      BlockType		      Outport
 	      Name		      "J_r_contact"
 	      SID		      "4881"
-	      Position		      [-70, 133, -40, 147]
+	      Position		      [-50, 228, -20, 242]
 	      ZOrder		      893
 	      Port		      "7"
 	      IconDisplay	      "Port number"
@@ -7804,7 +8253,7 @@ Model {
 	      BlockType		      Outport
 	      Name		      "J_CoM"
 	      SID		      "4882"
-	      Position		      [-70, 168, -40, 182]
+	      Position		      [-50, 283, -20, 297]
 	      ZOrder		      894
 	      Port		      "8"
 	      IconDisplay	      "Port number"
@@ -7813,7 +8262,7 @@ Model {
 	      BlockType		      Outport
 	      Name		      "xCoM"
 	      SID		      "4883"
-	      Position		      [-70, 203, -40, 217]
+	      Position		      [-50, 338, -20, 352]
 	      ZOrder		      895
 	      Port		      "9"
 	      IconDisplay	      "Port number"
@@ -7822,7 +8271,7 @@ Model {
 	      BlockType		      Outport
 	      Name		      "JDot_nu_l_contact"
 	      SID		      "4884"
-	      Position		      [-70, 238, -40, 252]
+	      Position		      [-50, 393, -20, 407]
 	      ZOrder		      896
 	      Port		      "10"
 	      IconDisplay	      "Port number"
@@ -7831,7 +8280,7 @@ Model {
 	      BlockType		      Outport
 	      Name		      "JDot_nu_r_contact"
 	      SID		      "4885"
-	      Position		      [-70, 273, -40, 287]
+	      Position		      [-50, 448, -20, 462]
 	      ZOrder		      897
 	      Port		      "11"
 	      IconDisplay	      "Port number"
@@ -7840,7 +8289,7 @@ Model {
 	      BlockType		      Outport
 	      Name		      "w_H_LArm"
 	      SID		      "4886"
-	      Position		      [-70, 308, -40, 322]
+	      Position		      [-50, 503, -20, 517]
 	      ZOrder		      898
 	      Port		      "12"
 	      IconDisplay	      "Port number"
@@ -7849,7 +8298,7 @@ Model {
 	      BlockType		      Outport
 	      Name		      "w_H_RArm"
 	      SID		      "4887"
-	      Position		      [-70, 343, -40, 357]
+	      Position		      [-50, 558, -20, 572]
 	      ZOrder		      899
 	      Port		      "13"
 	      IconDisplay	      "Port number"
@@ -7858,9 +8307,63 @@ Model {
 	      BlockType		      Outport
 	      Name		      "legsInContact"
 	      SID		      "4891"
-	      Position		      [-70, 378, -40, 392]
+	      Position		      [-50, 613, -20, 627]
 	      ZOrder		      900
 	      Port		      "14"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "w_H_lArmContact"
+	      SID		      "5202"
+	      Position		      [-50, 668, -20, 682]
+	      ZOrder		      902
+	      Port		      "15"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "w_H_rArmContact"
+	      SID		      "5203"
+	      Position		      [-50, 723, -20, 737]
+	      ZOrder		      903
+	      Port		      "16"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "JLArm"
+	      SID		      "5204"
+	      Position		      [-50, 778, -20, 792]
+	      ZOrder		      904
+	      Port		      "17"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "JRArm"
+	      SID		      "5205"
+	      Position		      [-50, 833, -20, 847]
+	      ZOrder		      905
+	      Port		      "18"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "dJLArm"
+	      SID		      "5206"
+	      Position		      [-50, 888, -20, 902]
+	      ZOrder		      906
+	      Port		      "19"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "dJRArm"
+	      SID		      "5207"
+	      Position		      [-50, 943, -20, 957]
+	      ZOrder		      907
+	      Port		      "20"
 	      IconDisplay	      "Port number"
 	    }
 	    Line {
@@ -7870,7 +8373,7 @@ Model {
 	      Points		      [25, 0]
 	      Branch {
 		ZOrder			137
-		Points			[0, 425]
+		Points			[0, 790]
 		DstBlock		"Kinematics"
 		DstPort			3
 	      }
@@ -7892,7 +8395,7 @@ Model {
 	      }
 	      Branch {
 		ZOrder			138
-		Points			[0, 260]
+		Points			[0, 485]
 		DstBlock		"Kinematics"
 		DstPort			2
 	      }
@@ -7909,7 +8412,7 @@ Model {
 	      }
 	      Branch {
 		ZOrder			139
-		Points			[0, 95]
+		Points			[0, 180]
 		DstBlock		"Kinematics"
 		DstPort			1
 	      }
@@ -7939,7 +8442,6 @@ Model {
 	      ZOrder		      172
 	      SrcBlock		      "Kinematics"
 	      SrcPort		      5
-	      Points		      [32, 0; 0, -5]
 	      DstBlock		      "J_CoM"
 	      DstPort		      1
 	    }
@@ -7947,7 +8449,6 @@ Model {
 	      ZOrder		      173
 	      SrcBlock		      "Kinematics"
 	      SrcPort		      6
-	      Points		      [32, 0; 0, -5]
 	      DstBlock		      "xCoM"
 	      DstPort		      1
 	    }
@@ -7955,7 +8456,6 @@ Model {
 	      ZOrder		      168
 	      SrcBlock		      "Kinematics"
 	      SrcPort		      1
-	      Points		      [37, 0; 0, -5]
 	      DstBlock		      "w_H_l_contact"
 	      DstPort		      1
 	    }
@@ -7963,7 +8463,6 @@ Model {
 	      ZOrder		      169
 	      SrcBlock		      "Kinematics"
 	      SrcPort		      2
-	      Points		      [37, 0; 0, -5]
 	      DstBlock		      "w_H_r_contact"
 	      DstPort		      1
 	    }
@@ -7971,7 +8470,6 @@ Model {
 	      ZOrder		      174
 	      SrcBlock		      "Kinematics"
 	      SrcPort		      7
-	      Points		      [32, 0; 0, -5]
 	      DstBlock		      "JDot_nu_l_contact"
 	      DstPort		      1
 	    }
@@ -7979,7 +8477,6 @@ Model {
 	      ZOrder		      175
 	      SrcBlock		      "Kinematics"
 	      SrcPort		      8
-	      Points		      [32, 0; 0, -5]
 	      DstBlock		      "JDot_nu_r_contact"
 	      DstPort		      1
 	    }
@@ -7987,7 +8484,6 @@ Model {
 	      ZOrder		      170
 	      SrcBlock		      "Kinematics"
 	      SrcPort		      3
-	      Points		      [32, 0; 0, -5]
 	      DstBlock		      "J_l_contact"
 	      DstPort		      1
 	    }
@@ -7995,7 +8491,6 @@ Model {
 	      ZOrder		      171
 	      SrcBlock		      "Kinematics"
 	      SrcPort		      4
-	      Points		      [32, 0; 0, -5]
 	      DstBlock		      "J_r_contact"
 	      DstPort		      1
 	    }
@@ -8003,7 +8498,6 @@ Model {
 	      ZOrder		      176
 	      SrcBlock		      "Kinematics"
 	      SrcPort		      9
-	      Points		      [32, 0; 0, -5]
 	      DstBlock		      "w_H_LArm"
 	      DstPort		      1
 	    }
@@ -8011,7 +8505,6 @@ Model {
 	      ZOrder		      177
 	      SrcBlock		      "Kinematics"
 	      SrcPort		      10
-	      Points		      [32, 0; 0, -5]
 	      DstBlock		      "w_H_RArm"
 	      DstPort		      1
 	    }
@@ -8019,7 +8512,6 @@ Model {
 	      ZOrder		      178
 	      SrcBlock		      "Kinematics"
 	      SrcPort		      11
-	      Points		      [32, 0; 0, -5]
 	      DstBlock		      "legsInContact"
 	      DstPort		      1
 	    }
@@ -8027,9 +8519,50 @@ Model {
 	      ZOrder		      183
 	      SrcBlock		      "state "
 	      SrcPort		      1
-	      Points		      [22, 0; 0, 15]
 	      DstBlock		      "Kinematics"
 	      DstPort		      4
+	    }
+	    Line {
+	      ZOrder		      184
+	      SrcBlock		      "Kinematics"
+	      SrcPort		      12
+	      DstBlock		      "w_H_lArmContact"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      185
+	      SrcBlock		      "Kinematics"
+	      SrcPort		      13
+	      DstBlock		      "w_H_rArmContact"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      186
+	      SrcBlock		      "Kinematics"
+	      SrcPort		      14
+	      DstBlock		      "JLArm"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      187
+	      SrcBlock		      "Kinematics"
+	      SrcPort		      15
+	      DstBlock		      "JRArm"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      188
+	      SrcBlock		      "Kinematics"
+	      SrcPort		      16
+	      DstBlock		      "dJLArm"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      189
+	      SrcBlock		      "Kinematics"
+	      SrcPort		      17
+	      DstBlock		      "dJRArm"
+	      DstPort		      1
 	    }
 	  }
 	}
@@ -8037,7 +8570,7 @@ Model {
 	  BlockType		  Constant
 	  Name			  "ON_GAZEBO\n1"
 	  SID			  "3208"
-	  Position		  [257, 85, 383, 95]
+	  Position		  [257, 60, 383, 70]
 	  ZOrder		  552
 	  BlockRotation		  270
 	  BlockMirror		  on
@@ -8050,7 +8583,7 @@ Model {
 	  Name			  "Robot State and References"
 	  SID			  "2087"
 	  Ports			  [0, 10]
-	  Position		  [20, 340, 185, 585]
+	  Position		  [20, 535, 185, 780]
 	  ZOrder		  548
 	  BackgroundColor	  "orange"
 	  Priority		  "-10"
@@ -16822,7 +17355,7 @@ Model {
 	  Name			  "Saturation"
 	  SID			  "2353"
 	  Ports			  [1, 1]
-	  Position		  [900, 282, 940, 318]
+	  Position		  [1190, 392, 1230, 428]
 	  ZOrder		  545
 	  ShowName		  off
 	  InputPortMap		  "u0"
@@ -16834,9 +17367,9 @@ Model {
 	  Name			  "Set References"
 	  SID			  "2354"
 	  Ports			  [1]
-	  Position		  [980, 287, 1040, 313]
+	  Position		  [1315, 402, 1375, 428]
 	  ZOrder		  549
-	  BackgroundColor	  "[0.827500, 0.576500, 0.603900]"
+	  BackgroundColor	  "[0.827451, 0.576471, 0.603922]"
 	  ShowName		  off
 	  LibraryVersion	  "1.497"
 	  SourceBlock		  "WBToolboxLibrary/wholeBodyActuators/Set References"
@@ -16850,7 +17383,7 @@ Model {
 	  Name			  "controller_QP"
 	  SID			  "2355"
 	  Ports			  [23, 1]
-	  Position		  [650, 25, 860, 575]
+	  Position		  [940, 25, 1165, 885]
 	  ZOrder		  542
 	  BackgroundColor	  "lightBlue"
 	  RequestExecContextInheritance	off
@@ -16869,7 +17402,7 @@ Model {
 	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "175"
+	    ZoomFactor		    "110"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "M"
@@ -20584,7 +21117,7 @@ Model {
 	      Variant		      off
 	      System {
 		Name			"Compute joint torques"
-		Location		[65, 24, 1920, 1080]
+		Location		[1415, 24, 3926, 1440]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -20596,7 +21129,7 @@ Model {
 		TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 		TiledPageScale		1
 		ShowPageBoundaries	off
-		ZoomFactor		"138"
+		ZoomFactor		"188"
 		Block {
 		  BlockType		  Inport
 		  Name			  "LEFT_RIGHT_FOOT_IN_CONTACT"
@@ -20785,7 +21318,7 @@ Model {
 		  Variant		  off
 		  System {
 		    Name		    "QPSolver"
-		    Location		    [65, 24, 1920, 1080]
+		    Location		    [1415, 24, 3926, 1440]
 		    Open		    off
 		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
@@ -20797,7 +21330,7 @@ Model {
 		    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 		    TiledPageScale	    1
 		    ShowPageBoundaries	    off
-		    ZoomFactor		    "214"
+		    ZoomFactor		    "292"
 		    Block {
 		    BlockType		    Inport
 		    Name		    "LEFT_RIGHT_FOOT_IN_CONTACT"
@@ -22676,7 +23209,7 @@ Model {
 	  Name			  "synchronizer"
 	  SID			  "2423"
 	  Ports			  []
-	  Position		  [922, 183, 1047, 218]
+	  Position		  [1212, 223, 1337, 258]
 	  ZOrder		  546
 	  ForegroundColor	  "red"
 	  BackgroundColor	  "green"
@@ -22898,6 +23431,7 @@ Model {
 	  ZOrder		  20
 	  SrcBlock		  "Saturation"
 	  SrcPort		  1
+	  Points		  [38, 0; 0, 5]
 	  DstBlock		  "Set References"
 	  DstPort		  1
 	}
@@ -22905,6 +23439,7 @@ Model {
 	  ZOrder		  139
 	  SrcBlock		  "controller_QP"
 	  SrcPort		  1
+	  Points		  [3, 0; 0, -45]
 	  DstBlock		  "Saturation"
 	  DstPort		  1
 	}
@@ -22912,6 +23447,7 @@ Model {
 	  ZOrder		  176
 	  SrcBlock		  "Dynamics and Kinematics"
 	  SrcPort		  1
+	  Points		  [100, 0; 0, 8; 140, 0; 0, 17]
 	  DstBlock		  "controller_QP"
 	  DstPort		  1
 	}
@@ -22919,6 +23455,7 @@ Model {
 	  ZOrder		  177
 	  SrcBlock		  "Dynamics and Kinematics"
 	  SrcPort		  2
+	  Points		  [100, 0; 0, 35]
 	  DstBlock		  "controller_QP"
 	  DstPort		  2
 	}
@@ -22926,6 +23463,7 @@ Model {
 	  ZOrder		  178
 	  SrcBlock		  "Dynamics and Kinematics"
 	  SrcPort		  3
+	  Points		  [100, 0; 0, 45]
 	  DstBlock		  "controller_QP"
 	  DstPort		  3
 	}
@@ -22933,6 +23471,7 @@ Model {
 	  ZOrder		  179
 	  SrcBlock		  "Dynamics and Kinematics"
 	  SrcPort		  4
+	  Points		  [100, 0; 0, 55]
 	  DstBlock		  "controller_QP"
 	  DstPort		  4
 	}
@@ -22940,6 +23479,7 @@ Model {
 	  ZOrder		  181
 	  SrcBlock		  "Dynamics and Kinematics"
 	  SrcPort		  6
+	  Points		  [25, 0; 0, 75]
 	  DstBlock		  "controller_QP"
 	  DstPort		  6
 	}
@@ -22947,6 +23487,7 @@ Model {
 	  ZOrder		  180
 	  SrcBlock		  "Dynamics and Kinematics"
 	  SrcPort		  5
+	  Points		  [48, 0; 0, 65]
 	  DstBlock		  "controller_QP"
 	  DstPort		  5
 	}
@@ -22954,6 +23495,7 @@ Model {
 	  ZOrder		  182
 	  SrcBlock		  "Dynamics and Kinematics"
 	  SrcPort		  7
+	  Points		  [18, 0; 0, 85]
 	  DstBlock		  "controller_QP"
 	  DstPort		  7
 	}
@@ -22961,6 +23503,7 @@ Model {
 	  ZOrder		  183
 	  SrcBlock		  "Dynamics and Kinematics"
 	  SrcPort		  8
+	  Points		  [12, 0; 0, 95]
 	  DstBlock		  "controller_QP"
 	  DstPort		  8
 	}
@@ -22968,6 +23511,7 @@ Model {
 	  ZOrder		  184
 	  SrcBlock		  "Dynamics and Kinematics"
 	  SrcPort		  9
+	  Points		  [6, 0; 0, 105]
 	  DstBlock		  "controller_QP"
 	  DstPort		  9
 	}
@@ -22975,6 +23519,7 @@ Model {
 	  ZOrder		  187
 	  SrcBlock		  "Dynamics and Kinematics"
 	  SrcPort		  10
+	  Points		  [0, 115]
 	  DstBlock		  "controller_QP"
 	  DstPort		  10
 	}
@@ -22982,6 +23527,7 @@ Model {
 	  ZOrder		  186
 	  SrcBlock		  "Dynamics and Kinematics"
 	  SrcPort		  11
+	  Points		  [0, 125]
 	  DstBlock		  "controller_QP"
 	  DstPort		  11
 	}
@@ -22989,6 +23535,7 @@ Model {
 	  ZOrder		  188
 	  SrcBlock		  "Dynamics and Kinematics"
 	  SrcPort		  12
+	  Points		  [0, 135]
 	  DstBlock		  "controller_QP"
 	  DstPort		  12
 	}
@@ -22996,6 +23543,7 @@ Model {
 	  ZOrder		  189
 	  SrcBlock		  "Dynamics and Kinematics"
 	  SrcPort		  13
+	  Points		  [0, 145]
 	  DstBlock		  "controller_QP"
 	  DstPort		  13
 	}
@@ -23003,26 +23551,26 @@ Model {
 	  ZOrder		  194
 	  SrcBlock		  "Robot State and References"
 	  SrcPort		  2
-	  Points		  [38, 0]
+	  Points		  [38, 0; 0, -10]
 	  Branch {
-	    ZOrder		    242
-	    DstBlock		    "controller_QP"
-	    DstPort		    15
-	  }
-	  Branch {
-	    ZOrder		    239
-	    Points		    [0, -225]
+	    ZOrder		    262
+	    Points		    [0, -340]
+	    Branch {
+	      ZOrder		      263
+	      Points		      [0, -100]
+	      DstBlock		      "emergency stop: joint limits"
+	      DstPort		      1
+	    }
 	    Branch {
 	      ZOrder		      241
 	      DstBlock		      "Dynamics and Kinematics"
 	      DstPort		      2
 	    }
-	    Branch {
-	      ZOrder		      212
-	      Points		      [0, -30]
-	      DstBlock		      "emergency stop: joint limits"
-	      DstPort		      1
-	    }
+	  }
+	  Branch {
+	    ZOrder		    242
+	    DstBlock		    "controller_QP"
+	    DstPort		    15
 	  }
 	}
 	Line {
@@ -23031,15 +23579,15 @@ Model {
 	  SrcPort		  3
 	  Points		  [58, 0]
 	  Branch {
+	    ZOrder		    261
+	    Points		    [0, -250]
+	    DstBlock		    "Dynamics and Kinematics"
+	    DstPort		    3
+	  }
+	  Branch {
 	    ZOrder		    243
 	    DstBlock		    "controller_QP"
 	    DstPort		    16
-	  }
-	  Branch {
-	    ZOrder		    211
-	    Points		    [0, -170]
-	    DstBlock		    "Dynamics and Kinematics"
-	    DstPort		    3
 	  }
 	}
 	Line {
@@ -23048,21 +23596,23 @@ Model {
 	  SrcPort		  4
 	  Points		  [75, 0]
 	  Branch {
-	    ZOrder		    244
-	    DstBlock		    "controller_QP"
-	    DstPort		    17
-	  }
-	  Branch {
-	    ZOrder		    229
-	    Points		    [0, -115]
+	    ZOrder		    260
+	    Points		    [0, -150]
 	    DstBlock		    "Dynamics and Kinematics"
 	    DstPort		    4
+	  }
+	  Branch {
+	    ZOrder		    244
+	    Points		    [330, 0; 0, 10]
+	    DstBlock		    "controller_QP"
+	    DstPort		    17
 	  }
 	}
 	Line {
 	  ZOrder		  197
 	  SrcBlock		  "Robot State and References"
 	  SrcPort		  5
+	  Points		  [323, 0; 0, 20]
 	  DstBlock		  "controller_QP"
 	  DstPort		  18
 	}
@@ -23070,6 +23620,7 @@ Model {
 	  ZOrder		  199
 	  SrcBlock		  "Robot State and References"
 	  SrcPort		  7
+	  Points		  [323, 0; 0, 40]
 	  DstBlock		  "controller_QP"
 	  DstPort		  20
 	}
@@ -23077,6 +23628,7 @@ Model {
 	  ZOrder		  198
 	  SrcBlock		  "Robot State and References"
 	  SrcPort		  6
+	  Points		  [323, 0; 0, 30]
 	  DstBlock		  "controller_QP"
 	  DstPort		  19
 	}
@@ -23084,6 +23636,7 @@ Model {
 	  ZOrder		  200
 	  SrcBlock		  "Robot State and References"
 	  SrcPort		  8
+	  Points		  [323, 0; 0, 50]
 	  DstBlock		  "controller_QP"
 	  DstPort		  21
 	}
@@ -23091,6 +23644,7 @@ Model {
 	  ZOrder		  201
 	  SrcBlock		  "Robot State and References"
 	  SrcPort		  9
+	  Points		  [323, 0; 0, 60]
 	  DstBlock		  "controller_QP"
 	  DstPort		  22
 	}
@@ -23098,6 +23652,7 @@ Model {
 	  ZOrder		  202
 	  SrcBlock		  "Robot State and References"
 	  SrcPort		  10
+	  Points		  [323, 0; 0, 70]
 	  DstBlock		  "controller_QP"
 	  DstPort		  23
 	}
@@ -23105,7 +23660,7 @@ Model {
 	  ZOrder		  203
 	  SrcBlock		  "Robot State and References"
 	  SrcPort		  1
-	  Points		  [19, 0; 0, -280]
+	  Points		  [19, 0; 0, -449; 191, 0]
 	  DstBlock		  "Dynamics and Kinematics"
 	  DstPort		  1
 	}
@@ -23113,52 +23668,137 @@ Model {
 	  ZOrder		  215
 	  SrcBlock		  "Dynamics and Kinematics"
 	  SrcPort		  14
+	  Points		  [0, 155]
 	  DstBlock		  "controller_QP"
 	  DstPort		  14
 	}
       }
     }
     Line {
-      ZOrder		      270
+      ZOrder		      277
+      SrcBlock		      "Human System"
+      SrcPort		      14
+      DstBlock		      "Robot System"
+      DstPort		      14
+    }
+    Line {
+      ZOrder		      278
+      SrcBlock		      "Human System"
+      SrcPort		      7
+      DstBlock		      "Robot System"
+      DstPort		      7
+    }
+    Line {
+      ZOrder		      279
+      SrcBlock		      "Human System"
+      SrcPort		      8
+      DstBlock		      "Robot System"
+      DstPort		      8
+    }
+    Line {
+      ZOrder		      280
+      SrcBlock		      "Human System"
+      SrcPort		      16
+      DstBlock		      "Robot System"
+      DstPort		      16
+    }
+    Line {
+      ZOrder		      281
+      SrcBlock		      "Human System"
+      SrcPort		      18
+      DstBlock		      "Robot System"
+      DstPort		      18
+    }
+    Line {
+      ZOrder		      282
+      SrcBlock		      "Human System"
+      SrcPort		      13
+      DstBlock		      "Robot System"
+      DstPort		      13
+    }
+    Line {
+      ZOrder		      283
+      SrcBlock		      "Human System"
+      SrcPort		      10
+      DstBlock		      "Robot System"
+      DstPort		      10
+    }
+    Line {
+      ZOrder		      284
+      SrcBlock		      "Human System"
+      SrcPort		      11
+      DstBlock		      "Robot System"
+      DstPort		      11
+    }
+    Line {
+      ZOrder		      285
+      SrcBlock		      "Human System"
+      SrcPort		      17
+      DstBlock		      "Robot System"
+      DstPort		      17
+    }
+    Line {
+      ZOrder		      286
+      SrcBlock		      "Human System"
+      SrcPort		      12
+      DstBlock		      "Robot System"
+      DstPort		      12
+    }
+    Line {
+      ZOrder		      287
       SrcBlock		      "Human System"
       SrcPort		      1
       DstBlock		      "Robot System"
       DstPort		      1
     }
     Line {
-      ZOrder		      271
+      ZOrder		      288
       SrcBlock		      "Human System"
       SrcPort		      2
       DstBlock		      "Robot System"
       DstPort		      2
     }
     Line {
-      ZOrder		      272
+      ZOrder		      289
       SrcBlock		      "Human System"
       SrcPort		      3
       DstBlock		      "Robot System"
       DstPort		      3
     }
     Line {
-      ZOrder		      274
-      SrcBlock		      "Human System"
-      SrcPort		      6
-      DstBlock		      "Robot System"
-      DstPort		      6
-    }
-    Line {
-      ZOrder		      275
+      ZOrder		      290
       SrcBlock		      "Human System"
       SrcPort		      4
       DstBlock		      "Robot System"
       DstPort		      4
     }
     Line {
-      ZOrder		      276
+      ZOrder		      291
       SrcBlock		      "Human System"
       SrcPort		      5
       DstBlock		      "Robot System"
       DstPort		      5
+    }
+    Line {
+      ZOrder		      292
+      SrcBlock		      "Human System"
+      SrcPort		      6
+      DstBlock		      "Robot System"
+      DstPort		      6
+    }
+    Line {
+      ZOrder		      293
+      SrcBlock		      "Human System"
+      SrcPort		      9
+      DstBlock		      "Robot System"
+      DstPort		      9
+    }
+    Line {
+      ZOrder		      294
+      SrcBlock		      "Human System"
+      SrcPort		      15
+      DstBlock		      "Robot System"
+      DstPort		      15
     }
   }
 }
@@ -24689,9 +25329,6 @@ Stateflow {
     screen		    [1 1 1680 1050 1.25]
     treeNode		    [0 74 0 0]
     viewObj		    73
-    visible		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    10
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -25807,9 +26444,6 @@ Stateflow {
     screen		    [1 1 1280 1024 1.000677131425054]
     treeNode		    [0 130 0 0]
     viewObj		    129
-    visible		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    84
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -26595,6 +27229,9 @@ Stateflow {
     screen		    [1 1 1280 1024 1.000677131425054]
     treeNode		    [0 165 0 0]
     viewObj		    164
+    visible		    1
+    subviewS {
+    }
     ssIdHighWaterMark	    91
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
