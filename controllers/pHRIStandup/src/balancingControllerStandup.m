@@ -24,7 +24,7 @@ function [tauModel, Sigma, NA, f_HDot, ...
                                          w_H_lArm_contact, w_H_rArm_contact, JLArm, JRArm, dJLArm_nu, dJRArm_nu,...
                                          human_w_H_l_contact, human_w_H_r_contact, human_JL, human_JR, human_dJL_nu, human_dJR_nu,...
                                          human_w_H_lArm_contact, human_w_H_rArm_contact, human_JLArm, human_JRArm, human_dJLArm_nu, human_dJRArm_nu,...
-                                         gainsPCOM, gainsDCOM, impedances, Reg, Gain, w_H_lArm, w_H_rArm, LArmWrench, RArmWrench, STANDUP_WITH_HUMAN, state)
+                                         gainsPCOM, gainsDCOM, impedances, Reg, Gain, LArmWrench, RArmWrench, STANDUP_WITH_HUMAN, state)
        
     % BALANCING CONTROLLER
 
@@ -35,8 +35,8 @@ function [tauModel, Sigma, NA, f_HDot, ...
     w_R_r_contact      = w_H_r_contact(1:3,1:3);
     
     % arms position
-    pos_leftArm     = w_H_lArm(1:3,4);
-    pos_rightArm    = w_H_rArm(1:3,4);
+    pos_leftArm     = w_H_lArm_contact(1:3,4);
+    pos_rightArm    = w_H_rArm_contact(1:3,4);
     
     dampings       = Gain.dampings;
     ROBOT_DOF      = size(ROBOT_DOF_FOR_SIMULINK,1);
