@@ -103,14 +103,19 @@ function [tauModel, Sigma, NA, f_HDot, ...
                        human_dJLArm_nu - dJLArm_nu;
                        human_dJRArm_nu - dJRArm_nu];
     
-    Big_Lambda      = Big_Q*Big_Minv*Big_Jct;
-    Big_Lambdainv   = inv(Big_Lambda);
+    Big_Gamma      = Big_Q*Big_Minv*Big_Jct;
+    Big_Gammainv   = inv(Big_Gamma);
     
-    Big_G1G2        = - Big_Lambdainv*Big_Q*Big_Minv*Big_St;
+    Big_G1G2        = - Big_Gammainv*Big_Q*Big_Minv*Big_St;
     
     Big_G1          = Big_G1G2(:,1:HUMAN_DOF);
-    Big_G2          = Big_G1G2(:,HUMAN_DOF+1:ROBOT_DOF);
-    Big_G3          = Big_Lambdainv*(Big_Q*Big_Minv*Big_h - Big_PV);
+    Big_G1bar       = Big_G1(13:end,:);
+    
+    Big_G2          = Big_G1G2(:,HUMAN_DOF+1:end);
+    Big_G2bar       = Big_G2(13:end,:); 
+    
+    Big_G3          = Big_Gammainv*(Big_Q*Big_Minv*Big_h - Big_PV);
+    Big_G3bar       = Big_G3(13:end,:);
 
     % Velocity of the center of mass
     xCoM_dot       = J_CoM(1:3,:)*nu;
@@ -178,13 +183,29 @@ function [tauModel, Sigma, NA, f_HDot, ...
     Jc              = [JL*constraints(1);      
                        JR*constraints(2)];
                    
+    % Four contact jacobians
+    Jc4             = [JL*constraints(1);      
+                       JR*constraints(2);
+                       JLArm;
+                       JRArm];
+                   
     % Time varying dot(J)*nu
-    Jc_nuDot        = [dJL_nu*constraints(1) ;      
+    Jc_nuDot        = [dJL_nu*constraints(1);      
                        dJR_nu*constraints(2)];
+
+    % Four contacts JDotnu
+    Jc4_nuDot       = [dJL_nu*constraints(1);      
+                       dJR_nu*constraints(2);
+                       dJLArm_nu;
+                       dJRArm_nu];
 
     JcMinv          = Jc/M;
     JcMinvSt        = JcMinv*St;
     JcMinvJct       = JcMinv*transpose(Jc);
+    
+    JcomMinv        = J_CoM/M
+    Big_Omega       = JcomMinv*transpose(Jc4)*Big_G1bar;
+    Big_Delta       = JcomMinv*(St + transpose(Jc4)*Big_G2bar);
     
     % multiplier of f in tau
     JBar            = transpose(Jc(:,7:end)) -Mbj'/Mb*transpose(Jc(:,1:6)); 

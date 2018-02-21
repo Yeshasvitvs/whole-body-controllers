@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.3403"
+    ComputedModelVersion    "1.3404"
     NumModelReferences	    0
     NumTestPointedSignals   0
     NumProvidedFunctions    0
@@ -64,11 +64,11 @@ Model {
 	$ObjectID		5
 	$ClassName		"Simulink.EditorInfo"
 	IsActive		[1]
-	ViewObjType		"SimulinkTopLevel"
-	LoadSaveID		"0"
+	ViewObjType		"SimulinkSubsys"
+	LoadSaveID		"2355"
 	Extents			[2477.0, 1271.0]
-	ZoomFactor		[1.658176943699732]
-	Offset			[548.09539207760713, 151.5569927243331]
+	ZoomFactor		[0.8]
+	Offset			[0.0, 0.0]
       }
       Object {
 	$PropName		"DockComponentsInfo"
@@ -101,9 +101,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "yeshi"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Feb 21 15:19:18 2018"
-  RTWModifiedTimeStamp	  441126403
-  ModelVersionFormat	  "1.%<AutoIncrement:3403>"
+  LastModifiedDate	  "Wed Feb 21 18:02:14 2018"
+  RTWModifiedTimeStamp	  441135547
+  ModelVersionFormat	  "1.%<AutoIncrement:3404>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1209,7 +1209,7 @@ Model {
   System {
     Name		    "torqueBalancingStandup"
     Location		    [1415, 24, 3926, 1440]
-    Open		    on
+    Open		    off
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
     ScreenColor		    "white"
@@ -3018,7 +3018,7 @@ Model {
 	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"81"
+	ZoomFactor		"82"
 	Block {
 	  BlockType		  Inport
 	  Name			  "human_w_H_b"
@@ -17220,7 +17220,7 @@ Model {
 	  System {
 	    Name		    "controller_QP"
 	    Location		    [1415, 24, 3926, 1440]
-	    Open		    off
+	    Open		    on
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -26325,9 +26325,6 @@ Stateflow {
     screen		    [1 1 3600 1200 1.180555555555556]
     treeNode		    [0 98 0 0]
     viewObj		    97
-    visible		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    6
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -26810,9 +26807,6 @@ Stateflow {
     screen		    [1 1 1280 1024 1.000677131425054]
     treeNode		    [0 123 0 0]
     viewObj		    122
-    visible		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    84
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -27598,9 +27592,6 @@ Stateflow {
     screen		    [1 1 1280 1024 1.000677131425054]
     treeNode		    [0 158 0 0]
     viewObj		    157
-    visible		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    117
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
