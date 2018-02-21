@@ -25,7 +25,7 @@ function [tauModel, Sigma, NA, f_HDot, ...
                                          human_w_H_l_contact, human_w_H_r_contact, human_JL, human_JR, human_dJL_nu, human_dJR_nu,...
                                          human_w_H_lArm_contact, human_w_H_rArm_contact, human_JLArm, human_JRArm, human_dJLArm_nu, human_dJRArm_nu,...
                                          gainsPCOM, gainsDCOM, impedances, Reg, Gain, LArmWrench, RArmWrench, STANDUP_WITH_HUMAN, state,...
-                                         human_w_H_b, human_qj, human_nu_b. human_dqj, human_torques)
+                                         human_w_H_b, human_qj, human_nu_b, human_dqj, human_torques, HUMAN_DOF_FOR_SIMULINK)
        
     % BALANCING CONTROLLER
 
@@ -41,10 +41,22 @@ function [tauModel, Sigma, NA, f_HDot, ...
     
     dampings       = Gain.dampings;
     ROBOT_DOF      = size(ROBOT_DOF_FOR_SIMULINK,1);
+    HUMAN_DOF      = size(HUMAN_DOF_FOR_SIMULINK,1);
     gravAcc        = 9.81;
+    
+    % Velocity(nu) of the human
+    human_nu = [human_nu_b; human_dqj];
    
     % Mass of the robot
     m              = M(1,1);
+    
+    % Mass of the human
+    human_m        = human_M(1,1);
+    
+    Big_M          = [human_M,                       zeros(6+HUMAN_DOF,6+ROBOT_DOF);
+                      zeros(6+ROBOT_DOF,6+HUMAN_DOF),    M];
+                  
+    Big_Minv       = inv(Big_M);              
     
     % The mass matrix is partitioned as:
     %
@@ -61,9 +73,44 @@ function [tauModel, Sigma, NA, f_HDot, ...
 
     St             = [zeros(6,ROBOT_DOF);
                       eye(ROBOT_DOF,ROBOT_DOF)];
+                  
+    human_St       = [zeros(6,HUMAN_DOF);
+                      eye(HUMAN_DOF,HUMAN_DOF)];
+                  
     gravityWrench  = [zeros(2,1);
                      -m*gravAcc;
                       zeros(3,1)];
+                  
+    Big_h          = [human_h; h];
+    
+    Big_St         = [human_St                      zeros(6+HUMAN_DOF,ROBOT_DOF);
+                      zeros(6+ROBOT_DOF,HUMAN_DOF)  St];
+                  
+    Big_Jct        = [human_JL'             human_JR'               zeros(6+HUMAN_DOF,6)             zeros(6+HUMAN_DOF,6)           human_JLArm'            human_JRArm';
+                      zeros(6+ROBOT_DOF,6)  zeros(6+ROBOT_DOF,6)    JL'                              JR'                            -JLArm'                 -JRArm'];
+    
+    Big_Q          = [human_JL                  zeros(6,6+ROBOT_DOF);
+                      human_JR                  zeros(6,6+ROBOT_DOF);
+                      zeros(6,6+HUMAN_DOF)      JL;
+                      zeros(6,6+HUMAN_DOF)      JR;
+                      human_JLArm               -JLArm;
+                      human_JRArm               -JRArm];
+    
+    Big_PV          = [human_dJL_nu;
+                       human_dJR_nu;
+                       dJL_nu;
+                       dJR_nu;
+                       human_dJLArm_nu - dJLArm_nu;
+                       human_dJRArm_nu - dJRArm_nu];
+    
+    Big_Lambda      = Big_Q*Big_Minv*Big_Jct;
+    Big_Lambdainv   = inv(Big_Lambda);
+    
+    Big_G1G2        = - Big_Lambdainv*Big_Q*Big_Minv*Big_St;
+    
+    Big_G1          = Big_G1G2(:,1:HUMAN_DOF);
+    Big_G2          = Big_G1G2(:,HUMAN_DOF+1:ROBOT_DOF);
+    Big_G3          = Big_Lambdainv*(Big_Q*Big_Minv*Big_h - Big_PV);
 
     % Velocity of the center of mass
     xCoM_dot       = J_CoM(1:3,:)*nu;
