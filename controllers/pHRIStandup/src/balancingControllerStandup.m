@@ -241,7 +241,15 @@ function [tauModel, Sigma, NA, f_HDot, ...
         correctionFromSupportForce = alpha*H_errParallel;
     else
         correctionFromSupportForce = zeros(6,1);
-    end                
+    end
+    
+    % Projector of human torques in the parallel direction of momentum
+    % error
+    human_torque_alpha = (transpose(H_error)*Big_Omega*human_torques)/(norm(H_error)+Reg.norm_tolerance);
+    
+    if STANDUP_WITH_HUMAN_TORQUE && human_torque_alpha >= 0 && state < 4
+        %%TODO How do we use this alpha ?? 
+    end
                 
     %% QP PARAMETERS FOR TWO FEET STANDING
     % In the case the robot stands on two feet/legs, the control objective is 
