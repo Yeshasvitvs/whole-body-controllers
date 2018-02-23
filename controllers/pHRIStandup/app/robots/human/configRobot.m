@@ -60,7 +60,7 @@ HUMAN_WBTConfigRobot.ControlledJoints         =  {...
                                                      torso_1{:},...
                                                  };
 % Frames list
-HUMAN_Frames.BASE              = 'pelvis'; 
+HUMAN_Frames.BASE              = 'Pelvis'; 
 HUMAN_Frames.LEFT_FOOT         = 'LeftFoot';
 HUMAN_Frames.RIGHT_FOOT        = 'RightFoot';
 HUMAN_Frames.LEFT_HAND         = 'LeftHand';

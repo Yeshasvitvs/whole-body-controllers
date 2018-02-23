@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.3419"
+    ComputedModelVersion    "1.3442"
     NumModelReferences	    0
     NumTestPointedSignals   0
     NumProvidedFunctions    0
@@ -64,21 +64,21 @@ Model {
 	Dimension		2
 	Object {
 	  $ObjectID		  5
-	  IsActive		  [0]
+	  IsActive		  [1]
 	  ViewObjType		  "SimulinkTopLevel"
 	  LoadSaveID		  "0"
 	  Extents		  [2477.0, 1265.0]
-	  ZoomFactor		  [1.658176943699732]
-	  Offset		  [548.09539207760713, 151.55699272433304]
+	  ZoomFactor		  [1.5339821594565004]
+	  Offset		  [487.07659232426158, 167.277474804469]
 	}
 	Object {
 	  $ObjectID		  6
-	  IsActive		  [1]
+	  IsActive		  [0]
 	  ViewObjType		  "SimulinkSubsys"
-	  LoadSaveID		  "2163"
+	  LoadSaveID		  "2087"
 	  Extents		  [2477.0, 1265.0]
-	  ZoomFactor		  [1.8515005286255146]
-	  Offset		  [-592.96768451408741, -155.11480929716208]
+	  ZoomFactor		  [1.7098317288024654]
+	  Offset		  [-638.18794023070643, 2500.0805574341566]
 	}
 	PropName		"EditorsInfo"
       }
@@ -113,9 +113,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "yeshi"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Feb 21 18:17:30 2018"
-  RTWModifiedTimeStamp	  441137849
-  ModelVersionFormat	  "1.%<AutoIncrement:3419>"
+  LastModifiedDate	  "Fri Feb 23 18:45:41 2018"
+  RTWModifiedTimeStamp	  441312340
+  ModelVersionFormat	  "1.%<AutoIncrement:3442>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1232,14 +1232,14 @@ Model {
     TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "166"
+    ZoomFactor		    "153"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "5429"
+    SIDHighWatermark	    "5444"
     Block {
       BlockType		      SubSystem
       Name		      "Human System"
       SID		      "5032"
-      Ports		      [0, 20]
+      Ports		      [2, 20]
       Position		      [1435, 166, 1600, 889]
       ZOrder		      -14
       BlockMirror	      on
@@ -1259,12 +1259,29 @@ Model {
 	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"156"
+	ZoomFactor		"136"
+	Block {
+	  BlockType		  Inport
+	  Name			  "w_H_humanLeftFeet"
+	  SID			  "5440"
+	  Position		  [290, -147, 320, -133]
+	  ZOrder		  602
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "w_H_humanRightFeet"
+	  SID			  "5444"
+	  Position		  [70, 158, 100, 172]
+	  ZOrder		  606
+	  Port			  "2"
+	  IconDisplay		  "Port number"
+	}
 	Block {
 	  BlockType		  Constant
 	  Name			  "\n\n  5"
 	  SID			  "5427"
-	  Position		  [925, 173, 1075, 187]
+	  Position		  [1010, 173, 1160, 187]
 	  ZOrder		  598
 	  ShowName		  off
 	  Value			  "HUMAN_DOF_FOR_SIMULINK"
@@ -1288,7 +1305,7 @@ Model {
 	  Name			  "Contact Kinematics"
 	  SID			  "5168"
 	  Ports			  [4, 12]
-	  Position		  [580, 254, 730, 736]
+	  Position		  [665, 254, 815, 736]
 	  ZOrder		  -29
 	  RequestExecContextInheritance	off
 	  Variant		  off
@@ -2368,7 +2385,7 @@ Model {
 	  Name			  "Dynamics"
 	  SID			  "5185"
 	  Ports			  [4, 2]
-	  Position		  [585, 15, 715, 185]
+	  Position		  [670, 15, 800, 185]
 	  ZOrder		  -31
 	  RequestExecContextInheritance	off
 	  Variant		  off
@@ -2530,6 +2547,19 @@ Model {
 	}
 	Block {
 	  BlockType		  Reference
+	  Name			  "Forward Kinematics"
+	  SID			  "5442"
+	  Ports			  [2, 1]
+	  Position		  [405, -157, 555, -93]
+	  ZOrder		  604
+	  LibraryVersion	  "1.497"
+	  SourceBlock		  "WBToolboxLibrary/wholeBodyModel/Kinematics/Forward Kinematics"
+	  SourceType		  "Forward Kinematics"
+	  ContentPreviewEnabled	  off
+	  frameName		  "HUMAN_Frames.BASE"
+	}
+	Block {
+	  BlockType		  Reference
 	  Name			  "Joint Positions"
 	  SID			  "5020"
 	  Ports			  [0, 1]
@@ -2547,7 +2577,7 @@ Model {
 	  Name			  "Joint Torques"
 	  SID			  "5037"
 	  Ports			  [0, 1]
-	  Position		  [940, 86, 1060, 114]
+	  Position		  [1025, 86, 1145, 114]
 	  ZOrder		  574
 	  BackgroundColor	  "[0.827500, 0.576500, 0.603900]"
 	  LibraryVersion	  "1.497"
@@ -2580,19 +2610,16 @@ Model {
 	  ForegroundColor	  "[0.916667, 0.916667, 0.916667]"
 	  BackgroundColor	  "gray"
 	  ShowName		  off
-	  Commented		  "on"
 	  LibraryVersion	  "1.497"
 	  SourceBlock		  "WBToolboxLibrary/Utilities/Real Time Synchronizer"
 	  SourceType		  "Real Time Synchronizer"
 	  period		  "0.01"
-	}
-	Block {
-	  BlockType		  Constant
-	  Name			  "base pose"
-	  SID			  "5027"
-	  Position		  [290, -45, 320, -15]
-	  ZOrder		  567
-	  Value			  "eye(4,4)"
+	  Object {
+	    $PropName		    "MaskObject"
+	    $ObjectID		    22
+	    $ClassName		    "Simulink.Mask"
+	    Type		    "Real Time Synchronizer"
+	  }
 	}
 	Block {
 	  BlockType		  Constant
@@ -2606,7 +2633,7 @@ Model {
 	  BlockType		  Outport
 	  Name			  "w_h__b"
 	  SID			  "5038"
-	  Position		  [515, -37, 545, -23]
+	  Position		  [625, -37, 655, -23]
 	  ZOrder		  575
 	  IconDisplay		  "Port number"
 	}
@@ -2614,7 +2641,7 @@ Model {
 	  BlockType		  Outport
 	  Name			  "qj"
 	  SID			  "5039"
-	  Position		  [425, -7, 455, 7]
+	  Position		  [430, -7, 460, 7]
 	  ZOrder		  576
 	  NamePlacement		  "alternate"
 	  Port			  "2"
@@ -2644,7 +2671,7 @@ Model {
 	  BlockType		  Outport
 	  Name			  "M"
 	  SID			  "5035"
-	  Position		  [785, 53, 815, 67]
+	  Position		  [870, 53, 900, 67]
 	  ZOrder		  572
 	  Port			  "5"
 	  IconDisplay		  "Port number"
@@ -2653,7 +2680,7 @@ Model {
 	  BlockType		  Outport
 	  Name			  "biasTorques"
 	  SID			  "5036"
-	  Position		  [785, 138, 815, 152]
+	  Position		  [870, 138, 900, 152]
 	  ZOrder		  573
 	  Port			  "6"
 	  IconDisplay		  "Port number"
@@ -2662,7 +2689,7 @@ Model {
 	  BlockType		  Outport
 	  Name			  "torques"
 	  SID			  "5417"
-	  Position		  [1130, 93, 1160, 107]
+	  Position		  [1215, 93, 1245, 107]
 	  ZOrder		  596
 	  Port			  "7"
 	  IconDisplay		  "Port number"
@@ -2671,7 +2698,7 @@ Model {
 	  BlockType		  Outport
 	  Name			  "w_H_lFootContact"
 	  SID			  "5208"
-	  Position		  [840, 268, 870, 282]
+	  Position		  [925, 268, 955, 282]
 	  ZOrder		  583
 	  Port			  "8"
 	  IconDisplay		  "Port number"
@@ -2680,7 +2707,7 @@ Model {
 	  BlockType		  Outport
 	  Name			  "w_H_rFootContact"
 	  SID			  "5209"
-	  Position		  [840, 308, 870, 322]
+	  Position		  [925, 308, 955, 322]
 	  ZOrder		  584
 	  Port			  "9"
 	  IconDisplay		  "Port number"
@@ -2689,7 +2716,7 @@ Model {
 	  BlockType		  Outport
 	  Name			  "JLFoot"
 	  SID			  "5210"
-	  Position		  [840, 348, 870, 362]
+	  Position		  [925, 348, 955, 362]
 	  ZOrder		  585
 	  Port			  "10"
 	  IconDisplay		  "Port number"
@@ -2698,7 +2725,7 @@ Model {
 	  BlockType		  Outport
 	  Name			  "JRFoot"
 	  SID			  "5211"
-	  Position		  [840, 388, 870, 402]
+	  Position		  [925, 388, 955, 402]
 	  ZOrder		  586
 	  Port			  "11"
 	  IconDisplay		  "Port number"
@@ -2707,7 +2734,7 @@ Model {
 	  BlockType		  Outport
 	  Name			  "dJLFootnu"
 	  SID			  "5212"
-	  Position		  [840, 428, 870, 442]
+	  Position		  [925, 428, 955, 442]
 	  ZOrder		  587
 	  Port			  "12"
 	  IconDisplay		  "Port number"
@@ -2716,7 +2743,7 @@ Model {
 	  BlockType		  Outport
 	  Name			  "dJRFootnu"
 	  SID			  "5213"
-	  Position		  [840, 468, 870, 482]
+	  Position		  [925, 468, 955, 482]
 	  ZOrder		  588
 	  Port			  "13"
 	  IconDisplay		  "Port number"
@@ -2725,7 +2752,7 @@ Model {
 	  BlockType		  Outport
 	  Name			  "w_H_lArmContact"
 	  SID			  "5214"
-	  Position		  [840, 508, 870, 522]
+	  Position		  [925, 508, 955, 522]
 	  ZOrder		  589
 	  Port			  "14"
 	  IconDisplay		  "Port number"
@@ -2734,7 +2761,7 @@ Model {
 	  BlockType		  Outport
 	  Name			  "w_H_rArmContact"
 	  SID			  "5215"
-	  Position		  [840, 548, 870, 562]
+	  Position		  [925, 548, 955, 562]
 	  ZOrder		  590
 	  Port			  "15"
 	  IconDisplay		  "Port number"
@@ -2743,7 +2770,7 @@ Model {
 	  BlockType		  Outport
 	  Name			  "JLArm"
 	  SID			  "5216"
-	  Position		  [840, 588, 870, 602]
+	  Position		  [925, 588, 955, 602]
 	  ZOrder		  591
 	  Port			  "16"
 	  IconDisplay		  "Port number"
@@ -2752,7 +2779,7 @@ Model {
 	  BlockType		  Outport
 	  Name			  "JRArm"
 	  SID			  "5217"
-	  Position		  [840, 628, 870, 642]
+	  Position		  [925, 628, 955, 642]
 	  ZOrder		  592
 	  Port			  "17"
 	  IconDisplay		  "Port number"
@@ -2761,7 +2788,7 @@ Model {
 	  BlockType		  Outport
 	  Name			  "dJLArmnu"
 	  SID			  "5218"
-	  Position		  [840, 668, 870, 682]
+	  Position		  [925, 668, 955, 682]
 	  ZOrder		  593
 	  Port			  "18"
 	  IconDisplay		  "Port number"
@@ -2770,7 +2797,7 @@ Model {
 	  BlockType		  Outport
 	  Name			  "dJRArmnu"
 	  SID			  "5219"
-	  Position		  [840, 708, 870, 722]
+	  Position		  [925, 708, 955, 722]
 	  ZOrder		  594
 	  Port			  "19"
 	  IconDisplay		  "Port number"
@@ -2779,7 +2806,7 @@ Model {
 	  BlockType		  Outport
 	  Name			  "DoF"
 	  SID			  "5426"
-	  Position		  [1130, 173, 1160, 187]
+	  Position		  [1215, 173, 1245, 187]
 	  ZOrder		  597
 	  Port			  "20"
 	  IconDisplay		  "Port number"
@@ -2788,27 +2815,36 @@ Model {
 	  ZOrder		  270
 	  SrcBlock		  "Joint Positions"
 	  SrcPort		  1
-	  Points		  [21, 0]
+	  Points		  [20, 0]
 	  Branch {
-	    ZOrder		    387
-	    Points		    [0, -25]
-	    DstBlock		    "qj"
-	    DstPort		    1
+	    ZOrder		    429
+	    Points		    [19, 0]
+	    Branch {
+	      ZOrder		      386
+	      Points		      [139, 0; 0, 55]
+	      Branch {
+		ZOrder			371
+		DstBlock		"Dynamics"
+		DstPort			2
+	      }
+	      Branch {
+		ZOrder			360
+		Points			[0, 355]
+		DstBlock		"Contact Kinematics"
+		DstPort			2
+	      }
+	    }
+	    Branch {
+	      ZOrder		      426
+	      Points		      [0, -25]
+	      DstBlock		      "qj"
+	      DstPort		      1
+	    }
 	  }
 	  Branch {
-	    ZOrder		    386
-	    Points		    [72, 0; 0, 55]
-	    Branch {
-	      ZOrder		      371
-	      DstBlock		      "Dynamics"
-	      DstPort		      2
-	    }
-	    Branch {
-	      ZOrder		      360
-	      Points		      [0, 355]
-	      DstBlock		      "Contact Kinematics"
-	      DstPort		      2
-	    }
+	    ZOrder		    427
+	    DstBlock		    "Forward Kinematics"
+	    DstPort		    2
 	  }
 	}
 	Line {
@@ -2824,7 +2860,7 @@ Model {
 	  }
 	  Branch {
 	    ZOrder		    388
-	    Points		    [82, 0]
+	    Points		    [167, 0]
 	    Branch {
 	      ZOrder		      370
 	      DstBlock		      "Dynamics"
@@ -2851,7 +2887,7 @@ Model {
 	  }
 	  Branch {
 	    ZOrder		    390
-	    Points		    [31, 0]
+	    Points		    [116, 0]
 	    Branch {
 	      ZOrder		      373
 	      Points		      [0, -20]
@@ -2867,10 +2903,10 @@ Model {
 	  }
 	}
 	Line {
-	  ZOrder		  269
-	  SrcBlock		  "base pose"
+	  ZOrder		  430
+	  SrcBlock		  "Forward Kinematics"
 	  SrcPort		  1
-	  Points		  [160, 0]
+	  Points		  [10, 0; 0, 95]
 	  Branch {
 	    ZOrder		    385
 	    DstBlock		    "w_h__b"
@@ -3004,13 +3040,20 @@ Model {
 	  DstBlock		  "DoF"
 	  DstPort		  1
 	}
+	Line {
+	  ZOrder		  423
+	  SrcBlock		  "w_H_humanLeftFeet"
+	  SrcPort		  1
+	  DstBlock		  "Forward Kinematics"
+	  DstPort		  1
+	}
       }
     }
     Block {
       BlockType		      SubSystem
       Name		      "Robot System"
       SID		      "5016"
-      Ports		      [20]
+      Ports		      [20, 2]
       Position		      [990, 162, 1140, 893]
       ZOrder		      -12
       BlockMirror	      on
@@ -3030,7 +3073,7 @@ Model {
 	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"82"
+	ZoomFactor		"150"
 	Block {
 	  BlockType		  Inport
 	  Name			  "human_w_H_b"
@@ -3223,6 +3266,12 @@ Model {
 	  ContentPreviewEnabled	  off
 	  ConfigSource		  "Workspace"
 	  ConfigObject		  "'WBTConfigRobot'"
+	  RobotName		  "'icub'"
+	  UrdfFile		  "'model.urdf'"
+	  ControlledJoints	  "{'l_elbow','l_shoulder_pitch','torso_roll'}"
+	  ControlBoardsNames	  "{'left_arm','right_arm','torso'}"
+	  LocalName		  "'WBT'"
+	  GravityVector		  "[0,0,-9.81]"
 	}
 	Block {
 	  BlockType		  SubSystem
@@ -3238,7 +3287,7 @@ Model {
 	  Variant		  off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    22
+	    $ObjectID		    23
 	    $ClassName		    "Simulink.Mask"
 	    Display		    "disp('VISUALIZER')"
 	  }
@@ -5665,7 +5714,7 @@ Model {
 	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "104"
+	    ZoomFactor		    "103"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "w_H_b"
@@ -7581,7 +7630,7 @@ Model {
 		  Variant		  off
 		  System {
 		    Name		    "xCom"
-		    Location		    [65, 24, 1920, 1080]
+		    Location		    [1415, 24, 3926, 1440]
 		    Open		    off
 		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
@@ -7593,7 +7642,7 @@ Model {
 		    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 		    TiledPageScale	    1
 		    ShowPageBoundaries	    off
-		    ZoomFactor		    "464"
+		    ZoomFactor		    "634"
 		    Block {
 		    BlockType		    Inport
 		    Name		    "w_H_b"
@@ -8433,7 +8482,7 @@ Model {
 	  System {
 	    Name		    "Robot State and References"
 	    Location		    [1415, 24, 3926, 1440]
-	    Open		    off
+	    Open		    on
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -10736,7 +10785,7 @@ Model {
 		TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 		TiledPageScale		1
 		ShowPageBoundaries	off
-		ZoomFactor		"161"
+		ZoomFactor		"160"
 		Block {
 		  BlockType		  Inport
 		  Name			  "StateAndReferences"
@@ -12186,7 +12235,7 @@ Model {
 	      System {
 		Name			"State Machine Standup"
 		Location		[1415, 24, 3926, 1440]
-		Open			on
+		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
@@ -12989,7 +13038,7 @@ Model {
 		  Variant		  off
 		  System {
 		    Name		    "Compute base to fixed link transform"
-		    Location		    [65, 24, 1920, 1080]
+		    Location		    [1415, 24, 3926, 1440]
 		    Open		    off
 		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
@@ -13039,7 +13088,7 @@ Model {
 		    Variant		    off
 		    System {
 		    Name		    "LFoot to base link transform "
-		    Location		    [65, 24, 1920, 1080]
+		    Location		    [1415, 24, 3926, 1440]
 		    Open		    off
 		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
@@ -13051,7 +13100,7 @@ Model {
 		    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 		    TiledPageScale	    1
 		    ShowPageBoundaries	    off
-		    ZoomFactor		    "122"
+		    ZoomFactor		    "167"
 		    Block {
 		    BlockType		    Inport
 		    Name		    "qj"
@@ -17281,7 +17330,7 @@ Model {
 	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "71"
+	    ZoomFactor		    "300"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "M"
@@ -22728,7 +22777,6 @@ Model {
 	      Points		      [94, 0]
 	      Branch {
 		ZOrder			623
-		Points			[616, 0]
 		DstBlock		"Balancing Controller\n"
 		DstPort			5
 	      }
@@ -22752,7 +22800,6 @@ Model {
 	      }
 	      Branch {
 		ZOrder			621
-		Points			[599, 0]
 		DstBlock		"Balancing Controller\n"
 		DstPort			6
 	      }
@@ -22768,7 +22815,6 @@ Model {
 	      ZOrder		      575
 	      SrcBlock		      "M"
 	      SrcPort		      1
-	      Points		      [30, 0]
 	      DstBlock		      "Balancing Controller\n"
 	      DstPort		      8
 	    }
@@ -22776,7 +22822,6 @@ Model {
 	      ZOrder		      576
 	      SrcBlock		      "human_M"
 	      SrcPort		      1
-	      Points		      [120, 0]
 	      DstBlock		      "Balancing Controller\n"
 	      DstPort		      9
 	    }
@@ -22784,7 +22829,6 @@ Model {
 	      ZOrder		      577
 	      SrcBlock		      "biasTorques"
 	      SrcPort		      1
-	      Points		      [30, 0]
 	      DstBlock		      "Balancing Controller\n"
 	      DstPort		      10
 	    }
@@ -22792,7 +22836,6 @@ Model {
 	      ZOrder		      578
 	      SrcBlock		      "human_biasTorques"
 	      SrcPort		      1
-	      Points		      [120, 0]
 	      DstBlock		      "Balancing Controller\n"
 	      DstPort		      11
 	    }
@@ -22800,7 +22843,6 @@ Model {
 	      ZOrder		      579
 	      SrcBlock		      "H "
 	      SrcPort		      1
-	      Points		      [30, 0]
 	      DstBlock		      "Balancing Controller\n"
 	      DstPort		      12
 	    }
@@ -22808,7 +22850,6 @@ Model {
 	      ZOrder		      580
 	      SrcBlock		      "Compute angular momentum integral"
 	      SrcPort		      1
-	      Points		      [435, 0]
 	      DstBlock		      "Balancing Controller\n"
 	      DstPort		      13
 	    }
@@ -22816,7 +22857,6 @@ Model {
 	      ZOrder		      581
 	      SrcBlock		      "w_H_l_contact"
 	      SrcPort		      1
-	      Points		      [30, 0]
 	      DstBlock		      "Balancing Controller\n"
 	      DstPort		      14
 	    }
@@ -22824,7 +22864,6 @@ Model {
 	      ZOrder		      582
 	      SrcBlock		      "w_H_r_contact"
 	      SrcPort		      1
-	      Points		      [120, 0]
 	      DstBlock		      "Balancing Controller\n"
 	      DstPort		      15
 	    }
@@ -22832,7 +22871,6 @@ Model {
 	      ZOrder		      583
 	      SrcBlock		      "JL"
 	      SrcPort		      1
-	      Points		      [30, 0]
 	      DstBlock		      "Balancing Controller\n"
 	      DstPort		      16
 	    }
@@ -22840,7 +22878,6 @@ Model {
 	      ZOrder		      584
 	      SrcBlock		      "JR"
 	      SrcPort		      1
-	      Points		      [120, 0]
 	      DstBlock		      "Balancing Controller\n"
 	      DstPort		      17
 	    }
@@ -22848,7 +22885,6 @@ Model {
 	      ZOrder		      585
 	      SrcBlock		      "dJL_nu"
 	      SrcPort		      1
-	      Points		      [30, 0]
 	      DstBlock		      "Balancing Controller\n"
 	      DstPort		      18
 	    }
@@ -22856,7 +22892,6 @@ Model {
 	      ZOrder		      586
 	      SrcBlock		      "dJR_nu"
 	      SrcPort		      1
-	      Points		      [120, 0]
 	      DstBlock		      "Balancing Controller\n"
 	      DstPort		      19
 	    }
@@ -22864,7 +22899,6 @@ Model {
 	      ZOrder		      587
 	      SrcBlock		      "xCoM"
 	      SrcPort		      1
-	      Points		      [40, 0]
 	      DstBlock		      "Balancing Controller\n"
 	      DstPort		      20
 	    }
@@ -22872,7 +22906,6 @@ Model {
 	      ZOrder		      588
 	      SrcBlock		      "J_CoM"
 	      SrcPort		      1
-	      Points		      [120, 0]
 	      DstBlock		      "Balancing Controller\n"
 	      DstPort		      21
 	    }
@@ -22880,7 +22913,6 @@ Model {
 	      ZOrder		      589
 	      SrcBlock		      "desired_x_dx_ddx_CoM"
 	      SrcPort		      1
-	      Points		      [40, 0]
 	      DstBlock		      "Balancing Controller\n"
 	      DstPort		      22
 	    }
@@ -22888,7 +22920,6 @@ Model {
 	      ZOrder		      590
 	      SrcBlock		      "w_H_lArm_contact"
 	      SrcPort		      1
-	      Points		      [120, 0]
 	      DstBlock		      "Balancing Controller\n"
 	      DstPort		      23
 	    }
@@ -22896,7 +22927,6 @@ Model {
 	      ZOrder		      591
 	      SrcBlock		      "w_H_rArm_contact"
 	      SrcPort		      1
-	      Points		      [40, 0]
 	      DstBlock		      "Balancing Controller\n"
 	      DstPort		      24
 	    }
@@ -22904,7 +22934,6 @@ Model {
 	      ZOrder		      592
 	      SrcBlock		      "JLArm"
 	      SrcPort		      1
-	      Points		      [120, 0]
 	      DstBlock		      "Balancing Controller\n"
 	      DstPort		      25
 	    }
@@ -22912,7 +22941,6 @@ Model {
 	      ZOrder		      593
 	      SrcBlock		      "JRArm"
 	      SrcPort		      1
-	      Points		      [40, 0]
 	      DstBlock		      "Balancing Controller\n"
 	      DstPort		      26
 	    }
@@ -22920,7 +22948,6 @@ Model {
 	      ZOrder		      594
 	      SrcBlock		      "dJLArm_nu"
 	      SrcPort		      1
-	      Points		      [120, 0]
 	      DstBlock		      "Balancing Controller\n"
 	      DstPort		      27
 	    }
@@ -22928,7 +22955,6 @@ Model {
 	      ZOrder		      595
 	      SrcBlock		      "dJRArm_nu"
 	      SrcPort		      1
-	      Points		      [40, 0]
 	      DstBlock		      "Balancing Controller\n"
 	      DstPort		      28
 	    }
@@ -22936,7 +22962,6 @@ Model {
 	      ZOrder		      596
 	      SrcBlock		      "human_w_H_l_contact"
 	      SrcPort		      1
-	      Points		      [120, 0]
 	      DstBlock		      "Balancing Controller\n"
 	      DstPort		      29
 	    }
@@ -22944,7 +22969,6 @@ Model {
 	      ZOrder		      597
 	      SrcBlock		      "human_w_H_r_contact"
 	      SrcPort		      1
-	      Points		      [40, 0]
 	      DstBlock		      "Balancing Controller\n"
 	      DstPort		      30
 	    }
@@ -22952,7 +22976,6 @@ Model {
 	      ZOrder		      598
 	      SrcBlock		      "human_JL"
 	      SrcPort		      1
-	      Points		      [120, 0]
 	      DstBlock		      "Balancing Controller\n"
 	      DstPort		      31
 	    }
@@ -22960,7 +22983,6 @@ Model {
 	      ZOrder		      599
 	      SrcBlock		      "human_JR"
 	      SrcPort		      1
-	      Points		      [40, 0]
 	      DstBlock		      "Balancing Controller\n"
 	      DstPort		      32
 	    }
@@ -22968,7 +22990,6 @@ Model {
 	      ZOrder		      600
 	      SrcBlock		      "human_dJL_nu"
 	      SrcPort		      1
-	      Points		      [120, 0]
 	      DstBlock		      "Balancing Controller\n"
 	      DstPort		      33
 	    }
@@ -22976,7 +22997,6 @@ Model {
 	      ZOrder		      601
 	      SrcBlock		      "human_dJR_nu"
 	      SrcPort		      1
-	      Points		      [40, 0]
 	      DstBlock		      "Balancing Controller\n"
 	      DstPort		      34
 	    }
@@ -22984,7 +23004,6 @@ Model {
 	      ZOrder		      602
 	      SrcBlock		      "human_w_H_lArm_contact"
 	      SrcPort		      1
-	      Points		      [120, 0]
 	      DstBlock		      "Balancing Controller\n"
 	      DstPort		      35
 	    }
@@ -22992,7 +23011,6 @@ Model {
 	      ZOrder		      603
 	      SrcBlock		      "human_w_H_rArm_contact"
 	      SrcPort		      1
-	      Points		      [40, 0]
 	      DstBlock		      "Balancing Controller\n"
 	      DstPort		      36
 	    }
@@ -23000,7 +23018,6 @@ Model {
 	      ZOrder		      604
 	      SrcBlock		      "human_JLArm"
 	      SrcPort		      1
-	      Points		      [120, 0]
 	      DstBlock		      "Balancing Controller\n"
 	      DstPort		      37
 	    }
@@ -23008,7 +23025,6 @@ Model {
 	      ZOrder		      605
 	      SrcBlock		      "human_JRArm"
 	      SrcPort		      1
-	      Points		      [40, 0]
 	      DstBlock		      "Balancing Controller\n"
 	      DstPort		      38
 	    }
@@ -23016,7 +23032,6 @@ Model {
 	      ZOrder		      606
 	      SrcBlock		      "human_dJLArm_nu"
 	      SrcPort		      1
-	      Points		      [120, 0]
 	      DstBlock		      "Balancing Controller\n"
 	      DstPort		      39
 	    }
@@ -23024,7 +23039,6 @@ Model {
 	      ZOrder		      607
 	      SrcBlock		      "human_dJRArm_nu"
 	      SrcPort		      1
-	      Points		      [40, 0]
 	      DstBlock		      "Balancing Controller\n"
 	      DstPort		      40
 	    }
@@ -23032,7 +23046,6 @@ Model {
 	      ZOrder		      608
 	      SrcBlock		      "gainsPCOM"
 	      SrcPort		      1
-	      Points		      [120, 0]
 	      DstBlock		      "Balancing Controller\n"
 	      DstPort		      41
 	    }
@@ -23040,7 +23053,6 @@ Model {
 	      ZOrder		      609
 	      SrcBlock		      "gainsDCOM"
 	      SrcPort		      1
-	      Points		      [40, 0]
 	      DstBlock		      "Balancing Controller\n"
 	      DstPort		      42
 	    }
@@ -23048,7 +23060,6 @@ Model {
 	      ZOrder		      610
 	      SrcBlock		      "impedances"
 	      SrcPort		      1
-	      Points		      [120, 0]
 	      DstBlock		      "Balancing Controller\n"
 	      DstPort		      43
 	    }
@@ -23056,7 +23067,6 @@ Model {
 	      ZOrder		      614
 	      SrcBlock		      "left_foot_wrench2"
 	      SrcPort		      1
-	      Points		      [40, 0]
 	      DstBlock		      "Balancing Controller\n"
 	      DstPort		      44
 	    }
@@ -23064,7 +23074,6 @@ Model {
 	      ZOrder		      615
 	      SrcBlock		      "left_foot_wrench1"
 	      SrcPort		      1
-	      Points		      [40, 0]
 	      DstBlock		      "Balancing Controller\n"
 	      DstPort		      45
 	    }
@@ -23072,7 +23081,6 @@ Model {
 	      ZOrder		      616
 	      SrcBlock		      "Constant2"
 	      SrcPort		      1
-	      Points		      [100, 0]
 	      DstBlock		      "Balancing Controller\n"
 	      DstPort		      46
 	    }
@@ -23080,7 +23088,6 @@ Model {
 	      ZOrder		      619
 	      SrcBlock		      "nu"
 	      SrcPort		      1
-	      Points		      [30, 0]
 	      DstBlock		      "Balancing Controller\n"
 	      DstPort		      7
 	    }
@@ -23088,7 +23095,6 @@ Model {
 	      ZOrder		      624
 	      SrcBlock		      "Constraints"
 	      SrcPort		      2
-	      Points		      [65, 0]
 	      DstBlock		      "Balancing Controller\n"
 	      DstPort		      4
 	    }
@@ -23096,7 +23102,6 @@ Model {
 	      ZOrder		      625
 	      SrcBlock		      "Constraints"
 	      SrcPort		      1
-	      Points		      [65, 0]
 	      DstBlock		      "Balancing Controller\n"
 	      DstPort		      3
 	    }
@@ -23104,7 +23109,6 @@ Model {
 	      ZOrder		      626
 	      SrcBlock		      "\n\n  5"
 	      SrcPort		      1
-	      Points		      [60, 0]
 	      DstBlock		      "Balancing Controller\n"
 	      DstPort		      2
 	    }
@@ -23637,6 +23641,311 @@ Model {
 	}
 	Block {
 	  BlockType		  SubSystem
+	  Name			  "robot world to human feet transformation"
+	  SID			  "5433"
+	  Ports			  [2, 2]
+	  Position		  [550, -260, 880, -100]
+	  ZOrder		  -32
+	  RequestExecContextInheritance	off
+	  Variant		  off
+	  System {
+	    Name		    "robot world to human feet transformation"
+	    Location		    [1415, 24, 3926, 1440]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "237"
+	    Block {
+	      BlockType		      Inport
+	      Name		      "w_H_b"
+	      SID		      "5434"
+	      Position		      [40, 20, 55, 50]
+	      ZOrder		      626
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "qj"
+	      SID		      "5435"
+	      Position		      [40, 145, 55, 175]
+	      ZOrder		      627
+	      Port		      "2"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Forward Kinematics"
+	      SID		      "5430"
+	      Ports		      [2, 1]
+	      Position		      [470, 18, 620, 82]
+	      ZOrder		      623
+	      LibraryVersion	      "1.497"
+	      SourceBlock	      "WBToolboxLibrary/wholeBodyModel/Kinematics/Forward Kinematics"
+	      SourceType	      "Forward Kinematics"
+	      ContentPreviewEnabled   off
+	      frameName		      "Frames.LEFT_LEG"
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Forward Kinematics1"
+	      SID		      "5432"
+	      Ports		      [2, 1]
+	      Position		      [470, 113, 620, 177]
+	      ZOrder		      625
+	      LibraryVersion	      "1.497"
+	      SourceBlock	      "WBToolboxLibrary/wholeBodyModel/Kinematics/Forward Kinematics"
+	      SourceType	      "Forward Kinematics"
+	      ContentPreviewEnabled   off
+	      frameName		      "Frames.RIGHT_LEG"
+	    }
+	    Block {
+	      BlockType		      SubSystem
+	      Name		      "MATLAB Function"
+	      SID		      "5431"
+	      Ports		      [2, 2]
+	      Position		      [720, 74, 955, 121]
+	      ZOrder		      624
+	      ErrorFcn		      "Stateflow.Translate.translate"
+	      PermitHierarchicalResolution "ExplicitOnly"
+	      TreatAsAtomicUnit	      on
+	      RequestExecContextInheritance off
+	      SFBlockType	      "MATLAB Function"
+	      Variant		      off
+	      System {
+		Name			"MATLAB Function"
+		Location		[223, 338, 826, 833]
+		Open			off
+		ModelBrowserVisibility	off
+		ModelBrowserWidth	200
+		ScreenColor		"white"
+		PaperOrientation	"landscape"
+		PaperPositionMode	"auto"
+		PaperType		"usletter"
+		PaperUnits		"inches"
+		TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+		TiledPageScale		1
+		ShowPageBoundaries	off
+		ZoomFactor		"100"
+		SIDHighWatermark	"23"
+		Block {
+		  BlockType		  Inport
+		  Name			  "w_H_robotLeftFeet"
+		  SID			  "5431::22"
+		  Position		  [20, 101, 40, 119]
+		  ZOrder		  13
+		  IconDisplay		  "Port number"
+		}
+		Block {
+		  BlockType		  Inport
+		  Name			  "w_H_robotRightFeet"
+		  SID			  "5431::1"
+		  Position		  [20, 136, 40, 154]
+		  ZOrder		  -1
+		  Port			  "2"
+		  IconDisplay		  "Port number"
+		}
+		Block {
+		  BlockType		  Demux
+		  Name			  " Demux "
+		  SID			  "5431::20"
+		  Ports			  [1, 1]
+		  Position		  [270, 230, 320, 270]
+		  ZOrder		  11
+		  Outputs		  "1"
+		}
+		Block {
+		  BlockType		  S-Function
+		  Name			  " SFunction "
+		  SID			  "5431::19"
+		  Tag			  "Stateflow S-Function torqueBalancingStandup 12"
+		  Ports			  [2, 3]
+		  Position		  [180, 100, 230, 180]
+		  ZOrder		  10
+		  FunctionName		  "sf_sfun"
+		  PortCounts		  "[2 3]"
+		  SFunctionDeploymentMode off
+		  EnableBusSupport	  off
+		  SFcnIsStateOwnerBlock	  off
+		  Port {
+		    PortNumber		    2
+		    Name		    "w_H_humanLeftFeet"
+		    RTWStorageClass	    "Auto"
+		    DataLoggingNameMode	    "SignalName"
+		  }
+		  Port {
+		    PortNumber		    3
+		    Name		    "w_H_humanRightFeet"
+		    RTWStorageClass	    "Auto"
+		    DataLoggingNameMode	    "SignalName"
+		  }
+		}
+		Block {
+		  BlockType		  Terminator
+		  Name			  " Terminator "
+		  SID			  "5431::21"
+		  Position		  [460, 241, 480, 259]
+		  ZOrder		  12
+		}
+		Block {
+		  BlockType		  Outport
+		  Name			  "w_H_humanLeftFeet"
+		  SID			  "5431::23"
+		  Position		  [460, 101, 480, 119]
+		  ZOrder		  14
+		  IconDisplay		  "Port number"
+		}
+		Block {
+		  BlockType		  Outport
+		  Name			  "w_H_humanRightFeet"
+		  SID			  "5431::5"
+		  Position		  [460, 136, 480, 154]
+		  ZOrder		  -5
+		  Port			  "2"
+		  IconDisplay		  "Port number"
+		}
+		Line {
+		  ZOrder		  25
+		  SrcBlock		  "w_H_robotLeftFeet"
+		  SrcPort		  1
+		  DstBlock		  " SFunction "
+		  DstPort		  1
+		}
+		Line {
+		  ZOrder		  26
+		  SrcBlock		  "w_H_robotRightFeet"
+		  SrcPort		  1
+		  DstBlock		  " SFunction "
+		  DstPort		  2
+		}
+		Line {
+		  Name			  "w_H_humanLeftFeet"
+		  ZOrder		  27
+		  Labels		  [0, 0]
+		  SrcBlock		  " SFunction "
+		  SrcPort		  2
+		  DstBlock		  "w_H_humanLeftFeet"
+		  DstPort		  1
+		}
+		Line {
+		  Name			  "w_H_humanRightFeet"
+		  ZOrder		  28
+		  Labels		  [0, 0]
+		  SrcBlock		  " SFunction "
+		  SrcPort		  3
+		  DstBlock		  "w_H_humanRightFeet"
+		  DstPort		  1
+		}
+		Line {
+		  ZOrder		  29
+		  SrcBlock		  " Demux "
+		  SrcPort		  1
+		  DstBlock		  " Terminator "
+		  DstPort		  1
+		}
+		Line {
+		  ZOrder		  30
+		  SrcBlock		  " SFunction "
+		  SrcPort		  1
+		  DstBlock		  " Demux "
+		  DstPort		  1
+		}
+	      }
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "w_H_humanLeftFeet"
+	      SID		      "5436"
+	      Position		      [1000, 43, 1030, 57]
+	      ZOrder		      628
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "w_H_humanRightFeet"
+	      SID		      "5437"
+	      Position		      [1000, 138, 1030, 152]
+	      ZOrder		      629
+	      Port		      "2"
+	      IconDisplay	      "Port number"
+	    }
+	    Line {
+	      ZOrder		      453
+	      SrcBlock		      "MATLAB Function"
+	      SrcPort		      1
+	      Points		      [3, 0; 0, -35]
+	      DstBlock		      "w_H_humanLeftFeet"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      448
+	      SrcBlock		      "Forward Kinematics1"
+	      SrcPort		      1
+	      Points		      [45, 0; 0, -35]
+	      DstBlock		      "MATLAB Function"
+	      DstPort		      2
+	    }
+	    Line {
+	      ZOrder		      447
+	      SrcBlock		      "Forward Kinematics"
+	      SrcPort		      1
+	      Points		      [45, 0; 0, 35]
+	      DstBlock		      "MATLAB Function"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      452
+	      SrcBlock		      "qj"
+	      SrcPort		      1
+	      Points		      [281, 0]
+	      Branch {
+		ZOrder			446
+		DstBlock		"Forward Kinematics1"
+		DstPort			2
+	      }
+	      Branch {
+		ZOrder			445
+		Points			[0, -95]
+		DstBlock		"Forward Kinematics"
+		DstPort			2
+	      }
+	    }
+	    Line {
+	      ZOrder		      451
+	      SrcBlock		      "w_H_b"
+	      SrcPort		      1
+	      Points		      [340, 0]
+	      Branch {
+		ZOrder			456
+		Points			[0, 95]
+		DstBlock		"Forward Kinematics1"
+		DstPort			1
+	      }
+	      Branch {
+		ZOrder			455
+		DstBlock		"Forward Kinematics"
+		DstPort			1
+	      }
+	    }
+	    Line {
+	      ZOrder		      454
+	      SrcBlock		      "MATLAB Function"
+	      SrcPort		      2
+	      Points		      [9, 0; 0, 35]
+	      DstBlock		      "w_H_humanRightFeet"
+	      DstPort		      1
+	    }
+	  }
+	}
+	Block {
+	  BlockType		  SubSystem
 	  Name			  "synchronizer"
 	  SID			  "2423"
 	  Ports			  []
@@ -23649,7 +23958,7 @@ Model {
 	  Variant		  off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    23
+	    $ObjectID		    24
 	    $ClassName		    "Simulink.Mask"
 	    Display		    "disp('SYNCHRONIZER')"
 	  }
@@ -23851,6 +24160,23 @@ Model {
 	    }
 	  }
 	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "w_H_humanLFeet"
+	  SID			  "5438"
+	  Position		  [1025, -227, 1055, -213]
+	  ZOrder		  627
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "w_H_humanRFeet"
+	  SID			  "5439"
+	  Position		  [1025, -147, 1055, -133]
+	  ZOrder		  628
+	  Port			  "2"
+	  IconDisplay		  "Port number"
+	}
 	Line {
 	  ZOrder		  33
 	  SrcBlock		  "ON_GAZEBO\n1"
@@ -23873,6 +24199,12 @@ Model {
 	  Branch {
 	    ZOrder		    382
 	    Points		    [283, 0]
+	    Branch {
+	      ZOrder		      452
+	      Points		      [0, -410]
+	      DstBlock		      "robot world to human feet transformation"
+	      DstPort		      2
+	    }
 	    Branch {
 	      ZOrder		      380
 	      Points		      [0, 695]
@@ -23931,8 +24263,17 @@ Model {
 	  SrcBlock		  "Robot State and References"
 	  SrcPort		  1
 	  Points		  [24, 0; 0, -535]
-	  DstBlock		  "Dynamics and Kinematics"
-	  DstPort		  1
+	  Branch {
+	    ZOrder		    451
+	    Points		    [0, -275]
+	    DstBlock		    "robot world to human feet transformation"
+	    DstPort		    1
+	  }
+	  Branch {
+	    ZOrder		    438
+	    DstBlock		    "Dynamics and Kinematics"
+	    DstPort		    1
+	  }
 	}
 	Line {
 	  ZOrder		  328
@@ -24273,6 +24614,20 @@ Model {
 	  DstBlock		  "controller_QP"
 	  DstPort		  47
 	}
+	Line {
+	  ZOrder		  453
+	  SrcBlock		  "robot world to human feet transformation"
+	  SrcPort		  1
+	  DstBlock		  "w_H_humanLFeet"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  454
+	  SrcBlock		  "robot world to human feet transformation"
+	  SrcPort		  2
+	  DstBlock		  "w_H_humanRFeet"
+	  DstPort		  1
+	}
       }
     }
     Line {
@@ -24415,6 +24770,22 @@ Model {
       DstBlock		      "Robot System"
       DstPort		      20
     }
+    Line {
+      ZOrder		      300
+      SrcBlock		      "Robot System"
+      SrcPort		      1
+      Points		      [-54, 0; 0, -218; 727, 0; 0, 223]
+      DstBlock		      "Human System"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      301
+      SrcBlock		      "Robot System"
+      SrcPort		      2
+      Points		      [-54, 0; 0, 223; 734, 0; 0, -223]
+      DstBlock		      "Human System"
+      DstPort		      2
+    }
   }
 }
 #Finite State Machines
@@ -24429,7 +24800,7 @@ Stateflow {
     created		    "18-Feb-2014 10:14:40"
     isLibrary		    0
     sfVersion		    80000010
-    firstTarget		    268
+    firstTarget		    277
   }
   chart {
     id			    2
@@ -26170,6 +26541,9 @@ Stateflow {
     screen		    [1 1 1280 1024 1.000677131425054]
     treeNode		    [0 85 0 0]
     viewObj		    84
+    visible		    1
+    subviewS {
+    }
     ssIdHighWaterMark	    88
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -26927,26 +27301,26 @@ Stateflow {
   chart {
     id			    122
     machine		    1
-    name		    "Robot System/Robot State and References/State Machine Standup/stateMachineStandupFCN"
-    windowPosition	    [326.89 491.339 161 328]
+    name		    "Robot System/robot world to human feet transformation/MATLAB Function"
+    windowPosition	    [422 539.941 189 413]
     viewLimits		    [0 156.75 0 153.75]
-    screen		    [1 1 1280 1024 1.000677131425054]
+    screen		    [1 1 3600 1200 1.180555555555556]
     treeNode		    [0 123 0 0]
     viewObj		    122
     visible		    1
     subviewS {
     }
-    ssIdHighWaterMark	    85
+    ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
-    chartFileNumber	    13
+    chartFileNumber	    12
     disableImplicitCasting  1
     eml {
-      name		      "stateMachineStandupFCN"
+      name		      "fcn"
     }
     firstData		    124
-    firstTransition	    148
-    firstJunction	    147
+    firstTransition	    129
+    firstJunction	    128
   }
   state {
     id			    123
@@ -26962,21 +27336,24 @@ Stateflow {
     decomposition	    CLUSTER_STATE
     eml {
       isEML		      1
-      script		      "function [w_H_b, constraints, CoM_des, qj_des, impedances, KPCoM, KDCoM, currentState, jointsAndC"
-      "oMSmoothingTime] = ...\n             stateMachineStandupFCN(wrench_rightFoot, wrench_leftFoot, wrench_leftHand, "
-      "wrench_rightHand, xCoM_0, qj_0, xCoM, l_sole_H_b, l_upper_leg_contact_H_b, t, STANDUP_WITH_HUMAN_FORCE, STANDUP_"
-      "WITH_HUMAN_TORQUE, Sm, Gain)\n         \n         [w_H_b, constraints, CoM_des, qj_des, impedances, KPCoM, KDCoM"
-      ", currentState, jointsAndCoMSmoothingTime] = ...\n             stateMachineStandup(wrench_rightFoot, wrench_left"
-      "Foot, wrench_leftHand, wrench_rightHand, xCoM_0, qj_0, xCoM, l_sole_H_b, l_upper_leg_contact_H_b, t, STANDUP_WIT"
-      "H_HUMAN_FORCE, STANDUP_WITH_HUMAN_TORQUE, Sm, Gain);\nend\n \n"
+      script		      "function [w_H_humanLeftFeet, w_H_humanRightFeet ]= fcn(w_H_robotLeftFeet,w_H_robotRightFeet)\n\n "
+      "   %% Fixed transformation from the robot feet to human feet defined\n    %  human-forces-provider module config"
+      "uration\n    robotLeftFeet_H_humanLeftFeet = [-1.0   0.0     0.0     0.59;\n                                    "
+      "  0.0  -1.0     0.0    -0.2549;\n                                      0.0   0.0     1.0     0.0;\n             "
+      "                         0.0   0.0     0.0     1.0];\n                                  \n    robotRightFeet_H_h"
+      "umanRightFeet = [-1.0   0.0     0.0     0.59;\n                                        0.0  -1.0     0.0    -0.2"
+      "549;\n                                        0.0   0.0     1.0     0.0;\n                                      "
+      "  0.0   0.0     0.0     1.0];\n                                  \n    w_H_humanLeftFeet  = w_H_robotLeftFeet * "
+      "robotLeftFeet_H_humanLeftFeet;\n    \n    w_H_humanRightFeet = w_H_robotRightFeet * robotRightFeet_H_humanRightF"
+      "eet;\n\nend\n"
       editorLayout	      "100 M4x1[10 5 700 500]"
     }
   }
   data {
     id			    124
-    ssIdNumber		    65
-    name		    "wrench_rightFoot"
-    scope		    INPUT_DATA
+    ssIdNumber		    7
+    name		    "w_H_humanLeftFeet"
+    scope		    OUTPUT_DATA
     machine		    1
     props {
       array {
@@ -26989,7 +27366,7 @@ Stateflow {
 	wordLength		"16"
       }
       complexity	      SF_COMPLEX_INHERITED
-      frame		      SF_FRAME_INHERITED
+      frame		      SF_FRAME_NO
       unit {
 	name			"inherit"
       }
@@ -26999,8 +27376,8 @@ Stateflow {
   }
   data {
     id			    125
-    ssIdNumber		    74
-    name		    "wrench_leftFoot"
+    ssIdNumber		    6
+    name		    "w_H_robotLeftFeet"
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -27024,6 +27401,185 @@ Stateflow {
   }
   data {
     id			    126
+    ssIdNumber		    4
+    name		    "w_H_robotRightFeet"
+    scope		    INPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      unit {
+	name			"inherit"
+      }
+    }
+    dataType		    "Inherit: Same as Simulink"
+    linkNode		    [122 125 127]
+  }
+  data {
+    id			    127
+    ssIdNumber		    5
+    name		    "w_H_humanRightFeet"
+    scope		    OUTPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_NO
+      unit {
+	name			"inherit"
+      }
+    }
+    dataType		    "Inherit: Same as Simulink"
+    linkNode		    [122 126 0]
+  }
+  junction {
+    id			    128
+    position		    [23.5747 49.5747 7]
+    chart		    122
+    subviewer		    122
+    ssIdNumber		    3
+    type		    CONNECTIVE_JUNCTION
+    linkNode		    [122 0 0]
+  }
+  transition {
+    id			    129
+    labelString		    "{eML_blk_kernel();}"
+    labelPosition	    [28.125 13.875 102.544 14.964]
+    fontSize		    12
+    src {
+      intersection	      [0 0 1 0 23.5747 14.625 0 0]
+    }
+    dst {
+      id		      128
+      intersection	      [1 0 -1 0 23.5747 42.5747 0 0]
+    }
+    midPoint		    [23.5747 24.9468]
+    chart		    122
+    dataLimits		    [21.175 25.975 14.625 42.575]
+    subviewer		    122
+    drawStyle		    SMART
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    2
+    linkNode		    [122 0 0]
+  }
+  instance {
+    id			    130
+    machine		    1
+    name		    "Robot System/robot world to human feet transformation/MATLAB Function"
+    chart		    122
+  }
+  chart {
+    id			    131
+    machine		    1
+    name		    "Robot System/Robot State and References/State Machine Standup/stateMachineStandupFCN"
+    windowPosition	    [326.89 491.339 161 328]
+    viewLimits		    [0 156.75 0 153.75]
+    screen		    [1 1 1280 1024 1.000677131425054]
+    treeNode		    [0 132 0 0]
+    viewObj		    131
+    ssIdHighWaterMark	    85
+    decomposition	    CLUSTER_CHART
+    type		    EML_CHART
+    chartFileNumber	    13
+    disableImplicitCasting  1
+    eml {
+      name		      "stateMachineStandupFCN"
+    }
+    firstData		    133
+    firstTransition	    157
+    firstJunction	    156
+  }
+  state {
+    id			    132
+    labelString		    "eML_blk_kernel()"
+    position		    [18 64.5 118 66]
+    fontSize		    12
+    chart		    131
+    treeNode		    [131 0 0 0]
+    superState		    SUBCHART
+    subviewer		    131
+    ssIdNumber		    1
+    type		    FUNC_STATE
+    decomposition	    CLUSTER_STATE
+    eml {
+      isEML		      1
+      script		      "function [w_H_b, constraints, CoM_des, qj_des, impedances, KPCoM, KDCoM, currentState, jointsAndC"
+      "oMSmoothingTime] = ...\n             stateMachineStandupFCN(wrench_rightFoot, wrench_leftFoot, wrench_leftHand, "
+      "wrench_rightHand, xCoM_0, qj_0, xCoM, l_sole_H_b, l_upper_leg_contact_H_b, t, STANDUP_WITH_HUMAN_FORCE, STANDUP_"
+      "WITH_HUMAN_TORQUE, Sm, Gain)\n         \n         [w_H_b, constraints, CoM_des, qj_des, impedances, KPCoM, KDCoM"
+      ", currentState, jointsAndCoMSmoothingTime] = ...\n             stateMachineStandup(wrench_rightFoot, wrench_left"
+      "Foot, wrench_leftHand, wrench_rightHand, xCoM_0, qj_0, xCoM, l_sole_H_b, l_upper_leg_contact_H_b, t, STANDUP_WIT"
+      "H_HUMAN_FORCE, STANDUP_WITH_HUMAN_TORQUE, Sm, Gain);\nend\n \n"
+      editorLayout	      "100 M4x1[10 5 700 500]"
+    }
+  }
+  data {
+    id			    133
+    ssIdNumber		    65
+    name		    "wrench_rightFoot"
+    scope		    INPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_INHERITED
+      unit {
+	name			"inherit"
+      }
+    }
+    dataType		    "Inherit: Same as Simulink"
+    linkNode		    [131 0 134]
+  }
+  data {
+    id			    134
+    ssIdNumber		    74
+    name		    "wrench_leftFoot"
+    scope		    INPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_INHERITED
+      unit {
+	name			"inherit"
+      }
+    }
+    dataType		    "Inherit: Same as Simulink"
+    linkNode		    [131 133 135]
+  }
+  data {
+    id			    135
     ssIdNumber		    71
     name		    "w_H_b"
     scope		    OUTPUT_DATA
@@ -27045,10 +27601,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [122 125 127]
+    linkNode		    [131 134 136]
   }
   data {
-    id			    127
+    id			    136
     ssIdNumber		    43
     name		    "constraints"
     scope		    OUTPUT_DATA
@@ -27070,10 +27626,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [122 126 128]
+    linkNode		    [131 135 137]
   }
   data {
-    id			    128
+    id			    137
     ssIdNumber		    52
     name		    "CoM_des"
     scope		    OUTPUT_DATA
@@ -27095,10 +27651,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [122 127 129]
+    linkNode		    [131 136 138]
   }
   data {
-    id			    129
+    id			    138
     ssIdNumber		    46
     name		    "qj_des"
     scope		    OUTPUT_DATA
@@ -27120,10 +27676,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [122 128 130]
+    linkNode		    [131 137 139]
   }
   data {
-    id			    130
+    id			    139
     ssIdNumber		    37
     name		    "wrench_leftHand"
     scope		    INPUT_DATA
@@ -27145,10 +27701,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [122 129 131]
+    linkNode		    [131 138 140]
   }
   data {
-    id			    131
+    id			    140
     ssIdNumber		    54
     name		    "wrench_rightHand"
     scope		    INPUT_DATA
@@ -27170,10 +27726,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [122 130 132]
+    linkNode		    [131 139 141]
   }
   data {
-    id			    132
+    id			    141
     ssIdNumber		    64
     name		    "xCoM_0"
     scope		    INPUT_DATA
@@ -27195,10 +27751,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [122 131 133]
+    linkNode		    [131 140 142]
   }
   data {
-    id			    133
+    id			    142
     ssIdNumber		    77
     name		    "qj_0"
     scope		    INPUT_DATA
@@ -27220,10 +27776,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [122 132 134]
+    linkNode		    [131 141 143]
   }
   data {
-    id			    134
+    id			    143
     ssIdNumber		    69
     name		    "xCoM"
     scope		    INPUT_DATA
@@ -27245,10 +27801,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [122 133 135]
+    linkNode		    [131 142 144]
   }
   data {
-    id			    135
+    id			    144
     ssIdNumber		    72
     name		    "l_sole_H_b"
     scope		    INPUT_DATA
@@ -27270,10 +27826,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [122 134 136]
+    linkNode		    [131 143 145]
   }
   data {
-    id			    136
+    id			    145
     ssIdNumber		    78
     name		    "l_upper_leg_contact_H_b"
     scope		    INPUT_DATA
@@ -27295,10 +27851,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [122 135 137]
+    linkNode		    [131 144 146]
   }
   data {
-    id			    137
+    id			    146
     ssIdNumber		    56
     name		    "t"
     scope		    INPUT_DATA
@@ -27320,10 +27876,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [122 136 138]
+    linkNode		    [131 145 147]
   }
   data {
-    id			    138
+    id			    147
     ssIdNumber		    84
     name		    "STANDUP_WITH_HUMAN_FORCE"
     scope		    INPUT_DATA
@@ -27345,10 +27901,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [122 137 139]
+    linkNode		    [131 146 148]
   }
   data {
-    id			    139
+    id			    148
     ssIdNumber		    85
     name		    "STANDUP_WITH_HUMAN_TORQUE"
     scope		    INPUT_DATA
@@ -27370,10 +27926,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [122 138 140]
+    linkNode		    [131 147 149]
   }
   data {
-    id			    140
+    id			    149
     ssIdNumber		    55
     name		    "Sm"
     scope		    PARAMETER_DATA
@@ -27396,10 +27952,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [122 139 141]
+    linkNode		    [131 148 150]
   }
   data {
-    id			    141
+    id			    150
     ssIdNumber		    66
     name		    "impedances"
     scope		    OUTPUT_DATA
@@ -27421,10 +27977,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [122 140 142]
+    linkNode		    [131 149 151]
   }
   data {
-    id			    142
+    id			    151
     ssIdNumber		    82
     name		    "KPCoM"
     scope		    OUTPUT_DATA
@@ -27446,10 +28002,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [122 141 143]
+    linkNode		    [131 150 152]
   }
   data {
-    id			    143
+    id			    152
     ssIdNumber		    83
     name		    "KDCoM"
     scope		    OUTPUT_DATA
@@ -27471,10 +28027,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [122 142 144]
+    linkNode		    [131 151 153]
   }
   data {
-    id			    144
+    id			    153
     ssIdNumber		    67
     name		    "Gain"
     scope		    PARAMETER_DATA
@@ -27496,10 +28052,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [122 143 145]
+    linkNode		    [131 152 154]
   }
   data {
-    id			    145
+    id			    154
     ssIdNumber		    68
     name		    "currentState"
     scope		    OUTPUT_DATA
@@ -27521,10 +28077,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [122 144 146]
+    linkNode		    [131 153 155]
   }
   data {
-    id			    146
+    id			    155
     ssIdNumber		    81
     name		    "jointsAndCoMSmoothingTime"
     scope		    OUTPUT_DATA
@@ -27546,19 +28102,19 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [122 145 0]
+    linkNode		    [131 154 0]
   }
   junction {
-    id			    147
+    id			    156
     position		    [23.5747 49.5747 7]
-    chart		    122
-    subviewer		    122
+    chart		    131
+    subviewer		    131
     ssIdNumber		    3
     type		    CONNECTIVE_JUNCTION
-    linkNode		    [122 0 0]
+    linkNode		    [131 0 0]
   }
   transition {
-    id			    148
+    id			    157
     labelString		    "{eML_blk_kernel();}"
     labelPosition	    [28.125 13.875 102.544 14.964]
     fontSize		    12
@@ -27566,37 +28122,37 @@ Stateflow {
       intersection	      [0 0 1 0 23.5747 14.625 0 0]
     }
     dst {
-      id		      147
+      id		      156
       intersection	      [1 0 -1 0 23.5747 42.5747 0 0]
     }
     midPoint		    [23.5747 24.9468]
-    chart		    122
+    chart		    131
     dataLimits		    [21.175 25.975 14.625 42.575]
-    subviewer		    122
+    subviewer		    131
     drawStyle		    SMART
     slide {
       sticky		      BOTH_STICK
     }
     executionOrder	    1
     ssIdNumber		    2
-    linkNode		    [122 0 0]
+    linkNode		    [131 0 0]
   }
   instance {
-    id			    149
+    id			    158
     machine		    1
     name		    "Robot System/Robot State and References/State Machine Standup/stateMachineStandupFCN"
-    chart		    122
+    chart		    131
   }
   chart {
-    id			    150
+    id			    159
     machine		    1
     name		    "Robot System/Robot State and References/State Machine Standup/Compute State Velocity/Fixed Links Jacobi"
     "ans/Legs in Contact"
     windowPosition	    [422 539.941 189 413]
     viewLimits		    [0 156.75 0 153.75]
     screen		    [1 1 3600 1200 1.180555555555556]
-    treeNode		    [0 151 0 0]
-    viewObj		    150
+    treeNode		    [0 160 0 0]
+    viewObj		    159
     ssIdHighWaterMark	    6
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -27605,19 +28161,19 @@ Stateflow {
     eml {
       name		      "legsContactDetectorFCN"
     }
-    firstData		    152
-    firstTransition	    156
-    firstJunction	    155
+    firstData		    161
+    firstTransition	    165
+    firstJunction	    164
   }
   state {
-    id			    151
+    id			    160
     labelString		    "eML_blk_kernel()"
     position		    [18 64.5 118 66]
     fontSize		    12
-    chart		    150
-    treeNode		    [150 0 0 0]
+    chart		    159
+    treeNode		    [159 0 0 0]
     superState		    SUBCHART
-    subviewer		    150
+    subviewer		    159
     ssIdNumber		    1
     type		    FUNC_STATE
     decomposition	    CLUSTER_STATE
@@ -27629,7 +28185,7 @@ Stateflow {
     }
   }
   data {
-    id			    152
+    id			    161
     ssIdNumber		    4
     name		    "icubStandup"
     scope		    INPUT_DATA
@@ -27648,10 +28204,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [150 0 153]
+    linkNode		    [159 0 162]
   }
   data {
-    id			    153
+    id			    162
     ssIdNumber		    5
     name		    "legsInContact"
     scope		    OUTPUT_DATA
@@ -27671,10 +28227,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [150 152 154]
+    linkNode		    [159 161 163]
   }
   data {
-    id			    154
+    id			    163
     ssIdNumber		    6
     name		    "state"
     scope		    INPUT_DATA
@@ -27696,19 +28252,19 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [150 153 0]
+    linkNode		    [159 162 0]
   }
   junction {
-    id			    155
+    id			    164
     position		    [23.5747 49.5747 7]
-    chart		    150
-    subviewer		    150
+    chart		    159
+    subviewer		    159
     ssIdNumber		    3
     type		    CONNECTIVE_JUNCTION
-    linkNode		    [150 0 0]
+    linkNode		    [159 0 0]
   }
   transition {
-    id			    156
+    id			    165
     labelString		    "{eML_blk_kernel();}"
     labelPosition	    [28.125 13.875 102.544 14.964]
     fontSize		    12
@@ -27716,37 +28272,37 @@ Stateflow {
       intersection	      [0 0 1 0 23.5747 14.625 0 0]
     }
     dst {
-      id		      155
+      id		      164
       intersection	      [1 0 -1 0 23.5747 42.5747 0 0]
     }
     midPoint		    [23.5747 24.9468]
-    chart		    150
+    chart		    159
     dataLimits		    [21.175 25.975 14.625 42.575]
-    subviewer		    150
+    subviewer		    159
     drawStyle		    SMART
     slide {
       sticky		      BOTH_STICK
     }
     executionOrder	    1
     ssIdNumber		    2
-    linkNode		    [150 0 0]
+    linkNode		    [159 0 0]
   }
   instance {
-    id			    157
+    id			    166
     machine		    1
     name		    "Robot System/Robot State and References/State Machine Standup/Compute State Velocity/Fixed Links Jacobi"
     "ans/Legs in Contact"
-    chart		    150
+    chart		    159
   }
   chart {
-    id			    158
+    id			    167
     machine		    1
     name		    "Robot System/controller_QP/Balancing Controller\n"
     windowPosition	    [352.761 488.141 161 328]
     viewLimits		    [0 156.75 0 153.75]
     screen		    [1 1 1280 1024 1.000677131425054]
-    treeNode		    [0 159 0 0]
-    viewObj		    158
+    treeNode		    [0 168 0 0]
+    viewObj		    167
     visible		    1
     subviewS {
     }
@@ -27758,19 +28314,19 @@ Stateflow {
     eml {
       name		      "balancingControllerStandupFCN"
     }
-    firstData		    160
-    firstTransition	    234
-    firstJunction	    233
+    firstData		    169
+    firstTransition	    243
+    firstJunction	    242
   }
   state {
-    id			    159
+    id			    168
     labelString		    "eML_blk_kernel()"
     position		    [18 64.5 118 66]
     fontSize		    12
-    chart		    158
-    treeNode		    [158 0 0 0]
+    chart		    167
+    treeNode		    [167 0 0 0]
     superState		    SUBCHART
-    subviewer		    158
+    subviewer		    167
     ssIdNumber		    1
     type		    FUNC_STATE
     decomposition	    CLUSTER_STATE
@@ -27805,7 +28361,7 @@ Stateflow {
     }
   }
   data {
-    id			    160
+    id			    169
     ssIdNumber		    57
     name		    "tauModel"
     scope		    OUTPUT_DATA
@@ -27827,10 +28383,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 0 161]
+    linkNode		    [167 0 170]
   }
   data {
-    id			    161
+    id			    170
     ssIdNumber		    58
     name		    "Sigma"
     scope		    OUTPUT_DATA
@@ -27852,10 +28408,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 160 162]
+    linkNode		    [167 169 171]
   }
   data {
-    id			    162
+    id			    171
     ssIdNumber		    66
     name		    "NA"
     scope		    OUTPUT_DATA
@@ -27877,10 +28433,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 161 163]
+    linkNode		    [167 170 172]
   }
   data {
-    id			    163
+    id			    172
     ssIdNumber		    64
     name		    "f_HDot"
     scope		    OUTPUT_DATA
@@ -27902,10 +28458,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 162 164]
+    linkNode		    [167 171 173]
   }
   data {
-    id			    164
+    id			    173
     ssIdNumber		    5
     name		    "HessianMatrixQP1Foot"
     scope		    OUTPUT_DATA
@@ -27925,10 +28481,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 163 165]
+    linkNode		    [167 172 174]
   }
   data {
-    id			    165
+    id			    174
     ssIdNumber		    52
     name		    "gradientQP1Foot"
     scope		    OUTPUT_DATA
@@ -27950,10 +28506,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 164 166]
+    linkNode		    [167 173 175]
   }
   data {
-    id			    166
+    id			    175
     ssIdNumber		    69
     name		    "ConstraintsMatrixQP1Foot"
     scope		    OUTPUT_DATA
@@ -27975,10 +28531,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 165 167]
+    linkNode		    [167 174 176]
   }
   data {
-    id			    167
+    id			    176
     ssIdNumber		    70
     name		    "bVectorConstraintsQp1Foot"
     scope		    OUTPUT_DATA
@@ -28000,10 +28556,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 166 168]
+    linkNode		    [167 175 177]
   }
   data {
-    id			    168
+    id			    177
     ssIdNumber		    53
     name		    "HessianMatrixQP2FeetOrLegs"
     scope		    OUTPUT_DATA
@@ -28025,10 +28581,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 167 169]
+    linkNode		    [167 176 178]
   }
   data {
-    id			    169
+    id			    178
     ssIdNumber		    54
     name		    "gradientQP2FeetOrLegs"
     scope		    OUTPUT_DATA
@@ -28050,10 +28606,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 168 170]
+    linkNode		    [167 177 179]
   }
   data {
-    id			    170
+    id			    179
     ssIdNumber		    62
     name		    "ConstraintsMatrixQP2FeetOrLegs"
     scope		    OUTPUT_DATA
@@ -28075,10 +28631,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 169 171]
+    linkNode		    [167 178 180]
   }
   data {
-    id			    171
+    id			    180
     ssIdNumber		    63
     name		    "bVectorConstraintsQp2FeetOrLegs"
     scope		    OUTPUT_DATA
@@ -28100,10 +28656,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 170 172]
+    linkNode		    [167 179 181]
   }
   data {
-    id			    172
+    id			    181
     ssIdNumber		    13
     name		    "constraints"
     scope		    INPUT_DATA
@@ -28125,10 +28681,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 171 173]
+    linkNode		    [167 180 182]
   }
   data {
-    id			    173
+    id			    182
     ssIdNumber		    14
     name		    "ROBOT_DOF_FOR_SIMULINK"
     scope		    INPUT_DATA
@@ -28150,10 +28706,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 172 174]
+    linkNode		    [167 181 183]
   }
   data {
-    id			    174
+    id			    183
     ssIdNumber		    50
     name		    "ConstraintsMatrix"
     scope		    INPUT_DATA
@@ -28175,10 +28731,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 173 175]
+    linkNode		    [167 182 184]
   }
   data {
-    id			    175
+    id			    184
     ssIdNumber		    51
     name		    "bVectorConstraints"
     scope		    INPUT_DATA
@@ -28200,10 +28756,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 174 176]
+    linkNode		    [167 183 185]
   }
   data {
-    id			    176
+    id			    185
     ssIdNumber		    4
     name		    "qj"
     scope		    INPUT_DATA
@@ -28222,10 +28778,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 175 177]
+    linkNode		    [167 184 186]
   }
   data {
-    id			    177
+    id			    186
     ssIdNumber		    6
     name		    "qjDes"
     scope		    INPUT_DATA
@@ -28247,10 +28803,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 176 178]
+    linkNode		    [167 185 187]
   }
   data {
-    id			    178
+    id			    187
     ssIdNumber		    7
     name		    "nu"
     scope		    INPUT_DATA
@@ -28272,10 +28828,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 177 179]
+    linkNode		    [167 186 188]
   }
   data {
-    id			    179
+    id			    188
     ssIdNumber		    8
     name		    "M"
     scope		    INPUT_DATA
@@ -28297,10 +28853,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 178 180]
+    linkNode		    [167 187 189]
   }
   data {
-    id			    180
+    id			    189
     ssIdNumber		    92
     name		    "human_M"
     scope		    INPUT_DATA
@@ -28322,10 +28878,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 179 181]
+    linkNode		    [167 188 190]
   }
   data {
-    id			    181
+    id			    190
     ssIdNumber		    9
     name		    "h"
     scope		    INPUT_DATA
@@ -28347,10 +28903,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 180 182]
+    linkNode		    [167 189 191]
   }
   data {
-    id			    182
+    id			    191
     ssIdNumber		    93
     name		    "human_h"
     scope		    INPUT_DATA
@@ -28372,10 +28928,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 181 183]
+    linkNode		    [167 190 192]
   }
   data {
-    id			    183
+    id			    192
     ssIdNumber		    11
     name		    "H"
     scope		    INPUT_DATA
@@ -28397,10 +28953,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 182 184]
+    linkNode		    [167 191 193]
   }
   data {
-    id			    184
+    id			    193
     ssIdNumber		    77
     name		    "intHw"
     scope		    INPUT_DATA
@@ -28422,10 +28978,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 183 185]
+    linkNode		    [167 192 194]
   }
   data {
-    id			    185
+    id			    194
     ssIdNumber		    42
     name		    "w_H_l_contact"
     scope		    INPUT_DATA
@@ -28447,10 +29003,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 184 186]
+    linkNode		    [167 193 195]
   }
   data {
-    id			    186
+    id			    195
     ssIdNumber		    12
     name		    "w_H_r_contact"
     scope		    INPUT_DATA
@@ -28472,10 +29028,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 185 187]
+    linkNode		    [167 194 196]
   }
   data {
-    id			    187
+    id			    196
     ssIdNumber		    38
     name		    "JL"
     scope		    INPUT_DATA
@@ -28497,10 +29053,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 186 188]
+    linkNode		    [167 195 197]
   }
   data {
-    id			    188
+    id			    197
     ssIdNumber		    32
     name		    "JR"
     scope		    INPUT_DATA
@@ -28522,10 +29078,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 187 189]
+    linkNode		    [167 196 198]
   }
   data {
-    id			    189
+    id			    198
     ssIdNumber		    33
     name		    "dJL_nu"
     scope		    INPUT_DATA
@@ -28547,10 +29103,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 188 190]
+    linkNode		    [167 197 199]
   }
   data {
-    id			    190
+    id			    199
     ssIdNumber		    40
     name		    "dJR_nu"
     scope		    INPUT_DATA
@@ -28572,10 +29128,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 189 191]
+    linkNode		    [167 198 200]
   }
   data {
-    id			    191
+    id			    200
     ssIdNumber		    15
     name		    "xCoM"
     scope		    INPUT_DATA
@@ -28597,10 +29153,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 190 192]
+    linkNode		    [167 199 201]
   }
   data {
-    id			    192
+    id			    201
     ssIdNumber		    16
     name		    "J_CoM"
     scope		    INPUT_DATA
@@ -28622,10 +29178,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 191 193]
+    linkNode		    [167 200 202]
   }
   data {
-    id			    193
+    id			    202
     ssIdNumber		    17
     name		    "desired_x_dx_ddx_CoM"
     scope		    INPUT_DATA
@@ -28647,10 +29203,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 192 194]
+    linkNode		    [167 201 203]
   }
   data {
-    id			    194
+    id			    203
     ssIdNumber		    94
     name		    "w_H_lArm_contact"
     scope		    INPUT_DATA
@@ -28672,10 +29228,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 193 195]
+    linkNode		    [167 202 204]
   }
   data {
-    id			    195
+    id			    204
     ssIdNumber		    95
     name		    "w_H_rArm_contact"
     scope		    INPUT_DATA
@@ -28697,10 +29253,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 194 196]
+    linkNode		    [167 203 205]
   }
   data {
-    id			    196
+    id			    205
     ssIdNumber		    96
     name		    "JLArm"
     scope		    INPUT_DATA
@@ -28722,10 +29278,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 195 197]
+    linkNode		    [167 204 206]
   }
   data {
-    id			    197
+    id			    206
     ssIdNumber		    97
     name		    "JRArm"
     scope		    INPUT_DATA
@@ -28747,10 +29303,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 196 198]
+    linkNode		    [167 205 207]
   }
   data {
-    id			    198
+    id			    207
     ssIdNumber		    98
     name		    "dJLArm_nu"
     scope		    INPUT_DATA
@@ -28772,10 +29328,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 197 199]
+    linkNode		    [167 206 208]
   }
   data {
-    id			    199
+    id			    208
     ssIdNumber		    99
     name		    "dJRArm_nu"
     scope		    INPUT_DATA
@@ -28797,10 +29353,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 198 200]
+    linkNode		    [167 207 209]
   }
   data {
-    id			    200
+    id			    209
     ssIdNumber		    100
     name		    "human_w_H_l_contact"
     scope		    INPUT_DATA
@@ -28822,10 +29378,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 199 201]
+    linkNode		    [167 208 210]
   }
   data {
-    id			    201
+    id			    210
     ssIdNumber		    101
     name		    "human_w_H_r_contact"
     scope		    INPUT_DATA
@@ -28847,10 +29403,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 200 202]
+    linkNode		    [167 209 211]
   }
   data {
-    id			    202
+    id			    211
     ssIdNumber		    108
     name		    "human_JL"
     scope		    INPUT_DATA
@@ -28872,10 +29428,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 201 203]
+    linkNode		    [167 210 212]
   }
   data {
-    id			    203
+    id			    212
     ssIdNumber		    109
     name		    "human_JR"
     scope		    INPUT_DATA
@@ -28897,10 +29453,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 202 204]
+    linkNode		    [167 211 213]
   }
   data {
-    id			    204
+    id			    213
     ssIdNumber		    110
     name		    "human_dJL_nu"
     scope		    INPUT_DATA
@@ -28922,10 +29478,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 203 205]
+    linkNode		    [167 212 214]
   }
   data {
-    id			    205
+    id			    214
     ssIdNumber		    111
     name		    "human_dJR_nu"
     scope		    INPUT_DATA
@@ -28947,10 +29503,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 204 206]
+    linkNode		    [167 213 215]
   }
   data {
-    id			    206
+    id			    215
     ssIdNumber		    106
     name		    "human_w_H_lArm_contact"
     scope		    INPUT_DATA
@@ -28972,10 +29528,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 205 207]
+    linkNode		    [167 214 216]
   }
   data {
-    id			    207
+    id			    216
     ssIdNumber		    107
     name		    "human_w_H_rArm_contact"
     scope		    INPUT_DATA
@@ -28997,10 +29553,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 206 208]
+    linkNode		    [167 215 217]
   }
   data {
-    id			    208
+    id			    217
     ssIdNumber		    102
     name		    "human_JLArm"
     scope		    INPUT_DATA
@@ -29022,10 +29578,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 207 209]
+    linkNode		    [167 216 218]
   }
   data {
-    id			    209
+    id			    218
     ssIdNumber		    103
     name		    "human_JRArm"
     scope		    INPUT_DATA
@@ -29047,10 +29603,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 208 210]
+    linkNode		    [167 217 219]
   }
   data {
-    id			    210
+    id			    219
     ssIdNumber		    104
     name		    "human_dJLArm_nu"
     scope		    INPUT_DATA
@@ -29072,10 +29628,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 209 211]
+    linkNode		    [167 218 220]
   }
   data {
-    id			    211
+    id			    220
     ssIdNumber		    105
     name		    "human_dJRArm_nu"
     scope		    INPUT_DATA
@@ -29097,10 +29653,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 210 212]
+    linkNode		    [167 219 221]
   }
   data {
-    id			    212
+    id			    221
     ssIdNumber		    81
     name		    "gainsPCOM"
     scope		    INPUT_DATA
@@ -29122,10 +29678,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 211 213]
+    linkNode		    [167 220 222]
   }
   data {
-    id			    213
+    id			    222
     ssIdNumber		    82
     name		    "gainsDCOM"
     scope		    INPUT_DATA
@@ -29147,10 +29703,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 212 214]
+    linkNode		    [167 221 223]
   }
   data {
-    id			    214
+    id			    223
     ssIdNumber		    19
     name		    "impedances"
     scope		    INPUT_DATA
@@ -29172,10 +29728,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 213 215]
+    linkNode		    [167 222 224]
   }
   data {
-    id			    215
+    id			    224
     ssIdNumber		    20
     name		    "Reg"
     scope		    PARAMETER_DATA
@@ -29198,10 +29754,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 214 216]
+    linkNode		    [167 223 225]
   }
   data {
-    id			    216
+    id			    225
     ssIdNumber		    48
     name		    "errorCoM"
     scope		    OUTPUT_DATA
@@ -29223,10 +29779,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 215 217]
+    linkNode		    [167 224 226]
   }
   data {
-    id			    217
+    id			    226
     ssIdNumber		    49
     name		    "f_noQP"
     scope		    OUTPUT_DATA
@@ -29248,10 +29804,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 216 218]
+    linkNode		    [167 225 227]
   }
   data {
-    id			    218
+    id			    227
     ssIdNumber		    47
     name		    "Gain"
     scope		    PARAMETER_DATA
@@ -29273,10 +29829,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 217 219]
+    linkNode		    [167 226 228]
   }
   data {
-    id			    219
+    id			    228
     ssIdNumber		    85
     name		    "LArmWrench"
     scope		    INPUT_DATA
@@ -29298,10 +29854,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 218 220]
+    linkNode		    [167 227 229]
   }
   data {
-    id			    220
+    id			    229
     ssIdNumber		    86
     name		    "RArmWrench"
     scope		    INPUT_DATA
@@ -29323,10 +29879,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 219 221]
+    linkNode		    [167 228 230]
   }
   data {
-    id			    221
+    id			    230
     ssIdNumber		    87
     name		    "STANDUP_WITH_HUMAN_FORCE"
     scope		    INPUT_DATA
@@ -29348,10 +29904,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 220 222]
+    linkNode		    [167 229 231]
   }
   data {
-    id			    222
+    id			    231
     ssIdNumber		    118
     name		    "STANDUP_WITH_HUMAN_TORQUE"
     scope		    INPUT_DATA
@@ -29373,10 +29929,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 221 223]
+    linkNode		    [167 230 232]
   }
   data {
-    id			    223
+    id			    232
     ssIdNumber		    88
     name		    "correctionFromSupportForce"
     scope		    OUTPUT_DATA
@@ -29398,10 +29954,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 222 224]
+    linkNode		    [167 231 233]
   }
   data {
-    id			    224
+    id			    233
     ssIdNumber		    89
     name		    "H_error"
     scope		    OUTPUT_DATA
@@ -29423,10 +29979,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 223 225]
+    linkNode		    [167 232 234]
   }
   data {
-    id			    225
+    id			    234
     ssIdNumber		    90
     name		    "V"
     scope		    OUTPUT_DATA
@@ -29448,10 +30004,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 224 226]
+    linkNode		    [167 233 235]
   }
   data {
-    id			    226
+    id			    235
     ssIdNumber		    91
     name		    "state"
     scope		    INPUT_DATA
@@ -29473,10 +30029,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 225 227]
+    linkNode		    [167 234 236]
   }
   data {
-    id			    227
+    id			    236
     ssIdNumber		    112
     name		    "human_w_H_b"
     scope		    INPUT_DATA
@@ -29498,10 +30054,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 226 228]
+    linkNode		    [167 235 237]
   }
   data {
-    id			    228
+    id			    237
     ssIdNumber		    113
     name		    "human_qj"
     scope		    INPUT_DATA
@@ -29523,10 +30079,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 227 229]
+    linkNode		    [167 236 238]
   }
   data {
-    id			    229
+    id			    238
     ssIdNumber		    114
     name		    "human_nu_b"
     scope		    INPUT_DATA
@@ -29548,10 +30104,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 228 230]
+    linkNode		    [167 237 239]
   }
   data {
-    id			    230
+    id			    239
     ssIdNumber		    115
     name		    "human_dqj"
     scope		    INPUT_DATA
@@ -29573,10 +30129,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 229 231]
+    linkNode		    [167 238 240]
   }
   data {
-    id			    231
+    id			    240
     ssIdNumber		    116
     name		    "human_torques"
     scope		    INPUT_DATA
@@ -29598,10 +30154,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 230 232]
+    linkNode		    [167 239 241]
   }
   data {
-    id			    232
+    id			    241
     ssIdNumber		    117
     name		    "HUMAN_DOF_FOR_SIMULINK"
     scope		    INPUT_DATA
@@ -29623,19 +30179,19 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [158 231 0]
+    linkNode		    [167 240 0]
   }
   junction {
-    id			    233
+    id			    242
     position		    [23.5747 49.5747 7]
-    chart		    158
-    subviewer		    158
+    chart		    167
+    subviewer		    167
     ssIdNumber		    3
     type		    CONNECTIVE_JUNCTION
-    linkNode		    [158 0 0]
+    linkNode		    [167 0 0]
   }
   transition {
-    id			    234
+    id			    243
     labelString		    "{eML_blk_kernel();}"
     labelPosition	    [36.125 25.875 102.544 14.964]
     fontSize		    12
@@ -29643,36 +30199,36 @@ Stateflow {
       intersection	      [0 0 1 0 23.5747 14.625 0 0]
     }
     dst {
-      id		      233
+      id		      242
       intersection	      [1 0 -1 0 23.5747 42.5747 0 0]
     }
     midPoint		    [23.5747 24.9468]
-    chart		    158
+    chart		    167
     dataLimits		    [21.175 25.975 14.625 42.575]
-    subviewer		    158
+    subviewer		    167
     drawStyle		    SMART
     slide {
       sticky		      BOTH_STICK
     }
     executionOrder	    1
     ssIdNumber		    2
-    linkNode		    [158 0 0]
+    linkNode		    [167 0 0]
   }
   instance {
-    id			    235
+    id			    244
     machine		    1
     name		    "Robot System/controller_QP/Balancing Controller\n"
-    chart		    158
+    chart		    167
   }
   chart {
-    id			    236
+    id			    245
     machine		    1
     name		    "Robot System/emergency stop: joint limits/MATLAB Function"
     windowPosition	    [369.958 -65.92 200 534.4]
     viewLimits		    [0 156.75 0 153.75]
     screen		    [1 1 1366 768 1.25]
-    treeNode		    [0 237 0 0]
-    viewObj		    236
+    treeNode		    [0 246 0 0]
+    viewObj		    245
     ssIdHighWaterMark	    8
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -29682,19 +30238,19 @@ Stateflow {
       name		      "checkRangeFCN"
     }
     supportVariableSizing   0
-    firstData		    238
-    firstTransition	    244
-    firstJunction	    243
+    firstData		    247
+    firstTransition	    253
+    firstJunction	    252
   }
   state {
-    id			    237
+    id			    246
     labelString		    "eML_blk_kernel()"
     position		    [18 64.5 118 66]
     fontSize		    12
-    chart		    236
-    treeNode		    [236 0 0 0]
+    chart		    245
+    treeNode		    [245 0 0 0]
     superState		    SUBCHART
-    subviewer		    236
+    subviewer		    245
     ssIdNumber		    1
     type		    FUNC_STATE
     decomposition	    CLUSTER_STATE
@@ -29710,7 +30266,7 @@ Stateflow {
     }
   }
   data {
-    id			    238
+    id			    247
     ssIdNumber		    4
     name		    "umin"
     scope		    INPUT_DATA
@@ -29732,10 +30288,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [236 0 239]
+    linkNode		    [245 0 248]
   }
   data {
-    id			    239
+    id			    248
     ssIdNumber		    5
     name		    "umax"
     scope		    INPUT_DATA
@@ -29757,10 +30313,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [236 238 240]
+    linkNode		    [245 247 249]
   }
   data {
-    id			    240
+    id			    249
     ssIdNumber		    6
     name		    "u"
     scope		    INPUT_DATA
@@ -29779,10 +30335,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [236 239 241]
+    linkNode		    [245 248 250]
   }
   data {
-    id			    241
+    id			    250
     ssIdNumber		    7
     name		    "inRange"
     scope		    OUTPUT_DATA
@@ -29802,10 +30358,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [236 240 242]
+    linkNode		    [245 249 251]
   }
   data {
-    id			    242
+    id			    251
     ssIdNumber		    8
     name		    "tol"
     scope		    INPUT_DATA
@@ -29827,19 +30383,19 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [236 241 0]
+    linkNode		    [245 250 0]
   }
   junction {
-    id			    243
+    id			    252
     position		    [23.5747 49.5747 7]
-    chart		    236
-    subviewer		    236
+    chart		    245
+    subviewer		    245
     ssIdNumber		    3
     type		    CONNECTIVE_JUNCTION
-    linkNode		    [236 0 0]
+    linkNode		    [245 0 0]
   }
   transition {
-    id			    244
+    id			    253
     labelString		    "{eML_blk_kernel();}"
     labelPosition	    [40.125 31.875 102.544 14.964]
     fontSize		    12
@@ -29847,36 +30403,36 @@ Stateflow {
       intersection	      [0 0 1 0 23.5747 14.625 0 0]
     }
     dst {
-      id		      243
+      id		      252
       intersection	      [1 0 -1 0 23.5747 42.5747 0 0]
     }
     midPoint		    [23.5747 24.9468]
-    chart		    236
+    chart		    245
     dataLimits		    [21.175 25.975 14.625 42.575]
-    subviewer		    236
+    subviewer		    245
     drawStyle		    SMART
     slide {
       sticky		      BOTH_STICK
     }
     executionOrder	    1
     ssIdNumber		    2
-    linkNode		    [236 0 0]
+    linkNode		    [245 0 0]
   }
   instance {
-    id			    245
+    id			    254
     machine		    1
     name		    "Robot System/emergency stop: joint limits/MATLAB Function"
-    chart		    236
+    chart		    245
   }
   chart {
-    id			    246
+    id			    255
     machine		    1
     name		    "Robot System/controller_QP/Compute angular momentum integral/References for H"
     windowPosition	    [357.12 483.496 167 391]
     viewLimits		    [0 156.75 0 153.75]
     screen		    [1 1 1280 1024 1.041666666666667]
-    treeNode		    [0 247 0 0]
-    viewObj		    246
+    treeNode		    [0 256 0 0]
+    viewObj		    255
     ssIdHighWaterMark	    10
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -29885,19 +30441,19 @@ Stateflow {
     eml {
       name		      "generateReferencesForH_FCN"
     }
-    firstData		    248
-    firstTransition	    255
-    firstJunction	    254
+    firstData		    257
+    firstTransition	    264
+    firstJunction	    263
   }
   state {
-    id			    247
+    id			    256
     labelString		    "eML_blk_kernel()"
     position		    [18 64.5 118 66]
     fontSize		    12
-    chart		    246
-    treeNode		    [246 0 0 0]
+    chart		    255
+    treeNode		    [255 0 0 0]
     superState		    SUBCHART
-    subviewer		    246
+    subviewer		    255
     ssIdNumber		    1
     type		    FUNC_STATE
     decomposition	    CLUSTER_STATE
@@ -29912,7 +30468,7 @@ Stateflow {
     }
   }
   data {
-    id			    248
+    id			    257
     ssIdNumber		    4
     name		    "qjErr"
     scope		    INPUT_DATA
@@ -29931,10 +30487,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [246 0 249]
+    linkNode		    [255 0 258]
   }
   data {
-    id			    249
+    id			    258
     ssIdNumber		    6
     name		    "JL"
     scope		    INPUT_DATA
@@ -29956,10 +30512,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [246 248 250]
+    linkNode		    [255 257 259]
   }
   data {
-    id			    250
+    id			    259
     ssIdNumber		    9
     name		    "JR"
     scope		    INPUT_DATA
@@ -29981,10 +30537,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [246 249 251]
+    linkNode		    [255 258 260]
   }
   data {
-    id			    251
+    id			    260
     ssIdNumber		    7
     name		    "nu_b_equivalent"
     scope		    OUTPUT_DATA
@@ -30006,10 +30562,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [246 250 252]
+    linkNode		    [255 259 261]
   }
   data {
-    id			    252
+    id			    261
     ssIdNumber		    8
     name		    "Reg"
     scope		    PARAMETER_DATA
@@ -30031,10 +30587,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [246 251 253]
+    linkNode		    [255 260 262]
   }
   data {
-    id			    253
+    id			    262
     ssIdNumber		    10
     name		    "activeFeetConstraints"
     scope		    INPUT_DATA
@@ -30056,19 +30612,19 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [246 252 0]
+    linkNode		    [255 261 0]
   }
   junction {
-    id			    254
+    id			    263
     position		    [23.5747 49.5747 7]
-    chart		    246
-    subviewer		    246
+    chart		    255
+    subviewer		    255
     ssIdNumber		    3
     type		    CONNECTIVE_JUNCTION
-    linkNode		    [246 0 0]
+    linkNode		    [255 0 0]
   }
   transition {
-    id			    255
+    id			    264
     labelString		    "{eML_blk_kernel();}"
     labelPosition	    [28.125 13.875 102.544 14.964]
     fontSize		    12
@@ -30076,37 +30632,37 @@ Stateflow {
       intersection	      [0 0 1 0 23.5747 14.625 0 0]
     }
     dst {
-      id		      254
+      id		      263
       intersection	      [1 0 -1 0 23.5747 42.5747 0 0]
     }
     midPoint		    [23.5747 24.9468]
-    chart		    246
+    chart		    255
     dataLimits		    [21.175 25.975 14.625 42.575]
-    subviewer		    246
+    subviewer		    255
     drawStyle		    SMART
     slide {
       sticky		      BOTH_STICK
     }
     executionOrder	    1
     ssIdNumber		    2
-    linkNode		    [246 0 0]
+    linkNode		    [255 0 0]
   }
   instance {
-    id			    256
+    id			    265
     machine		    1
     name		    "Robot System/controller_QP/Compute angular momentum integral/References for H"
-    chart		    246
+    chart		    255
   }
   chart {
-    id			    257
+    id			    266
     machine		    1
     name		    "Robot System/Robot State and References/State Machine Standup/Visualise extrnal wrenches/Compute curren"
     "t threshold"
     windowPosition	    [422 539.941 189 413]
     viewLimits		    [0 156.75 0 153.75]
     screen		    [1 1 3600 1200 1.180555555555556]
-    treeNode		    [0 258 0 0]
-    viewObj		    257
+    treeNode		    [0 267 0 0]
+    viewObj		    266
     ssIdHighWaterMark	    9
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -30115,19 +30671,19 @@ Stateflow {
     eml {
       name		      "currentThreshold"
     }
-    firstData		    259
-    firstTransition	    266
-    firstJunction	    265
+    firstData		    268
+    firstTransition	    275
+    firstJunction	    274
   }
   state {
-    id			    258
+    id			    267
     labelString		    "eML_blk_kernel()"
     position		    [18 64.5 118 66]
     fontSize		    12
-    chart		    257
-    treeNode		    [257 0 0 0]
+    chart		    266
+    treeNode		    [266 0 0 0]
     superState		    SUBCHART
-    subviewer		    257
+    subviewer		    266
     ssIdNumber		    1
     type		    FUNC_STATE
     decomposition	    CLUSTER_STATE
@@ -30142,7 +30698,7 @@ Stateflow {
     }
   }
   data {
-    id			    259
+    id			    268
     ssIdNumber		    8
     name		    "thresholdContactLeftHand"
     scope		    OUTPUT_DATA
@@ -30164,10 +30720,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [257 0 260]
+    linkNode		    [266 0 269]
   }
   data {
-    id			    260
+    id			    269
     ssIdNumber		    9
     name		    "thresholdContactRightHand"
     scope		    OUTPUT_DATA
@@ -30189,10 +30745,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [257 259 261]
+    linkNode		    [266 268 270]
   }
   data {
-    id			    261
+    id			    270
     ssIdNumber		    4
     name		    "state"
     scope		    INPUT_DATA
@@ -30211,10 +30767,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [257 260 262]
+    linkNode		    [266 269 271]
   }
   data {
-    id			    262
+    id			    271
     ssIdNumber		    5
     name		    "thresholdContactLeftFoot"
     scope		    OUTPUT_DATA
@@ -30234,10 +30790,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [257 261 263]
+    linkNode		    [266 270 272]
   }
   data {
-    id			    263
+    id			    272
     ssIdNumber		    7
     name		    "thresholdContactRightFoot"
     scope		    OUTPUT_DATA
@@ -30259,10 +30815,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [257 262 264]
+    linkNode		    [266 271 273]
   }
   data {
-    id			    264
+    id			    273
     ssIdNumber		    6
     name		    "Sm"
     scope		    PARAMETER_DATA
@@ -30284,19 +30840,19 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [257 263 0]
+    linkNode		    [266 272 0]
   }
   junction {
-    id			    265
+    id			    274
     position		    [23.5747 49.5747 7]
-    chart		    257
-    subviewer		    257
+    chart		    266
+    subviewer		    266
     ssIdNumber		    3
     type		    CONNECTIVE_JUNCTION
-    linkNode		    [257 0 0]
+    linkNode		    [266 0 0]
   }
   transition {
-    id			    266
+    id			    275
     labelString		    "{eML_blk_kernel();}"
     labelPosition	    [28.125 13.875 102.544 14.964]
     fontSize		    12
@@ -30304,39 +30860,39 @@ Stateflow {
       intersection	      [0 0 1 0 23.5747 14.625 0 0]
     }
     dst {
-      id		      265
+      id		      274
       intersection	      [1 0 -1 0 23.5747 42.5747 0 0]
     }
     midPoint		    [23.5747 24.9468]
-    chart		    257
+    chart		    266
     dataLimits		    [21.175 25.975 14.625 42.575]
-    subviewer		    257
+    subviewer		    266
     drawStyle		    SMART
     slide {
       sticky		      BOTH_STICK
     }
     executionOrder	    1
     ssIdNumber		    2
-    linkNode		    [257 0 0]
+    linkNode		    [266 0 0]
   }
   instance {
-    id			    267
+    id			    276
     machine		    1
     name		    "Robot System/Robot State and References/State Machine Standup/Visualise extrnal wrenches/Compute curren"
     "t threshold"
-    chart		    257
+    chart		    266
   }
   target {
-    id			    268
+    id			    277
     machine		    1
     name		    "sfun"
     codeFlags		    ""
-    linkNode		    [1 0 269]
+    linkNode		    [1 0 278]
   }
   target {
-    id			    269
+    id			    278
     machine		    1
     name		    "rtw"
-    linkNode		    [1 268 0]
+    linkNode		    [1 277 0]
   }
 }
