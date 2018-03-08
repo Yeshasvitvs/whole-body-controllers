@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.3456"
+    ComputedModelVersion    "1.3459"
     NumModelReferences	    0
     NumTestPointedSignals   0
     NumProvidedFunctions    0
@@ -61,30 +61,39 @@ Model {
       }
       Array {
 	Type			"Simulink.EditorInfo"
-	Dimension		2
+	Dimension		3
 	Object {
 	  $ObjectID		  5
-	  IsActive		  [1]
+	  IsActive		  [0]
 	  ViewObjType		  "SimulinkSubsys"
-	  LoadSaveID		  "2355"
+	  LoadSaveID		  "5016"
 	  Extents		  [2477.0, 1265.0]
-	  ZoomFactor		  [0.70894194380143338]
-	  Offset		  [141.87809008353565, 37.252261666265213]
+	  ZoomFactor		  [0.71793383633197916]
+	  Offset		  [-745.08932902182687, -279.50040420371863]
 	}
 	Object {
 	  $ObjectID		  6
 	  IsActive		  [0]
 	  ViewObjType		  "SimulinkSubsys"
-	  LoadSaveID		  "2087"
+	  LoadSaveID		  "2098"
 	  Extents		  [2477.0, 1265.0]
-	  ZoomFactor		  [1.7098317288024654]
-	  Offset		  [-638.18794023070643, 2500.0805574341566]
+	  ZoomFactor		  [2.0479397910718835]
+	  Offset		  [-682.24238847488778, 145.15302961668027]
+	}
+	Object {
+	  $ObjectID		  7
+	  IsActive		  [1]
+	  ViewObjType		  "SimulinkSubsys"
+	  LoadSaveID		  "5032"
+	  Extents		  [2477.0, 1265.0]
+	  ZoomFactor		  [1.3229946524064171]
+	  Offset		  [-302.31347893088116, -193.58205335489089]
 	}
 	PropName		"EditorsInfo"
       }
       Object {
 	$PropName		"DockComponentsInfo"
-	$ObjectID		7
+	$ObjectID		8
 	$ClassName		"Simulink.DockComponentInfo"
 	Type			"GLUE2:PropertyInspector"
 	ID			"Property Inspector"
@@ -113,9 +122,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "yeshi"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Mar 08 13:06:30 2018"
-  RTWModifiedTimeStamp	  442415188
-  ModelVersionFormat	  "1.%<AutoIncrement:3456>"
+  LastModifiedDate	  "Thu Mar 08 15:21:21 2018"
+  RTWModifiedTimeStamp	  442423278
+  ModelVersionFormat	  "1.%<AutoIncrement:3459>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -163,7 +172,7 @@ Model {
   TryForcingSFcnDF	  off
   Object {
     $PropName		    "DataLoggingOverride"
-    $ObjectID		    8
+    $ObjectID		    9
     $ClassName		    "Simulink.SimulationData.ModelLoggingInfo"
     model_		    "torqueBalancingStandup"
     signals_		    []
@@ -208,7 +217,7 @@ Model {
     Type		    "Handle"
     Dimension		    1
     Simulink.ConfigSet {
-      $ObjectID		      9
+      $ObjectID		      10
       Version		      "1.16.5"
       DisabledProps	      []
       Description	      ""
@@ -216,7 +225,7 @@ Model {
 	Type			"Handle"
 	Dimension		9
 	Simulink.SolverCC {
-	  $ObjectID		  10
+	  $ObjectID		  11
 	  Version		  "1.16.5"
 	  DisabledProps		  []
 	  Description		  ""
@@ -256,7 +265,7 @@ Model {
 	  SampleTimeProperty	  []
 	}
 	Simulink.DataIOCC {
-	  $ObjectID		  11
+	  $ObjectID		  12
 	  Version		  "1.16.5"
 	  DisabledProps		  []
 	  Description		  ""
@@ -296,7 +305,7 @@ Model {
 	  LoggingIntervals	  "[-inf, inf]"
 	}
 	Simulink.OptimizationCC {
-	  $ObjectID		  12
+	  $ObjectID		  13
 	  Version		  "1.16.5"
 	  Array {
 	    Type		    "Cell"
@@ -354,7 +363,7 @@ Model {
 	  AccelVerboseBuild	  off
 	}
 	Simulink.DebuggingCC {
-	  $ObjectID		  13
+	  $ObjectID		  14
 	  Version		  "1.16.5"
 	  Array {
 	    Type		    "Cell"
@@ -462,7 +471,7 @@ Model {
 	  AllowAutomaticUnitConversions	on
 	}
 	Simulink.HardwareCC {
-	  $ObjectID		  14
+	  $ObjectID		  15
 	  Version		  "1.16.5"
 	  DisabledProps		  []
 	  Description		  ""
@@ -510,7 +519,7 @@ Model {
 	  UseSimulinkCoderFeatures on
 	}
 	Simulink.ModelReferenceCC {
-	  $ObjectID		  15
+	  $ObjectID		  16
 	  Version		  "1.16.5"
 	  DisabledProps		  []
 	  Description		  ""
@@ -529,7 +538,7 @@ Model {
 	  SupportModelReferenceSimTargetCustomCode off
 	}
 	Simulink.SFSimCC {
-	  $ObjectID		  16
+	  $ObjectID		  17
 	  Version		  "1.16.5"
 	  DisabledProps		  []
 	  Description		  ""
@@ -557,7 +566,7 @@ Model {
 	}
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
-	  $ObjectID		  17
+	  $ObjectID		  18
 	  Version		  "1.16.5"
 	  Array {
 	    Type		    "Cell"
@@ -643,7 +652,7 @@ Model {
 	    Type		    "Handle"
 	    Dimension		    2
 	    Simulink.CodeAppCC {
-	      $ObjectID		      18
+	      $ObjectID		      19
 	      Version		      "1.16.5"
 	      Array {
 		Type			"Cell"
@@ -728,7 +737,7 @@ Model {
 	    }
 	    Simulink.GRTTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
-	      $ObjectID		      19
+	      $ObjectID		      20
 	      Version		      "1.16.5"
 	      Array {
 		Type			"Cell"
@@ -825,7 +834,7 @@ Model {
 	  }
 	}
 	SlCovCC.ConfigComp {
-	  $ObjectID		  20
+	  $ObjectID		  21
 	  Version		  "1.16.5"
 	  DisabledProps		  []
 	  Description		  "Simulink Coverage Configuration Component"
@@ -874,11 +883,11 @@ Model {
   }
   Simulink.ConfigSet {
     $PropName		    "ActiveConfigurationSet"
-    $ObjectID		    9
+    $ObjectID		    10
   }
   Object {
     $PropName		    "DataTransfer"
-    $ObjectID		    21
+    $ObjectID		    22
     $ClassName		    "Simulink.GlobalDataTransfer"
     DefaultTransitionBetweenSyncTasks "Ensure deterministic transfer (maximum delay)"
     DefaultTransitionBetweenAsyncTasks "Ensure data integrity only"
@@ -1234,7 +1243,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "153"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "5449"
+    SIDHighWatermark	    "5452"
     Block {
       BlockType		      SubSystem
       Name		      "Human System"
@@ -1248,7 +1257,7 @@ Model {
       System {
 	Name			"Human System"
 	Location		[1415, 24, 3926, 1440]
-	Open			off
+	Open			on
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -1259,12 +1268,12 @@ Model {
 	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"136"
+	ZoomFactor		"132"
 	Block {
 	  BlockType		  Inport
 	  Name			  "w_H_humanLeftFeet"
 	  SID			  "5440"
-	  Position		  [290, -147, 320, -133]
+	  Position		  [145, -177, 175, -163]
 	  ZOrder		  602
 	  IconDisplay		  "Port number"
 	}
@@ -1272,7 +1281,7 @@ Model {
 	  BlockType		  Inport
 	  Name			  "w_H_humanRightFeet"
 	  SID			  "5444"
-	  Position		  [70, 158, 100, 172]
+	  Position		  [145, -117, 175, -103]
 	  ZOrder		  606
 	  Port			  "2"
 	  IconDisplay		  "Port number"
@@ -1299,12 +1308,6 @@ Model {
 	  ContentPreviewEnabled	  off
 	  ConfigSource		  "Workspace"
 	  ConfigObject		  "'HUMAN_WBTConfigRobot'"
-	  RobotName		  "'icub'"
-	  UrdfFile		  "'model.urdf'"
-	  ControlledJoints	  "{'l_elbow','l_shoulder_pitch','torso_roll'}"
-	  ControlBoardsNames	  "{'left_arm','right_arm','torso'}"
-	  LocalName		  "'WBT'"
-	  GravityVector		  "[0,0,-9.81]"
 	}
 	Block {
 	  BlockType		  SubSystem
@@ -2622,10 +2625,20 @@ Model {
 	  period		  "0.01"
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    22
+	    $ObjectID		    23
 	    $ClassName		    "Simulink.Mask"
 	    Type		    "Real Time Synchronizer"
 	  }
+	}
+	Block {
+	  BlockType		  Switch
+	  Name			  "Switch"
+	  SID			  "5451"
+	  Position		  [300, -160, 350, -120]
+	  ZOrder		  608
+	  Criteria		  "u2 > Threshold"
+	  InputSameDT		  off
+	  SaturateOnIntegerOverflow off
 	}
 	Block {
 	  BlockType		  Constant
@@ -2634,6 +2647,13 @@ Model {
 	  Position		  [275, 110, 335, 130]
 	  ZOrder		  570
 	  Value			  "zeros(6,1)"
+	}
+	Block {
+	  BlockType		  Constant
+	  Name			  "switch threshold"
+	  SID			  "5452"
+	  Position		  [-5, -150, 55, -130]
+	  ZOrder		  609
 	}
 	Block {
 	  BlockType		  Outport
@@ -3047,11 +3067,34 @@ Model {
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  423
-	  SrcBlock		  "w_H_humanLeftFeet"
+	  ZOrder		  468
+	  SrcBlock		  "w_H_humanRightFeet"
+	  SrcPort		  1
+	  Points		  [72, 0; 0, -15]
+	  DstBlock		  "Switch"
+	  DstPort		  3
+	}
+	Line {
+	  ZOrder		  469
+	  SrcBlock		  "Switch"
 	  SrcPort		  1
 	  DstBlock		  "Forward Kinematics"
 	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  470
+	  SrcBlock		  "w_H_humanLeftFeet"
+	  SrcPort		  1
+	  Points		  [72, 0; 0, 15]
+	  DstBlock		  "Switch"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  472
+	  SrcBlock		  "switch threshold"
+	  SrcPort		  1
+	  DstBlock		  "Switch"
+	  DstPort		  2
 	}
       }
     }
@@ -3068,7 +3111,7 @@ Model {
       System {
 	Name			"Robot System"
 	Location		[1415, 24, 3926, 1440]
-	Open			off
+	Open			on
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -3272,19 +3315,13 @@ Model {
 	  ContentPreviewEnabled	  off
 	  ConfigSource		  "Workspace"
 	  ConfigObject		  "'WBTConfigRobot'"
-	  RobotName		  "'icub'"
-	  UrdfFile		  "'model.urdf'"
-	  ControlledJoints	  "{'l_elbow','l_shoulder_pitch','torso_roll'}"
-	  ControlBoardsNames	  "{'left_arm','right_arm','torso'}"
-	  LocalName		  "'WBT'"
-	  GravityVector		  "[0,0,-9.81]"
 	}
 	Block {
 	  BlockType		  SubSystem
 	  Name			  "Dump and visualize"
 	  SID			  "2275"
 	  Ports			  []
-	  Position		  [2245, 61, 2375, 94]
+	  Position		  [1810, 161, 1940, 194]
 	  ZOrder		  547
 	  ForegroundColor	  "blue"
 	  BackgroundColor	  "[0.333333, 1.000000, 1.000000]"
@@ -3293,7 +3330,7 @@ Model {
 	  Variant		  off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    23
+	    $ObjectID		    24
 	    $ClassName		    "Simulink.Mask"
 	    Display		    "disp('VISUALIZER')"
 	  }
@@ -8574,7 +8611,7 @@ Model {
 	  System {
 	    Name		    "Robot State and References"
 	    Location		    [1415, 24, 3926, 1440]
-	    Open		    on
+	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -8719,7 +8756,7 @@ Model {
 	      System {
 		Name			"Internal Coordinator"
 		Location		[1415, 24, 3926, 1440]
-		Open			off
+		Open			on
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
@@ -17411,7 +17448,7 @@ Model {
 	  System {
 	    Name		    "controller_QP"
 	    Location		    [1415, 24, 3926, 1440]
-	    Open		    on
+	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -23938,7 +23975,7 @@ Model {
 		  FunctionName		  "sf_sfun"
 		  PortCounts		  "[2 3]"
 		  SFunctionDeploymentMode off
-		  EnableBusSupport	  off
+		  EnableBusSupport	  on
 		  SFcnIsStateOwnerBlock	  off
 		  Port {
 		    PortNumber		    2
@@ -24115,7 +24152,7 @@ Model {
 	  Name			  "synchronizer"
 	  SID			  "2423"
 	  Ports			  []
-	  Position		  [2247, 128, 2372, 163]
+	  Position		  [1812, 228, 1937, 263]
 	  ZOrder		  546
 	  ForegroundColor	  "red"
 	  BackgroundColor	  "green"
@@ -24124,7 +24161,7 @@ Model {
 	  Variant		  off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    24
+	    $ObjectID		    25
 	    $ClassName		    "Simulink.Mask"
 	    Display		    "disp('SYNCHRONIZER')"
 	  }
@@ -28474,9 +28511,6 @@ Stateflow {
     screen		    [1 1 1280 1024 1.000677131425054]
     treeNode		    [0 168 0 0]
     viewObj		    167
-    visible		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    120
     decomposition	    CLUSTER_CHART
     type		    EML_CHART

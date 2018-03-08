@@ -180,8 +180,13 @@ function [tauModel, Sigma, NA, f_HDot, ...
     fArms           = [LArmWrench;
                        RArmWrench];
                    
+    fArms_phri      = [combined_wrench(25:30,:);
+                       combined_wrench(31:end,:)];
+                   
     % support force               
     fsupport        = A_arms * fArms;
+    
+    fsupport_phri   = A_arms * fArms_phri;
     
     % Time varying contact jacobian
     Jc              = [JL*constraints(1);      
@@ -211,7 +216,7 @@ function [tauModel, Sigma, NA, f_HDot, ...
     Big_Omega       = JcomMinv*transpose(Jc4)*Big_G1bar;
     Big_Delta       = JcomMinv*(St + transpose(Jc4)*Big_G2bar);
     pinv_Big_Delta = pinvDamped(Big_Delta,Reg.pinvDamp);
-    Big_Lambda      = (JcomMinv*Jc4')*Big_G3bar - JcomMinv*h + JComDot_nu - xDDcomStar; %%TODO Double check it for all the terms
+% %     Big_Lambda      = (JcomMinv*Jc4')*Big_G3bar - JcomMinv*h + JComDot_nu - xDDcomStar; %%TODO Double check it for all the terms
     
     % multiplier of f in tau
     JBar            = transpose(Jc(:,7:end)) -Mbj'/Mb*transpose(Jc(:,1:6)); 
@@ -248,7 +253,6 @@ function [tauModel, Sigma, NA, f_HDot, ...
         correctionFromSupportForce = zeros(6,1);
     end
     
-    fsupport_phri = combined_wrench(25:end,:);
     alpha_phri    = (transpose(H_error)*fsupport_phri)/(norm(H_error)+Reg.norm_tolerance);
     
     if STANDUP_WITH_HUMAN_FORCE && alpha <= 0 && state < 4
