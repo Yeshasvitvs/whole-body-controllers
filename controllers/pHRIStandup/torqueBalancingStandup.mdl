@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.3459"
+    ComputedModelVersion    "1.3461"
     NumModelReferences	    0
     NumTestPointedSignals   0
     NumProvidedFunctions    0
@@ -122,9 +122,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "yeshi"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Mar 08 15:21:21 2018"
-  RTWModifiedTimeStamp	  442423278
-  ModelVersionFormat	  "1.%<AutoIncrement:3459>"
+  LastModifiedDate	  "Thu Mar 08 19:07:29 2018"
+  RTWModifiedTimeStamp	  442435911
+  ModelVersionFormat	  "1.%<AutoIncrement:3461>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1243,7 +1243,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "153"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "5452"
+    SIDHighWatermark	    "5453"
     Block {
       BlockType		      SubSystem
       Name		      "Human System"
@@ -2568,6 +2568,43 @@ Model {
 	  frameName		  "HUMAN_Frames.BASE"
 	}
 	Block {
+	  BlockType		  Scope
+	  Name			  "Human\nTorques"
+	  SID			  "5453"
+	  Ports			  [1]
+	  Position		  [1215, -16, 1245, 16]
+	  ZOrder		  610
+	  ScopeSpecificationString "Simulink.scopes.TimeScopeBlockCfg('CurrentConfiguration', extmgr.ConfigurationSet(extmgr."
+	  "Configuration('Core','General UI',true),extmgr.Configuration('Core','Source UI',true),extmgr.Configuration('Sources"
+	  "','WiredSimulink',true,'DataLoggingVariableName','ScopeData1'),extmgr.Configuration('Visuals','Time Domain',true,'S"
+	  "erializedDisplays',{struct('MinYLimReal','-103.97426','MaxYLimReal','80.42053','YLabelReal','','MinYLimMag',' 0.000"
+	  "00','MaxYLimMag','103.97426','LegendVisibility','off','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0"
+	  " 0 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[1 1 0.0666666666666667;"
+	  "0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0"
+	  "745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863"
+	  "],'Title','%<SignalLabel>','LinePropertiesCache',{{}},'UserDefinedChannelNames',{{}},'NumLines',66,'LineNames',{{'J"
+	  "oint Torques:1','Joint Torques:2','Joint Torques:3','Joint Torques:4','Joint Torques:5','Joint Torques:6','Joint To"
+	  "rques:7','Joint Torques:8','Joint Torques:9','Joint Torques:10','Joint Torques:11','Joint Torques:12','Joint Torque"
+	  "s:13','Joint Torques:14','Joint Torques:15','Joint Torques:16','Joint Torques:17','Joint Torques:18','Joint Torques"
+	  ":19','Joint Torques:20','Joint Torques:21','Joint Torques:22','Joint Torques:23','Joint Torques:24','Joint Torques:"
+	  "25','Joint Torques:26','Joint Torques:27','Joint Torques:28','Joint Torques:29','Joint Torques:30','Joint Torques:3"
+	  "1','Joint Torques:32','Joint Torques:33','Joint Torques:34','Joint Torques:35','Joint Torques:36','Joint Torques:37"
+	  "','Joint Torques:38','Joint Torques:39','Joint Torques:40','Joint Torques:41','Joint Torques:42','Joint Torques:43'"
+	  ",'Joint Torques:44','Joint Torques:45','Joint Torques:46','Joint Torques:47','Joint Torques:48','Joint Torques:49',"
+	  "'Joint Torques:50','Joint Torques:51','Joint Torques:52','Joint Torques:53','Joint Torques:54','Joint Torques:55','"
+	  "Joint Torques:56','Joint Torques:57','Joint Torques:58','Joint Torques:59','Joint Torques:60','Joint Torques:61','J"
+	  "oint Torques:62','Joint Torques:63','Joint Torques:64','Joint Torques:65','Joint Torques:66'}},'ShowContent',true,'"
+	  "Placement',1)},'DisplayPropertyDefaults',struct('MinYLimReal','-103.97426','MaxYLimReal','80.42053','YLabelReal',''"
+	  ",'MinYLimMag',' 0.00000','MaxYLimMag','103.97426','LegendVisibility','off','XGrid',true,'YGrid',true,'PlotMagPhase'"
+	  ",false,'AxesColor',[0 0 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[0."
+	  "0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;1 1 0.0666666666666667;0.717647058823529 "
+	  "0.274509803921569 1;0.392156862745098 0.831372549019608 0.0745098039215686;0.0588235294117647 1 1;1 0.0745098039215"
+	  "686 0.650980392156863])),extmgr.Configuration('Tools','Plot Navigation',true,'PreviousZoomMode','ZoomOut','Previous"
+	  "Autoscale','X'),extmgr.Configuration('Tools','Measurements',true,'Version','2016b')),'Version','2016b','Position',["
+	  "1206 679 570 450])"
+	  NumInputPorts		  "1"
+	}
+	Block {
 	  BlockType		  Reference
 	  Name			  "Joint Positions"
 	  SID			  "5020"
@@ -3056,8 +3093,18 @@ Model {
 	  ZOrder		  420
 	  SrcBlock		  "Joint Torques"
 	  SrcPort		  1
-	  DstBlock		  "torques"
-	  DstPort		  1
+	  Points		  [22, 0]
+	  Branch {
+	    ZOrder		    474
+	    Points		    [0, -100]
+	    DstBlock		    "Human\nTorques"
+	    DstPort		    1
+	  }
+	  Branch {
+	    ZOrder		    473
+	    DstBlock		    "torques"
+	    DstPort		    1
+	  }
 	}
 	Line {
 	  ZOrder		  421
