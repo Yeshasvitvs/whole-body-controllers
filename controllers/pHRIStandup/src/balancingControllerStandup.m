@@ -25,7 +25,7 @@ function [tauModel, Sigma, NA, f_HDot, ...
                                          human_w_H_l_contact, human_w_H_r_contact, human_JL, human_JR, human_dJL_nu, human_dJR_nu,...
                                          human_w_H_lArm_contact, human_w_H_rArm_contact, human_JLArm, human_JRArm, human_dJLArm_nu, human_dJRArm_nu,...
                                          gainsPCOM, gainsDCOM, impedances, Reg, Gain, LArmWrench, RArmWrench, STANDUP_WITH_HUMAN_FORCE, STANDUP_WITH_HUMAN_TORQUE, state,...
-                                         human_w_H_b, human_qj, human_nu_b, human_dqj, human_torques, HUMAN_DOF_FOR_SIMULINK)
+                                         human_w_H_b, human_qj, human_nu_b, human_dqj, human_torques, HUMAN_DOF_FOR_SIMULINK, robot_torques)
        
     % BALANCING CONTROLLER
 
@@ -81,6 +81,8 @@ function [tauModel, Sigma, NA, f_HDot, ...
                      -m*gravAcc;
                       zeros(3,1)];
                   
+    combined_torques = [human_torques; robot_torques];
+                  
     Big_h          = [human_h; h];
     
     Big_St         = [human_St                      zeros(6+HUMAN_DOF,ROBOT_DOF);
@@ -116,6 +118,8 @@ function [tauModel, Sigma, NA, f_HDot, ...
     
     Big_G3          = Big_Gammainv*(Big_Q*Big_Minv*Big_h - Big_PV);
     Big_G3bar       = Big_G3(13:end,:);
+    
+    combined_wrench    = -Big_Gammainv*(Big_Q*Big_Minv(Big_St*combined_torques - Big_h) + Big_PV);
 
     % Velocity of the center of mass
     xCoM_dot       = J_CoM(1:3,:)*nu;
@@ -203,9 +207,10 @@ function [tauModel, Sigma, NA, f_HDot, ...
     JcMinvSt        = JcMinv*St;
     JcMinvJct       = JcMinv*transpose(Jc);
     
-    JcomMinv        = J_CoM/M
+    JcomMinv        = J_CoM/M;
     Big_Omega       = JcomMinv*transpose(Jc4)*Big_G1bar;
     Big_Delta       = JcomMinv*(St + transpose(Jc4)*Big_G2bar);
+    pinv_Big_Delta = pinvDamped(Big_Delta,Reg.pinvDamp);
     Big_Lambda      = (JcomMinv*Jc4')*Big_G3bar - JcomMinv*h + JComDot_nu - xDDcomStar; %%TODO Double check it for all the terms
     
     % multiplier of f in tau
@@ -238,22 +243,29 @@ function [tauModel, Sigma, NA, f_HDot, ...
     H_errParallel = H_error/(norm(H_error)+Reg.norm_tolerance);
     
     if STANDUP_WITH_HUMAN_FORCE && alpha <= 0 && state < 4
-        
         correctionFromSupportForce = alpha*H_errParallel;
     else
         correctionFromSupportForce = zeros(6,1);
     end
     
-    % Projector of human torques in the parallel direction of momentum
-    % error
-    human_torque_alpha = (transpose(H_error)*Big_Omega*human_torques)/(norm(H_error)+Reg.norm_tolerance);
+    fsupport_phri = combined_wrench(25:end,:);
+    alpha_phri    = (transpose(H_error)*fsupport_phri)/(norm(H_error)+Reg.norm_tolerance);
     
-    KD = eye(6); %%TODO Implement this gains in config file
-    
-    if STANDUP_WITH_HUMAN_TORQUE && human_torque_alpha >= 0 && state < 4
-        pinv_Big_Delta = pinvDamped(Big_Delta,Reg.pinvDamp);
-        tauModel =  - pinv_Big_Delta*(Big_Lambda + KD * H_error + max(0,human_torque_alpha)*H_errParallel); %%TODO implement nullspace torques
+    if STANDUP_WITH_HUMAN_FORCE && alpha <= 0 && state < 4
+        correctionFromSupportForce = alpha_phri*H_errParallel;
     end
+    
+    
+% %     % Projector of human torques in the parallel direction of momentum
+% %     % error
+% %     human_torque_alpha = (transpose(H_error)*Big_Omega*human_torques)/(norm(H_error)+Reg.norm_tolerance);
+% %     
+% %     KD = eye(6); %%TODO Implement this gains in config file
+% %     
+% %     if STANDUP_WITH_HUMAN_TORQUE && human_torque_alpha >= 0 && state < 4
+% %         
+% %         %%tauModel =  - pinv_Big_Delta*(Big_Lambda + KD * H_error + max(0,human_torque_alpha)*H_errParallel); %%TODO implement nullspace torques
+% %     end
                 
     %% QP PARAMETERS FOR TWO FEET STANDING
     % In the case the robot stands on two feet/legs, the control objective is 
