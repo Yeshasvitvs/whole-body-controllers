@@ -7,6 +7,9 @@
 ## We have git for backups!
 ##---------------------------------------------------
 
+# Default autosave extension
+*.mdl.autosave
+
 # Windows default autosave extension
 *.asv
 
