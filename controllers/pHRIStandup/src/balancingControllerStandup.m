@@ -51,12 +51,7 @@ function [tauModel, Sigma, NA, f_HDot, ...
     m              = M(1,1);
     
     % Mass of the human
-    human_m        = human_M(1,1);
-    
-    Big_M          = [human_M,                       zeros(6+HUMAN_DOF,6+ROBOT_DOF);
-                      zeros(6+ROBOT_DOF,6+HUMAN_DOF),    M];
-                  
-    Big_Minv       = inv(Big_M);              
+    human_m        = human_M(1,1);              
     
     % The mass matrix is partitioned as:
     %
@@ -198,6 +193,11 @@ function [tauModel, Sigma, NA, f_HDot, ...
         end
     
     elseif STANDUP_WITH_HUMAN_TORQUE
+        
+        Big_M          = [human_M,                       zeros(6+HUMAN_DOF,6+ROBOT_DOF);
+                      zeros(6+ROBOT_DOF,6+HUMAN_DOF),    M];
+                  
+        Big_Minv       = inv(Big_M);
         
         Big_h          = [human_h; h];
     
