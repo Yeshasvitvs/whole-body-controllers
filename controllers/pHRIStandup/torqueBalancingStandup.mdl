@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.3496"
+    ComputedModelVersion    "1.3497"
     NumModelReferences	    0
     NumTestPointedSignals   0
     NumProvidedFunctions    0
@@ -42,7 +42,7 @@ Model {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [1415.0, 24.0, 2511.0, 1416.0]
+      Location		      [1969.0, 18.0, 1871.0, 1062.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -64,19 +64,19 @@ Model {
 	Dimension		4
 	Object {
 	  $ObjectID		  5
-	  IsActive		  [1]
+	  IsActive		  [0]
 	  ViewObjType		  "SimulinkSubsys"
 	  LoadSaveID		  "5465"
 	  Extents		  [2477.0, 1265.0]
-	  ZoomFactor		  [2.86]
-	  Offset		  [-2.527917395104895, 0.0]
+	  ZoomFactor		  [2.904993142306409]
+	  Offset		  [-2.4521009850959672, -40.228569058799508]
 	}
 	Object {
 	  $ObjectID		  6
 	  IsActive		  [0]
 	  ViewObjType		  "SimulinkSubsys"
 	  LoadSaveID		  "2098"
-	  Extents		  [2477.0, 1265.0]
+	  Extents		  [2477.0, 1080.0]
 	  ZoomFactor		  [2.0479397910718835]
 	  Offset		  [-682.24238847488778, 145.15302961668027]
 	}
@@ -85,18 +85,18 @@ Model {
 	  IsActive		  [0]
 	  ViewObjType		  "SimulinkSubsys"
 	  LoadSaveID		  "2355"
-	  Extents		  [2477.0, 1265.0]
+	  Extents		  [2477.0, 1080.0]
 	  ZoomFactor		  [0.7012471655328798]
 	  Offset		  [125.20861017077596, 30.035569927243273]
 	}
 	Object {
 	  $ObjectID		  8
-	  IsActive		  [0]
+	  IsActive		  [1]
 	  ViewObjType		  "SimulinkTopLevel"
 	  LoadSaveID		  "0"
-	  Extents		  [2477.0, 1265.0]
-	  ZoomFactor		  [1.534963503649635]
-	  Offset		  [491.17964081347975, 118.00344497809897]
+	  Extents		  [1837.0, 911.0]
+	  ZoomFactor		  [1.1107890921585226]
+	  Offset		  [173.48429689980003, 128.54243316004482]
 	}
 	PropName		"EditorsInfo"
       }
@@ -118,7 +118,7 @@ Model {
       "AAAAAAA+wAAABYARABvAGMAawBXAGkAZABnAGUAdAA0AAAAAAD/////AAAAAAAAAAD7AAAAUgBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0Ac"
       "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQAAAAAAP////8AAABeAP///wAAAAEAAAAAAAAAAPwCA"
       "AAAAfsAAABUAEcATABVAEUAMgA6AFAAcgBvAHAAZQByAHQAeQBJAG4AcwBwAGUAYwB0AG8AcgAvAFAAcgBvAHAAZQByAHQAeQAgAEkAbgBzAHAAZ"
-      "QBjAHQAbwByAAAAAAD/////AAAAKAD///8AAAnPAAAFMQAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
+      "QBjAHQAbwByAAAAAAD/////AAAAKAD///8AAAdPAAADzwAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
       "////wEAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/"
       "////wEAAACA/////wAAAAAAAAAA/////wEAAADo/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAFo/////wAAAAAAAAAA/"
       "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAANR/////wAAAAAAAAAA/"
@@ -131,9 +131,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "yeshi"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Mar 15 11:39:34 2018"
-  RTWModifiedTimeStamp	  443014766
-  ModelVersionFormat	  "1.%<AutoIncrement:3496>"
+  LastModifiedDate	  "Wed Mar 21 13:35:46 2018"
+  RTWModifiedTimeStamp	  443540142
+  ModelVersionFormat	  "1.%<AutoIncrement:3497>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1238,7 +1238,7 @@ Model {
   }
   System {
     Name		    "torqueBalancingStandup"
-    Location		    [1415, 24, 3926, 1440]
+    Location		    [1969, 18, 3840, 1080]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -1250,7 +1250,7 @@ Model {
     TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "153"
+    ZoomFactor		    "111"
     ReportName		    "simulink-default.rpt"
     SIDHighWatermark	    "5467"
     Block {
@@ -1258,9 +1258,8 @@ Model {
       Name		      "Human System"
       SID		      "5032"
       Ports		      [2, 20]
-      Position		      [1435, 166, 1600, 889]
+      Position		      [670, 176, 835, 899]
       ZOrder		      -14
-      BlockMirror	      on
       RequestExecContextInheritance off
       Variant		      off
       System {
@@ -1317,6 +1316,12 @@ Model {
 	  ContentPreviewEnabled	  off
 	  ConfigSource		  "Workspace"
 	  ConfigObject		  "'HUMAN_WBTConfigRobot'"
+	  RobotName		  "'icub'"
+	  UrdfFile		  "'model.urdf'"
+	  ControlledJoints	  "{'l_elbow','l_shoulder_pitch','torso_roll'}"
+	  ControlBoardsNames	  "{'left_arm','right_arm','torso'}"
+	  LocalName		  "'WBT'"
+	  GravityVector		  "[0,0,-9.81]"
 	}
 	Block {
 	  BlockType		  SubSystem
@@ -3159,14 +3164,13 @@ Model {
       Name		      "Robot System"
       SID		      "5016"
       Ports		      [20, 2]
-      Position		      [990, 162, 1140, 893]
+      Position		      [1180, 172, 1330, 903]
       ZOrder		      -12
-      BlockMirror	      on
       RequestExecContextInheritance off
       Variant		      off
       System {
 	Name			"Robot System"
-	Location		[1415, 24, 3926, 1440]
+	Location		[1969, 18, 3840, 1080]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -3371,6 +3375,12 @@ Model {
 	  ContentPreviewEnabled	  off
 	  ConfigSource		  "Workspace"
 	  ConfigObject		  "'WBTConfigRobot'"
+	  RobotName		  "'icub'"
+	  UrdfFile		  "'model.urdf'"
+	  ControlledJoints	  "{'l_elbow','l_shoulder_pitch','torso_roll'}"
+	  ControlBoardsNames	  "{'left_arm','right_arm','torso'}"
+	  LocalName		  "'WBT'"
+	  GravityVector		  "[0,0,-9.81]"
 	}
 	Block {
 	  BlockType		  SubSystem
@@ -17979,7 +17989,7 @@ Model {
 		TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 		TiledPageScale		1
 		ShowPageBoundaries	off
-		ZoomFactor		"286"
+		ZoomFactor		"290"
 		Block {
 		  BlockType		  Inport
 		  Name			  "Arms_Wrench"
@@ -25314,7 +25324,7 @@ Model {
       ZOrder		      300
       SrcBlock		      "Robot System"
       SrcPort		      1
-      Points		      [-54, 0; 0, -218; 727, 0; 0, 223]
+      Points		      [56, 0; 0, -214; -783, 0; 0, 219]
       DstBlock		      "Human System"
       DstPort		      1
     }
@@ -25322,7 +25332,7 @@ Model {
       ZOrder		      301
       SrcBlock		      "Robot System"
       SrcPort		      2
-      Points		      [-54, 0; 0, 223; 734, 0; 0, -223]
+      Points		      [57, 0; 0, 216; -780, 0; 0, -216]
       DstBlock		      "Human System"
       DstPort		      2
     }
