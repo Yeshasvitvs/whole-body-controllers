@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.3497"
+    ComputedModelVersion    "1.3504"
     NumModelReferences	    0
     NumTestPointedSignals   0
     NumProvidedFunctions    0
@@ -65,11 +65,11 @@ Model {
 	Object {
 	  $ObjectID		  5
 	  IsActive		  [0]
-	  ViewObjType		  "SimulinkSubsys"
-	  LoadSaveID		  "5465"
-	  Extents		  [2477.0, 1265.0]
-	  ZoomFactor		  [2.904993142306409]
-	  Offset		  [-2.4521009850959672, -40.228569058799508]
+	  ViewObjType		  "SimulinkTopLevel"
+	  LoadSaveID		  "0"
+	  Extents		  [1837.0, 911.0]
+	  ZoomFactor		  [1.1112585034013605]
+	  Offset		  [173.91009355901747, 129.29356309877255]
 	}
 	Object {
 	  $ObjectID		  6
@@ -82,21 +82,21 @@ Model {
 	}
 	Object {
 	  $ObjectID		  7
-	  IsActive		  [0]
+	  IsActive		  [1]
 	  ViewObjType		  "SimulinkSubsys"
 	  LoadSaveID		  "2355"
-	  Extents		  [2477.0, 1080.0]
-	  ZoomFactor		  [0.7012471655328798]
-	  Offset		  [125.20861017077596, 30.035569927243273]
+	  Extents		  [1837.0, 911.0]
+	  ZoomFactor		  [0.50031284617511684]
+	  Offset		  [190.49633437826151, 32.0175084309152]
 	}
 	Object {
 	  $ObjectID		  8
-	  IsActive		  [1]
-	  ViewObjType		  "SimulinkTopLevel"
-	  LoadSaveID		  "0"
+	  IsActive		  [0]
+	  ViewObjType		  "SimulinkSubsys"
+	  LoadSaveID		  "5016"
 	  Extents		  [1837.0, 911.0]
-	  ZoomFactor		  [1.1107890921585226]
-	  Offset		  [173.48429689980003, 128.54243316004482]
+	  ZoomFactor		  [0.51247823563551942]
+	  Offset		  [-812.27123442808625, -287.31823329558324]
 	}
 	PropName		"EditorsInfo"
       }
@@ -131,9 +131,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "yeshi"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Mar 21 13:35:46 2018"
-  RTWModifiedTimeStamp	  443540142
-  ModelVersionFormat	  "1.%<AutoIncrement:3497>"
+  LastModifiedDate	  "Wed Mar 21 14:33:20 2018"
+  RTWModifiedTimeStamp	  443543501
+  ModelVersionFormat	  "1.%<AutoIncrement:3504>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1252,7 +1252,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "111"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "5467"
+    SIDHighWatermark	    "5468"
     Block {
       BlockType		      SubSystem
       Name		      "Human System"
@@ -1264,7 +1264,7 @@ Model {
       Variant		      off
       System {
 	Name			"Human System"
-	Location		[1415, 24, 3926, 1440]
+	Location		[1969, 18, 3840, 1080]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -1276,7 +1276,7 @@ Model {
 	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"132"
+	ZoomFactor		"95"
 	Block {
 	  BlockType		  Inport
 	  Name			  "w_H_humanLeftFeet"
@@ -1298,7 +1298,7 @@ Model {
 	  BlockType		  Constant
 	  Name			  "\n\n  5"
 	  SID			  "5427"
-	  Position		  [1010, 173, 1160, 187]
+	  Position		  [1040, 93, 1190, 107]
 	  ZOrder		  598
 	  ShowName		  off
 	  Value			  "HUMAN_DOF_FOR_SIMULINK"
@@ -1316,12 +1316,6 @@ Model {
 	  ContentPreviewEnabled	  off
 	  ConfigSource		  "Workspace"
 	  ConfigObject		  "'HUMAN_WBTConfigRobot'"
-	  RobotName		  "'icub'"
-	  UrdfFile		  "'model.urdf'"
-	  ControlledJoints	  "{'l_elbow','l_shoulder_pitch','torso_roll'}"
-	  ControlBoardsNames	  "{'left_arm','right_arm','torso'}"
-	  LocalName		  "'WBT'"
-	  GravityVector		  "[0,0,-9.81]"
 	}
 	Block {
 	  BlockType		  SubSystem
@@ -2586,7 +2580,7 @@ Model {
 	  Name			  "Human\nTorques"
 	  SID			  "5453"
 	  Ports			  [1]
-	  Position		  [1215, -16, 1245, 16]
+	  Position		  [430, 289, 460, 321]
 	  ZOrder		  610
 	  ScopeSpecificationString "Simulink.scopes.TimeScopeBlockCfg('CurrentConfiguration', extmgr.ConfigurationSet(extmgr."
 	  "Configuration('Core','General UI',true),extmgr.Configuration('Core','Source UI',true),extmgr.Configuration('Sources"
@@ -2637,7 +2631,7 @@ Model {
 	  Name			  "Joint Torques"
 	  SID			  "5037"
 	  Ports			  [0, 1]
-	  Position		  [1025, 86, 1145, 114]
+	  Position		  [240, 391, 360, 419]
 	  ZOrder		  574
 	  BackgroundColor	  "[0.827500, 0.576500, 0.603900]"
 	  LibraryVersion	  "1.497"
@@ -2766,7 +2760,7 @@ Model {
 	  BlockType		  Outport
 	  Name			  "torques"
 	  SID			  "5417"
-	  Position		  [1215, 93, 1245, 107]
+	  Position		  [430, 398, 460, 412]
 	  ZOrder		  596
 	  Port			  "7"
 	  IconDisplay		  "Port number"
@@ -2883,7 +2877,7 @@ Model {
 	  BlockType		  Outport
 	  Name			  "DoF"
 	  SID			  "5426"
-	  Position		  [1215, 173, 1245, 187]
+	  Position		  [1245, 93, 1275, 107]
 	  ZOrder		  597
 	  Port			  "20"
 	  IconDisplay		  "Port number"
@@ -3171,7 +3165,7 @@ Model {
       System {
 	Name			"Robot System"
 	Location		[1969, 18, 3840, 1080]
-	Open			off
+	Open			on
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -3182,7 +3176,7 @@ Model {
 	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"72"
+	ZoomFactor		"51"
 	Block {
 	  BlockType		  Inport
 	  Name			  "human_w_H_b"
@@ -3375,12 +3369,6 @@ Model {
 	  ContentPreviewEnabled	  off
 	  ConfigSource		  "Workspace"
 	  ConfigObject		  "'WBTConfigRobot'"
-	  RobotName		  "'icub'"
-	  UrdfFile		  "'model.urdf'"
-	  ControlledJoints	  "{'l_elbow','l_shoulder_pitch','torso_roll'}"
-	  ControlBoardsNames	  "{'left_arm','right_arm','torso'}"
-	  LocalName		  "'WBT'"
-	  GravityVector		  "[0,0,-9.81]"
 	}
 	Block {
 	  BlockType		  SubSystem
@@ -8821,7 +8809,7 @@ Model {
 	      Variant		      off
 	      System {
 		Name			"Internal Coordinator"
-		Location		[1415, 24, 3926, 1440]
+		Location		[1969, 18, 3840, 1080]
 		Open			on
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -17513,7 +17501,7 @@ Model {
 	  Variant		  off
 	  System {
 	    Name		    "controller_QP"
-	    Location		    [1415, 24, 3926, 1440]
+	    Location		    [1969, 18, 3840, 1080]
 	    Open		    on
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -17525,7 +17513,7 @@ Model {
 	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "70"
+	    ZoomFactor		    "50"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "M"
@@ -17971,14 +17959,14 @@ Model {
 	      Name		      "Arm Wrench Error"
 	      SID		      "5465"
 	      Ports		      [1]
-	      Position		      [2400, 1642, 2520, 1798]
+	      Position		      [2285, 1557, 2405, 1713]
 	      ZOrder		      -68
 	      RequestExecContextInheritance off
 	      Variant		      off
 	      System {
 		Name			"Arm Wrench Error"
-		Location		[1415, 24, 3926, 1440]
-		Open			on
+		Location		[1969, 18, 3840, 1080]
+		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
@@ -17989,7 +17977,7 @@ Model {
 		TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 		TiledPageScale		1
 		ShowPageBoundaries	off
-		ZoomFactor		"290"
+		ZoomFactor		"215"
 		Block {
 		  BlockType		  Inport
 		  Name			  "Arms_Wrench"
@@ -18008,20 +17996,20 @@ Model {
 		  ScopeSpecificationString "Simulink.scopes.TimeScopeBlockCfg('CurrentConfiguration', extmgr.ConfigurationSet(extmgr"
 		  ".Configuration('Core','General UI',true),extmgr.Configuration('Core','Source UI',true),extmgr.Configuration('Sourc"
 		  "es','WiredSimulink',true,'DataLoggingVariableName','ScopeData1'),extmgr.Configuration('Visuals','Time Domain',true"
-		  ",'SerializedDisplays',{struct('MinYLimReal','-20.55755','MaxYLimReal','17.1148','YLabelReal','','MinYLimMag','0.00"
-		  "000','MaxYLimMag','20.55755','LegendVisibility','On','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0"
-		  " 0 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[1 1 0.0666666666666667"
-		  ";0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0"
-		  ".0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156"
-		  "863],'Title','%<SignalLabel>','LinePropertiesCache',{{}},'UserDefinedChannelNames',{{'f_x','f_z','f_z','tau_x','ta"
-		  "u_y','tau_z'}},'NumLines',6,'LineNames',{{'f_x','f_z','f_z','tau_x','tau_y','tau_z'}},'ShowContent',true,'Placemen"
-		  "t',1)},'DisplayPropertyDefaults',struct('MinYLimReal','-20.55755','MaxYLimReal','17.1148','YLabelReal','','MinYLim"
-		  "Mag','0.00000','MaxYLimMag','20.55755','LegendVisibility','On','XGrid',true,'YGrid',true,'PlotMagPhase',false,'Axe"
-		  "sColor',[0 0 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[0.0745098039"
-		  "215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;1 1 0.0666666666666667;0.717647058823529 0.2745098"
-		  "03921569 1;0.392156862745098 0.831372549019608 0.0745098039215686;0.0588235294117647 1 1;1 0.0745098039215686 0.65"
-		  "0980392156863])),extmgr.Configuration('Tools','Plot Navigation',true),extmgr.Configuration('Tools','Measurements',"
-		  "true,'Version','2016b')),'Version','2016b','Position',[50 1 2511 1361])"
+		  ",'SerializedDisplays',{struct('MinYLimReal','-1.66766','MaxYLimReal','1.75181','YLabelReal','','MinYLimMag','0.000"
+		  "00','MaxYLimMag','1.75181','LegendVisibility','On','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0"
+		  " 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[1 1 0.0666666666666667;0"
+		  ".0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0"
+		  "745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.65098039215686"
+		  "3],'Title','%<SignalLabel>','LinePropertiesCache',{{}},'UserDefinedChannelNames',{{'f_x','f_z','f_z','tau_x','tau_"
+		  "y','tau_z'}},'NumLines',6,'LineNames',{{'f_x','f_z','f_z','tau_x','tau_y','tau_z'}},'ShowContent',true,'Placement'"
+		  ",1)},'DisplayPropertyDefaults',struct('MinYLimReal','-1.66766','MaxYLimReal','1.75181','YLabelReal','','MinYLimMag"
+		  "','0.00000','MaxYLimMag','1.75181','LegendVisibility','On','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesCol"
+		  "or',[0 0 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[0.07450980392156"
+		  "86 0.623529411764706 1;1 0.411764705882353 0.16078431372549;1 1 0.0666666666666667;0.717647058823529 0.27450980392"
+		  "1569 1;0.392156862745098 0.831372549019608 0.0745098039215686;0.0588235294117647 1 1;1 0.0745098039215686 0.650980"
+		  "392156863])),extmgr.Configuration('Tools','Plot Navigation',true),extmgr.Configuration('Tools','Measurements',true"
+		  ",'Version','2016b')),'Version','2016b','Position',[111 -147 1855 973])"
 		  NumInputPorts		  "1"
 		}
 		Block {
@@ -18035,20 +18023,20 @@ Model {
 		  ".Configuration('Core','General UI',true),extmgr.Configuration('Core','Source UI',true),extmgr.Configuration('Sourc"
 		  "es','WiredSimulink',true,'DataLoggingVariableName','ScopeData2','DataLoggingLimitDataPoints',true,'DataLoggingSave"
 		  "Format','Array','DataLoggingDecimation','1','DataLoggingDecimateData',true),extmgr.Configuration('Visuals','Time D"
-		  "omain',true,'SerializedDisplays',{struct('MinYLimReal','-19.13891','MaxYLimReal','18.12624','YLabelReal','','MinYL"
-		  "imMag','0.00000','MaxYLimMag','19.13891','LegendVisibility','On','XGrid',true,'YGrid',true,'PlotMagPhase',false,'A"
-		  "xesColor',[0 0 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[1 1 0.0666"
-		  "666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.83137"
-		  "2549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0."
-		  "650980392156863],'Title','%<SignalLabel>','LinePropertiesCache',{{}},'UserDefinedChannelNames',{{'f_x','f_y','f_z'"
-		  ",'tau_x','tau_y','tau_z'}},'NumLines',6,'LineNames',{{'f_x','f_y','f_z','tau_x','tau_y','tau_z'}},'ShowContent',tr"
-		  "ue,'Placement',1)},'DisplayPropertyDefaults',struct('MinYLimReal','-19.13891','MaxYLimReal','18.12624','YLabelReal"
-		  "','','MinYLimMag','0.00000','MaxYLimMag','19.13891','LegendVisibility','On','XGrid',true,'YGrid',true,'PlotMagPhas"
-		  "e',false,'AxesColor',[0 0 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'ColorOrder',"
-		  "[0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;1 1 0.0666666666666667;0.717647058823"
-		  "529 0.274509803921569 1;0.392156862745098 0.831372549019608 0.0745098039215686;0.0588235294117647 1 1;1 0.07450980"
-		  "39215686 0.650980392156863])),extmgr.Configuration('Tools','Plot Navigation',true),extmgr.Configuration('Tools','M"
-		  "easurements',true,'Version','2016b')),'Version','2016b','Position',[1349 750 560 420])"
+		  "omain',true,'SerializedDisplays',{struct('MinYLimReal','-2.03211','MaxYLimReal','1.46215','YLabelReal','','MinYLim"
+		  "Mag','0.00000','MaxYLimMag','2.03211','LegendVisibility','On','XGrid',true,'YGrid',true,'PlotMagPhase',false,'Axes"
+		  "Color',[0 0 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[1 1 0.0666666"
+		  "666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.83137254"
+		  "9019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650"
+		  "980392156863],'Title','%<SignalLabel>','LinePropertiesCache',{{}},'UserDefinedChannelNames',{{'f_x','f_y','f_z','t"
+		  "au_x','tau_y','tau_z'}},'NumLines',6,'LineNames',{{'f_x','f_y','f_z','tau_x','tau_y','tau_z'}},'ShowContent',true,"
+		  "'Placement',1)},'DisplayPropertyDefaults',struct('MinYLimReal','-2.03211','MaxYLimReal','1.46215','YLabelReal','',"
+		  "'MinYLimMag','0.00000','MaxYLimMag','2.03211','LegendVisibility','On','XGrid',true,'YGrid',true,'PlotMagPhase',fal"
+		  "se,'AxesColor',[0 0 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[0.074"
+		  "5098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;1 1 0.0666666666666667;0.717647058823529 0."
+		  "274509803921569 1;0.392156862745098 0.831372549019608 0.0745098039215686;0.0588235294117647 1 1;1 0.07450980392156"
+		  "86 0.650980392156863])),extmgr.Configuration('Tools','Plot Navigation',true,'PreviousAutoscale','XY'),extmgr.Confi"
+		  "guration('Tools','Measurements',true,'Version','2016b')),'Version','2016b','Position',[936 250 570 450])"
 		  NumInputPorts		  "1"
 		}
 		Block {
@@ -18209,7 +18197,7 @@ Model {
 	      BlockType		      SubSystem
 	      Name		      "Balancing Controller\n"
 	      SID		      "2407"
-	      Ports		      [56, 18]
+	      Ports		      [56, 19]
 	      Position		      [1790, 144, 2050, 1761]
 	      ZOrder		      278
 	      LibraryVersion	      "1.32"
@@ -18248,7 +18236,7 @@ Model {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"3764"
+		SIDHighWatermark	"3765"
 		Block {
 		  BlockType		  Inport
 		  Name			  "constraints"
@@ -18757,7 +18745,7 @@ Model {
 		  Name			  " Demux "
 		  SID			  "2407::3721"
 		  Ports			  [1, 1]
-		  Position		  [270, 785, 320, 825]
+		  Position		  [270, 820, 320, 860]
 		  ZOrder		  124
 		  Outputs		  "1"
 		}
@@ -18766,12 +18754,12 @@ Model {
 		  Name			  " SFunction "
 		  SID			  "2407::3720"
 		  Tag			  "Stateflow S-Function torqueBalancingStandup 17"
-		  Ports			  [56, 19]
+		  Ports			  [56, 20]
 		  Position		  [180, 65, 230, 1205]
 		  ZOrder		  123
 		  FunctionName		  "sf_sfun"
 		  Parameters		  "Gain,Reg"
-		  PortCounts		  "[56 19]"
+		  PortCounts		  "[56 20]"
 		  SFunctionDeploymentMode off
 		  EnableBusSupport	  on
 		  SFcnIsStateOwnerBlock	  off
@@ -18883,12 +18871,18 @@ Model {
 		    RTWStorageClass	    "Auto"
 		    DataLoggingNameMode	    "SignalName"
 		  }
+		  Port {
+		    PortNumber		    20
+		    Name		    "alpha"
+		    RTWStorageClass	    "Auto"
+		    DataLoggingNameMode	    "SignalName"
+		  }
 		}
 		Block {
 		  BlockType		  Terminator
 		  Name			  " Terminator "
 		  SID			  "2407::3722"
-		  Position		  [460, 796, 480, 814]
+		  Position		  [460, 831, 480, 849]
 		  ZOrder		  125
 		}
 		Block {
@@ -19052,393 +19046,402 @@ Model {
 		  Port			  "18"
 		  IconDisplay		  "Port number"
 		}
+		Block {
+		  BlockType		  Outport
+		  Name			  "alpha"
+		  SID			  "2407::3765"
+		  Position		  [460, 746, 480, 764]
+		  ZOrder		  168
+		  Port			  "19"
+		  IconDisplay		  "Port number"
+		}
 		Line {
-		  ZOrder		  5484
+		  ZOrder		  5560
 		  SrcBlock		  "constraints"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  5485
+		  ZOrder		  5561
 		  SrcBlock		  "ROBOT_DOF_FOR_SIMULINK"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  2
 		}
 		Line {
-		  ZOrder		  5486
+		  ZOrder		  5562
 		  SrcBlock		  "ConstraintsMatrix"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  3
 		}
 		Line {
-		  ZOrder		  5487
+		  ZOrder		  5563
 		  SrcBlock		  "bVectorConstraints"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  4
 		}
 		Line {
-		  ZOrder		  5488
+		  ZOrder		  5564
 		  SrcBlock		  "qj"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  5
 		}
 		Line {
-		  ZOrder		  5489
+		  ZOrder		  5565
 		  SrcBlock		  "qjDes"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  6
 		}
 		Line {
-		  ZOrder		  5490
+		  ZOrder		  5566
 		  SrcBlock		  "nu"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  7
 		}
 		Line {
-		  ZOrder		  5491
+		  ZOrder		  5567
 		  SrcBlock		  "M"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  8
 		}
 		Line {
-		  ZOrder		  5492
+		  ZOrder		  5568
 		  SrcBlock		  "human_M"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  9
 		}
 		Line {
-		  ZOrder		  5493
+		  ZOrder		  5569
 		  SrcBlock		  "h"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  10
 		}
 		Line {
-		  ZOrder		  5494
+		  ZOrder		  5570
 		  SrcBlock		  "human_h"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  11
 		}
 		Line {
-		  ZOrder		  5495
+		  ZOrder		  5571
 		  SrcBlock		  "H"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  12
 		}
 		Line {
-		  ZOrder		  5496
+		  ZOrder		  5572
 		  SrcBlock		  "intHw"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  13
 		}
 		Line {
-		  ZOrder		  5497
+		  ZOrder		  5573
 		  SrcBlock		  "w_H_l_contact"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  14
 		}
 		Line {
-		  ZOrder		  5498
+		  ZOrder		  5574
 		  SrcBlock		  "w_H_r_contact"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  15
 		}
 		Line {
-		  ZOrder		  5499
+		  ZOrder		  5575
 		  SrcBlock		  "JL"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  16
 		}
 		Line {
-		  ZOrder		  5500
+		  ZOrder		  5576
 		  SrcBlock		  "JR"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  17
 		}
 		Line {
-		  ZOrder		  5501
+		  ZOrder		  5577
 		  SrcBlock		  "dJL_nu"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  18
 		}
 		Line {
-		  ZOrder		  5502
+		  ZOrder		  5578
 		  SrcBlock		  "dJR_nu"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  19
 		}
 		Line {
-		  ZOrder		  5503
+		  ZOrder		  5579
 		  SrcBlock		  "xCoM"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  20
 		}
 		Line {
-		  ZOrder		  5504
+		  ZOrder		  5580
 		  SrcBlock		  "J_CoM"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  21
 		}
 		Line {
-		  ZOrder		  5505
+		  ZOrder		  5581
 		  SrcBlock		  "JComDot_nu"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  22
 		}
 		Line {
-		  ZOrder		  5506
+		  ZOrder		  5582
 		  SrcBlock		  "desired_x_dx_ddx_CoM"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  23
 		}
 		Line {
-		  ZOrder		  5507
+		  ZOrder		  5583
 		  SrcBlock		  "w_H_lArm_contact"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  24
 		}
 		Line {
-		  ZOrder		  5508
+		  ZOrder		  5584
 		  SrcBlock		  "w_H_rArm_contact"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  25
 		}
 		Line {
-		  ZOrder		  5509
+		  ZOrder		  5585
 		  SrcBlock		  "JLArm"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  26
 		}
 		Line {
-		  ZOrder		  5510
+		  ZOrder		  5586
 		  SrcBlock		  "JRArm"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  27
 		}
 		Line {
-		  ZOrder		  5511
+		  ZOrder		  5587
 		  SrcBlock		  "dJLArm_nu"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  28
 		}
 		Line {
-		  ZOrder		  5512
+		  ZOrder		  5588
 		  SrcBlock		  "dJRArm_nu"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  29
 		}
 		Line {
-		  ZOrder		  5513
+		  ZOrder		  5589
 		  SrcBlock		  "human_w_H_l_contact"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  30
 		}
 		Line {
-		  ZOrder		  5514
+		  ZOrder		  5590
 		  SrcBlock		  "human_w_H_r_contact"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  31
 		}
 		Line {
-		  ZOrder		  5515
+		  ZOrder		  5591
 		  SrcBlock		  "human_JL"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  32
 		}
 		Line {
-		  ZOrder		  5516
+		  ZOrder		  5592
 		  SrcBlock		  "human_JR"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  33
 		}
 		Line {
-		  ZOrder		  5517
+		  ZOrder		  5593
 		  SrcBlock		  "human_dJL_nu"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  34
 		}
 		Line {
-		  ZOrder		  5518
+		  ZOrder		  5594
 		  SrcBlock		  "human_dJR_nu"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  35
 		}
 		Line {
-		  ZOrder		  5519
+		  ZOrder		  5595
 		  SrcBlock		  "human_w_H_lArm_contact"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  36
 		}
 		Line {
-		  ZOrder		  5520
+		  ZOrder		  5596
 		  SrcBlock		  "human_w_H_rArm_contact"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  37
 		}
 		Line {
-		  ZOrder		  5521
+		  ZOrder		  5597
 		  SrcBlock		  "human_JLArm"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  38
 		}
 		Line {
-		  ZOrder		  5522
+		  ZOrder		  5598
 		  SrcBlock		  "human_JRArm"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  39
 		}
 		Line {
-		  ZOrder		  5523
+		  ZOrder		  5599
 		  SrcBlock		  "human_dJLArm_nu"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  40
 		}
 		Line {
-		  ZOrder		  5524
+		  ZOrder		  5600
 		  SrcBlock		  "human_dJRArm_nu"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  41
 		}
 		Line {
-		  ZOrder		  5525
+		  ZOrder		  5601
 		  SrcBlock		  "gainsPCOM"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  42
 		}
 		Line {
-		  ZOrder		  5526
+		  ZOrder		  5602
 		  SrcBlock		  "gainsDCOM"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  43
 		}
 		Line {
-		  ZOrder		  5527
+		  ZOrder		  5603
 		  SrcBlock		  "impedances"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  44
 		}
 		Line {
-		  ZOrder		  5528
+		  ZOrder		  5604
 		  SrcBlock		  "LArmWrench"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  45
 		}
 		Line {
-		  ZOrder		  5529
+		  ZOrder		  5605
 		  SrcBlock		  "RArmWrench"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  46
 		}
 		Line {
-		  ZOrder		  5530
+		  ZOrder		  5606
 		  SrcBlock		  "STANDUP_WITH_HUMAN_FORCE"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  47
 		}
 		Line {
-		  ZOrder		  5531
+		  ZOrder		  5607
 		  SrcBlock		  "STANDUP_WITH_HUMAN_TORQUE"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  48
 		}
 		Line {
-		  ZOrder		  5532
+		  ZOrder		  5608
 		  SrcBlock		  "state"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  49
 		}
 		Line {
-		  ZOrder		  5533
+		  ZOrder		  5609
 		  SrcBlock		  "human_w_H_b"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  50
 		}
 		Line {
-		  ZOrder		  5534
+		  ZOrder		  5610
 		  SrcBlock		  "human_qj"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  51
 		}
 		Line {
-		  ZOrder		  5535
+		  ZOrder		  5611
 		  SrcBlock		  "human_nu_b"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  52
 		}
 		Line {
-		  ZOrder		  5536
+		  ZOrder		  5612
 		  SrcBlock		  "human_dqj"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  53
 		}
 		Line {
-		  ZOrder		  5537
+		  ZOrder		  5613
 		  SrcBlock		  "human_torques"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  54
 		}
 		Line {
-		  ZOrder		  5538
+		  ZOrder		  5614
 		  SrcBlock		  "HUMAN_DOF_FOR_SIMULINK"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  55
 		}
 		Line {
-		  ZOrder		  5539
+		  ZOrder		  5615
 		  SrcBlock		  "robot_torques"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
@@ -19446,7 +19449,7 @@ Model {
 		}
 		Line {
 		  Name			  "tauModel"
-		  ZOrder		  5540
+		  ZOrder		  5616
 		  Labels		  [0, 0]
 		  SrcBlock		  " SFunction "
 		  SrcPort		  2
@@ -19455,7 +19458,7 @@ Model {
 		}
 		Line {
 		  Name			  "Sigma"
-		  ZOrder		  5541
+		  ZOrder		  5617
 		  Labels		  [0, 0]
 		  SrcBlock		  " SFunction "
 		  SrcPort		  3
@@ -19464,7 +19467,7 @@ Model {
 		}
 		Line {
 		  Name			  "NA"
-		  ZOrder		  5542
+		  ZOrder		  5618
 		  Labels		  [0, 0]
 		  SrcBlock		  " SFunction "
 		  SrcPort		  4
@@ -19473,7 +19476,7 @@ Model {
 		}
 		Line {
 		  Name			  "f_HDot"
-		  ZOrder		  5543
+		  ZOrder		  5619
 		  Labels		  [0, 0]
 		  SrcBlock		  " SFunction "
 		  SrcPort		  5
@@ -19482,7 +19485,7 @@ Model {
 		}
 		Line {
 		  Name			  "HessianMatrixQP1Foot"
-		  ZOrder		  5544
+		  ZOrder		  5620
 		  Labels		  [0, 0]
 		  SrcBlock		  " SFunction "
 		  SrcPort		  6
@@ -19491,7 +19494,7 @@ Model {
 		}
 		Line {
 		  Name			  "gradientQP1Foot"
-		  ZOrder		  5545
+		  ZOrder		  5621
 		  Labels		  [0, 0]
 		  SrcBlock		  " SFunction "
 		  SrcPort		  7
@@ -19500,7 +19503,7 @@ Model {
 		}
 		Line {
 		  Name			  "ConstraintsMatrixQP1Foot"
-		  ZOrder		  5546
+		  ZOrder		  5622
 		  Labels		  [0, 0]
 		  SrcBlock		  " SFunction "
 		  SrcPort		  8
@@ -19509,7 +19512,7 @@ Model {
 		}
 		Line {
 		  Name			  "bVectorConstraintsQp1Foot"
-		  ZOrder		  5547
+		  ZOrder		  5623
 		  Labels		  [0, 0]
 		  SrcBlock		  " SFunction "
 		  SrcPort		  9
@@ -19518,7 +19521,7 @@ Model {
 		}
 		Line {
 		  Name			  "HessianMatrixQP2FeetOrLegs"
-		  ZOrder		  5548
+		  ZOrder		  5624
 		  Labels		  [0, 0]
 		  SrcBlock		  " SFunction "
 		  SrcPort		  10
@@ -19527,7 +19530,7 @@ Model {
 		}
 		Line {
 		  Name			  "gradientQP2FeetOrLegs"
-		  ZOrder		  5549
+		  ZOrder		  5625
 		  Labels		  [0, 0]
 		  SrcBlock		  " SFunction "
 		  SrcPort		  11
@@ -19536,7 +19539,7 @@ Model {
 		}
 		Line {
 		  Name			  "ConstraintsMatrixQP2FeetOrLegs"
-		  ZOrder		  5550
+		  ZOrder		  5626
 		  Labels		  [0, 0]
 		  SrcBlock		  " SFunction "
 		  SrcPort		  12
@@ -19545,7 +19548,7 @@ Model {
 		}
 		Line {
 		  Name			  "bVectorConstraintsQp2FeetOrLegs"
-		  ZOrder		  5551
+		  ZOrder		  5627
 		  Labels		  [0, 0]
 		  SrcBlock		  " SFunction "
 		  SrcPort		  13
@@ -19554,7 +19557,7 @@ Model {
 		}
 		Line {
 		  Name			  "errorCoM"
-		  ZOrder		  5552
+		  ZOrder		  5628
 		  Labels		  [0, 0]
 		  SrcBlock		  " SFunction "
 		  SrcPort		  14
@@ -19563,7 +19566,7 @@ Model {
 		}
 		Line {
 		  Name			  "f_noQP"
-		  ZOrder		  5553
+		  ZOrder		  5629
 		  Labels		  [0, 0]
 		  SrcBlock		  " SFunction "
 		  SrcPort		  15
@@ -19572,7 +19575,7 @@ Model {
 		}
 		Line {
 		  Name			  "correctionFromSupportForce"
-		  ZOrder		  5554
+		  ZOrder		  5630
 		  Labels		  [0, 0]
 		  SrcBlock		  " SFunction "
 		  SrcPort		  16
@@ -19581,7 +19584,7 @@ Model {
 		}
 		Line {
 		  Name			  "H_error"
-		  ZOrder		  5555
+		  ZOrder		  5631
 		  Labels		  [0, 0]
 		  SrcBlock		  " SFunction "
 		  SrcPort		  17
@@ -19590,7 +19593,7 @@ Model {
 		}
 		Line {
 		  Name			  "V"
-		  ZOrder		  5556
+		  ZOrder		  5632
 		  Labels		  [0, 0]
 		  SrcBlock		  " SFunction "
 		  SrcPort		  18
@@ -19599,7 +19602,7 @@ Model {
 		}
 		Line {
 		  Name			  "fArms"
-		  ZOrder		  5557
+		  ZOrder		  5633
 		  Labels		  [0, 0]
 		  SrcBlock		  " SFunction "
 		  SrcPort		  19
@@ -19607,14 +19610,23 @@ Model {
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  5558
+		  Name			  "alpha"
+		  ZOrder		  5634
+		  Labels		  [0, 0]
+		  SrcBlock		  " SFunction "
+		  SrcPort		  20
+		  DstBlock		  "alpha"
+		  DstPort		  1
+		}
+		Line {
+		  ZOrder		  5635
 		  SrcBlock		  " Demux "
 		  SrcPort		  1
 		  DstBlock		  " Terminator "
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  5559
+		  ZOrder		  5636
 		  SrcBlock		  " SFunction "
 		  SrcPort		  1
 		  DstBlock		  " Demux "
@@ -22154,7 +22166,7 @@ Model {
 	      Name		      "Compute joint torques"
 	      SID		      "4393"
 	      Ports		      [14, 2]
-	      Position		      [2230, 50, 2685, 1320]
+	      Position		      [2520, 60, 2955, 1255]
 	      ZOrder		      846
 	      RequestExecContextInheritance off
 	      Variant		      off
@@ -23176,7 +23188,7 @@ Model {
 	      BlockType		      Goto
 	      Name		      "Goto"
 	      SID		      "4494"
-	      Position		      [2095, 1351, 2175, 1369]
+	      Position		      [2095, 1286, 2175, 1304]
 	      ZOrder		      855
 	      GotoTag		      "f_noQP"
 	      TagVisibility	      "global"
@@ -23185,7 +23197,7 @@ Model {
 	      BlockType		      Goto
 	      Name		      "Goto1"
 	      SID		      "4495"
-	      Position		      [2810, 361, 2890, 379]
+	      Position		      [3080, 351, 3160, 369]
 	      ZOrder		      856
 	      GotoTag		      "tau_des"
 	      TagVisibility	      "global"
@@ -23194,7 +23206,7 @@ Model {
 	      BlockType		      Goto
 	      Name		      "Goto2"
 	      SID		      "4903"
-	      Position		      [2090, 1441, 2175, 1459]
+	      Position		      [2090, 1371, 2175, 1389]
 	      ZOrder		      872
 	      GotoTag		      "corrFromSupportF"
 	      TagVisibility	      "global"
@@ -23203,7 +23215,7 @@ Model {
 	      BlockType		      Goto
 	      Name		      "Goto3"
 	      SID		      "4904"
-	      Position		      [2090, 1531, 2170, 1549]
+	      Position		      [2090, 1456, 2170, 1474]
 	      ZOrder		      873
 	      GotoTag		      "H_error"
 	      TagVisibility	      "global"
@@ -23212,7 +23224,7 @@ Model {
 	      BlockType		      Goto
 	      Name		      "Goto4"
 	      SID		      "4905"
-	      Position		      [2090, 1621, 2170, 1639]
+	      Position		      [2105, 1541, 2185, 1559]
 	      ZOrder		      874
 	      GotoTag		      "V"
 	      TagVisibility	      "global"
@@ -23221,7 +23233,7 @@ Model {
 	      BlockType		      Goto
 	      Name		      "Goto5"
 	      SID		      "4499"
-	      Position		      [2810, 996, 2890, 1014]
+	      Position		      [3080, 946, 3160, 964]
 	      ZOrder		      860
 	      GotoTag		      "f_QP"
 	      TagVisibility	      "global"
@@ -23230,10 +23242,37 @@ Model {
 	      BlockType		      Goto
 	      Name		      "Goto6"
 	      SID		      "4500"
-	      Position		      [2095, 1261, 2175, 1279]
+	      Position		      [2095, 1201, 2175, 1219]
 	      ZOrder		      861
 	      GotoTag		      "CoM_error"
 	      TagVisibility	      "global"
+	    }
+	    Block {
+	      BlockType		      Scope
+	      Name		      "Scope"
+	      SID		      "5468"
+	      Ports		      [1]
+	      Position		      [2170, 1704, 2200, 1736]
+	      ZOrder		      908
+	      ScopeSpecificationString "Simulink.scopes.TimeScopeBlockCfg('CurrentConfiguration', extmgr.ConfigurationSet(ext"
+	      "mgr.Configuration('Core','General UI',true),extmgr.Configuration('Core','Source UI',true),extmgr.Configuration("
+	      "'Sources','WiredSimulink',true,'DataLoggingVariableName','ScopeData1'),extmgr.Configuration('Visuals','Time Dom"
+	      "ain',true,'SerializedDisplays',{struct('MinYLimReal','90.00000','MaxYLimReal','110.00000','YLabelReal','','MinY"
+	      "LimMag','90.00000','MaxYLimMag','110.00000','LegendVisibility','off','XGrid',true,'YGrid',true,'PlotMagPhase',f"
+	      "alse,'AxesColor',[0 0 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'ColorOrder',["
+	      "1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.3921568627"
+	      "45098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.074"
+	      "5098039215686 0.650980392156863],'Title','%<SignalLabel>','LinePropertiesCache',{{}},'UserDefinedChannelNames',"
+	      "{{}},'NumLines',1,'LineNames',{{'Balancing Controller /alpha'}},'ShowContent',true,'Placement',1)},'DisplayProp"
+	      "ertyDefaults',struct('MinYLimReal','90.00000','MaxYLimReal','110.00000','YLabelReal','','MinYLimMag','90.00000'"
+	      ",'MaxYLimMag','110.00000','LegendVisibility','off','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',["
+	      "0 0 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[0.0745098039215686"
+	      " 0.623529411764706 1;1 0.411764705882353 0.16078431372549;1 1 0.0666666666666667;0.717647058823529 0.2745098039"
+	      "21569 1;0.392156862745098 0.831372549019608 0.0745098039215686;0.0588235294117647 1 1;1 0.0745098039215686 0.65"
+	      "0980392156863])),extmgr.Configuration('Tools','Plot Navigation',true,'OnceAtStop',false,'PreviousAutoscale','XY"
+	      "'),extmgr.Configuration('Tools','Measurements',true,'Version','2016b')),'Version','2016b','Position',[2687 297 "
+	      "560 415])"
+	      NumInputPorts	      "1"
 	    }
 	    Block {
 	      BlockType		      Reference
@@ -23279,7 +23318,7 @@ Model {
 	      BlockType		      Outport
 	      Name		      "tau "
 	      SID		      "2414"
-	      Position		      [2835, 313, 2865, 327]
+	      Position		      [3105, 303, 3135, 317]
 	      ZOrder		      279
 	      IconDisplay	      "Port number"
 	    }
@@ -23794,13 +23833,13 @@ Model {
 	      SrcPort		      1
 	      Points		      [45, 0]
 	      Branch {
-		ZOrder			1005
+		ZOrder			1032
 		Points			[0, -50]
 		DstBlock		"tau "
 		DstPort			1
 	      }
 	      Branch {
-		ZOrder			1002
+		ZOrder			1028
 		DstBlock		"Goto1"
 		DstPort			1
 	      }
@@ -23819,10 +23858,10 @@ Model {
 	      Points		      [67, 0]
 	      Branch {
 		ZOrder			940
-		Points			[695, 0]
+		Points			[695, 0; 0, 5]
 		Branch {
-		  ZOrder		  1004
-		  Points		  [0, 165]
+		  ZOrder		  1030
+		  Points		  [0, 160]
 		  DstBlock		  "Balancing Controller\n"
 		  DstPort		  1
 		}
@@ -23849,7 +23888,7 @@ Model {
 		Points			[0, 880]
 		Branch {
 		  ZOrder		  933
-		  Points		  [0, 336; 1173, 0; 0, -531]
+		  Points		  [0, 359; 1431, 0; 0, -614]
 		  DstBlock		  "Compute joint torques"
 		  DstPort		  14
 		}
@@ -23898,6 +23937,13 @@ Model {
 	      SrcBlock		      "Balancing Controller\n"
 	      SrcPort		      18
 	      DstBlock		      "Arm Wrench Error"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      1031
+	      SrcBlock		      "Balancing Controller\n"
+	      SrcPort		      19
+	      DstBlock		      "Scope"
 	      DstPort		      1
 	    }
 	  }
@@ -25350,7 +25396,7 @@ Stateflow {
     created		    "18-Feb-2014 10:14:40"
     isLibrary		    0
     sfVersion		    80000010
-    firstTarget		    280
+    firstTarget		    281
   }
   chart {
     id			    2
@@ -28847,7 +28893,7 @@ Stateflow {
     screen		    [1 1 1280 1024 1.000677131425054]
     treeNode		    [0 168 0 0]
     viewObj		    167
-    ssIdHighWaterMark	    124
+    ssIdHighWaterMark	    125
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
     chartFileNumber	    17
@@ -28856,8 +28902,8 @@ Stateflow {
       name		      "balancingControllerStandupFCN"
     }
     firstData		    169
-    firstTransition	    246
-    firstJunction	    245
+    firstTransition	    247
+    firstJunction	    246
   }
   state {
     id			    168
@@ -28876,29 +28922,29 @@ Stateflow {
       script		      "function [tauModel, Sigma, NA, f_HDot, ...\n          HessianMatrixQP1Foot, gradientQP1Foot, Cons"
       "traintsMatrixQP1Foot, bVectorConstraintsQp1Foot, ...\n          HessianMatrixQP2FeetOrLegs, gradientQP2FeetOrLeg"
       "s, ConstraintsMatrixQP2FeetOrLegs, bVectorConstraintsQp2FeetOrLegs, ...\n          errorCoM, f_noQP, correctionF"
-      "romSupportForce, H_error, V, fArms] =  ...\n              balancingControllerStandupFCN(constraints, ROBOT_DOF_F"
-      "OR_SIMULINK, ConstraintsMatrix, bVectorConstraints, ...\n                                            qj, qjDes, "
-      "nu, M, human_M, h, human_h, H, intHw, w_H_l_contact, w_H_r_contact, JL, JR, dJL_nu, dJR_nu, xCoM, J_CoM, JComDot"
-      "_nu,desired_x_dx_ddx_CoM, ...\n                                            w_H_lArm_contact, w_H_rArm_contact, J"
-      "LArm, JRArm, dJLArm_nu, dJRArm_nu,...\n                                            human_w_H_l_contact, human_w_"
-      "H_r_contact, human_JL, human_JR, human_dJL_nu, human_dJR_nu,...\n                                            hum"
-      "an_w_H_lArm_contact, human_w_H_rArm_contact, human_JLArm, human_JRArm, human_dJLArm_nu, human_dJRArm_nu,...\n   "
-      "                                         gainsPCOM, gainsDCOM, impedances, Reg, Gain, LArmWrench, RArmWrench, ST"
-      "ANDUP_WITH_HUMAN_FORCE, STANDUP_WITH_HUMAN_TORQUE, state,...\n                                            human_"
-      "w_H_b, human_qj, human_nu_b, human_dqj, human_torques, HUMAN_DOF_FOR_SIMULINK, robot_torques)\n           \n   ["
-      "tauModel, Sigma, NA, f_HDot, ...\n          HessianMatrixQP1Foot, gradientQP1Foot, ConstraintsMatrixQP1Foot, bVe"
-      "ctorConstraintsQp1Foot, ...\n          HessianMatrixQP2FeetOrLegs, gradientQP2FeetOrLegs, ConstraintsMatrixQP2Fe"
-      "etOrLegs, bVectorConstraintsQp2FeetOrLegs, ...\n          errorCoM, f_noQP, correctionFromSupportForce, H_error,"
-      " V, fArms] =  ...\n              balancingControllerStandup(constraints, ROBOT_DOF_FOR_SIMULINK, ConstraintsMatr"
-      "ix, bVectorConstraints, ...\n                                         qj, qjDes, nu, M, human_M, h, human_h, H, "
-      "intHw, w_H_l_contact, w_H_r_contact, JL, JR, dJL_nu, dJR_nu, xCoM, J_CoM, JComDot_nu, desired_x_dx_ddx_CoM, ...\n"
-      "                                         w_H_lArm_contact, w_H_rArm_contact, JLArm, JRArm, dJLArm_nu, dJRArm_nu,"
-      "...\n                                         human_w_H_l_contact, human_w_H_r_contact, human_JL, human_JR, huma"
-      "n_dJL_nu, human_dJR_nu,...\n                                         human_w_H_lArm_contact, human_w_H_rArm_cont"
-      "act, human_JLArm, human_JRArm, human_dJLArm_nu, human_dJRArm_nu,...\n                                         ga"
-      "insPCOM, gainsDCOM, impedances, Reg, Gain, LArmWrench, RArmWrench, STANDUP_WITH_HUMAN_FORCE, STANDUP_WITH_HUMAN_"
-      "TORQUE, state,...\n                                         human_w_H_b, human_qj, human_nu_b, human_dqj, human_"
-      "torques, HUMAN_DOF_FOR_SIMULINK, robot_torques);\nend"
+      "romSupportForce, H_error, V, fArms, alpha] =  ...\n              balancingControllerStandupFCN(constraints, ROBO"
+      "T_DOF_FOR_SIMULINK, ConstraintsMatrix, bVectorConstraints, ...\n                                            qj, "
+      "qjDes, nu, M, human_M, h, human_h, H, intHw, w_H_l_contact, w_H_r_contact, JL, JR, dJL_nu, dJR_nu, xCoM, J_CoM, "
+      "JComDot_nu,desired_x_dx_ddx_CoM, ...\n                                            w_H_lArm_contact, w_H_rArm_con"
+      "tact, JLArm, JRArm, dJLArm_nu, dJRArm_nu,...\n                                            human_w_H_l_contact, h"
+      "uman_w_H_r_contact, human_JL, human_JR, human_dJL_nu, human_dJR_nu,...\n                                        "
+      "    human_w_H_lArm_contact, human_w_H_rArm_contact, human_JLArm, human_JRArm, human_dJLArm_nu, human_dJRArm_nu,."
+      "..\n                                            gainsPCOM, gainsDCOM, impedances, Reg, Gain, LArmWrench, RArmWre"
+      "nch, STANDUP_WITH_HUMAN_FORCE, STANDUP_WITH_HUMAN_TORQUE, state,...\n                                           "
+      " human_w_H_b, human_qj, human_nu_b, human_dqj, human_torques, HUMAN_DOF_FOR_SIMULINK, robot_torques)\n          "
+      " \n   [tauModel, Sigma, NA, f_HDot, ...\n          HessianMatrixQP1Foot, gradientQP1Foot, ConstraintsMatrixQP1Fo"
+      "ot, bVectorConstraintsQp1Foot, ...\n          HessianMatrixQP2FeetOrLegs, gradientQP2FeetOrLegs, ConstraintsMatr"
+      "ixQP2FeetOrLegs, bVectorConstraintsQp2FeetOrLegs, ...\n          errorCoM, f_noQP, correctionFromSupportForce, H"
+      "_error, V, fArms, alpha] =  ...\n              balancingControllerStandup(constraints, ROBOT_DOF_FOR_SIMULINK, C"
+      "onstraintsMatrix, bVectorConstraints, ...\n                                         qj, qjDes, nu, M, human_M, h"
+      ", human_h, H, intHw, w_H_l_contact, w_H_r_contact, JL, JR, dJL_nu, dJR_nu, xCoM, J_CoM, JComDot_nu, desired_x_dx"
+      "_ddx_CoM, ...\n                                         w_H_lArm_contact, w_H_rArm_contact, JLArm, JRArm, dJLArm"
+      "_nu, dJRArm_nu,...\n                                         human_w_H_l_contact, human_w_H_r_contact, human_JL,"
+      " human_JR, human_dJL_nu, human_dJR_nu,...\n                                         human_w_H_lArm_contact, huma"
+      "n_w_H_rArm_contact, human_JLArm, human_JRArm, human_dJLArm_nu, human_dJRArm_nu,...\n                            "
+      "             gainsPCOM, gainsDCOM, impedances, Reg, Gain, LArmWrench, RArmWrench, STANDUP_WITH_HUMAN_FORCE, STAN"
+      "DUP_WITH_HUMAN_TORQUE, state,...\n                                         human_w_H_b, human_qj, human_nu_b, hu"
+      "man_dqj, human_torques, HUMAN_DOF_FOR_SIMULINK, robot_torques);\nend"
       editorLayout	      "100 M4x1[10 5 700 500]"
     }
   }
@@ -30796,10 +30842,35 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [167 243 0]
+    linkNode		    [167 243 245]
+  }
+  data {
+    id			    245
+    ssIdNumber		    125
+    name		    "alpha"
+    scope		    OUTPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_NO
+      unit {
+	name			"inherit"
+      }
+    }
+    dataType		    "Inherit: Same as Simulink"
+    linkNode		    [167 244 0]
   }
   junction {
-    id			    245
+    id			    246
     position		    [23.5747 49.5747 7]
     chart		    167
     subviewer		    167
@@ -30808,7 +30879,7 @@ Stateflow {
     linkNode		    [167 0 0]
   }
   transition {
-    id			    246
+    id			    247
     labelString		    "{eML_blk_kernel();}"
     labelPosition	    [36.125 25.875 102.544 14.964]
     fontSize		    12
@@ -30816,7 +30887,7 @@ Stateflow {
       intersection	      [0 0 1 0 23.5747 14.625 0 0]
     }
     dst {
-      id		      245
+      id		      246
       intersection	      [1 0 -1 0 23.5747 42.5747 0 0]
     }
     midPoint		    [23.5747 24.9468]
@@ -30832,20 +30903,20 @@ Stateflow {
     linkNode		    [167 0 0]
   }
   instance {
-    id			    247
+    id			    248
     machine		    1
     name		    "Robot System/controller_QP/Balancing Controller\n"
     chart		    167
   }
   chart {
-    id			    248
+    id			    249
     machine		    1
     name		    "Robot System/emergency stop: joint limits/MATLAB Function"
     windowPosition	    [369.958 -65.92 200 534.4]
     viewLimits		    [0 156.75 0 153.75]
     screen		    [1 1 1366 768 1.25]
-    treeNode		    [0 249 0 0]
-    viewObj		    248
+    treeNode		    [0 250 0 0]
+    viewObj		    249
     ssIdHighWaterMark	    8
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -30855,19 +30926,19 @@ Stateflow {
       name		      "checkRangeFCN"
     }
     supportVariableSizing   0
-    firstData		    250
-    firstTransition	    256
-    firstJunction	    255
+    firstData		    251
+    firstTransition	    257
+    firstJunction	    256
   }
   state {
-    id			    249
+    id			    250
     labelString		    "eML_blk_kernel()"
     position		    [18 64.5 118 66]
     fontSize		    12
-    chart		    248
-    treeNode		    [248 0 0 0]
+    chart		    249
+    treeNode		    [249 0 0 0]
     superState		    SUBCHART
-    subviewer		    248
+    subviewer		    249
     ssIdNumber		    1
     type		    FUNC_STATE
     decomposition	    CLUSTER_STATE
@@ -30883,7 +30954,7 @@ Stateflow {
     }
   }
   data {
-    id			    250
+    id			    251
     ssIdNumber		    4
     name		    "umin"
     scope		    INPUT_DATA
@@ -30905,10 +30976,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [248 0 251]
+    linkNode		    [249 0 252]
   }
   data {
-    id			    251
+    id			    252
     ssIdNumber		    5
     name		    "umax"
     scope		    INPUT_DATA
@@ -30930,10 +31001,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [248 250 252]
+    linkNode		    [249 251 253]
   }
   data {
-    id			    252
+    id			    253
     ssIdNumber		    6
     name		    "u"
     scope		    INPUT_DATA
@@ -30952,10 +31023,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [248 251 253]
+    linkNode		    [249 252 254]
   }
   data {
-    id			    253
+    id			    254
     ssIdNumber		    7
     name		    "inRange"
     scope		    OUTPUT_DATA
@@ -30975,10 +31046,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [248 252 254]
+    linkNode		    [249 253 255]
   }
   data {
-    id			    254
+    id			    255
     ssIdNumber		    8
     name		    "tol"
     scope		    INPUT_DATA
@@ -31000,19 +31071,19 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [248 253 0]
+    linkNode		    [249 254 0]
   }
   junction {
-    id			    255
+    id			    256
     position		    [23.5747 49.5747 7]
-    chart		    248
-    subviewer		    248
+    chart		    249
+    subviewer		    249
     ssIdNumber		    3
     type		    CONNECTIVE_JUNCTION
-    linkNode		    [248 0 0]
+    linkNode		    [249 0 0]
   }
   transition {
-    id			    256
+    id			    257
     labelString		    "{eML_blk_kernel();}"
     labelPosition	    [40.125 31.875 102.544 14.964]
     fontSize		    12
@@ -31020,36 +31091,36 @@ Stateflow {
       intersection	      [0 0 1 0 23.5747 14.625 0 0]
     }
     dst {
-      id		      255
+      id		      256
       intersection	      [1 0 -1 0 23.5747 42.5747 0 0]
     }
     midPoint		    [23.5747 24.9468]
-    chart		    248
+    chart		    249
     dataLimits		    [21.175 25.975 14.625 42.575]
-    subviewer		    248
+    subviewer		    249
     drawStyle		    SMART
     slide {
       sticky		      BOTH_STICK
     }
     executionOrder	    1
     ssIdNumber		    2
-    linkNode		    [248 0 0]
+    linkNode		    [249 0 0]
   }
   instance {
-    id			    257
+    id			    258
     machine		    1
     name		    "Robot System/emergency stop: joint limits/MATLAB Function"
-    chart		    248
+    chart		    249
   }
   chart {
-    id			    258
+    id			    259
     machine		    1
     name		    "Robot System/controller_QP/Compute angular momentum integral/References for H"
     windowPosition	    [357.12 483.496 167 391]
     viewLimits		    [0 156.75 0 153.75]
     screen		    [1 1 1280 1024 1.041666666666667]
-    treeNode		    [0 259 0 0]
-    viewObj		    258
+    treeNode		    [0 260 0 0]
+    viewObj		    259
     ssIdHighWaterMark	    10
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -31058,19 +31129,19 @@ Stateflow {
     eml {
       name		      "generateReferencesForH_FCN"
     }
-    firstData		    260
-    firstTransition	    267
-    firstJunction	    266
+    firstData		    261
+    firstTransition	    268
+    firstJunction	    267
   }
   state {
-    id			    259
+    id			    260
     labelString		    "eML_blk_kernel()"
     position		    [18 64.5 118 66]
     fontSize		    12
-    chart		    258
-    treeNode		    [258 0 0 0]
+    chart		    259
+    treeNode		    [259 0 0 0]
     superState		    SUBCHART
-    subviewer		    258
+    subviewer		    259
     ssIdNumber		    1
     type		    FUNC_STATE
     decomposition	    CLUSTER_STATE
@@ -31085,7 +31156,7 @@ Stateflow {
     }
   }
   data {
-    id			    260
+    id			    261
     ssIdNumber		    4
     name		    "qjErr"
     scope		    INPUT_DATA
@@ -31104,10 +31175,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [258 0 261]
+    linkNode		    [259 0 262]
   }
   data {
-    id			    261
+    id			    262
     ssIdNumber		    6
     name		    "JL"
     scope		    INPUT_DATA
@@ -31129,10 +31200,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [258 260 262]
+    linkNode		    [259 261 263]
   }
   data {
-    id			    262
+    id			    263
     ssIdNumber		    9
     name		    "JR"
     scope		    INPUT_DATA
@@ -31154,10 +31225,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [258 261 263]
+    linkNode		    [259 262 264]
   }
   data {
-    id			    263
+    id			    264
     ssIdNumber		    7
     name		    "nu_b_equivalent"
     scope		    OUTPUT_DATA
@@ -31179,10 +31250,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [258 262 264]
+    linkNode		    [259 263 265]
   }
   data {
-    id			    264
+    id			    265
     ssIdNumber		    8
     name		    "Reg"
     scope		    PARAMETER_DATA
@@ -31204,10 +31275,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [258 263 265]
+    linkNode		    [259 264 266]
   }
   data {
-    id			    265
+    id			    266
     ssIdNumber		    10
     name		    "activeFeetConstraints"
     scope		    INPUT_DATA
@@ -31229,19 +31300,19 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [258 264 0]
+    linkNode		    [259 265 0]
   }
   junction {
-    id			    266
+    id			    267
     position		    [23.5747 49.5747 7]
-    chart		    258
-    subviewer		    258
+    chart		    259
+    subviewer		    259
     ssIdNumber		    3
     type		    CONNECTIVE_JUNCTION
-    linkNode		    [258 0 0]
+    linkNode		    [259 0 0]
   }
   transition {
-    id			    267
+    id			    268
     labelString		    "{eML_blk_kernel();}"
     labelPosition	    [28.125 13.875 102.544 14.964]
     fontSize		    12
@@ -31249,37 +31320,37 @@ Stateflow {
       intersection	      [0 0 1 0 23.5747 14.625 0 0]
     }
     dst {
-      id		      266
+      id		      267
       intersection	      [1 0 -1 0 23.5747 42.5747 0 0]
     }
     midPoint		    [23.5747 24.9468]
-    chart		    258
+    chart		    259
     dataLimits		    [21.175 25.975 14.625 42.575]
-    subviewer		    258
+    subviewer		    259
     drawStyle		    SMART
     slide {
       sticky		      BOTH_STICK
     }
     executionOrder	    1
     ssIdNumber		    2
-    linkNode		    [258 0 0]
+    linkNode		    [259 0 0]
   }
   instance {
-    id			    268
+    id			    269
     machine		    1
     name		    "Robot System/controller_QP/Compute angular momentum integral/References for H"
-    chart		    258
+    chart		    259
   }
   chart {
-    id			    269
+    id			    270
     machine		    1
     name		    "Robot System/Robot State and References/State Machine Standup/Visualise extrnal wrenches/Compute curren"
     "t threshold"
     windowPosition	    [422 539.941 189 413]
     viewLimits		    [0 156.75 0 153.75]
     screen		    [1 1 3600 1200 1.180555555555556]
-    treeNode		    [0 270 0 0]
-    viewObj		    269
+    treeNode		    [0 271 0 0]
+    viewObj		    270
     ssIdHighWaterMark	    9
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -31288,19 +31359,19 @@ Stateflow {
     eml {
       name		      "currentThreshold"
     }
-    firstData		    271
-    firstTransition	    278
-    firstJunction	    277
+    firstData		    272
+    firstTransition	    279
+    firstJunction	    278
   }
   state {
-    id			    270
+    id			    271
     labelString		    "eML_blk_kernel()"
     position		    [18 64.5 118 66]
     fontSize		    12
-    chart		    269
-    treeNode		    [269 0 0 0]
+    chart		    270
+    treeNode		    [270 0 0 0]
     superState		    SUBCHART
-    subviewer		    269
+    subviewer		    270
     ssIdNumber		    1
     type		    FUNC_STATE
     decomposition	    CLUSTER_STATE
@@ -31315,7 +31386,7 @@ Stateflow {
     }
   }
   data {
-    id			    271
+    id			    272
     ssIdNumber		    8
     name		    "thresholdContactLeftHand"
     scope		    OUTPUT_DATA
@@ -31337,10 +31408,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [269 0 272]
+    linkNode		    [270 0 273]
   }
   data {
-    id			    272
+    id			    273
     ssIdNumber		    9
     name		    "thresholdContactRightHand"
     scope		    OUTPUT_DATA
@@ -31362,10 +31433,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [269 271 273]
+    linkNode		    [270 272 274]
   }
   data {
-    id			    273
+    id			    274
     ssIdNumber		    4
     name		    "state"
     scope		    INPUT_DATA
@@ -31384,10 +31455,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [269 272 274]
+    linkNode		    [270 273 275]
   }
   data {
-    id			    274
+    id			    275
     ssIdNumber		    5
     name		    "thresholdContactLeftFoot"
     scope		    OUTPUT_DATA
@@ -31407,10 +31478,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [269 273 275]
+    linkNode		    [270 274 276]
   }
   data {
-    id			    275
+    id			    276
     ssIdNumber		    7
     name		    "thresholdContactRightFoot"
     scope		    OUTPUT_DATA
@@ -31432,10 +31503,10 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [269 274 276]
+    linkNode		    [270 275 277]
   }
   data {
-    id			    276
+    id			    277
     ssIdNumber		    6
     name		    "Sm"
     scope		    PARAMETER_DATA
@@ -31457,19 +31528,19 @@ Stateflow {
       }
     }
     dataType		    "Inherit: Same as Simulink"
-    linkNode		    [269 275 0]
+    linkNode		    [270 276 0]
   }
   junction {
-    id			    277
+    id			    278
     position		    [23.5747 49.5747 7]
-    chart		    269
-    subviewer		    269
+    chart		    270
+    subviewer		    270
     ssIdNumber		    3
     type		    CONNECTIVE_JUNCTION
-    linkNode		    [269 0 0]
+    linkNode		    [270 0 0]
   }
   transition {
-    id			    278
+    id			    279
     labelString		    "{eML_blk_kernel();}"
     labelPosition	    [28.125 13.875 102.544 14.964]
     fontSize		    12
@@ -31477,39 +31548,39 @@ Stateflow {
       intersection	      [0 0 1 0 23.5747 14.625 0 0]
     }
     dst {
-      id		      277
+      id		      278
       intersection	      [1 0 -1 0 23.5747 42.5747 0 0]
     }
     midPoint		    [23.5747 24.9468]
-    chart		    269
+    chart		    270
     dataLimits		    [21.175 25.975 14.625 42.575]
-    subviewer		    269
+    subviewer		    270
     drawStyle		    SMART
     slide {
       sticky		      BOTH_STICK
     }
     executionOrder	    1
     ssIdNumber		    2
-    linkNode		    [269 0 0]
+    linkNode		    [270 0 0]
   }
   instance {
-    id			    279
+    id			    280
     machine		    1
     name		    "Robot System/Robot State and References/State Machine Standup/Visualise extrnal wrenches/Compute curren"
     "t threshold"
-    chart		    269
-  }
-  target {
-    id			    280
-    machine		    1
-    name		    "sfun"
-    codeFlags		    ""
-    linkNode		    [1 0 281]
+    chart		    270
   }
   target {
     id			    281
     machine		    1
+    name		    "sfun"
+    codeFlags		    ""
+    linkNode		    [1 0 282]
+  }
+  target {
+    id			    282
+    machine		    1
     name		    "rtw"
-    linkNode		    [1 280 0]
+    linkNode		    [1 281 0]
   }
 }
