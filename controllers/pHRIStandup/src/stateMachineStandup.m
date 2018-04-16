@@ -1,5 +1,5 @@
 function  [w_H_b, constraints, CoM_des, qj_des, impedances, KPCoM, KDCoM, currentState, jointsAndCoMSmoothingTime] = ...
-             stateMachineStandup(wrench_rightFoot, wrench_leftFoot, wrench_leftHand, wrench_rightHand, xCoM_0, qj_0, xCoM, l_sole_H_b, l_upper_leg_contact_H_b, t, STANDUP_WITH_HUMAN_FORCE, STANDUP_WITH_HUMAN_TORQUE, Sm, Gain)
+             stateMachineStandup(wrench_rightFoot, wrench_leftFoot, wrench_leftHand, wrench_rightHand, xCoM_0, qj_0, xCoM, l_sole_H_b, l_upper_leg_contact_H_b, t, STANDUP_WITH_HUMAN_FORCE, STANDUP_WITH_HUMAN_TORQUE, Sm, Gain, fArms_phri)
     
     persistent state;
     persistent tSwitch;
@@ -28,9 +28,13 @@ function  [w_H_b, constraints, CoM_des, qj_des, impedances, KPCoM, KDCoM, curren
         % after tBalancing time, start moving CoM forward. If
         % Config.STANDUP_WITH_HUMAN_FORCE or Config.STANDUP_WITH_HUMAN_TORQUE  is enbabled, the robot waits for external 
         % help before lifting up.
-        if (STANDUP_WITH_HUMAN_FORCE || STANDUP_WITH_HUMAN_TORQUE)
-            
+        if STANDUP_WITH_HUMAN_FORCE
             if t > Sm.tBalancing && wrench_rightHand(1) > Sm.wrench_thresholdContactRHand(state) && wrench_leftHand(1) > Sm.wrench_thresholdContactLHand(state)
+                state = 2;   
+                tSwitch = t;
+            end
+        elseif STANDUP_WITH_HUMAN_TORQUE
+            if t > Sm.tBalancing && fArms_phri(7) > Sm.wrench_thresholdContactRHand(state) && fArms_phri(1) > Sm.wrench_thresholdContactLHand(state)
                 state = 2;   
                 tSwitch = t;
             end
