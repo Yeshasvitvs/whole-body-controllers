@@ -34,3 +34,5 @@ Add the following alias to your `/.bashrc` file
      `$ matlab`
      
 * Make sure `Config.STANDUP_WITH_HUMAN_TORQUE` is set to **true** in the [robot configuration file](https://github.com/Yeshasvitvs/wholeBodyControllers/blob/pHRI_standup/controllers/pHRIStandup/app/robots/icubGazeboSim/configRobot.m) before running the controller!
+
+For running this controller on the real robot, you can skip the steps `2,3,4,5`
