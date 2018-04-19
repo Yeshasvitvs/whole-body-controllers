@@ -59,104 +59,20 @@ Model {
 	$ClassName		"Simulink.ExplorerBarInfo"
 	Visible			[1]
       }
-      Array {
-	Type			"Simulink.EditorInfo"
-	Dimension		10
-	Object {
-	  $ObjectID		  5
-	  IsActive		  [0]
-	  ViewObjType		  "SimulinkSubsys"
-	  LoadSaveID		  "5465"
-	  Extents		  [2467.0, 1265.0]
-	  ZoomFactor		  [2.7923250564334086]
-	  Offset		  [-17.863751768391296, -41.013742926434929]
-	}
-	Object {
-	  $ObjectID		  6
-	  IsActive		  [0]
-	  ViewObjType		  "SimulinkSubsys"
-	  LoadSaveID		  "2275"
-	  Extents		  [2467.0, 1265.0]
-	  ZoomFactor		  [1.7299999999999998]
-	  Offset		  [0.0, 0.0]
-	}
-	Object {
-	  $ObjectID		  7
-	  IsActive		  [0]
-	  ViewObjType		  "SimulinkSubsys"
-	  LoadSaveID		  "2163"
-	  Extents		  [2467.0, 1265.0]
-	  ZoomFactor		  [1.8439402978022172]
-	  Offset		  [-592.998686705617, -136.60771896781472]
-	}
-	Object {
-	  $ObjectID		  8
-	  IsActive		  [0]
-	  ViewObjType		  "SimulinkSubsys"
-	  LoadSaveID		  "5433"
-	  Extents		  [2467.0, 1265.0]
-	  ZoomFactor		  [2.3572334642102084]
-	  Offset		  [25.021771858343641, -162.82301916769165]
-	}
-	Object {
-	  $ObjectID		  9
-	  IsActive		  [0]
-	  ViewObjType		  "SimulinkSubsys"
-	  LoadSaveID		  "5032"
-	  Extents		  [2467.0, 1265.0]
-	  ZoomFactor		  [1.3315392895586653]
-	  Offset		  [-294.76208821746161, -187.51414713015356]
-	}
-	Object {
-	  $ObjectID		  10
-	  IsActive		  [0]
-	  ViewObjType		  "SimulinkSubsys"
-	  LoadSaveID		  "5020"
-	  Extents		  [2467.0, 1265.0]
-	  ZoomFactor		  [6.0]
-	  Offset		  [0.0, 0.0]
-	}
-	Object {
-	  $ObjectID		  11
-	  IsActive		  [0]
-	  ViewObjType		  "SimulinkSubsys"
-	  LoadSaveID		  "2355"
-	  Extents		  [2467.0, 1265.0]
-	  ZoomFactor		  [0.49677755210346691]
-	  Offset		  [187.49645185874419, 31.818372346494129]
-	}
-	Object {
-	  $ObjectID		  12
-	  IsActive		  [0]
-	  ViewObjType		  "SimulinkSubsys"
-	  LoadSaveID		  "5001"
-	  Extents		  [2467.0, 1265.0]
-	  ZoomFactor		  [6.0]
-	  Offset		  [0.0, 0.0]
-	}
-	Object {
-	  $ObjectID		  13
-	  IsActive		  [0]
-	  ViewObjType		  "SimulinkSubsys"
-	  LoadSaveID		  "4504"
-	  Extents		  [2467.0, 1265.0]
-	  ZoomFactor		  [1.4488212363096342]
-	  Offset		  [31.899472119721167, -83.061795305453074]
-	}
-	Object {
-	  $ObjectID		  14
-	  IsActive		  [1]
-	  ViewObjType		  "SimulinkSubsys"
-	  LoadSaveID		  "5016"
-	  Extents		  [2467.0, 1265.0]
-	  ZoomFactor		  [0.6992635686644324]
-	  Offset		  [-581.35570405668273, -335.02106305457835]
-	}
-	PropName		"EditorsInfo"
+      Object {
+	$PropName		"EditorsInfo"
+	$ObjectID		5
+	$ClassName		"Simulink.EditorInfo"
+	IsActive		[1]
+	ViewObjType		"SimulinkTopLevel"
+	LoadSaveID		"0"
+	Extents			[2467.0, 1271.0]
+	ZoomFactor		[1.5637741935483871]
+	Offset			[211.52376384677257, 132.39345462796791]
       }
       Object {
 	$PropName		"DockComponentsInfo"
-	$ObjectID		15
+	$ObjectID		6
 	$ClassName		"Simulink.DockComponentInfo"
 	Type			"GLUE2:PropertyInspector"
 	ID			"Property Inspector"
@@ -185,7 +101,7 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "yeshi"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Apr 16 15:08:35 2018"
+  LastModifiedDate	  "Thu Apr 19 11:04:50 2018"
   RTWModifiedTimeStamp	  445792113
   ModelVersionFormat	  "1.%<AutoIncrement:3534>"
   ConfigurationManager	  "none"
@@ -235,7 +151,7 @@ Model {
   TryForcingSFcnDF	  off
   Object {
     $PropName		    "DataLoggingOverride"
-    $ObjectID		    16
+    $ObjectID		    7
     $ClassName		    "Simulink.SimulationData.ModelLoggingInfo"
     model_		    "torqueBalancingStandup"
     signals_		    []
@@ -280,7 +196,7 @@ Model {
     Type		    "Handle"
     Dimension		    1
     Simulink.ConfigSet {
-      $ObjectID		      17
+      $ObjectID		      8
       Version		      "1.16.5"
       DisabledProps	      []
       Description	      ""
@@ -288,7 +204,7 @@ Model {
 	Type			"Handle"
 	Dimension		9
 	Simulink.SolverCC {
-	  $ObjectID		  18
+	  $ObjectID		  9
 	  Version		  "1.16.5"
 	  DisabledProps		  []
 	  Description		  ""
@@ -328,7 +244,7 @@ Model {
 	  SampleTimeProperty	  []
 	}
 	Simulink.DataIOCC {
-	  $ObjectID		  19
+	  $ObjectID		  10
 	  Version		  "1.16.5"
 	  DisabledProps		  []
 	  Description		  ""
@@ -368,7 +284,7 @@ Model {
 	  LoggingIntervals	  "[-inf, inf]"
 	}
 	Simulink.OptimizationCC {
-	  $ObjectID		  20
+	  $ObjectID		  11
 	  Version		  "1.16.5"
 	  Array {
 	    Type		    "Cell"
@@ -426,7 +342,7 @@ Model {
 	  AccelVerboseBuild	  off
 	}
 	Simulink.DebuggingCC {
-	  $ObjectID		  21
+	  $ObjectID		  12
 	  Version		  "1.16.5"
 	  Array {
 	    Type		    "Cell"
@@ -534,7 +450,7 @@ Model {
 	  AllowAutomaticUnitConversions	on
 	}
 	Simulink.HardwareCC {
-	  $ObjectID		  22
+	  $ObjectID		  13
 	  Version		  "1.16.5"
 	  DisabledProps		  []
 	  Description		  ""
@@ -582,7 +498,7 @@ Model {
 	  UseSimulinkCoderFeatures on
 	}
 	Simulink.ModelReferenceCC {
-	  $ObjectID		  23
+	  $ObjectID		  14
 	  Version		  "1.16.5"
 	  DisabledProps		  []
 	  Description		  ""
@@ -601,7 +517,7 @@ Model {
 	  SupportModelReferenceSimTargetCustomCode off
 	}
 	Simulink.SFSimCC {
-	  $ObjectID		  24
+	  $ObjectID		  15
 	  Version		  "1.16.5"
 	  DisabledProps		  []
 	  Description		  ""
@@ -629,7 +545,7 @@ Model {
 	}
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
-	  $ObjectID		  25
+	  $ObjectID		  16
 	  Version		  "1.16.5"
 	  Array {
 	    Type		    "Cell"
@@ -715,7 +631,7 @@ Model {
 	    Type		    "Handle"
 	    Dimension		    2
 	    Simulink.CodeAppCC {
-	      $ObjectID		      26
+	      $ObjectID		      17
 	      Version		      "1.16.5"
 	      Array {
 		Type			"Cell"
@@ -800,7 +716,7 @@ Model {
 	    }
 	    Simulink.GRTTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
-	      $ObjectID		      27
+	      $ObjectID		      18
 	      Version		      "1.16.5"
 	      Array {
 		Type			"Cell"
@@ -897,7 +813,7 @@ Model {
 	  }
 	}
 	SlCovCC.ConfigComp {
-	  $ObjectID		  28
+	  $ObjectID		  19
 	  Version		  "1.16.5"
 	  DisabledProps		  []
 	  Description		  "Simulink Coverage Configuration Component"
@@ -946,11 +862,11 @@ Model {
   }
   Simulink.ConfigSet {
     $PropName		    "ActiveConfigurationSet"
-    $ObjectID		    17
+    $ObjectID		    8
   }
   Object {
     $PropName		    "DataTransfer"
-    $ObjectID		    29
+    $ObjectID		    20
     $ClassName		    "Simulink.GlobalDataTransfer"
     DefaultTransitionBetweenSyncTasks "Ensure deterministic transfer (maximum delay)"
     DefaultTransitionBetweenAsyncTasks "Ensure data integrity only"
@@ -1311,7 +1227,7 @@ Model {
   System {
     Name		    "torqueBalancingStandup"
     Location		    [1979, 24, 4480, 1440]
-    Open		    off
+    Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
     ScreenColor		    "white"
@@ -1337,7 +1253,7 @@ Model {
       System {
 	Name			"Human System"
 	Location		[1979, 24, 4480, 1440]
-	Open			on
+	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -1388,6 +1304,12 @@ Model {
 	  ContentPreviewEnabled	  off
 	  ConfigSource		  "Workspace"
 	  ConfigObject		  "'HUMAN_WBTConfigRobot'"
+	  RobotName		  "'icub'"
+	  UrdfFile		  "'model.urdf'"
+	  ControlledJoints	  "{'l_elbow','l_shoulder_pitch','torso_roll'}"
+	  ControlBoardsNames	  "{'left_arm','right_arm','torso'}"
+	  LocalName		  "'WBT'"
+	  GravityVector		  "[0,0,-9.81]"
 	}
 	Block {
 	  BlockType		  SubSystem
@@ -2742,7 +2664,7 @@ Model {
 	  period		  "0.01"
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    30
+	    $ObjectID		    21
 	    $ClassName		    "Simulink.Mask"
 	    Type		    "Real Time Synchronizer"
 	  }
@@ -3237,7 +3159,7 @@ Model {
       System {
 	Name			"Robot System"
 	Location		[1979, 24, 4480, 1440]
-	Open			on
+	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -3441,6 +3363,12 @@ Model {
 	  ContentPreviewEnabled	  off
 	  ConfigSource		  "Workspace"
 	  ConfigObject		  "'WBTConfigRobot'"
+	  RobotName		  "'icub'"
+	  UrdfFile		  "'model.urdf'"
+	  ControlledJoints	  "{'l_elbow','l_shoulder_pitch','torso_roll'}"
+	  ControlBoardsNames	  "{'left_arm','right_arm','torso'}"
+	  LocalName		  "'WBT'"
+	  GravityVector		  "[0,0,-9.81]"
 	}
 	Block {
 	  BlockType		  Delay
@@ -3466,14 +3394,14 @@ Model {
 	  Variant		  off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    31
+	    $ObjectID		    22
 	    $ClassName		    "Simulink.Mask"
 	    Display		    "disp('VISUALIZER')"
 	  }
 	  System {
 	    Name		    "Dump and visualize"
 	    Location		    [1979, 24, 4480, 1440]
-	    Open		    on
+	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -3757,7 +3685,7 @@ Model {
 	      System {
 		Name			"Robot data"
 		Location		[1979, 24, 4480, 1440]
-		Open			on
+		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
@@ -12508,7 +12436,7 @@ Model {
 	      System {
 		Name			"State Machine Standup"
 		Location		[1979, 24, 4480, 1440]
-		Open			on
+		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
@@ -17630,7 +17558,7 @@ Model {
 	  System {
 	    Name		    "controller_QP"
 	    Location		    [1979, 24, 4480, 1440]
-	    Open		    on
+	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -18094,7 +18022,7 @@ Model {
 	      System {
 		Name			"Arm Wrench Error"
 		Location		[1979, 24, 4480, 1440]
-		Open			on
+		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
@@ -18209,15 +18137,14 @@ Model {
 		  "0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.8"
 		  "31372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.074509803921568"
 		  "6 0.650980392156863],'Title','%<SignalLabel>','LinePropertiesCache',{{}},'UserDefinedChannelNames',{{'f_x','f_y','"
-		  "f_z','tau_x','tau_y','tau_z'}},'NumLines',6,'LineNames',{{'f_x','f_y','f_z','tau_x','tau_y','tau_z'}},'ShowContent"
-		  "',true,'Placement',1)},'DisplayPropertyDefaults',struct('MinYLimReal','-172.25869','MaxYLimReal','164.90291','YLab"
-		  "elReal','','MinYLimMag',' 0.00000','MaxYLimMag','172.25869','LegendVisibility','On','XGrid',true,'YGrid',true,'Plo"
-		  "tMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'Colo"
-		  "rOrder',[0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;1 1 0.0666666666666667;0.7176"
-		  "47058823529 0.274509803921569 1;0.392156862745098 0.831372549019608 0.0745098039215686;0.0588235294117647 1 1;1 0."
-		  "0745098039215686 0.650980392156863])),extmgr.Configuration('Tools','Plot Navigation',true,'PreviousAutoscale','XY'"
-		  "),extmgr.Configuration('Tools','Measurements',true,'Version','2016b')),'Version','2016b','Position',[2638 165 580 "
-		  "480],'VisibleAtModelOpen','on')"
+		  "f_z','tau_x','tau_y','tau_z'}},'NumLines',0,'LineNames',{{[]}},'ShowContent',true,'Placement',1)},'DisplayProperty"
+		  "Defaults',struct('MinYLimReal','-172.25869','MaxYLimReal','164.90291','YLabelReal','','MinYLimMag',' 0.00000','Max"
+		  "YLimMag','172.25869','LegendVisibility','On','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'A"
+		  "xesTickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[0.0745098039215686 0.623529411"
+		  "764706 1;1 0.411764705882353 0.16078431372549;1 1 0.0666666666666667;0.717647058823529 0.274509803921569 1;0.39215"
+		  "6862745098 0.831372549019608 0.0745098039215686;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863])),e"
+		  "xtmgr.Configuration('Tools','Plot Navigation',true,'PreviousAutoscale','XY'),extmgr.Configuration('Tools','Measure"
+		  "ments',true,'Version','2016b')),'Version','2016b','Position',[2634 132 590 510])"
 		  NumInputPorts		  "1"
 		}
 		Block {
@@ -24519,7 +24446,7 @@ Model {
 	  System {
 	    Name		    "robot world to human feet transformation"
 	    Location		    [1979, 24, 4480, 1440]
-	    Open		    on
+	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -24826,7 +24753,7 @@ Model {
 	  Variant		  off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    32
+	    $ObjectID		    23
 	    $ClassName		    "Simulink.Mask"
 	    Display		    "disp('SYNCHRONIZER')"
 	  }
@@ -28364,9 +28291,6 @@ Stateflow {
     screen		    [1 1 1280 1024 1.000677131425054]
     treeNode		    [0 132 0 0]
     viewObj		    131
-    visible		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    86
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -29203,9 +29127,6 @@ Stateflow {
     screen		    [1 1 1280 1024 1.000677131425054]
     treeNode		    [0 169 0 0]
     viewObj		    168
-    visible		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    125
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
