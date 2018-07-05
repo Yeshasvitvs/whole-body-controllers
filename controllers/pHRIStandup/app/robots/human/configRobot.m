@@ -6,9 +6,10 @@
 HUMAN_DOF                = 66;
 HUMAN_DOF_FOR_SIMULINK   = eye(HUMAN_DOF);
 
-% Robot configuration for WBT3.0
+HUMAN_ON_GAZEBO          = true;
+
+% Human configuration for WBT3.0
 HUMAN_WBTConfigRobot           = WBToolbox.Configuration;
-HUMAN_WBTConfigRobot.RobotName = 'human';
 HUMAN_WBTConfigRobot.UrdfFile  = 'Claudia66DoF.urdf';
 HUMAN_WBTConfigRobot.LocalName = 'HUMAN_WBT';
 
@@ -40,8 +41,19 @@ right_knee              =    {'jRightKnee_rotx','jRightKnee_roty','jRightKnee_ro
 right_ankle             =    {'jRightAnkle_rotx','jRightAnkle_roty','jRightAnkle_rotz'};
 right_ball_foot         =    {'jRightBallFoot_rotx','jRightBallFoot_roty','jRightBallFoot_rotz'};
 
+if (~HUMAN_ON_GAZEBO)
+    HUMAN_WBTConfigRobot.RobotName          = 'human';
+    HUMAN_WBTConfigRobot.ControlBoardsNames = {'hde-readonly-controlboard-driver'};
+else
+    HUMAN_WBTConfigRobot.RobotName          = 'sub0';
+    HUMAN_WBTConfigRobot.ControlBoardsNames = {'head','neck','torso_1','torso_2','torso_3','torso_4',...
+                                               'left_hip','left_knee','left_ankle','left_ball_foot',...
+                                               'right_hip','right_knee','right_ankle','right_ball_foot',...
+                                               'left_shoulder_internal','left_shoulder','left_elbow','left_wrist',...
+                                               'right_shoulder_internal','right_shoulder','right_elbow','right_wrist',...
+                                               };
+end
 
-HUMAN_WBTConfigRobot.ControlBoardsNames = {'hde-readonly-controlboard-driver'};
 HUMAN_WBTConfigRobot.ControlledJoints         =  {   torso_4{:},...
                                                      torso_3{:},...
                                                      torso_2{:},...
