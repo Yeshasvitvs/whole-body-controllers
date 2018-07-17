@@ -198,7 +198,13 @@ function [tauModel, Sigma, NA, f_HDot, ...
     
         Big_St         = [human_St                      zeros(6+HUMAN_DOF,ROBOT_DOF);
                           zeros(6+ROBOT_DOF,HUMAN_DOF)  St];
-                  
+                      
+        %% The interaction wrench on human is considered here
+        % TODO: This contact jacobian transpose assumes that the hand frames are coinciding
+        % This assumption is not true in the case of using two icub models
+        % as there is a rotation of 180 degress around y-axis. So to get
+        % the correct interaction wrench values in all the directions, this
+        % transformation has to be accounted.
         Big_Jct        = [human_JL'             human_JR'               zeros(6+HUMAN_DOF,6)             zeros(6+HUMAN_DOF,6)           human_JLArm'            human_JRArm';
                           zeros(6+ROBOT_DOF,6)  zeros(6+ROBOT_DOF,6)    (JL*constraints(1))'             (JR*constraints(2))'                -JLArm'                 -JRArm'];
     
@@ -218,7 +224,6 @@ function [tauModel, Sigma, NA, f_HDot, ...
     
         Big_Gamma      = Big_Q*Big_Minv*Big_Jct;
         Big_Gammainv   = inv(Big_Gamma);
-%         Big_Gammainv   = pinvDamped(Big_Gamma,Reg.pinvDamp); 
     
         Big_G1G2        = - Big_Gammainv*Big_Q*Big_Minv*Big_St;
     
@@ -227,14 +232,15 @@ function [tauModel, Sigma, NA, f_HDot, ...
         combined_wrench    = Big_G1G2*combined_torques + Big_G3;
         
         phri_human_feet_wrench   = [combined_wrench(1:6,:);
-                               combined_wrench(7:12,:)];
+                                    combined_wrench(7:12,:)];
                        
         phri_robot_feet_wrench   = [combined_wrench(13:18,:);
-                               combined_wrench(19:24,:)];
+                                    combined_wrench(19:24,:)];
     
-        phri_fArms      = [combined_wrench(25:30,:);
-                           combined_wrench(31:end,:)];
-                       
+        %% The interaction wrench acting on the robot is equal and opposite to that of the computed wrench, hence -ve sign
+        phri_fArms =   -[combined_wrench(25:30,:);
+                         combined_wrench(31:end,:)];
+        
         fArms           = phri_fArms;
 
         phri_fsupport   = A_arms * phri_fArms;

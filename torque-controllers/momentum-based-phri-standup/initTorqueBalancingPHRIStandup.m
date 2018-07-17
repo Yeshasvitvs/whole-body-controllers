@@ -49,7 +49,7 @@ Config.SIMULATION_TIME = inf;
 %
 %                app/robots/YARP_ROBOT_NAME/initCoordinator.m
 % 
-SM_TYPE                      = 'STANDUP';
+SM_TYPE                      = 'COORDINATOR';
 
 % Config.SCOPES: if set to true, all visualizers for debugging are active
 Config.SCOPES_ALL            = true;
@@ -110,4 +110,5 @@ end
 
 %% Human Configuration
 % Run human-specific configuration parameters
-run(strcat('app/robots/human/configRobot.m'));
+% run(strcat('app/robots/human/configRobot.m'));
+run(strcat('app/robots/newiCub/configRobot.m'));
