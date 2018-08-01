@@ -49,7 +49,7 @@ Config.SIMULATION_TIME = inf;
 %
 %                app/robots/YARP_ROBOT_NAME/initCoordinator.m
 % 
-SM_TYPE                      = 'COORDINATOR';
+SM_TYPE                      = 'STANDUP';
 
 % Config.SCOPES: if set to true, all visualizers for debugging are active
 Config.SCOPES_ALL            = true;
