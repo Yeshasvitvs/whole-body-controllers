@@ -223,8 +223,7 @@ function [tauModel, Sigma, NA, f_HDot, ...
                            human_dJRArm_nu - dJRArm_nu];
     
         Big_Gamma      = Big_Q*Big_Minv*Big_Jct;
-        Big_Gammainv   = (eye(size(Big_Gamma,1)))/(Big_Gamma + 0.001*eye(size(Big_Gamma,1)));
-%         Big_Gammainv   = inv(Big_Gamma); 
+        Big_Gammainv   = (eye(size(Big_Gamma,1)))/(Big_Gamma + 0.000001*eye(size(Big_Gamma,1)));
         
         Big_G1G2        = - Big_Gammainv*Big_Q*Big_Minv*Big_St;
     
