@@ -9,7 +9,13 @@ ROBOT_DOF_FOR_SIMULINK   = eye(ROBOT_DOF);
 
 % Robot configuration for WBT3.0
 WBTConfigRobot           = WBToolbox.Configuration;
-WBTConfigRobot.RobotName = 'iCub';
+
+if (~Config.USING_SOLO_ROBOT && Config.USING_ROBOT_ASSISTANT)
+    WBTConfigRobot.RobotName = 'iCub';
+else
+    WBTConfigRobot.RobotName = 'icubSim';
+end
+
 WBTConfigRobot.UrdfFile  = 'model.urdf';
 WBTConfigRobot.LocalName = 'WBT';
 
@@ -43,16 +49,23 @@ Frames.RIGHT_LEG         = 'r_upper_leg_contact';
 Frames.LEFT_HAND         = 'l_hand_dh_frame';
 Frames.RIGHT_HAND        = 'r_hand_dh_frame';
 
-%% iCub STANDUP demo parameters
-% when Config.STANDUP_WITH_HUMAN is setted to TRUE, the robot will be aware 
-% of the external forces at the arms provided by the human and it will use
-% also them for lifting up.
+%% iCub STANDUP demo physical interaction options
 
-Config.USING_HUMAN_MODEL                  = false; %flag to check if the human model is used or robot model is used as human
+Config.STANDUP_WITH_ASSISTANT_FORCE           = false;
+Config.MEASURED_FT                            = false;
+Config.STANDUP_WITH_ASSISTANT_TORQUE          = true;
 
-Config.STANDUP_WITH_HUMAN_FORCE           = false;
-Config.MEASURED_FT                        = false;
-Config.STANDUP_WITH_HUMAN_TORQUE          = true;
+if (~Config.USING_SOLO_ROBOT && (~Config.STANDUP_WITH_ASSISTANT_FORCE && ~Config.MEASURED_FT && ~Config.STANDUP_WITH_ASSISTANT_TORQUE))
+    error('Standup scenario set up with an external agent but all of the physical interaction options are set False. \n%s','Please set one option of physical interaction to True.');
+end
+
+if (Config.STANDUP_WITH_ASSISTANT_FORCE)
+    disp('Physical interaction option set to use assistant agent force');
+elseif (Config.MEASURED_FT)
+    disp('Physical interaction option set to use measure FT at the arms'); 
+elseif (Config.STANDUP_WITH_ASSISTANT_TORQUE)
+    disp('Physical intearction option set to use assistant agent joint torques');
+end
 
 %% Other parameters
 

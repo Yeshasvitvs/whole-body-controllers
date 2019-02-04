@@ -30,7 +30,29 @@ clc
 % setenv('YARP_ROBOT_NAME','iCubGenova04');
   setenv('YARP_ROBOT_NAME','icubGazeboSim');
 % setenv('YARP_ROBOT_NAME','iCubGenova02');
-% setenv('YARP_ROBOT_NAME','iCubGazeboV2_5');  
+% setenv('YARP_ROBOT_NAME','iCubGazeboV2_5');
+
+%% Flags for considering the standup scenario
+Config.USING_SOLO_ROBOT       = false;
+Config.USING_ROBOT_ASSISTANT  = true;
+Config.USING_HUMAN_ASSISTANT  = false;
+
+%% Check if standup scenario is set correctly
+if ((Config.USING_SOLO_ROBOT && Config.USING_ROBOT_ASSISTANT) || (Config.USING_SOLO_ROBOT && Config.USING_HUMAN_ASSISTANT))
+    error('Standup scenario set with both SOLO_ROBOT flag and one of external agent flags set True. \n%s',...
+          'Either set SOLO_ROBOT flag true or set one of the assitant flags true.');
+end
+
+if ((~Config.USING_SOLO_ROBOT && ~Config.USING_ROBOT_ASSISTANT) && (~Config.USING_SOLO_ROBOT && ~Config.USING_HUMAN_ASSISTANT))
+    error('Standup scenario set with SOLO_ROBOT flag False but no assitant agent flags is set True. \n%s',...
+          'Select a single assistant agent.');
+end
+
+%% Check if single assistant agent is set
+if (Config.USING_ROBOT_ASSISTANT && Config.USING_HUMAN_ASSISTANT)
+    error('Both the robot and human assistant agent flags are set True. \n%s',...
+          'Select a single assistant agent.');
+end
 
 % Simulation time in seconds
 Config.SIMULATION_TIME = inf;   
@@ -108,7 +130,19 @@ end
 % legs constraints
 [ConstraintsMatrixLegs,bVectorConstraintsLegs] = constraints(forceFrictionCoefficient,numberOfPoints,torsionalFrictionCoefficient,leg_size,fZmin);
 
-%% Human Configuration
-% Run human-specific configuration parameters
-% run(strcat('app/robots/human/configRobot.m'));
-  run(strcat('app/robots/newiCub/configRobot.m'));
+%% Assistant Agent Configuration
+
+% Run assistant robot agent specifig configuration parameters
+if (~Config.USING_SOLO_ROBOT && Config.USING_ROBOT_ASSISTANT)
+    disp('Standup scenario set up with robot assistant.');
+    run(strcat('app/robots/robot-assistant/configRobot.m'));
+    
+% Run assitant human agent specific configuration parameters
+elseif (~Config.USING_SOLO_ROBOT && Config.USING_HUMAN_ASSISTANT)
+    disp('Standup scenario set up with human assistant.');
+    run(strcat('app/robots/human-assistant/configRobot.m'));
+    
+else
+    disp('Standup scenario set up without any external agent assistant.');
+end
+

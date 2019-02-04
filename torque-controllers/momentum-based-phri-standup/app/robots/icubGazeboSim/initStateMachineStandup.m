@@ -8,7 +8,8 @@
 Config.LEFT_RIGHT_FOOT_IN_CONTACT = [1 1];
 
 % Initial foot on ground. If false, right foot is used as default contact
-% frame (this does not means that the other foot cannot be in contact too).
+% frame (this does not means that the other foot cannot be in contact too). 
+
 % (COORDINATOR DEMO ONLY)
 Config.LEFT_FOOT_IN_CONTACT_AT_0 = true;
 
@@ -32,9 +33,9 @@ Reg.HessianQP      = 1e-2;
 Reg.norm_tolerance = 1e-4;
                             
 %% COM AND JOINT GAINS
-HUMAN_TORQUE = true;
+ASSISTANT_TORQUE = true;
 
-if HUMAN_TORQUE
+if ASSISTANT_TORQUE
 
     Gain.KP_COM     =      [305   95  100;     % state ==  1  BALANCING ON THE LEGS
                             305   95  100;     % state ==  2  MOVE COM FORWARD
@@ -107,7 +108,7 @@ Sm.stateAt0 = 1;
 
 % delta to be summed to the reference CoM position (STANDUP DEMO ONLY)
 
-if HUMAN_TORQUE
+if ASSISTANT_TORQUE
     
     Sm.CoM_delta        = [% THIS REFERENCE IS USED AS A DELTA W.R.T. THE POSITION OF THE LEFT LEG
                            0.0     0.0     0.0;       % NOT USED
