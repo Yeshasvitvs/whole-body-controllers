@@ -28,7 +28,7 @@ HUMAN_ControlBoards.(HUMAN_WBTConfigRobot.ControlBoardsNames{5}) = {'r_hip_pitch
 
 for n = 1:length(HUMAN_WBTConfigRobot.ControlBoardsNames)
 
-    WBTConfigRobot.ControlledJoints       = [HUMAN_WBTConfigRobot.ControlledJoints, ...
+    HUMAN_WBTConfigRobot.ControlledJoints       = [HUMAN_WBTConfigRobot.ControlledJoints, ...
                                              HUMAN_ControlBoards.(HUMAN_WBTConfigRobot.ControlBoardsNames{n})];
     HUMAN_Config.numOfJointsForEachControlboard = [HUMAN_Config.numOfJointsForEachControlboard; length(HUMAN_ControlBoards.(HUMAN_WBTConfigRobot.ControlBoardsNames{n}))];
 end

@@ -111,4 +111,4 @@ end
 %% Human Configuration
 % Run human-specific configuration parameters
 % run(strcat('app/robots/human/configRobot.m'));
-run(strcat('app/robots/newiCub/configRobot.m'));
+  run(strcat('app/robots/newiCub/configRobot.m'));

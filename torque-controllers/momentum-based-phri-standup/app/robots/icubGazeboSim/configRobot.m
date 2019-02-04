@@ -9,7 +9,7 @@ ROBOT_DOF_FOR_SIMULINK   = eye(ROBOT_DOF);
 
 % Robot configuration for WBT3.0
 WBTConfigRobot           = WBToolbox.Configuration;
-WBTConfigRobot.RobotName = 'icubSim';
+WBTConfigRobot.RobotName = 'iCub';
 WBTConfigRobot.UrdfFile  = 'model.urdf';
 WBTConfigRobot.LocalName = 'WBT';
 

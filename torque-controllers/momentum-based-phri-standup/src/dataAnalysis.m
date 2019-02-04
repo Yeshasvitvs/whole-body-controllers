@@ -323,7 +323,7 @@ humanJointTorque_data(:, :, 3) = humanJoint3Torque_data;
 
 dataSize = size(comX_data, 1); %%Size for the data from all the trials
 t_student_param = t_critical(dataSize - 1);
-com_statistics_confidence = (com_statistics_std * t_student_param)./ sqrt(dataSize);
+com_statistics_confidence = (com_statistics_std * t_student_param)./ sqrt(dataSize); %This is t-distribution for confidence interval
 legTorqueNorm_statistics_confidence = (legTorqueNorm_statistics_std * t_student_param)./ sqrt(dataSize);
 legPower_statistics_confidence = (legPower_statistics_std * t_student_param)./ sqrt(dataSize);
 LyapunovV_confidence = (LyapunovV_statistics_std * t_student_param)./ sqrt(dataSize);
