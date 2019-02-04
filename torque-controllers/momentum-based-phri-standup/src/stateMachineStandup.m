@@ -1,5 +1,5 @@
 function  [w_H_b, constraints, CoM_des, qj_des, impedances, KPCoM, KDCoM, currentState, jointsAndCoMSmoothingTime] = ...
-             stateMachineStandup(wrench_rightFoot, wrench_leftFoot, wrench_leftHand, wrench_rightHand, xCoM_0, qj_0, xCoM, l_sole_H_b, l_upper_leg_contact_H_b, t, STANDUP_WITH_HUMAN_FORCE, MEASURED_FT, STANDUP_WITH_HUMAN_TORQUE, Sm, Gain, fArms_phri)
+             stateMachineStandup(wrench_rightFoot, wrench_leftFoot, wrench_leftHand, wrench_rightHand, xCoM_0, qj_0, xCoM, l_sole_H_b, l_upper_leg_contact_H_b, t, STANDUP_WITH_ASSISTANT_FORCE, MEASURED_FT, STANDUP_WITH_ASSISTANT_TORQUE, Sm, Gain, fArms_phri)
     
     persistent state;
     persistent tSwitch;
@@ -26,14 +26,14 @@ function  [w_H_b, constraints, CoM_des, qj_des, impedances, KPCoM, KDCoM, curren
         jointsAndCoMSmoothingTime = Sm.smoothingTimeCoM_Joints(state);
         
         % after tBalancing time, start moving CoM forward. If
-        % Config.STANDUP_WITH_HUMAN_FORCE is enbabled, the robot waits for external 
+        % Config.STANDUP_WITH_ASSISTANT_FORCE is enbabled, the robot waits for external 
         % help before lifting up.
-        if ((STANDUP_WITH_HUMAN_FORCE && MEASURED_FT) || STANDUP_WITH_HUMAN_TORQUE) % Using measured FT values at hands from WBD
+        if ((STANDUP_WITH_ASSISTANT_FORCE && MEASURED_FT) || STANDUP_WITH_ASSISTANT_TORQUE) % Using measured FT values at hands from WBD
             if t > Sm.tBalancing && wrench_rightHand(1) > Sm.wrench_thresholdContactRHand(state) && wrench_leftHand(1) > Sm.wrench_thresholdContactLHand(state)
                 state = 2;   
                 tSwitch = t;
             end
-        elseif (STANDUP_WITH_HUMAN_FORCE && ~MEASURED_FT) % Using computed FT values at hands through combined dynamics
+        elseif (STANDUP_WITH_ASSISTANT_FORCE && ~MEASURED_FT) % Using computed FT values at hands through combined dynamics
             if t > Sm.tBalancing && fArms_phri(7) > Sm.wrench_thresholdContactRHand(state) && fArms_phri(1) > Sm.wrench_thresholdContactLHand(state)
                 state = 2;   
                 tSwitch = t;

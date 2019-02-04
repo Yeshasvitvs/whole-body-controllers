@@ -39,3 +39,11 @@ ASSISTANT_Frames.LEFT_FOOT         = 'l_sole';
 ASSISTANT_Frames.RIGHT_FOOT        = 'r_sole';
 ASSISTANT_Frames.LEFT_HAND         = 'l_hand_dh_frame';
 ASSISTANT_Frames.RIGHT_HAND        = 'r_hand_dh_frame';
+
+%% Checking Configuration Success
+if ~ASSISTANT_WBTConfigRobot.ValidConfiguration
+    return
+end
+
+%% comment out human assistance data dump and visualization subsystem
+set_param('torqueBalancingPHRIStandup/Assistant system/Dump and visualize/Assistant Data/Using Human Assistant/', 'Commented', 'on');

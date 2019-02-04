@@ -59,11 +59,11 @@ if (~Config.USING_SOLO_ROBOT && (~Config.STANDUP_WITH_ASSISTANT_FORCE && ~Config
     error('Standup scenario set up with an external agent but all of the physical interaction options are set False. \n%s','Please set one option of physical interaction to True.');
 end
 
-if (Config.STANDUP_WITH_ASSISTANT_FORCE)
+if (~Config.USING_SOLO_ROBOT && Config.STANDUP_WITH_ASSISTANT_FORCE)
     disp('Physical interaction option set to use assistant agent force');
-elseif (Config.MEASURED_FT)
+elseif (~Config.USING_SOLO_ROBOT && Config.MEASURED_FT)
     disp('Physical interaction option set to use measure FT at the arms'); 
-elseif (Config.STANDUP_WITH_ASSISTANT_TORQUE)
+elseif (~Config.USING_SOLO_ROBOT && Config.STANDUP_WITH_ASSISTANT_TORQUE)
     disp('Physical intearction option set to use assistant agent joint torques');
 end
 

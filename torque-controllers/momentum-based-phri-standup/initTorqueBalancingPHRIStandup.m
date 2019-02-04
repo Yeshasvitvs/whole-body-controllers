@@ -132,6 +132,8 @@ end
 
 %% Assistant Agent Configuration
 
+%%set_param('torqueBalancingPHRIStandup/Assistant system', 'Commented', 'off')
+
 % Run assistant robot agent specifig configuration parameters
 if (~Config.USING_SOLO_ROBOT && Config.USING_ROBOT_ASSISTANT)
     disp('Standup scenario set up with robot assistant.');
@@ -143,6 +145,7 @@ elseif (~Config.USING_SOLO_ROBOT && Config.USING_HUMAN_ASSISTANT)
     run(strcat('app/robots/human-assistant/configRobot.m'));
     
 else
+    %%set_param('torqueBalancingPHRIStandup/Assistant system', 'Commented', 'on')
     disp('Standup scenario set up without any external agent assistant.');
 end
 

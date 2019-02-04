@@ -18,14 +18,14 @@
 function [tauModel, Sigma, NA, f_LDot, ...
           HessianMatrixQP1Foot, gradientQP1Foot, ConstraintsMatrixQP1Foot, bVectorConstraintsQp1Foot, ...
           HessianMatrixQP2FeetOrLegs, gradientQP2FeetOrLegs, ConstraintsMatrixQP2FeetOrLegs, bVectorConstraintsQp2FeetOrLegs, ...
-          errorCoM, f_noQP, correctionFromSupportForce, L_error, V, alpha, fArms, phri_human_feet_wrench, phri_robot_feet_wrench, correctionFromSupportTorque] =  ...
-              balancingControllerStandup(constraints, ROBOT_DOF_FOR_SIMULINK, HUMAN_DOF_FOR_SIMULINK, ConstraintsMatrix, bVectorConstraints, ...
+          errorCoM, f_noQP, correctionFromSupportForce, L_error, V, alpha, fArms, phri_assistant_feet_wrench, phri_robot_feet_wrench, correctionFromSupportTorque] =  ...
+              balancingControllerStandup(constraints, ROBOT_DOF_FOR_SIMULINK, ASSISTANT_DOF_FOR_SIMULINK, ConstraintsMatrix, bVectorConstraints, ...
                                          qj, qjDes, nu, M, h, L, intLw, w_H_l_contact, w_H_r_contact, JL, JR, dJL_nu, dJR_nu, xCoM, J_CoM, desired_x_dx_ddx_CoM, Jcmm, ...
                                          gainsPCOM, gainsDCOM, impedances, Reg, Gain, w_H_lArm, w_H_rArm, JLArm, JRArm, dJLArm_nu, dJRArm_nu,...
-                                         LArmWrench, RArmWrench, STANDUP_WITH_HUMAN_FORCE, MEASURED_FT, STANDUP_WITH_HUMAN_TORQUE, ...
-                                         human_w_H_b, human_qj, human_nu_b, human_dqj, human_M, human_h, human_torques, ...
-                                         human_w_H_l_contact, human_w_H_r_contact, human_JL, human_JR, human_dJL_nu, human_dJR_nu,...
-                                         human_w_H_lArm_contact, human_w_H_rArm_contact, human_JLArm, human_JRArm, human_dJLArm_nu, human_dJRArm_nu,...
+                                         LArmWrench, RArmWrench, STANDUP_WITH_ASSISTANT_FORCE, MEASURED_FT, STANDUP_WITH_ASSISTANT_TORQUE, ...
+                                         assistant_w_H_b, assistant_qj, assistant_nu_b, assistant_dqj, assistant_M, assistant_h, assistant_torques, ...
+                                         assistant_w_H_l_contact, assistant_w_H_r_contact, assistant_JL, assistant_JR, assistant_dJL_nu, assistant_dJR_nu,...
+                                         assistant_w_H_lArm_contact, assistant_w_H_rArm_contact, assistant_JLArm, assistant_JRArm, assistant_dJLArm_nu, assistant_dJRArm_nu,...
                                          state, robot_torques)
        
     % BALANCING CONTROLLER
@@ -42,7 +42,7 @@ function [tauModel, Sigma, NA, f_LDot, ...
     
     dampings       = Gain.dampings;
     ROBOT_DOF      = size(ROBOT_DOF_FOR_SIMULINK,1);
-    HUMAN_DOF      = size(HUMAN_DOF_FOR_SIMULINK,1);
+    ASSISTANT_DOF  = size(ASSISTANT_DOF_FOR_SIMULINK,1);
     gravAcc        = 9.81;
    
     % Mass of the robot
@@ -64,14 +64,14 @@ function [tauModel, Sigma, NA, f_LDot, ...
     St             = [zeros(6,ROBOT_DOF);
                       eye(ROBOT_DOF,ROBOT_DOF)];
                   
-    human_St       = [zeros(6,HUMAN_DOF);
-                      eye(HUMAN_DOF,HUMAN_DOF)];
+    assistant_St       = [zeros(6,ASSISTANT_DOF);
+                      eye(ASSISTANT_DOF,ASSISTANT_DOF)];
                   
     gravityWrench  = [zeros(2,1);
                      -m*gravAcc;
                       zeros(3,1)];
                   
-    combined_torques = [human_torques; robot_torques];
+    combined_torques = [assistant_torques; robot_torques];
 
     % Velocity of the center of mass
     xCoM_dot       = J_CoM(1:3,:)*nu;
@@ -181,24 +181,24 @@ function [tauModel, Sigma, NA, f_LDot, ...
     correctionFromSupportForce = zeros(6,1);
     L_errParallel = L_error/(norm(L_error)+Reg.norm_tolerance);
     
-    phri_human_feet_wrench = zeros(12,1);
+    phri_assistant_feet_wrench = zeros(12,1);
     phri_robot_feet_wrench = zeros(12,1);
-    Big_G1 = zeros(36,HUMAN_DOF);
+    Big_G1 = zeros(36,ASSISTANT_DOF);
     Big_G2 = zeros(36,ROBOT_DOF);
     Big_G3 = zeros(36,1);
     
-    if (STANDUP_WITH_HUMAN_FORCE && MEASURED_FT)
+    if (STANDUP_WITH_ASSISTANT_FORCE && MEASURED_FT)
         
         alpha         = (transpose(L_error)*fsupport)/(norm(L_error)+Reg.norm_tolerance);
     
-    elseif ((STANDUP_WITH_HUMAN_FORCE && ~MEASURED_FT) || STANDUP_WITH_HUMAN_TORQUE)
+    elseif ((STANDUP_WITH_ASSISTANT_FORCE && ~MEASURED_FT) || STANDUP_WITH_ASSISTANT_TORQUE)
         
-        Big_M          = [human_M,                       zeros(6+HUMAN_DOF,6+ROBOT_DOF);
-                          zeros(6+ROBOT_DOF,6+HUMAN_DOF),    M];
+        Big_M          = [assistant_M,                           zeros(6+ASSISTANT_DOF,6+ROBOT_DOF);
+                          zeros(6+ROBOT_DOF,6+ASSISTANT_DOF),    M];
                   
         Big_Minv       = (eye(size(Big_M,1)))/(Big_M + 0.000001*eye(size(Big_M,1)));
         
-        Big_h          = [human_h; h];
+        Big_h          = [assistant_h; h];
                       
         %% The interaction wrench on human is considered here
         % TODO: This contact jacobian transpose assumes that the hand frames are coinciding
@@ -206,46 +206,46 @@ function [tauModel, Sigma, NA, f_LDot, ...
         % as there is a rotation of 180 degress around y-axis. So to get
         % the correct interaction wrench values in all the directions, this
         % transformation has to be accounted.
-        Big_Jct        = [human_JL'             human_JR'               zeros(6+HUMAN_DOF,6)             zeros(6+HUMAN_DOF,6)           human_JLArm'            human_JRArm';
-                          zeros(6+ROBOT_DOF,6)  zeros(6+ROBOT_DOF,6)    (JL*constraints(1))'             (JR*constraints(2))'                -JLArm'                 -JRArm'];
+        Big_Jct        = [assistant_JL'             assistant_JR'               zeros(6+ASSISTANT_DOF,6)             zeros(6+ASSISTANT_DOF,6)           assistant_JLArm'            assistant_JRArm';
+                          zeros(6+ROBOT_DOF,6)      zeros(6+ROBOT_DOF,6)        (JL*constraints(1))'                 (JR*constraints(2))'               -JLArm'                     -JRArm'];
     
-        Big_Q          = [human_JL                  zeros(6,6+ROBOT_DOF);
-                          human_JR                  zeros(6,6+ROBOT_DOF);
-                          zeros(6,6+HUMAN_DOF)      JL*constraints(1);
-                          zeros(6,6+HUMAN_DOF)      JR*constraints(2);
-                          human_JLArm               -JLArm;
-                          human_JRArm               -JRArm];
+        Big_Q          = [assistant_JL              zeros(6,6+ROBOT_DOF);
+                          assistant_JR              zeros(6,6+ROBOT_DOF);
+                          zeros(6,6+ASSISTANT_DOF)  JL*constraints(1);
+                          zeros(6,6+ASSISTANT_DOF)  JR*constraints(2);
+                          assistant_JLArm           -JLArm;
+                          assistant_JRArm           -JRArm];
     
-        Big_PV          = [human_dJL_nu;
-                           human_dJR_nu;
+        Big_PV          = [assistant_dJL_nu;
+                           assistant_dJR_nu;
                            dJL_nu*constraints(1);
                            dJR_nu*constraints(2);
-                           human_dJLArm_nu - dJLArm_nu;
-                           human_dJRArm_nu - dJRArm_nu];
+                           assistant_dJLArm_nu - dJLArm_nu;
+                           assistant_dJRArm_nu - dJRArm_nu];
     
         Big_Gamma      = Big_Q*Big_Minv*Big_Jct;
         
         regularization_term = 1;
-        if(STANDUP_WITH_HUMAN_FORCE && ~MEASURED_FT)
+        if(STANDUP_WITH_ASSISTANT_FORCE && ~MEASURED_FT)
             regularization_term = 0.000001;
         end
         Big_Gammainv   = (eye(size(Big_Gamma,1)))/(Big_Gamma + regularization_term*eye(size(Big_Gamma,1)));
         
         Big_GammainvQMinv = Big_Gammainv*Big_Q*Big_Minv;
         
-        Big_G1        = - Big_GammainvQMinv*[human_St; zeros(6+ROBOT_DOF,HUMAN_DOF)] ;
-        Big_G2        = - Big_GammainvQMinv*[zeros(6+HUMAN_DOF,ROBOT_DOF); St];
+        Big_G1        = - Big_GammainvQMinv*[assistant_St; zeros(6+ROBOT_DOF,ASSISTANT_DOF)] ;
+        Big_G2        = - Big_GammainvQMinv*[zeros(6+ASSISTANT_DOF,ROBOT_DOF); St];
         Big_G3        =   Big_Gammainv*(Big_Q*Big_Minv*Big_h - Big_PV);
         
-        if(STANDUP_WITH_HUMAN_FORCE && ~MEASURED_FT)
+        if(STANDUP_WITH_ASSISTANT_FORCE && ~MEASURED_FT)
             
             combined_wrench    = [Big_G1 Big_G2]*combined_torques + Big_G3;
         
-            phri_human_feet_wrench   = [combined_wrench(1:6,:);
-                                        combined_wrench(7:12,:)];
+            phri_assistant_feet_wrench   = [combined_wrench(1:6,:);
+                                            combined_wrench(7:12,:)];
         
-            phri_robot_feet_wrench   = [combined_wrench(13:18,:);
-                                        combined_wrench(19:24,:)];
+            phri_robot_feet_wrench       = [combined_wrench(13:18,:);
+                                            combined_wrench(19:24,:)];
         
             %% The interaction wrench acting on the robot is equal and opposite to that of the computed wrench, hence -ve sign
             phri_fArms      =   -[combined_wrench(25:30,:);
@@ -262,7 +262,7 @@ function [tauModel, Sigma, NA, f_LDot, ...
     
     end
     
-    if alpha <= 0 && state < 4 && STANDUP_WITH_HUMAN_FORCE
+    if alpha <= 0 && state < 4 && STANDUP_WITH_ASSISTANT_FORCE
         
         correctionFromSupportForce = alpha*L_errParallel;
         
@@ -310,7 +310,7 @@ function [tauModel, Sigma, NA, f_LDot, ...
     LDotDes = zeros(6,1);
     int_L_tilde_times_gain = zeros(6,1);
     correctionFromSupportTorque = zeros(6,1);
-    if ~STANDUP_WITH_HUMAN_TORQUE %% Without considering human joint torques
+    if ~STANDUP_WITH_ASSISTANT_TORQUE %% Without considering assistant joint torques
         
         % Terms used in Eq. 0)
         tauModel  = Pinv_JcMinvSt*(JcMinv*h - Jc_nuDot) + nullJcMinvSt*(h(7:end) - Mbj'/Mb*h(1:6) ...
@@ -325,7 +325,7 @@ function [tauModel, Sigma, NA, f_LDot, ...
         int_L_tilde_times_gain = [m * gainsPCOM .* (xCoM - desired_x_dx_ddx_CoM(:,1));
                                   Gain.KP_AngularMomentum .* intLw];
         
-    elseif STANDUP_WITH_HUMAN_TORQUE %% with human joint torques
+    elseif STANDUP_WITH_ASSISTANT_TORQUE %% with assistant joint torques
         
         JcmmMinv = Jcmm/M;
         JcmmMinvJcArmt = JcmmMinv*transpose(JcArm);
@@ -344,7 +344,7 @@ function [tauModel, Sigma, NA, f_LDot, ...
         Lambda = JcmmMinvJcArmt*-Big_G3(1:12,:) + gravityWrench + int_L_tilde_times_gain - LDotDes;
         
         Omega = JcmmMinvJcArmt*-Big_G1(1:12,:);
-        phri_torque_alpha    = (transpose(L_error)*Omega*human_torques)/(norm(L_error)+Reg.norm_tolerance);
+        phri_torque_alpha    = (transpose(L_error)*Omega*assistant_torques)/(norm(L_error)+Reg.norm_tolerance);
         alpha = phri_torque_alpha;
         if phri_torque_alpha >= 0 && state < 4
             correctionFromSupportTorque = phri_torque_alpha*L_errParallel;
