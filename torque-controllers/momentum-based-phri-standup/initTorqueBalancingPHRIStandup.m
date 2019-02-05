@@ -39,12 +39,12 @@ Config.USING_HUMAN_ASSISTANT  = false;
 
 %% Check if standup scenario is set correctly
 if ((Config.USING_SOLO_ROBOT && Config.USING_ROBOT_ASSISTANT) || (Config.USING_SOLO_ROBOT && Config.USING_HUMAN_ASSISTANT))
-    error('Standup scenario set with both SOLO_ROBOT flag and one of external agent flags set True. \n%s',...
+    error('Standup scenario set with both solo robot flag and one of external agent flags set True. \n%s',...
           'Either set SOLO_ROBOT flag true or set one of the assitant flags true.');
 end
 
 if ((~Config.USING_SOLO_ROBOT && ~Config.USING_ROBOT_ASSISTANT) && (~Config.USING_SOLO_ROBOT && ~Config.USING_HUMAN_ASSISTANT))
-    error('Standup scenario set with SOLO_ROBOT flag False but no assitant agent flags is set True. \n%s',...
+    error('Standup scenario set with solo robot flag False but no assitant agent flags is set True. \n%s',...
           'Select a single assistant agent.');
 end
 
@@ -53,6 +53,31 @@ if (Config.USING_ROBOT_ASSISTANT && Config.USING_HUMAN_ASSISTANT)
     error('Both the robot and human assistant agent flags are set True. \n%s',...
           'Select a single assistant agent.');
 end
+
+%% iCub STANDUP demo physical interaction options
+Config.STANDUP_WITH_ASSISTANT_FORCE           = false;
+Config.MEASURED_FT                            = false;
+Config.STANDUP_WITH_ASSISTANT_TORQUE          = true;
+
+if (Config.USING_SOLO_ROBOT && (Config.STANDUP_WITH_ASSISTANT_FORCE || Config.MEASURED_FT || Config.STANDUP_WITH_ASSISTANT_TORQUE))
+    error('Stanup scenario set up with only solo robot but some of the physical interaction options is set to True. \n%s', 'Please set that flags to false');
+elseif (~Config.USING_SOLO_ROBOT && (~Config.STANDUP_WITH_ASSISTANT_FORCE && ~Config.MEASURED_FT && ~Config.STANDUP_WITH_ASSISTANT_TORQUE))
+    error('Standup scenario set up with an external agent but all of the physical interaction options are set False. \n%s','Please set one option of physical interaction to True.');
+elseif (~Config.USING_SOLO_ROBOT && (Config.STANDUP_WITH_ASSISTANT_FORCE && Config.STANDUP_WITH_ASSISTANT_TORQUE))
+    error('Standup scenario set up with an both assistant force and torque options true. \n%s','Please set only one of the options True.');
+elseif (~Config.USING_SOLO_ROBOT && (Config.MEASURED_FT && ~Config.STANDUP_WITH_ASSISTANT_FORCE))
+    error('Standup scenario set up with force option false but measured FT option is set true. \n%s.','Please turn on the force option if you wish to use measured wrench through wholebodydynamics')
+end
+
+if (~Config.USING_SOLO_ROBOT && (Config.STANDUP_WITH_ASSISTANT_FORCE && Config.MEASURED_FT))
+    disp('Physical interaction option set to use assistant agent help in terms of measured wrench through wholebodydynamics');
+elseif (~Config.USING_SOLO_ROBOT && (Config.STANDUP_WITH_ASSISTANT_FORCE && ~Config.MEASURED_FT))
+    disp('Physical interaction option set to use assistant agent help in terms of computed wrench through coupled dynamics'); 
+elseif (~Config.USING_SOLO_ROBOT && Config.STANDUP_WITH_ASSISTANT_TORQUE)
+    disp('Physical intearction option set to use assistant agent joint torques');
+end
+
+
 
 % Simulation time in seconds
 Config.SIMULATION_TIME = inf;   
@@ -121,7 +146,8 @@ elseif strcmpi(SM_TYPE, 'STANDUP')
     demoSpecificParameters = fullfile('app/robots',getenv('YARP_ROBOT_NAME'),'initStateMachineStandup.m');
     run(demoSpecificParameters);
     % If true, the robot will perform the STANDUP demo
-    Config.iCubStandUp = true; 
+    Config.iCubStandUp = true;
+    
 end
 
 %% Contact constraints: legs and feet
@@ -131,21 +157,22 @@ end
 [ConstraintsMatrixLegs,bVectorConstraintsLegs] = constraints(forceFrictionCoefficient,numberOfPoints,torsionalFrictionCoefficient,leg_size,fZmin);
 
 %% Assistant Agent Configuration
+set_param('torqueBalancingPHRIStandup/Assistant system/Real system', 'Commented', 'off')
+set_param('torqueBalancingPHRIStandup/Assistant system/Dummy system', 'Commented', 'off')
 
-%%set_param('torqueBalancingPHRIStandup/Assistant system', 'Commented', 'off')
-
-% Run assistant robot agent specifig configuration parameters
-if (~Config.USING_SOLO_ROBOT && Config.USING_ROBOT_ASSISTANT)
-    disp('Standup scenario set up with robot assistant.');
-    run(strcat('app/robots/robot-assistant/configRobot.m'));
-    
-% Run assitant human agent specific configuration parameters
-elseif (~Config.USING_SOLO_ROBOT && Config.USING_HUMAN_ASSISTANT)
-    disp('Standup scenario set up with human assistant.');
-    run(strcat('app/robots/human-assistant/configRobot.m'));
-    
+if ((Config.STANDUP_WITH_ASSISTANT_FORCE && ~Config.MEASURED_FT) || Config.STANDUP_WITH_ASSISTANT_TORQUE)
+    set_param('torqueBalancingPHRIStandup/Assistant system/Dummy system', 'Commented', 'on')
+    % Run assistant robot agent specifig configuration parameters
+    if (~Config.USING_SOLO_ROBOT && Config.USING_ROBOT_ASSISTANT)
+        disp('Standup scenario set up with robot assistant.');
+        run(strcat('app/robots/robot-assistant/configRobot.m'));
+        
+        % Run assitant human agent specific configuration parameters
+    elseif (~Config.USING_SOLO_ROBOT && Config.USING_HUMAN_ASSISTANT)
+        disp('Standup scenario set up with human assistant.');
+        run(strcat('app/robots/human-assistant/configRobot.m'));
+    end
 else
-    %%set_param('torqueBalancingPHRIStandup/Assistant system', 'Commented', 'on')
+    set_param('torqueBalancingPHRIStandup/Assistant system/Real system', 'Commented', 'on')
     disp('Standup scenario set up without any external agent assistant.');
 end
-

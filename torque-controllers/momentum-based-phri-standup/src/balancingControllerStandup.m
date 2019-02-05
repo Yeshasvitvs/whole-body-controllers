@@ -26,7 +26,7 @@ function [tauModel, Sigma, NA, f_LDot, ...
                                          assistant_w_H_b, assistant_qj, assistant_nu_b, assistant_dqj, assistant_M, assistant_h, assistant_torques, ...
                                          assistant_w_H_l_contact, assistant_w_H_r_contact, assistant_JL, assistant_JR, assistant_dJL_nu, assistant_dJR_nu,...
                                          assistant_w_H_lArm_contact, assistant_w_H_rArm_contact, assistant_JLArm, assistant_JRArm, assistant_dJLArm_nu, assistant_dJRArm_nu,...
-                                         state, robot_torques)
+                                         state, robot_torques, SOLO_ROBOT)
        
     % BALANCING CONTROLLER
 
@@ -64,14 +64,14 @@ function [tauModel, Sigma, NA, f_LDot, ...
     St             = [zeros(6,ROBOT_DOF);
                       eye(ROBOT_DOF,ROBOT_DOF)];
                   
-    assistant_St       = [zeros(6,ASSISTANT_DOF);
+    assistant_St   = [zeros(6,ASSISTANT_DOF);
                       eye(ASSISTANT_DOF,ASSISTANT_DOF)];
+                  
+    combined_torques = [assistant_torques; robot_torques];
                   
     gravityWrench  = [zeros(2,1);
                      -m*gravAcc;
                       zeros(3,1)];
-                  
-    combined_torques = [assistant_torques; robot_torques];
 
     % Velocity of the center of mass
     xCoM_dot       = J_CoM(1:3,:)*nu;
@@ -181,17 +181,19 @@ function [tauModel, Sigma, NA, f_LDot, ...
     correctionFromSupportForce = zeros(6,1);
     L_errParallel = L_error/(norm(L_error)+Reg.norm_tolerance);
     
+    %% The total contacts of the combined system are 6
+    %% Hence the rows are 6 x 6 = 36
     phri_assistant_feet_wrench = zeros(12,1);
     phri_robot_feet_wrench = zeros(12,1);
     Big_G1 = zeros(36,ASSISTANT_DOF);
     Big_G2 = zeros(36,ROBOT_DOF);
     Big_G3 = zeros(36,1);
     
-    if (STANDUP_WITH_ASSISTANT_FORCE && MEASURED_FT)
+    if (STANDUP_WITH_ASSISTANT_FORCE && MEASURED_FT) %% This is the case of using measured FT from WBD for standup
         
         alpha         = (transpose(L_error)*fsupport)/(norm(L_error)+Reg.norm_tolerance);
     
-    elseif ((STANDUP_WITH_ASSISTANT_FORCE && ~MEASURED_FT) || STANDUP_WITH_ASSISTANT_TORQUE)
+    elseif (~SOLO_ROBOT && ((STANDUP_WITH_ASSISTANT_FORCE && ~MEASURED_FT) || STANDUP_WITH_ASSISTANT_TORQUE)) %%This is used in case of using computed FT or assistant joint torques
         
         Big_M          = [assistant_M,                           zeros(6+ASSISTANT_DOF,6+ROBOT_DOF);
                           zeros(6+ROBOT_DOF,6+ASSISTANT_DOF),    M];

@@ -13,7 +13,7 @@ WBTConfigRobot           = WBToolbox.Configuration;
 if (~Config.USING_SOLO_ROBOT && Config.USING_ROBOT_ASSISTANT)
     WBTConfigRobot.RobotName = 'iCub';
 else
-    WBTConfigRobot.RobotName = 'icubSim';
+    WBTConfigRobot.RobotName = 'iCub';
 end
 
 WBTConfigRobot.UrdfFile  = 'model.urdf';
@@ -48,24 +48,6 @@ Frames.LEFT_LEG          = 'l_upper_leg_contact';
 Frames.RIGHT_LEG         = 'r_upper_leg_contact';
 Frames.LEFT_HAND         = 'l_hand_dh_frame';
 Frames.RIGHT_HAND        = 'r_hand_dh_frame';
-
-%% iCub STANDUP demo physical interaction options
-
-Config.STANDUP_WITH_ASSISTANT_FORCE           = false;
-Config.MEASURED_FT                            = false;
-Config.STANDUP_WITH_ASSISTANT_TORQUE          = true;
-
-if (~Config.USING_SOLO_ROBOT && (~Config.STANDUP_WITH_ASSISTANT_FORCE && ~Config.MEASURED_FT && ~Config.STANDUP_WITH_ASSISTANT_TORQUE))
-    error('Standup scenario set up with an external agent but all of the physical interaction options are set False. \n%s','Please set one option of physical interaction to True.');
-end
-
-if (~Config.USING_SOLO_ROBOT && Config.STANDUP_WITH_ASSISTANT_FORCE)
-    disp('Physical interaction option set to use assistant agent force');
-elseif (~Config.USING_SOLO_ROBOT && Config.MEASURED_FT)
-    disp('Physical interaction option set to use measure FT at the arms'); 
-elseif (~Config.USING_SOLO_ROBOT && Config.STANDUP_WITH_ASSISTANT_TORQUE)
-    disp('Physical intearction option set to use assistant agent joint torques');
-end
 
 %% Other parameters
 

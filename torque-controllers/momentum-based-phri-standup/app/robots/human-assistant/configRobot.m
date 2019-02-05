@@ -90,4 +90,4 @@ if ~ASSISTANT_WBTConfigRobot.ValidConfiguration
 end
 
 %% comment out robot assistance data dump and visualization subsystem
-set_param('torqueBalancingPHRIStandup/Assistant system/Dump and visualize/Assistant Data/Using Robot Assistant/', 'Commented', 'on');
+set_param('torqueBalancingPHRIStandup/Assistant system/Dummy system/Dump and visualize/Assistant Data/Using Robot Assistant/', 'Commented', 'on');
