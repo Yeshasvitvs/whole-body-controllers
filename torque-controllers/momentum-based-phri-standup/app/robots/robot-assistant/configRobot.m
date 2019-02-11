@@ -10,7 +10,7 @@ ASSISTANT_ON_GAZEBO          = true;
 
 % Robot configuration for WBT3.0
 ASSISTANT_WBTConfigRobot           = WBToolbox.Configuration;
-ASSISTANT_WBTConfigRobot.RobotName = 'iCub_0';
+ASSISTANT_WBTConfigRobot.RobotName = 'iCub';
 ASSISTANT_WBTConfigRobot.UrdfFile  = 'model.urdf';
 ASSISTANT_WBTConfigRobot.LocalName = 'WBT';
 

@@ -9,7 +9,7 @@ ROBOT_DOF_FOR_SIMULINK   = eye(ROBOT_DOF);
 
 % Robot configuration for WBT3.0
 WBTConfigRobot           = WBToolbox.Configuration;
-WBTConfigRobot.RobotName = 'icub';
+WBTConfigRobot.RobotName = 'icub02';
 WBTConfigRobot.UrdfFile  = 'model.urdf';
 WBTConfigRobot.LocalName = 'WBT';
 
@@ -42,17 +42,6 @@ Frames.LEFT_LEG          = 'l_upper_leg_back_contact';
 Frames.RIGHT_LEG         = 'r_upper_leg_back_contact';
 Frames.LEFT_HAND         = 'l_hand_dh_frame';
 Frames.RIGHT_HAND        = 'r_hand_dh_frame';
-
-%% iCub STANDUP demo parameters
-% when Config.STANDUP_WITH_HUMAN is setted to TRUE, the robot will be aware 
-% of the external forces at the arms provided by the human and it will use
-% also them for lifting up.
-
-Config.USING_HUMAN_MODEL                  = false; %flag to check if the human model is used or robot model is used as human
-
-Config.STANDUP_WITH_HUMAN_FORCE           = false;
-Config.MEASURED_FT                        = false;
-Config.STANDUP_WITH_HUMAN_TORQUE          = true;
 
 %% Other parameters
 
@@ -92,10 +81,10 @@ Config.CORRECT_NECK_IMU  = true;
 Config.USE_QP_SOLVER     = true; 
 
 % Ports name list
-Ports.WBD_LEFTLEG_EE   = '/wholeBodyDynamics/left_leg/cartesianEndEffectorWrench:o';
-Ports.WBD_RIGHTLEG_EE  = '/wholeBodyDynamics/right_leg/cartesianEndEffectorWrench:o';
-Ports.RIGHT_ARM        = '/wholeBodyDynamics/right_arm/endEffectorWrench:o';
-Ports.LEFT_ARM         = '/wholeBodyDynamics/left_arm/endEffectorWrench:o';
+Ports.WBD_LEFTLEG_EE   = '/icub02/wholeBodyDynamics/left_leg/cartesianEndEffectorWrench:o';
+Ports.WBD_RIGHTLEG_EE  = '/icub02/wholeBodyDynamics/right_leg/cartesianEndEffectorWrench:o';
+Ports.RIGHT_ARM        = '/icub02/wholeBodyDynamics/right_arm/endEffectorWrench:o';
+Ports.LEFT_ARM         = '/icub02/wholeBodyDynamics/left_arm/endEffectorWrench:o';
 Ports.IMU              = ['/' WBTConfigRobot.RobotName '/inertial'];
 Ports.NECK_POS         = ['/' WBTConfigRobot.RobotName '/head/state:o'];
 
