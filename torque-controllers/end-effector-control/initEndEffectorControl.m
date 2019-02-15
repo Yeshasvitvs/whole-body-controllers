@@ -14,34 +14,64 @@
 %  * Public License for more details
 %  */
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-clear; 
+clear variables; 
 clc;
 
+%% GENERAL SIMULATION INFO
+% If you are simulating the robot with Gazebo, 
+% remember that you have to launch Gazebo as follow:
+% 
+% gazebo -slibgazebo_yarp_clock.so
+% 
+% and set the environmental variable YARP_ROBOT_NAME = icubGazeboSim.
+% To do this, you can uncomment the
+
+setenv('YARP_ROBOT_NAME','icubGazeboSim');
+% % setenv('YARP_ROBOT_NAME','iCubGenova04'); %%Greeny
+% % setenv('YARP_ROBOT_NAME','iCubGenova02'); %%Purple
+
+
+% Simulation time in seconds
+Config.SIMULATION_TIME = inf;
+
+% If Config.SAVE_WORKSPACE = True, every time the simulink model is run the
+% workspace is saved after stopping the simulation
+Config.SAVE_WORKSPACE        = true;
+
+% Controller period [s]
+Config.Ts              = 0.01; 
+
 % End Effector link name
-CONFIG.EE                               = 'r_hand';
+Config.EE                               = 'r_hand';
 
 % This sections contains information on the robot parts considered
 %
 % SM.SM_TYPE: defined the parts of the robot considered
 %
-% 'single_arm': the end effector defined by 'CONFIG.EE_link_name' will be
+% 'single_arm': the end effector defined by 'Config.EE_link_name' will be
 %               moved along a desired trajectory using the joints in a single arm
-% 'upper_body': the end effector defined by 'CONFIG.EE_link_name' will be
+% 'upper_body': the end effector defined by 'Config.EE_link_name' will be
 %               moved along a desired trajectory using the joints in both the arms and
 %               the torso of the robot
 %               moved along a desired trajectory using 
 
-%CONFIG.PARTS                            = 'single_arm';
-CONFIG.PARTS                            = 'upper_body';
+%Config.PARTS                            = 'single_arm';
+Config.PARTS                            = 'upper_body';
+
+if(strcmp(Config.PARTS,'single_arm'))
+    Config.SOLO_ARM                             = true;
+else
+    Config.SOLO_ARM                             = false;
+end
 
 %% Configuration Object
 WBTConfigRobot                          = WBToolbox.Configuration;
 
 %% RobotConfiguration Data
-WBTConfigRobot.RobotName                = 'icubSim';
+WBTConfigRobot.RobotName                = 'iCub';
 WBTConfigRobot.UrdfFile                 = 'model.urdf';
 
-if(strcmp(CONFIG.PARTS,'single_arm') && strcmp(CONFIG.EE,'r_hand'))
+if(strcmp(Config.PARTS,'single_arm') && strcmp(Config.EE,'r_hand'))
     
     WBTConfigRobot.ControlledJoints     = {...
                                            'r_shoulder_pitch','r_shoulder_roll',...
@@ -50,7 +80,7 @@ if(strcmp(CONFIG.PARTS,'single_arm') && strcmp(CONFIG.EE,'r_hand'))
                                           };
     WBTConfigRobot.ControlBoardsNames   = {'right_arm'};
 
-elseif (strcmp(CONFIG.PARTS,'single_arm') && strcmp(CONFIG.EE,'l_hand'))
+elseif (strcmp(Config.PARTS,'single_arm') && strcmp(Config.EE,'l_hand'))
     
     WBTConfigRobot.ControlledJoints     = {...
                                            'l_shoulder_pitch','l_shoulder_roll',...
@@ -78,19 +108,6 @@ WBTConfigRobot.LocalName                = 'WBT';
 if ~WBTConfigRobot.ValidConfiguration
     return
 end
-
-%% GENERAL SIMULATION INFO
-% If you are simulating the robot with Gazebo, 
-% remember that you have to launch Gazebo as follow:
-% 
-% gazebo -slibgazebo_yarp_clock.so
-% 
-% and set the environmental variable YARP_ROBOT_NAME = icubGazeboSim.
-% To do this, you can uncomment the
-
-setenv('YARP_ROBOT_NAME','icubGazeboSim');
-% % setenv('YARP_ROBOT_NAME','iCubGenova04'); %%Greeny
-% % setenv('YARP_ROBOT_NAME','iCubGenova02'); %%Purple
 
 %% Load Gains
 run(strcat('app/robots/',getenv('YARP_ROBOT_NAME'),'/gains.m'));
