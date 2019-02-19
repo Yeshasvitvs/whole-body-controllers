@@ -59,16 +59,19 @@ Config.EE                               = 'r_hand';
 Config.PARTS                            = 'upper_body';
 
 if(strcmp(Config.PARTS,'single_arm'))
-    Config.SOLO_ARM                             = true;
+    Config.SOLO_ARM                     = true;
 else
-    Config.SOLO_ARM                             = false;
+    Config.SOLO_ARM                     = false;
 end
+
+%% Trajectory
+Config.MINJERK_TRAJECTORY               = false;
 
 %% Configuration Object
 WBTConfigRobot                          = WBToolbox.Configuration;
 
 %% RobotConfiguration Data
-WBTConfigRobot.RobotName                = 'iCub';
+WBTConfigRobot.RobotName                = 'icubSim';
 WBTConfigRobot.UrdfFile                 = 'model.urdf';
 
 if(strcmp(Config.PARTS,'single_arm') && strcmp(Config.EE,'r_hand'))
@@ -104,6 +107,12 @@ end
 
 WBTConfigRobot.LocalName                = 'WBT';
 
+%% WBD Configuration
+Frames.LEFT_HAND         = 'l_hand';
+Frames.RIGHT_HAND        = 'r_hand';
+Ports.RIGHT_ARM        = '/wholeBodyDynamics/right_arm/endEffectorWrench:o';
+Ports.LEFT_ARM         = '/wholeBodyDynamics/left_arm/endEffectorWrench:o';
+
 %% Checking Configuration Success
 if ~WBTConfigRobot.ValidConfiguration
     return
@@ -112,4 +121,6 @@ end
 %% Load Gains
 run(strcat('app/robots/',getenv('YARP_ROBOT_NAME'),'/gains.m'));
 
+%% Add utils directory to path
+addpath('utils')
 
