@@ -72,7 +72,7 @@ function offlinePositionErrorPlots
         curve_position_error = animatedline('LineWidth',1);
         curve_position_error_marker = animatedline('Color','r','LineWidth',1,'Marker','*');
 
-        for i = 2:1:size(Xdes.signal1.Data,1)
+        for i = 2:1:size(Xdes.signals.values,1)
 
             figure(1);
             addpoints(curve_desired_position,...
