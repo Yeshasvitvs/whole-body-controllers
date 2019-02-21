@@ -67,6 +67,9 @@ end
 %% Trajectory
 Config.MINJERK_TRAJECTORY               = false;
 
+%% Trajectory parametrization control
+Config.TRAJECTORY_PARAMETRIZATION       = true;
+
 %% Configuration Object
 WBTConfigRobot                          = WBToolbox.Configuration;
 
