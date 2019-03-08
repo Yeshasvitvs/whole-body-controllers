@@ -14,27 +14,27 @@ fi
 COMMAND=$1
 
 if [[ ${COMMAND} == "x" ]] ; then
-  echo "iCub::r_hand 10 0 0 0 0 0 5" | yarp rpc /iCub/applyExternalWrench/rpc:i
+  echo "iCub::r_hand 2 0 0 0 0 0 5" | yarp rpc /iCub/applyExternalWrench/rpc:i
 fi
 
 if [[ ${COMMAND} == "-x" ]] ; then
-  echo "iCub::r_hand -10 0 0 0 0 0 5" | yarp rpc /iCub/applyExternalWrench/rpc:i
+  echo "iCub::r_hand -2 0 0 0 0 0 5" | yarp rpc /iCub/applyExternalWrench/rpc:i
 fi
 
 if [[ ${COMMAND} == "y" ]] ; then
-  echo "iCub::r_hand 0 10 0 0 0 0 5" | yarp rpc /iCub/applyExternalWrench/rpc:i
+  echo "iCub::r_hand 0 2 0 0 0 0 5" | yarp rpc /iCub/applyExternalWrench/rpc:i
 fi
 
 if [[ ${COMMAND} == "-y" ]] ; then
-  echo "iCub::r_hand 0 -10 0 0 0 0 5" | yarp rpc /iCub/applyExternalWrench/rpc:i
+  echo "iCub::r_hand 0 -2 0 0 0 0 5" | yarp rpc /iCub/applyExternalWrench/rpc:i
 fi
 
 if [[ ${COMMAND} == "z" ]] ; then
-  echo "iCub::r_hand 0 0 10 0 0 0 5" | yarp rpc /iCub/applyExternalWrench/rpc:i
+  echo "iCub::r_hand 0 0 2 0 0 0 5" | yarp rpc /iCub/applyExternalWrench/rpc:i
 fi
 
 if [[ ${COMMAND} == "-z" ]] ; then
-  echo "iCub::r_hand 0 0 -10 0 0 0 5" | yarp rpc /iCub/applyExternalWrench/rpc:i
+  echo "iCub::r_hand 0 0 -2 0 0 0 5" | yarp rpc /iCub/applyExternalWrench/rpc:i
 fi
 
 exit 0

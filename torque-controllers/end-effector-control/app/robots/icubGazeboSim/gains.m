@@ -31,7 +31,7 @@ if(strcmp(Config.PARTS,'single_arm'))
     GAINS.POSTURAL.Kd			    = 2;
 else
     %% Position control gains
-    GAINS.POSITION.Kp			    = diag([1000,1000,1000]);
+    GAINS.POSITION.Kp			    = diag([500,500,500]);
     GAINS.POSITION.Kd			    = 2*sqrt(GAINS.POSITION.Kp);
     GAINS.POSITION.Eps			    = 1e-20;
 
@@ -41,7 +41,7 @@ else
     GAINS.ORIENTATION.Eps			= 1e-20;
 
     %% Postural task gains
-    GAINS.POSTURAL.Kp			    = diag([100,100,100,30,30,30,30,30,100,100,100,100,100]);
-    GAINS.POSTURAL.Kd			    = 2;
+    GAINS.POSTURAL.Kp			    = diag([100,100,100,50,50,50,50,50,130,130,130,130,130]);
+    GAINS.POSTURAL.Kd			    = diag([5.0,5.0,5.0,2.75,2.75,2.75,2.75,2.75,2.0,2.0,2.0,2.0,2.0]);
 end
 
