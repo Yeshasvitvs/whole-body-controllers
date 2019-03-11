@@ -4,6 +4,7 @@
 
 %% --- Initialization ---
 Config.ON_GAZEBO         = true;
+Config.SDOT_REGULARIZATION = 1e-2;
 
 if(strcmp(Config.PARTS,'single_arm'))
     ROBOT_DOF                                   = 5;
@@ -41,7 +42,7 @@ else
     GAINS.ORIENTATION.Eps			= 1e-20;
 
     %% Postural task gains
-    GAINS.POSTURAL.Kp			    = diag([100,100,100,50,50,50,50,50,130,130,130,130,130]);
+    GAINS.POSTURAL.Kp			    = diag([25,25,25,50,50,50,50,50,50,50,50,50,50]);
     GAINS.POSTURAL.Kd			    = diag([5.0,5.0,5.0,2.75,2.75,2.75,2.75,2.75,2.0,2.0,2.0,2.0,2.0]);
 end
 
