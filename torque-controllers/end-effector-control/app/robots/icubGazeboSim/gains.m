@@ -4,7 +4,8 @@
 
 %% --- Initialization ---
 Config.ON_GAZEBO         = true;
-Config.SDOT_REGULARIZATION = 1e-2;
+Config.SDOT_REGULARIZATION = 1e-4;
+Config.WAIT_TIME = 2; %Time to wait before starting tracking
 
 if(strcmp(Config.PARTS,'single_arm'))
     ROBOT_DOF                                   = 5;
