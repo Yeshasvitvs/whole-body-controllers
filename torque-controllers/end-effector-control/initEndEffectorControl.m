@@ -70,6 +70,10 @@ Config.MINJERK_TRAJECTORY               = false;
 %% Trajectory parametrization control
 Config.TRAJECTORY_PARAMETRIZATION       = true;
 
+%% Trajectory type
+%% straight-y (1) straight-z (2) or circular (3)
+Config.TRAJECTORY_TYPE                  = 2;
+
 %% Configuration Object
 WBTConfigRobot                          = WBToolbox.Configuration;
 
