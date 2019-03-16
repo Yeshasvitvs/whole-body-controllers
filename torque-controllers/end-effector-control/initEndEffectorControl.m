@@ -72,7 +72,7 @@ Config.TRAJECTORY_PARAMETRIZATION       = true;
 
 %% Trajectory type
 %% straight-y (1) straight-z (2) or circular (3)
-Config.TRAJECTORY_TYPE                  = 2;
+Config.TRAJECTORY_TYPE                  = 3;
 
 %% Configuration Object
 WBTConfigRobot                          = WBToolbox.Configuration;

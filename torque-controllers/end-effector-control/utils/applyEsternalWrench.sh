@@ -14,7 +14,7 @@ fi
 COMMAND=$1
 
 FORCE=4.5
-TIME=1.5
+TIME=0.5
 
 if [[ ${COMMAND} == "x" ]] ; then
   echo "iCub::r_hand ${FORCE} 0 0 0 0 0 ${TIME}" | yarp rpc /iCub/applyExternalWrench/rpc:i
