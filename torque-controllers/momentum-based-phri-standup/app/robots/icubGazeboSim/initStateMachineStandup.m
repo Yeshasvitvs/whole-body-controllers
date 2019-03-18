@@ -120,7 +120,7 @@ end
 Sm.CoM_delta        = [% THIS REFERENCE IS USED AS A DELTA W.R.T. THE POSITION OF THE LEFT LEG
                        0.0     0.0     0.0;       % NOT USED
                        0.12   -0.0295  0.0;       % state ==  2  MOVE COM FORWARD
-                       0.04    0.01    0.0;       % state ==  3  TWO FEET BALANCING
+                       0.03   -0.02    0.0;       % state ==  3  TWO FEET BALANCING
                       -0.01    0.0     0.20];     % state ==  4  LIFTING UP
 
 
