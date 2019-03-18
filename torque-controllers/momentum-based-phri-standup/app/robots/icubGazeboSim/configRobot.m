@@ -13,7 +13,7 @@ WBTConfigRobot           = WBToolbox.Configuration;
 if (~Config.USING_SOLO_ROBOT && Config.USING_ROBOT_ASSISTANT)
     WBTConfigRobot.RobotName = 'iCub';
 else
-    WBTConfigRobot.RobotName = 'iCub';
+    WBTConfigRobot.RobotName = 'icubSim';
 end
 
 WBTConfigRobot.UrdfFile  = 'model.urdf';

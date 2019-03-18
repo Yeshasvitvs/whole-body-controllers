@@ -28,13 +28,13 @@ clc
 % To do this, you can uncomment the 
 
 % setenv('YARP_ROBOT_NAME','iCubGenova04');
-%   setenv('YARP_ROBOT_NAME','icubGazeboSim');
- setenv('YARP_ROBOT_NAME','iCubGenova02');
+  setenv('YARP_ROBOT_NAME','icubGazeboSim');
+% setenv('YARP_ROBOT_NAME','iCubGenova02');
 % setenv('YARP_ROBOT_NAME','iCubGazeboV2_5');
 
 %% Flags for considering the standup scenario
-Config.USING_SOLO_ROBOT       = false;
-Config.USING_ROBOT_ASSISTANT  = true;
+Config.USING_SOLO_ROBOT       = true;
+Config.USING_ROBOT_ASSISTANT  = false;
 Config.USING_HUMAN_ASSISTANT  = false;
 
 %% Check if standup scenario is set correctly
@@ -57,10 +57,10 @@ end
 %% iCub STANDUP demo physical interaction options
 Config.STANDUP_WITH_ASSISTANT_FORCE           = false;
 Config.MEASURED_FT                            = false;
-Config.STANDUP_WITH_ASSISTANT_TORQUE          = true;
+Config.STANDUP_WITH_ASSISTANT_TORQUE          = false;
 
 if (Config.USING_SOLO_ROBOT && (Config.STANDUP_WITH_ASSISTANT_FORCE || Config.MEASURED_FT || Config.STANDUP_WITH_ASSISTANT_TORQUE))
-    error('Stanup scenario set up with only solo robot but some of the physical interaction options is set to True. \n%s', 'Please set that flags to false');
+    error('Standup scenario set up with only solo robot but some of the physical interaction options is set to True. \n%s', 'Please set that flags to false');
 elseif (~Config.USING_SOLO_ROBOT && (~Config.STANDUP_WITH_ASSISTANT_FORCE && ~Config.MEASURED_FT && ~Config.STANDUP_WITH_ASSISTANT_TORQUE))
     error('Standup scenario set up with an external agent but all of the physical interaction options are set False. \n%s','Please set one option of physical interaction to True.');
 elseif (~Config.USING_SOLO_ROBOT && (Config.STANDUP_WITH_ASSISTANT_FORCE && Config.STANDUP_WITH_ASSISTANT_TORQUE))
@@ -80,7 +80,10 @@ end
 
 
 % Simulation time in seconds
-Config.SIMULATION_TIME = inf;   
+Config.SIMULATION_TIME = inf;
+
+%% Trajectory type
+Config.ANALYTICAL_TRAJECTORY = true;
 
 %% PRELIMINARY CONFIGURATIONS 
 % Sm.SM_TYPE: defines the kind of state machines that can be chosen.
