@@ -85,6 +85,9 @@ Config.SIMULATION_TIME = inf;
 %% Trajectory type
 Config.ANALYTICAL_TRAJECTORY = true;
 
+%% Trajectory paramerization
+Config.TRAJECTORY_PARAMETRIZATION = true;
+
 %% PRELIMINARY CONFIGURATIONS 
 % Sm.SM_TYPE: defines the kind of state machines that can be chosen.
 %

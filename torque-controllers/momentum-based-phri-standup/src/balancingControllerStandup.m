@@ -22,7 +22,7 @@ function [tauModel, Sigma, NA, f_LDot, ...
               balancingControllerStandup(constraints, ROBOT_DOF_FOR_SIMULINK, ASSISTANT_DOF_FOR_SIMULINK, ConstraintsMatrix, bVectorConstraints, ...
                                          qj, qjDes, nu, M, h, L, intLw, w_H_l_contact, w_H_r_contact, JL, JR, dJL_nu, dJR_nu, xCoM, J_CoM, desired_x_dx_ddx_CoM, Jcmm, ...
                                          gainsPCOM, gainsDCOM, impedances, Reg, Gain, w_H_lArm, w_H_rArm, JLArm, JRArm, dJLArm_nu, dJRArm_nu,...
-                                         LArmWrench, RArmWrench, STANDUP_WITH_ASSISTANT_FORCE, MEASURED_FT, STANDUP_WITH_ASSISTANT_TORQUE, ...
+                                         LArmWrench, RArmWrench, STANDUP_WITH_ASSISTANT_FORCE, MEASURED_FT, STANDUP_WITH_ASSISTANT_TORQUE, TRAJECTORY_PARAMETRIZATION, ...
                                          assistant_w_H_b, assistant_qj, assistant_nu_b, assistant_dqj, assistant_M, assistant_h, assistant_torques, ...
                                          assistant_w_H_l_contact, assistant_w_H_r_contact, assistant_JL, assistant_JR, assistant_dJL_nu, assistant_dJR_nu,...
                                          assistant_w_H_lArm_contact, assistant_w_H_rArm_contact, assistant_JLArm, assistant_JRArm, assistant_dJLArm_nu, assistant_dJRArm_nu,...
@@ -189,7 +189,7 @@ function [tauModel, Sigma, NA, f_LDot, ...
     Big_G2 = zeros(36,ROBOT_DOF);
     Big_G3 = zeros(36,1);
     
-    if (STANDUP_WITH_ASSISTANT_FORCE && MEASURED_FT) %% This is the case of using measured FT from WBD for standup
+    if ((STANDUP_WITH_ASSISTANT_FORCE && MEASURED_FT) && (~TRAJECTORY_PARAMETRIZATION)) %% This is the case of using measured FT from WBD for standup
         
         alpha         = (transpose(L_error)*fsupport)/(norm(L_error)+Reg.norm_tolerance);
     
@@ -264,7 +264,7 @@ function [tauModel, Sigma, NA, f_LDot, ...
     
     end
     
-    if alpha <= 0 && state < 4 && STANDUP_WITH_ASSISTANT_FORCE
+    if alpha <= 0 && state < 4 && (STANDUP_WITH_ASSISTANT_FORCE && ~TRAJECTORY_PARAMETRIZATION)
         
         correctionFromSupportForce = alpha*L_errParallel;
         
@@ -314,9 +314,20 @@ function [tauModel, Sigma, NA, f_LDot, ...
     correctionFromSupportTorque = zeros(6,1);
     if ~STANDUP_WITH_ASSISTANT_TORQUE %% Without considering assistant joint torques
         
-        % Terms used in Eq. 0)
-        tauModel  = Pinv_JcMinvSt*(JcMinv*h - Jc_nuDot) + nullJcMinvSt*(h(7:end) - Mbj'/Mb*h(1:6) ...
+        if (~TRAJECTORY_PARAMETRIZATION)
+            
+            % Terms used in Eq. 0)
+            tauModel  = Pinv_JcMinvSt*(JcMinv*h - Jc_nuDot) + nullJcMinvSt*(h(7:end) - Mbj'/Mb*h(1:6) ...
                                   -impedances*NLMbar*qjTilde -dampings*NLMbar*qjDot);
+                              
+        elseif (TRAJECTORY_PARAMETRIZATION)
+            
+            % Terms used in Eq. 0)
+            tauModel  = Pinv_JcMinvSt*(JcMinv*h - Jc_nuDot + L_error) + nullJcMinvSt*(h(7:end) - Mbj'/Mb*h(1:6) ...
+                                  -impedances*NLMbar*qjTilde -dampings*NLMbar*qjDot);
+                              
+                              
+        end
         
         Sigma     = -(Pinv_JcMinvSt*JcMinvJct + nullJcMinvSt*JBar);
         
@@ -326,6 +337,10 @@ function [tauModel, Sigma, NA, f_LDot, ...
          
         int_L_tilde_times_gain = [m * gainsPCOM .* (xCoM - desired_x_dx_ddx_CoM(:,1));
                                   Gain.KP_AngularMomentum .* intLw];
+                              
+        
+                              
+        
         
     elseif STANDUP_WITH_ASSISTANT_TORQUE %% with assistant joint torques
         
