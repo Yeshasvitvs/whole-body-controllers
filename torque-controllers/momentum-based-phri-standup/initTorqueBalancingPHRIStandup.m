@@ -172,11 +172,18 @@ end
 [ConstraintsMatrixLegs,bVectorConstraintsLegs] = constraints(forceFrictionCoefficient,numberOfPoints,torsionalFrictionCoefficient,leg_size,fZmin);
 
 %% Assistant Agent Configuration
-set_param('torqueBalancingPHRIStandup/Assistant system/Real system', 'Commented', 'off')
-set_param('torqueBalancingPHRIStandup/Assistant system/Dummy system', 'Commented', 'off')
+model_name = 'torqueBalancingPHRIStandup_WBTv5';
+
+% open simulink model
+if (~slreportgen.utils.isModelLoaded(model_name))
+    open_system(model_name,'window')
+end
+
+set_param(strcat(model_name,'/Assistant system/Real system'), 'Commented', 'off')
+set_param(strcat(model_name,'/Assistant system/Dummy system'), 'Commented', 'off')
 
 if ((Config.STANDUP_WITH_ASSISTANT_FORCE && ~Config.MEASURED_FT) || Config.STANDUP_WITH_ASSISTANT_TORQUE)
-    set_param('torqueBalancingPHRIStandup/Assistant system/Dummy system', 'Commented', 'on')
+    set_param(strcat(model_name,'/Assistant system/Dummy system'), 'Commented', 'on')
     % Run assistant robot agent specifig configuration parameters
     if (~Config.USING_SOLO_ROBOT && Config.USING_ROBOT_ASSISTANT)
         disp('Standup scenario set up with robot assistant.');
@@ -188,6 +195,6 @@ if ((Config.STANDUP_WITH_ASSISTANT_FORCE && ~Config.MEASURED_FT) || Config.STAND
         run(strcat('app/robots/human-assistant/configRobot.m'));
     end
 else
-    set_param('torqueBalancingPHRIStandup/Assistant system/Real system', 'Commented', 'on')
+    set_param(strcat(model_name,'/Assistant system/Real system'), 'Commented', 'on')
     disp('Standup scenario set up without any external agent assistant.');
 end
