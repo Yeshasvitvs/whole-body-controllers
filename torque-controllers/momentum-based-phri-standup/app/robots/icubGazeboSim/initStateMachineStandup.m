@@ -33,23 +33,23 @@ Reg.HessianQP      = 1e-2;
 Reg.norm_tolerance = 1e-4;
                             
 %% COM AND JOINT GAINS
-ASSISTANT_TORQUE = true;
+% % ASSISTANT_TORQUE = true;
+% % 
+% % if ASSISTANT_TORQUE
+% % 
+% %     Gain.KP_COM     =      [305   95  100;     % state ==  1  BALANCING ON THE LEGS
+% %                             305   95  100;     % state ==  2  MOVE COM FORWARD
+% %                             305   95  100;     % state ==  3  TWO FEET BALANCING
+% %                             305   95  100];    % state ==  4  LIFTING UP
+% % 
+% %     Gain.KD_COM = 2*sqrt(Gain.KP_COM)/10;
+% %     
+% % end
 
-if ASSISTANT_TORQUE
-
-    Gain.KP_COM     =      [305   95  100;     % state ==  1  BALANCING ON THE LEGS
-                            305   95  100;     % state ==  2  MOVE COM FORWARD
-                            305   95  100;     % state ==  3  TWO FEET BALANCING
-                            305   95  100];    % state ==  4  LIFTING UP
-
-    Gain.KD_COM = 2*sqrt(Gain.KP_COM)/10;
-    
-end
-
-Gain.KP_COM     =      [250   250  50;     % state ==  1  BALANCING ON THE LEGS
-                        250   250  50;     % state ==  2  MOVE COM FORWARD
-                        250   250  50;     % state ==  3  TWO FEET BALANCING
-                        250   250  50];    % state ==  4  LIFTING UP
+Gain.KP_COM     =      [280   280  50;     % state ==  1  BALANCING ON THE LEGS
+                        280   280  50;     % state ==  2  MOVE COM FORWARD
+                        280   280  50;     % state ==  3  TWO FEET BALANCING
+                        280   280  50];    % state ==  4  LIFTING UP
 
 Gain.KD_COM = 2*sqrt(Gain.KP_COM)/10;
 
@@ -108,14 +108,14 @@ Sm.stateAt0 = 1;
 
 % delta to be summed to the reference CoM position (STANDUP DEMO ONLY)
 
-if ASSISTANT_TORQUE
-    
-    Sm.CoM_delta        = [% THIS REFERENCE IS USED AS A DELTA W.R.T. THE POSITION OF THE LEFT LEG
-                           0.0     0.0     0.0;       % NOT USED
-                           0.14   -0.02    0.0;       % state ==  2  MOVE COM FORWARD
-                          -0.02    0.0     0.0;       % state ==  3  TWO FEET BALANCING
-                           0.00    0.0     0.20];     % state ==  4  LIFTING UP
-end
+% % if ASSISTANT_TORQUE
+% %     
+% %     Sm.CoM_delta        = [% THIS REFERENCE IS USED AS A DELTA W.R.T. THE POSITION OF THE LEFT LEG
+% %                            0.0     0.0     0.0;       % NOT USED
+% %                            0.14   -0.02    0.0;       % state ==  2  MOVE COM FORWARD
+% %                           -0.02    0.0     0.0;       % state ==  3  TWO FEET BALANCING
+% %                            0.00    0.0     0.20];     % state ==  4  LIFTING UP
+% % end
 
 Sm.CoM_delta        = [% THIS REFERENCE IS USED AS A DELTA W.R.T. THE POSITION OF THE LEFT LEG
                        0.0     0.0     0.0;       % NOT USED

@@ -18,15 +18,15 @@
 function [tauModel, Sigma, NA, f_LDot, ...
           HessianMatrixQP1Foot, gradientQP1Foot, ConstraintsMatrixQP1Foot, bVectorConstraintsQp1Foot, ...
           HessianMatrixQP2FeetOrLegs, gradientQP2FeetOrLegs, ConstraintsMatrixQP2FeetOrLegs, bVectorConstraintsQp2FeetOrLegs, ...
-          errorCoM, f_noQP, correctionFromSupportForce, L_error, V, alpha, fArms, phri_assistant_feet_wrench, phri_robot_feet_wrench, correctionFromSupportTorque] =  ...
+          errorCoM, f_noQP, correctionFromSupportForce, L_error, V, alpha, fArms, phri_assistant_feet_wrench, phri_robot_feet_wrench, correctionFromSupportTorque, sdot] =  ...
               balancingControllerStandup(constraints, ROBOT_DOF_FOR_SIMULINK, ASSISTANT_DOF_FOR_SIMULINK, ConstraintsMatrix, bVectorConstraints, ...
-                                         qj, qjDes, nu, M, h, L, intLw, w_H_l_contact, w_H_r_contact, JL, JR, dJL_nu, dJR_nu, xCoM, J_CoM, desired_x_dx_ddx_CoM, Jcmm, ...
+                                         qj, qjDes, nu, M, h, L, intLw, w_H_l_contact, w_H_r_contact, JL, JR, dJL_nu, dJR_nu, xCoM, J_CoM, JDot_nu_CoM, desired_x_dx_ddx_CoM, Jcmm, ...
                                          gainsPCOM, gainsDCOM, impedances, Reg, Gain, w_H_lArm, w_H_rArm, JLArm, JRArm, dJLArm_nu, dJRArm_nu,...
                                          LArmWrench, RArmWrench, STANDUP_WITH_ASSISTANT_FORCE, MEASURED_FT, STANDUP_WITH_ASSISTANT_TORQUE, TRAJECTORY_PARAMETRIZATION, ...
                                          assistant_w_H_b, assistant_qj, assistant_nu_b, assistant_dqj, assistant_M, assistant_h, assistant_torques, ...
                                          assistant_w_H_l_contact, assistant_w_H_r_contact, assistant_JL, assistant_JR, assistant_dJL_nu, assistant_dJR_nu,...
                                          assistant_w_H_lArm_contact, assistant_w_H_rArm_contact, assistant_JLArm, assistant_JRArm, assistant_dJLArm_nu, assistant_dJRArm_nu,...
-                                         state, robot_torques, SOLO_ROBOT)
+                                         state, robot_torques, SOLO_ROBOT, SDOT_REG)
        
     % BALANCING CONTROLLER
 
@@ -175,6 +175,9 @@ function [tauModel, Sigma, NA, f_LDot, ...
     % momentum error
     L_error    = L -L_desired;
     
+    % sdot initialization
+    sdot = 0;
+    
     % projector of contact forces into the direction parallel to momentum
     % error
     alpha = 100; %%This is the default value
@@ -320,27 +323,48 @@ function [tauModel, Sigma, NA, f_LDot, ...
             tauModel  = Pinv_JcMinvSt*(JcMinv*h - Jc_nuDot) + nullJcMinvSt*(h(7:end) - Mbj'/Mb*h(1:6) ...
                                   -impedances*NLMbar*qjTilde -dampings*NLMbar*qjDot);
                               
+            Sigma     = -(Pinv_JcMinvSt*JcMinvJct + nullJcMinvSt*JBar);
+        
+            % Desired rate-of-change of the robot momentum
+            LDotDes   = [m*xDDcomStar ;
+                        -Gain.KD_AngularMomentum*L(4:end)-Gain.KP_AngularMomentum*intLw] +correctionFromSupportForce;
+         
+            int_L_tilde_times_gain = [m * gainsPCOM .* (xCoM - desired_x_dx_ddx_CoM(:,1));
+                                    Gain.KP_AngularMomentum .* intLw];
+                              
+                              
         elseif (TRAJECTORY_PARAMETRIZATION)
             
-            % Terms used in Eq. 0)
-            tauModel  = Pinv_JcMinvSt*(JcMinv*h - Jc_nuDot + L_error) + nullJcMinvSt*(h(7:end) - Mbj'/Mb*h(1:6) ...
-                                  -impedances*NLMbar*qjTilde -dampings*NLMbar*qjDot);
-                              
-                              
-        end
-        
-        Sigma     = -(Pinv_JcMinvSt*JcMinvJct + nullJcMinvSt*JBar);
-        
-        % Desired rate-of-change of the robot momentum
-        LDotDes   = [m*xDDcomStar ;
-                     -Gain.KD_AngularMomentum*L(4:end)-Gain.KP_AngularMomentum*intLw] +correctionFromSupportForce;
+            JcmmMinv = Jcmm/M;
+            Delta   = JcmmMinv*St;
+            Pinv_Delta = pinvDamped(Delta, 1);
+            
+            Omega = JcmmMinv*transpose(JcArm);
+            Lambda = gravityWrench;
+            
+            % Desired rate-of-change of the robot momentum
+            LDotDes   = [m*xDDcomStar ;
+                        -Gain.KD_AngularMomentum*L(4:end)-Gain.KP_AngularMomentum*intLw];
          
-        int_L_tilde_times_gain = [m * gainsPCOM .* (xCoM - desired_x_dx_ddx_CoM(:,1));
-                                  Gain.KP_AngularMomentum .* intLw];
-                              
+            int_L_tilde_times_gain = [m * gainsPCOM .* (xCoM - desired_x_dx_ddx_CoM(:,1));
+                                    Gain.KP_AngularMomentum .* intLw];
+                                
+            Beta = int_L_tilde_times_gain - LDotDes;
+            
+            nullDelta    = eye(ROBOT_DOF) - Pinv_Delta*Delta;
+            
+            % Terms used in Eq. 0)
+            tauModel  = -Pinv_Delta*(Lambda + Beta + L_error) + nullDelta*(h(7:end) - Mbj'/Mb*h(1:6) ...
+                                 -(impedances.*2.5)*NLMbar*qjTilde -(dampings.*1.5)*NLMbar*qjDot);
         
-                              
-        
+            Sigma = -(Pinv_Delta*JcmmMinv*transpose(Jc) + nullDelta*JBar);
+            
+            %% Sdot computation
+            numerator = transpose(L)*Omega*fArms;
+            denominator = transpose(L_desired)*Omega*fArms;
+            sdot = min(5, max(1, ((numerator*denominator)/(denominator^2 + SDOT_REG))));
+                          
+        end
         
     elseif STANDUP_WITH_ASSISTANT_TORQUE %% with assistant joint torques
         

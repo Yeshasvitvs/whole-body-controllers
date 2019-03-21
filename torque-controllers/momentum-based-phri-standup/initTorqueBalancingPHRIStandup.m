@@ -60,33 +60,42 @@ Config.MEASURED_FT                            = false;
 Config.STANDUP_WITH_ASSISTANT_TORQUE          = false;
 
 if (Config.USING_SOLO_ROBOT && (Config.STANDUP_WITH_ASSISTANT_FORCE || Config.MEASURED_FT || Config.STANDUP_WITH_ASSISTANT_TORQUE))
-    error('Standup scenario set up with only solo robot but some of the physical interaction options is set to True. \n%s', 'Please set that flags to false');
+    error('Standup scenario set up with only solo robot but some of the physical interaction options is set to True. \n%s', 'Please set that flags to false.');
 elseif (~Config.USING_SOLO_ROBOT && (~Config.STANDUP_WITH_ASSISTANT_FORCE && ~Config.MEASURED_FT && ~Config.STANDUP_WITH_ASSISTANT_TORQUE))
     error('Standup scenario set up with an external agent but all of the physical interaction options are set False. \n%s','Please set one option of physical interaction to True.');
 elseif (~Config.USING_SOLO_ROBOT && (Config.STANDUP_WITH_ASSISTANT_FORCE && Config.STANDUP_WITH_ASSISTANT_TORQUE))
     error('Standup scenario set up with an both assistant force and torque options true. \n%s','Please set only one of the options True.');
 elseif (~Config.USING_SOLO_ROBOT && (Config.MEASURED_FT && ~Config.STANDUP_WITH_ASSISTANT_FORCE))
-    error('Standup scenario set up with force option false but measured FT option is set true. \n%s.','Please turn on the force option if you wish to use measured wrench through wholebodydynamics')
+    error('Standup scenario set up with force option false but measured FT option is set true. \n%s','Please turn on the force option if you wish to use measured wrench through wholebodydynamics.')
 end
 
 if (~Config.USING_SOLO_ROBOT && (Config.STANDUP_WITH_ASSISTANT_FORCE && Config.MEASURED_FT))
-    disp('Physical interaction option set to use assistant agent help in terms of measured wrench through wholebodydynamics');
+    disp('Physical interaction option set to use assistant agent help in terms of measured wrench through wholebodydynamics.');
 elseif (~Config.USING_SOLO_ROBOT && (Config.STANDUP_WITH_ASSISTANT_FORCE && ~Config.MEASURED_FT))
-    disp('Physical interaction option set to use assistant agent help in terms of computed wrench through coupled dynamics'); 
+    disp('Physical interaction option set to use assistant agent help in terms of computed wrench through coupled dynamics.'); 
 elseif (~Config.USING_SOLO_ROBOT && Config.STANDUP_WITH_ASSISTANT_TORQUE)
-    disp('Physical intearction option set to use assistant agent joint torques');
+    disp('Physical intearction option set to use assistant agent joint torques.');
 end
 
+%% Trajectory parametrization info
+% Trajectory type
+Config.ANALYTICAL_TRAJECTORY = true;
 
+% Trajectory paramerization
+Config.TRAJECTORY_PARAMETRIZATION = false;
+
+if (~Config.ANALYTICAL_TRAJECTORY && ~Config.TRAJECTORY_PARAMETRIZATION)
+    disp('Using simulink minimum-jerk trajectory with normal time parametrization');
+elseif (~Config.ANALYTICAL_TRAJECTORY && Config.TRAJECTORY_PARAMETRIZATION)
+    error('Trajectory parametrization cannot be achived using simulink minimum-jerk trajectory. \n%s', 'Please verify the options you are setting.')
+elseif (Config.ANALYTICAL_TRAJECTORY && ~Config.TRAJECTORY_PARAMETRIZATION)
+    disp('Using analytical minimum-jerk trajectory with normal time parametrization')
+elseif (Config.ANALYTICAL_TRAJECTORY && Config.TRAJECTORY_PARAMETRIZATION)
+    disp('Using analytical minimum-jerk trajectory with trajectory parametrization')
+end
 
 % Simulation time in seconds
 Config.SIMULATION_TIME = inf;
-
-%% Trajectory type
-Config.ANALYTICAL_TRAJECTORY = true;
-
-%% Trajectory paramerization
-Config.TRAJECTORY_PARAMETRIZATION = true;
 
 %% PRELIMINARY CONFIGURATIONS 
 % Sm.SM_TYPE: defines the kind of state machines that can be chosen.
