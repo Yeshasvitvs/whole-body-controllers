@@ -64,8 +64,8 @@ else
     Config.SOLO_ARM                     = false;
 end
 
-%% Trajectory
-Config.MINJERK_TRAJECTORY               = false;
+%% Trajectory generation flag
+Config.ANALYTICAL_TRAJECTORY            = true;
 
 %% Trajectory parametrization control
 Config.TRAJECTORY_PARAMETRIZATION       = true;
@@ -75,7 +75,7 @@ Config.SDOT_UPPER_LIMIT                 = 5;
 
 %% Trajectory type
 %% straight-y (1) straight-z (2) or circular (3)
-Config.TRAJECTORY_TYPE                  = 3;
+Config.TRAJECTORY_TYPE                  = 1;
 
 %% Configuration Object
 WBTConfigRobot                          = WBToolbox.Configuration;
