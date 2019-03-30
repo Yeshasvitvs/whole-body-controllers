@@ -79,10 +79,10 @@ end
 
 %% Trajectory parametrization info
 % Trajectory type
-Config.ANALYTICAL_TRAJECTORY = true;
+Config.ANALYTICAL_TRAJECTORY      = true;
 
 % Trajectory paramerization
-Config.TRAJECTORY_PARAMETRIZATION = false;
+Config.TRAJECTORY_PARAMETRIZATION = true;
 
 if (~Config.ANALYTICAL_TRAJECTORY && ~Config.TRAJECTORY_PARAMETRIZATION)
     disp('Using simulink minimum-jerk trajectory with normal time parametrization');
@@ -128,7 +128,7 @@ Config.CHECK_LIMITS          = false;
 
 % If Config.SAVE_WORKSPACE = True, every time the simulink model is run the
 % workspace is saved after stopping the simulation
-Config.SAVE_WORKSPACE        = true;
+Config.SAVE_WORKSPACE        = false;
 
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % CONFIGURATIONS COMPLETED: loading gains and parameters for the specific robot

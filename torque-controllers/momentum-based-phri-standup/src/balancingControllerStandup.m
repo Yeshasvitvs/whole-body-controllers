@@ -355,14 +355,14 @@ function [tauModel, Sigma, NA, f_LDot, ...
             
             % Terms used in Eq. 0)
             tauModel  = -Pinv_Delta*(Lambda + Beta + L_error) + nullDelta*(h(7:end) - Mbj'/Mb*h(1:6) ...
-                                 -(impedances.*2.5)*NLMbar*qjTilde -(dampings.*1.5)*NLMbar*qjDot);
+                                 -(impedances)*NLMbar*qjTilde -(dampings)*NLMbar*qjDot);
         
             Sigma = -(Pinv_Delta*JcmmMinv*transpose(Jc) + nullDelta*JBar);
             
             %% Sdot computation
             numerator = transpose(L)*Omega*fArms;
             denominator = transpose(L_desired)*Omega*fArms;
-            sdot = min(5, max(1, ((numerator*denominator)/(denominator^2 + SDOT_REG))));
+            sdot = min(2.5, max(1, ((numerator*denominator)/(denominator^2 + SDOT_REG))));
                           
         end
         

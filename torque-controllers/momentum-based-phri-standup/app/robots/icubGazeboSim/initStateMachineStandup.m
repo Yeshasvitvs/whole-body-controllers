@@ -46,10 +46,17 @@ Reg.norm_tolerance = 1e-4;
 % %     
 % % end
 
-Gain.KP_COM     =      [280   280  50;     % state ==  1  BALANCING ON THE LEGS
+if (Config.TRAJECTORY_PARAMETRIZATION)
+    Gain.KP_COM     =  [120   120  50;     % state ==  1  BALANCING ON THE LEGS
+                        150   150  50;     % state ==  2  MOVE COM FORWARD
+                        120   120  60;     % state ==  3  TWO FEET BALANCING
+                        120   120  60];    % state ==  4  LIFTING UP
+else
+    Gain.KP_COM     =  [280   280  50;     % state ==  1  BALANCING ON THE LEGS
                         280   280  50;     % state ==  2  MOVE COM FORWARD
                         280   280  50;     % state ==  3  TWO FEET BALANCING
                         280   280  50];    % state ==  4  LIFTING UP
+end
 
 Gain.KD_COM = 2*sqrt(Gain.KP_COM)/10;
 
@@ -120,7 +127,7 @@ Sm.stateAt0 = 1;
 Sm.CoM_delta        = [% THIS REFERENCE IS USED AS A DELTA W.R.T. THE POSITION OF THE LEFT LEG
                        0.0     0.0     0.0;       % NOT USED
                        0.12   -0.0295  0.0;       % state ==  2  MOVE COM FORWARD
-                       0.03   -0.02    0.0;       % state ==  3  TWO FEET BALANCING
+                       0.03   -0.01    0.0;       % state ==  3  TWO FEET BALANCING
                       -0.01    0.0     0.20];     % state ==  4  LIFTING UP
 
 
