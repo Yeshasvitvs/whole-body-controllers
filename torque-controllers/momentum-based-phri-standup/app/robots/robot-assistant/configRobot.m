@@ -46,4 +46,4 @@ if ~ASSISTANT_WBTConfigRobot.ValidConfiguration
 end
 
 %% comment out human assistance data dump and visualization subsystem
-set_param('torqueBalancingPHRIStandup/Assistant system/Real system/Dump and visualize/Assistant Data/Using Human Assistant/', 'Commented', 'on');
+set_param(strcat(model_name,'/Assistant system/Real system/Dump and visualize/Assistant Data/Using Human Assistant/'), 'Commented', 'on');

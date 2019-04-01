@@ -33,8 +33,8 @@ clc
 % setenv('YARP_ROBOT_NAME','iCubGazeboV2_5');
 
 %% Flags for considering the standup scenario
-Config.USING_SOLO_ROBOT       = true;
-Config.USING_ROBOT_ASSISTANT  = false;
+Config.USING_SOLO_ROBOT       = false;
+Config.USING_ROBOT_ASSISTANT  = true;
 Config.USING_HUMAN_ASSISTANT  = false;
 
 %% Check if standup scenario is set correctly
@@ -57,7 +57,7 @@ end
 %% iCub STANDUP demo physical interaction options
 Config.STANDUP_WITH_ASSISTANT_FORCE           = false;
 Config.MEASURED_FT                            = false;
-Config.STANDUP_WITH_ASSISTANT_TORQUE          = false;
+Config.STANDUP_WITH_ASSISTANT_TORQUE          = true;
 
 if (Config.USING_SOLO_ROBOT && (Config.STANDUP_WITH_ASSISTANT_FORCE || Config.MEASURED_FT || Config.STANDUP_WITH_ASSISTANT_TORQUE))
     error('Standup scenario set up with only solo robot but some of the physical interaction options is set to True. \n%s', 'Please set that flags to false.');
@@ -79,10 +79,10 @@ end
 
 %% Trajectory parametrization info
 % Trajectory type
-Config.ANALYTICAL_TRAJECTORY      = true;
+Config.ANALYTICAL_TRAJECTORY      = false;
 
 % Trajectory paramerization
-Config.TRAJECTORY_PARAMETRIZATION = true;
+Config.TRAJECTORY_PARAMETRIZATION = false;
 
 if (~Config.ANALYTICAL_TRAJECTORY && ~Config.TRAJECTORY_PARAMETRIZATION)
     disp('Using simulink minimum-jerk trajectory with normal time parametrization');
@@ -181,6 +181,8 @@ end
 
 set_param(strcat(model_name,'/Assistant system/Real system'), 'Commented', 'off')
 set_param(strcat(model_name,'/Assistant system/Dummy system'), 'Commented', 'off')
+set_param(strcat(model_name,'/Assistant system/Real system/Dump and visualize/Assistant Data/Using Robot Assistant/'), 'Commented', 'off');
+set_param(strcat(model_name,'/Assistant system/Real system/Dump and visualize/Assistant Data/Using Human Assistant/'), 'Commented', 'off');
 
 if ((Config.STANDUP_WITH_ASSISTANT_FORCE && ~Config.MEASURED_FT) || Config.STANDUP_WITH_ASSISTANT_TORQUE)
     set_param(strcat(model_name,'/Assistant system/Dummy system'), 'Commented', 'on')
