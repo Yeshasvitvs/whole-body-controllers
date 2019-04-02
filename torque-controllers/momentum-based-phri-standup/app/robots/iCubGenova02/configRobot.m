@@ -3,9 +3,10 @@
 %
 
 %% --- Initialization ---
-Config.ON_GAZEBO         = false;
-ROBOT_DOF                = 23;
-ROBOT_DOF_FOR_SIMULINK   = eye(ROBOT_DOF);
+Config.ON_GAZEBO           = false;
+ROBOT_DOF                  = 23;
+ROBOT_DOF_FOR_SIMULINK     = eye(ROBOT_DOF);
+Config.SDOT_REGULARIZATION = 10000;
 
 % Robot configuration for WBT3.0
 WBTConfigRobot           = WBToolbox.Configuration;

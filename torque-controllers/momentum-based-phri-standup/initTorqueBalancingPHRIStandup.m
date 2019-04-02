@@ -28,14 +28,14 @@ clc
 % To do this, you can uncomment the 
 
 % setenv('YARP_ROBOT_NAME','iCubGenova04');
-  setenv('YARP_ROBOT_NAME','icubGazeboSim');
-% setenv('YARP_ROBOT_NAME','iCubGenova02');
+% setenv('YARP_ROBOT_NAME','icubGazeboSim');
+  setenv('YARP_ROBOT_NAME','iCubGenova02');
 % setenv('YARP_ROBOT_NAME','iCubGazeboV2_5');
 
 %% Flags for considering the standup scenario
 Config.USING_SOLO_ROBOT       = false;
-Config.USING_ROBOT_ASSISTANT  = true;
-Config.USING_HUMAN_ASSISTANT  = false;
+Config.USING_ROBOT_ASSISTANT  = false;
+Config.USING_HUMAN_ASSISTANT  = true;
 
 %% Check if standup scenario is set correctly
 if ((Config.USING_SOLO_ROBOT && Config.USING_ROBOT_ASSISTANT) || (Config.USING_SOLO_ROBOT && Config.USING_HUMAN_ASSISTANT))
@@ -128,7 +128,7 @@ Config.CHECK_LIMITS          = false;
 
 % If Config.SAVE_WORKSPACE = True, every time the simulink model is run the
 % workspace is saved after stopping the simulation
-Config.SAVE_WORKSPACE        = false;
+Config.SAVE_WORKSPACE        = true;
 
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % CONFIGURATIONS COMPLETED: loading gains and parameters for the specific robot
@@ -181,6 +181,7 @@ end
 
 set_param(strcat(model_name,'/Assistant system/Real system'), 'Commented', 'off')
 set_param(strcat(model_name,'/Assistant system/Dummy system'), 'Commented', 'off')
+set_param(strcat(model_name,'/Assistant system/Real system/Robot Assistant Position Control/'), 'Commented', 'off');
 set_param(strcat(model_name,'/Assistant system/Real system/Dump and visualize/Assistant Data/Using Robot Assistant/'), 'Commented', 'off');
 set_param(strcat(model_name,'/Assistant system/Real system/Dump and visualize/Assistant Data/Using Human Assistant/'), 'Commented', 'off');
 

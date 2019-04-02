@@ -6,11 +6,11 @@
 ASSISTANT_DOF                = 66;
 ASSISTANT_DOF_FOR_SIMULINK   = eye(ASSISTANT_DOF);
 
-ASSISTANT_ON_GAZEBO          = true;
+ASSISTANT_ON_GAZEBO          = false;
 
 % Human configuration for WBT3.0
 ASSISTANT_WBTConfigRobot           = WBToolbox.Configuration;
-ASSISTANT_WBTConfigRobot.UrdfFile  = 'Claudia66DoF.urdf';
+ASSISTANT_WBTConfigRobot.UrdfFile  = 'humanSubject03_66dof.urdf';
 ASSISTANT_WBTConfigRobot.LocalName = 'ASSISTANT_WBT';
 
 head                    =    {'jC1Head_rotx','jC1Head_roty','jC1Head_rotz'};
@@ -91,3 +91,4 @@ end
 
 %% comment out robot assistance data dump and visualization subsystem
 set_param(strcat(model_name,'/Assistant system/Real system/Dump and visualize/Assistant Data/Using Robot Assistant/'), 'Commented', 'on');
+set_param(strcat(model_name,'/Assistant system/Real system/Robot Assistant Position Control/'), 'Commented', 'on');
