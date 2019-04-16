@@ -1,6 +1,6 @@
-clc;
-clear;
-close all;
+% % clc;
+% % clear;
+% % close all;
 
 plotFolder = 'plots';
 
@@ -31,9 +31,9 @@ colors = [0        0.4470   0.7410;
 statesMarker = ["o",":","d"];
       
 %% Load data
-dataFolder = 'experiments01-Apr-2019';
+dataFolder = 'experiments02-Apr-2019';
 addpath(strcat('./',dataFolder))
-andyStandupData = load('exp_20-16');
+andyStandupData = load('exp_17-56');
 
 time  = andyStandupData.tauMeasuredData.time;
 
@@ -59,13 +59,13 @@ addpath(strcat('./plot_scripts/robot-quantities'))
 
 
 %% Robot Plot Flags
-comErrorPlotFlag          = true;
+comErrorPlotFlag          = false;
 momentumErrorPlotFlag     = false;
 posturalTaskErrorPlotFlag = false;
 vLyapunovFunctionPlotFlag = false;
 alphaProjectionPlotsFlag  = false;
-measuredToruquePlotsFlag  = true;
-torquesNormPlotsFlag      = false;
+measuredToruquePlotsFlag  = false;
+torquesNormPlotsFlag      = true;
 
 %% Robot CoM Error Plots
 if (comErrorPlotFlag)
@@ -94,7 +94,7 @@ if (posturalTaskErrorPlotFlag)
 
     qError = [qError_torso qError_left_arm qError_right_arm qError_left_leg qError_right_leg];
     
-    robotPosturalTaskErrorPlots(time, timeIndexes, qError, range, lineWidth, verticleLineWidth,...
+    posturalTaskErrorPlots(time, timeIndexes, qError, range, lineWidth, verticleLineWidth,...
                                 fontSize, legendFontSize, axesLineWidth, axesFontSize,...
                                 xLabelFontSize, yLabelFontSize, markerSize, statesMarker, colors, fullPlotFolder)
 end
@@ -104,7 +104,7 @@ if (vLyapunovFunctionPlotFlag)
     vLyap = squeeze(andyStandupData.V_lyap.signals(1).values)';
     %%TODO Inset Box Autocompletion
     
-    robotVLyapunovFunctionPlots(time, timeIndexes, vLyap, range, lineWidth, verticleLineWidth,...
+    vLyapunovFunctionPlots(time, timeIndexes, vLyap, range, lineWidth, verticleLineWidth,...
                                 fontSize, legendFontSize, axesLineWidth, axesFontSize,...
                                 xLabelFontSize, yLabelFontSize, markerSize, statesMarker, colors, fullPlotFolder)
 end
@@ -113,7 +113,7 @@ end
 if (alphaProjectionPlotsFlag)
     alpha = squeeze(andyStandupData.alpha.signals(1).values)';
     
-    robotAlphaProjectionPlots(time, timeIndexes, alpha, range, lineWidth, verticleLineWidth,...
+    alphaProjectionPlots(time, timeIndexes, alpha, range, lineWidth, verticleLineWidth,...
                               fontSize, legendFontSize, axesLineWidth, axesFontSize,...
                               xLabelFontSize, yLabelFontSize, markerSize, statesMarker, colors, fullPlotFolder)
 end
@@ -137,13 +137,10 @@ end
 
 %% Measured Torques Norm Plots
 if (torquesNormPlotsFlag)
-    tauMes_torso     = squeeze(andyStandupData.tauMeasuredData.signals(1).values);
-    tauMes_left_arm  = squeeze(andyStandupData.tauMeasuredData.signals(2).values);
-    tauMes_right_arm = squeeze(andyStandupData.tauMeasuredData.signals(3).values);
     tauMes_left_leg  = squeeze(andyStandupData.tauMeasuredData.signals(4).values);
     tauMes_right_leg = squeeze(andyStandupData.tauMeasuredData.signals(5).values);
     
-    tauMes = [tauMes_torso tauMes_left_arm tauMes_right_arm tauMes_left_leg tauMes_right_leg];
+    tauMes = [tauMes_left_leg tauMes_right_leg];
     
     torquesNormPlots(time, timeIndexes, tauMes,...
                        range, lineWidth, verticleLineWidth,...

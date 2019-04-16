@@ -43,10 +43,10 @@ Gain.KP_AngularMomentum  = 2;
 Gain.KD_AngularMomentum  = 2*sqrt(Gain.KP_AngularMomentum);
 
 %                   %   TORSO  %%      LEFT ARM   %%      RIGHT ARM   %%        LEFT LEG            %%         RIGHT LEG          %% 
-Gain.impedances  = [10   30   20, 10   10    10    8, 10   10    10    8, 30   50   30    60    50  50, 30   50   30    60    50  50;   % state ==  1  BALANCING ON THE LEGS
-                    10   30   20, 10   10    10    8, 10   10    10    8, 30   50   30    60    50  50, 30   50   30    60    50  50;   % state ==  2  MOVE COM FORWARD
-                    10   30   20, 10   10    10    8, 10   10    10    8, 30   50   30    60    50  50, 30   50   30    60    50  50;   % state ==  3  TWO FEET BALANCING
-                    10   30   20, 20   20    10    8, 20   20    10    8, 30   50   30    60    50  50, 30   50   30    60    50  50];  % state ==  4  LIFTING UP
+Gain.impedances  = [10   40   40, 30   10    10    8, 30   10    10    8, 30   50   30    60    50  50, 30   50   30    60    50  50;   % state ==  1  BALANCING ON THE LEGS
+                    10   40   40, 30   10    10    8, 30   10    10    8, 30   50   30    60    50  50, 30   50   30    60    50  50;   % state ==  2  MOVE COM FORWARD
+                    10   40   40, 30   10    10    8, 30   10    10    8, 30   50   30    60    50  50, 30   50   30    60    50  50;   % state ==  3  TWO FEET BALANCING
+                    10   40   40, 30   20    10    8, 30   20    10    8, 30   50   30    60    50  50, 30   50   30    60    50  50];  % state ==  4  LIFTING UP
 
 Gain.impedances(3,:) = Gain.impedances(3,:)./2;      
 Gain.dampings        = 0*sqrt(Gain.impedances(1,:));  
@@ -68,13 +68,13 @@ Sm.smoothingTimeCoM = 0.5;
 
 % contact forces threshold (YOGA DEMO ONLY)
 Sm.wrench_thresholdContactLFoot  = [0;    % NOT USED
-                                    90;   % state ==  2  MOVE COM FORWARD
-                                    140;  % state ==  3  TWO FEET BALANCING
+                                    75;   % state ==  2  MOVE COM FORWARD
+                                    120;  % state ==  3  TWO FEET BALANCING
                                     0];   % NOT USED
 
 Sm.wrench_thresholdContactRFoot  = [0     % NOT USED
-                                    90;   % state ==  2  MOVE COM FORWARD
-                                    140;  % state ==  3  TWO FEET BALANCING
+                                    75;   % state ==  2  MOVE COM FORWARD
+                                    120;  % state ==  3  TWO FEET BALANCING
                                     0];   % NOT USED
                      
 % external forces at arms threshold                    
@@ -96,9 +96,9 @@ Sm.stateAt0 = 1;
 
 Sm.CoM_delta        = [% THIS REFERENCE IS USED AS A DELTA W.R.T. THE POSITION OF THE LEFT LEG
                        0.0     0.0   0.0;       % NOT USED
-                       0.0867  0.0   0.0;       % state ==  2  MOVE COM FORWARD
+                       0.1167  0.0   0.0;       % state ==  2  MOVE COM FORWARD
                        0.005   0.0   0.0;       % state ==  3  TWO FEET BALANCING
-                       0.03    0.0   0.22];     % state ==  4  LIFTING UP
+                       0.03   -0.01  0.22];     % state ==  4  LIFTING UP
 
 % configuration parameters for state machine (STANDUP DEMO ONLY) 
 Sm.tBalancing           = 3;

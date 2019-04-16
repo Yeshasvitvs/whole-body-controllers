@@ -179,8 +179,8 @@ if (~slreportgen.utils.isModelLoaded(model_name))
     open_system(model_name,'window')
 end
 
-set_param(strcat(model_name,'/Assistant system/Real system'), 'Commented', 'off')
-set_param(strcat(model_name,'/Assistant system/Dummy system'), 'Commented', 'off')
+set_param(strcat(model_name,'/Assistant system/Real system'), 'Commented', 'off');
+set_param(strcat(model_name,'/Assistant system/Dummy system'), 'Commented', 'off');
 set_param(strcat(model_name,'/Assistant system/Real system/Robot Assistant Position Control/'), 'Commented', 'off');
 set_param(strcat(model_name,'/Assistant system/Real system/Dump and visualize/Assistant Data/Using Robot Assistant/'), 'Commented', 'off');
 set_param(strcat(model_name,'/Assistant system/Real system/Dump and visualize/Assistant Data/Using Human Assistant/'), 'Commented', 'off');
