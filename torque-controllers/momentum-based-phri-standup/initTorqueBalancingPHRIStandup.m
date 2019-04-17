@@ -34,8 +34,8 @@ clc
 
 %% Flags for considering the standup scenario
 Config.USING_SOLO_ROBOT       = false;
-Config.USING_ROBOT_ASSISTANT  = false;
-Config.USING_HUMAN_ASSISTANT  = true;
+Config.USING_ROBOT_ASSISTANT  = true;
+Config.USING_HUMAN_ASSISTANT  = false;
 
 %% Check if standup scenario is set correctly
 if ((Config.USING_SOLO_ROBOT && Config.USING_ROBOT_ASSISTANT) || (Config.USING_SOLO_ROBOT && Config.USING_HUMAN_ASSISTANT))
@@ -88,7 +88,7 @@ if (~Config.ANALYTICAL_TRAJECTORY && ~Config.TRAJECTORY_PARAMETRIZATION)
     disp('Using simulink minimum-jerk trajectory with normal time parametrization');
 elseif (~Config.ANALYTICAL_TRAJECTORY && Config.TRAJECTORY_PARAMETRIZATION)
     error('Trajectory parametrization cannot be achived using simulink minimum-jerk trajectory. \n%s', 'Please verify the options you are setting.')
-elseif (Config.ANALYTICAL_TRAJECTORY && ~Config.TRAJECTORY_PARAMETRIZATION)
+elseif (Config.ANALYTICAL_TRAJECTORY && ~Config.TRAJECTORY_PARAMETRIZATIOtrueN)
     disp('Using analytical minimum-jerk trajectory with normal time parametrization')
 elseif (Config.ANALYTICAL_TRAJECTORY && Config.TRAJECTORY_PARAMETRIZATION)
     disp('Using analytical minimum-jerk trajectory with trajectory parametrization')
