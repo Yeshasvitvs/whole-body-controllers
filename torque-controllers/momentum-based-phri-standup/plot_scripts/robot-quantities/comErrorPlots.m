@@ -1,10 +1,9 @@
 function comErrorPlots(time, timeIndexes, comMes, comDes, range, lineWidth, verticleLineWidth,...
                             fontSize, legendFontSize, axesLineWidth, axesFontSize,...
-                            xLabelFontSize, yLabelFontSize, markerSize, statesMarker, colors, fullPlotFolder)
+                            xLabelFontSize, yLabelFontSize, titleFontSize, markerSize, statesMarker, colors, state_colors, fullPlotFolder)
     %% CoM Plots with subplots
 
     yLimits = [];
-    fH = figure('units','normalized','outerposition',[0 0 1 1]);
     CoM_label_dict = ["CoM X [m]","CoM Y [m]","CoM Z [m]"];
 
     for i=1:3
@@ -21,7 +20,7 @@ function comErrorPlots(time, timeIndexes, comMes, comDes, range, lineWidth, vert
             xvalues = timeIndexes(j)*ones(10,1);
             yValues = linspace(yLimits(i,1)-0.01,yLimits(i,2)+0.01,10)';
             s(j) = plot(xvalues,yValues,statesMarker(j),'LineWidth', verticleLineWidth); hold on;
-            s(j).Color = colors(j+3,:);
+            s(j).Color = state_colors(j,:);
             uistack(p(i));
         end
         ylabel(CoM_label_dict(i), 'FontSize', yLabelFontSize);
@@ -33,6 +32,5 @@ function comErrorPlots(time, timeIndexes, comMes, comDes, range, lineWidth, vert
     lgd.NumColumns = 3;
    
     xlabel('time $[\mathrm{s}]$', 'Interpreter', 'latex', 'FontSize', xLabelFontSize);
-
-    save2pdf(fullfile(strcat(fullPlotFolder, '/robotPlots/'), 'comError.pdf'),fH,300);
+    
 end

@@ -1,7 +1,7 @@
 function torquesNormPlots(time, timeIndexes, tauMes,...
                           range, lineWidth, verticleLineWidth,...
                           fontSize, legendFontSize, axesLineWidth, axesFontSize,...
-                          xLabelFontSize, yLabelFontSize, markerSize, statesMarker, colors, fullPlotFolder)
+                          xLabelFontSize, yLabelFontSize, titleFontSize, markerSize, statesMarker, colors, fullPlotFolder)
                       
     %% Measured Torque Norm
     tauMes_norm = vecnorm(tauMes,2,2).*(pi/180);
@@ -19,6 +19,7 @@ function torquesNormPlots(time, timeIndexes, tauMes,...
     end
 
     xlabel('time $[\mathrm{s}]$', 'Interpreter', 'latex', 'FontSize', xLabelFontSize);
+    title('Robot Torques Norm', 'FontSize', titleFontSize);
     
     save2pdf(fullfile(strcat(fullPlotFolder, '/robotPlots/'), 'tauNorm.pdf'),fH,300);
 end

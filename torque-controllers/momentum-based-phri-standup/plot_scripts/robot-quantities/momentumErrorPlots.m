@@ -1,11 +1,11 @@
 function momentumErrorPlots(time, timeIndexes, Htilde, range, lineWidth, verticleLineWidth,...
                                  fontSize, legendFontSize, axesLineWidth, axesFontSize,...
-                                 xLabelFontSize, yLabelFontSize, markerSize, statesMarker, colors, fullPlotFolder)
+                                 xLabelFontSize, yLabelFontSize, titleFontSize, markerSize, statesMarker, colors, state_colors, fullPlotFolder)
                              
     %% Momentum Error Norm
     mom_label_dict1 = ["X $[Kg-m/s]$","Y $[Kg-m/s]$","Z $[Kg-m/s]$"];
     mom_label_dict2 = ["X $[kg-m^2/s]$","Y $[kg-m^2/s]$","Z $[kg-m^2/s]$"];
-    fH = figure('units','normalized','outerposition',[0 0 1 1]);
+
     index = 1;
     for i=1:3
         for j=1:2
@@ -20,7 +20,7 @@ function momentumErrorPlots(time, timeIndexes, Htilde, range, lineWidth, verticl
                 xvalues = timeIndexes(k)*ones(10,1);
                 yValues = linspace(yLimits(index,1),yLimits(index,2),10)';
                 s = plot(xvalues,yValues,statesMarker(k),'LineWidth', verticleLineWidth); hold on;
-                s.Color = colors(k+3,:);
+                s.Color = state_colors(k,:);
                 uistack(p);
             end
             index = index + 1;
@@ -47,5 +47,5 @@ function momentumErrorPlots(time, timeIndexes, Htilde, range, lineWidth, verticl
                'String', 'time [s]',...
                'EdgeColor', 'none',...
                'VerticalAlignment', 'bottom');
-    save2pdf(fullfile(strcat(fullPlotFolder, '/robotPlots/'), 'momentumError.pdf'),fH,300);
+    
 end
