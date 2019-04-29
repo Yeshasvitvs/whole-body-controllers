@@ -1,6 +1,6 @@
-% % clc;
-% % clear;
-% % close all;
+clc;
+clear;
+close all;
 
 plotFolder = 'plots';
 
@@ -37,7 +37,7 @@ statesMarker = ["o",":","d"];
       
 %% Load data
 dataFolder = 'experiments19-Apr-2019';
-addpath(strcat('./',dataFolder))
+addpath(strcat('./',dataFolder));
 andyStandupData = load('exp_17-37');
 
 time  = andyStandupData.tauMeasuredData.time;

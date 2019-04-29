@@ -32,12 +32,15 @@
 
 
 %% To be used for subplots
-function plotMeanAndSTD( axes_handle, xAxisValues,  meanValues, stdValues,lineWidth,color)
+function [meanHandle,fHandle] = plotMeanAndSTD( axes_handle, xAxisValues,  meanValues, stdValues,lineWidth,color)
+
+    meanHandle = [];
+    fHandle = [];
              
     for  i = 1 : size(meanValues, 2)
-        
-        p = plot(axes_handle, xAxisValues, meanValues(:,i),'LineWidth',lineWidth);
-        p.Color = color;
+
+        meanHandle = [meanHandle, plot(axes_handle, xAxisValues, meanValues(:,i),'LineWidth',lineWidth)];
+        meanHandle.Color = color;
         hold on;
         minVals = meanValues(:,i) - stdValues(:,i);
         maxVals = meanValues(:,i) + stdValues(:,i);
@@ -48,9 +51,11 @@ function plotMeanAndSTD( axes_handle, xAxisValues,  meanValues, stdValues,lineWi
         timeCont = [xAxisValues', fliplr(xAxisValues')];
         stdArea = [minVals', fliplr(maxVals')];
         fillHandle = fill(timeCont, stdArea', 'b');
-        fillHandle.FaceColor = [0.9 0.9 0.9];
+        fillHandle.FaceColor = color;
         fillHandle.FaceAlpha = 0.5;
         fillHandle.EdgeAlpha = 0.5;
+        
+        fHandle = [fHandle, fillHandle];
     
     end
 

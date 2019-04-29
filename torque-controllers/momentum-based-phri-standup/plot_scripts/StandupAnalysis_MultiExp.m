@@ -2,7 +2,7 @@ clc;
 clear;
 close all;
 
-plotFolder = '../plots';
+plotFolder = 'plots';
 
 fullPlotFolder = fullfile(pwd, plotFolder);
 
@@ -11,124 +11,125 @@ if ~exist(fullPlotFolder, 'dir')
 end
 
 %% configuration parameters
-lineWidth = 5;
-fontSize = 24;
+lineWidth         = 2;
+fontSize          = 10;
+legendFontSize    = 10;
+axesLineWidth     = 2;
+axesFontSize      = 10;
+xLabelFontSize    = 10;
+yLabelFontSize    = 10;
+markerSize        = 2;
+verticleLineWidth = 2;
+titleFontSize     = 10;
 
 colors = [0        0.4470   0.7410;
           0.8500   0.3250   0.0980;
           0.9290   0.6940   0.1250;
           0.4940   0.1840   0.5560;
           0.4660   0.6740   0.1880;
-          0.3010   0.7450   0.9330];
+          0.9010   0.2450   0.630];
+      
+state_colors = [0.725 0.22 0.35;
+                0.35 0.725 0.22;
+                0.22 0.35 0.725];
+      
+statesMarker = ["o",":","d"];
 
-andyStandupData = analyzeAnDyStandupDataSet('../data/AnDyStandup');
+%% Time tolerance in data
+timeTolerance = 0.2;
+endBufferTime = 3.5;
 
-%% CoM Plots with subplots
+%% Load data folder
+dataFolder = 'andy_standup_experiments_data';
+addpath(strcat('./',dataFolder));
+
+normalStandupDataFolder = dataFolder + "/normal";
+pHRIMeasuredFTStandupDataFolder = dataFolder + "/pHRI-measured-ft";
+pRRIStandupDataFolder = dataFolder + "/pRRI";
+
+%% Analyze data set
+normalStandUpData = analyzeAnDyStandupDataSet(normalStandupDataFolder, timeTolerance, endBufferTime);
+% % pHRIMeasuredFTStandUpData = analyzeAnDyStandupDataSet(pHRIMeasuredFTStandupDataFolder, timeTolerance, endBufferTime);
+pRRIStandUpData = analyzeAnDyStandupDataSet(pRRIStandupDataFolder, timeTolerance, endBufferTime);
+
+%% TODO: Add the state indication plots
+
+%% Effort Plots
 fH = figure('units','normalized','outerposition',[0 0 1 1]);
-CoM_label_dict = ["CoM X [m]","CoM Y [m]","CoM Z [m]"];
-for i=1:3
-    sH = subplot(3,1,i); hold on;
-    sH.FontSize = fontSize;
-    sH.Units = 'normalized';
-    plotMeanAndSTD(sH, andyStandupData.time, andyStandupData.comErr_statistics_mean(i,:)', andyStandupData.comErr_statistics_confidence(i,:)',lineWidth,colors(i,:));
-    ylabel(CoM_label_dict(i));
+ax = axes('Units', 'normalized', 'Parent',fH, 'FontSize', fontSize);
+normalHandle = plotMeanAndSTD(ax, normalStandUpData.time,...
+                                  normalStandUpData.effort_statistics_mean',...
+                                  normalStandUpData.effort_statistics_confidence',...
+                                  lineWidth, colors(1,:));
+normalStandUpData.LineWidth = lineWidth;
+hold on;
+pRRIHandle = plotMeanAndSTD(ax, pRRIStandUpData.time,...
+                                pRRIStandUpData.effort_statistics_mean',...
+                                pRRIStandUpData.effort_statistics_confidence',...
+                                lineWidth, colors(4,:));
+pRRIHandle.LineWidth = lineWidth;
+grid on;
+
+state2time = 0.0;
+state3time = mean(pRRIStandUpData.start3time-pRRIStandUpData.start2time);
+state4time = mean(pRRIStandUpData.start3time-pRRIStandUpData.start2time)... 
+             + mean(pRRIStandUpData.start4time-pRRIStandUpData.start3time);
+
+timeIndexes = [state2time state3time state4time];
+
+yLimits = get(gca,'YLim');
+for j=1:3
+        xvalues = timeIndexes(j)*ones(10,1);
+        yValues = linspace(yLimits(1)-1,yLimits(2)+1,10)';
+        s(j) = plot(xvalues,yValues,statesMarker(j),'LineWidth',verticleLineWidth); hold on;
+        s(j).Color = state_colors(j,:);
+        uistack(pRRIHandle);
 end
-xlabel('time $[\mathrm{s}]$', 'Interpreter', 'latex', 'FontSize', fontSize);
-annotation('textbox', [0 0.88 1 0.1], ...
-               'FontSize', fontSize,...
-               'String', 'CoM Error', ...
-               'EdgeColor', 'none', ...
-               'HorizontalAlignment', 'center');
-           
-save2pdf(fullfile(fullPlotFolder, 'ComError.pdf'),fH,600);
-           
-%% Momentum Eror Plots with subplots
+
+legend([normalHandle pRRIHandle s(1) s(2) s(3)],...
+       {'Normal Standup','pRRI Standup','State 2', 'State 3', 'State 4'});
+xlabel('time $[\mathrm{s}]$', 'Interpreter', 'latex', 'FontSize', xLabelFontSize);
+ylabel('Joint Effort', 'Interpreter', 'latex', 'FontSize', yLabelFontSize);
+title('Robot Joint Efforts', 'FontSize', titleFontSize);
+
+save2pdf(fullfile(strcat(fullPlotFolder, '/robotPlots/'), 'MultiDataSetRobotEffort.pdf'),fH,300);
+
+%% Lyapunov Function Plots
 fH = figure('units','normalized','outerposition',[0 0 1 1]);
-index = 1;
-for i=1:3
-    for j=1:2
-        sH = subplot(3,2,index); hold on;
-        sH.FontSize = fontSize;
-        sH.Units = 'normalized';
-        plotMeanAndSTD(sH, andyStandupData.time, andyStandupData.Htilde_statistics_mean(i+3*(j-1),:)', andyStandupData.Htilde_statistics_confidence(i+3*(j-1),:)',lineWidth,colors(i+3*(j-1),:));
-%         xlabel('time $[\mathrm{s}]$', 'Interpreter', 'latex', 'FontSize', fontSize);
-        index = index + 1;
-    end
+ax = axes('Units', 'normalized', 'Parent',fH, 'FontSize', fontSize);
+normalHandle = plotMeanAndSTD(ax, normalStandUpData.time,...
+                                  normalStandUpData.LyapunovV_statistics_mean',...
+                                  normalStandUpData.LyapunovV_statistics_confidence',...
+                                  lineWidth, colors(1,:));
+normalStandUpData.LineWidth = lineWidth;
+hold on;
+pRRIHandle = plotMeanAndSTD(ax, pRRIStandUpData.time,...
+                                pRRIStandUpData.LyapunovV_statistics_mean',...
+                                pRRIStandUpData.LyapunovV_statistics_confidence',...
+                                lineWidth, colors(4,:));
+pRRIHandle.LineWidth = lineWidth;
+grid on;
+
+state2time = 0.0;
+state3time = mean(pRRIStandUpData.start3time-pRRIStandUpData.start2time);
+state4time = mean(pRRIStandUpData.start3time-pRRIStandUpData.start2time)... 
+             + mean(pRRIStandUpData.start4time-pRRIStandUpData.start3time);
+
+timeIndexes = [state2time state3time state4time];
+
+yLimits = get(gca,'YLim');
+for j=1:3
+        xvalues = timeIndexes(j)*ones(10,1);
+        yValues = linspace(yLimits(1)-1,yLimits(2)+1,10)';
+        s(j) = plot(xvalues,yValues,statesMarker(j),'LineWidth',verticleLineWidth); hold on;
+        s(j).Color = state_colors(j,:);
+        uistack(pRRIHandle);
 end
 
-annotation('textbox', [0.2 0.88 1 0.1], ...
-               'FontSize', fontSize,...
-               'String', 'Linear Momentum Error', ...
-               'EdgeColor', 'none', ...
-               'HorizontalAlignment', 'left');
-annotation('textbox', [0.24 0.88 1 0.1], ...
-               'FontSize', fontSize,...
-               'String', 'Angular Momentum Error', ...
-               'EdgeColor', 'none', ...
-               'HorizontalAlignment', 'center');
-annotation('textbox', [0.48 0.025 1 0.1], ...
-               'FontSize', fontSize,...
-               'String', 'Time [s]', ...
-               'EdgeColor', 'none', ...
-               'VerticalAlignment', 'bottom');
-           
-text(-8.5,0.25,'Kg-m/s','Rotation',90,'FontSize',14,...
-         'FontSize', fontSize,...
-         'HorizontalAlignment', 'center',...
-         'VerticalAlignment', 'middle');
+legend([normalHandle pRRIHandle s(1) s(2) s(3)],...
+       {'Normal Standup','pRRI Standup','State 2', 'State 3', 'State 4'});
+xlabel('time $[\mathrm{s}]$', 'Interpreter', 'latex', 'FontSize', xLabelFontSize);
+ylabel('$V_{lyap}$', 'Interpreter', 'latex', 'FontSize', yLabelFontSize);
+title('Lyapunov Function', 'FontSize', titleFontSize);
 
-text(-0.75,0.25,'kg-m^2/sec','Rotation',90,'FontSize',14,...
-         'FontSize', fontSize,...
-         'HorizontalAlignment', 'center',...
-         'VerticalAlignment', 'middle');
-
-save2pdf(fullfile(fullPlotFolder, 'Htilde.pdf'),fH,600);
-     
-     
-
-%% CoM Plots without subplots
-% % fH = figure;
-% % ax = axes('Units', 'normalized', 'Parent',fH, 'FontSize', fontSize); hold on;
-% % plotMeanAndSTD(ax, andyStandupData.time, andyStandupData.comMes_statistics_mean', andyStandupData.comMes_statistics_confidence');
-% % xlabel('time $[\mathrm{s}]$', 'Interpreter', 'latex', 'FontSize', fontSize);
-% % ylabel('$\mathrm{meters}$', 'Interpreter', 'latex', 'FontSize', fontSize);
-% % title('CoM Measured', 'Interpreter', 'latex', 'FontSize', fontSize)
-% % 
-% % fH = figure;
-% % ax = axes('Units', 'normalized', 'Parent',fH, 'FontSize', fontSize); hold on;
-% % plotMeanAndSTD(ax, andyStandupData.time, andyStandupData.comDes_statistics_mean', andyStandupData.comDes_statistics_confidence');
-% % xlabel('time $[\mathrm{s}]$', 'Interpreter', 'latex', 'FontSize', fontSize);
-% % ylabel('$\mathrm{meters}$', 'Interpreter', 'latex', 'FontSize', fontSize);
-% % title('CoM Desired', 'Interpreter', 'latex', 'FontSize', fontSize)
-% % 
-% % fH = figure;
-% % ax = axes('Units', 'normalized', 'Parent',fH, 'FontSize', fontSize); hold on;
-% % plotMeanAndSTD(ax, andyStandupData.time, andyStandupData.comErr_statistics_mean', andyStandupData.comErr_statistics_confidence');
-% % xlabel('time $[\mathrm{s}]$', 'Interpreter', 'latex', 'FontSize', fontSize);
-% % ylabel('$\mathrm{meters}$', 'Interpreter', 'latex', 'FontSize', fontSize);
-% % title('CoM Error', 'Interpreter', 'latex', 'FontSize', fontSize)
-% % 
-% % %% Momentum Error
-% % fH = figure;
-% % ax = axes('Units', 'normalized', 'Parent',fH, 'FontSize', fontSize); hold on;
-% % plotMeanAndSTD(ax, andyStandupData.time, andyStandupData.Htilde_statistics_mean(1:3,:)', andyStandupData.Htilde_statistics_confidence(1:3,:)');
-% % xlabel('time $[\mathrm{s}]$', 'Interpreter', 'latex', 'FontSize', fontSize);
-% % ylabel(' ', 'Interpreter', 'latex', 'FontSize', fontSize);
-% % title('Momentum Error', 'Interpreter', 'latex', 'FontSize', fontSize)
-
-
-%% Leg Norm
-% % fH = figure;
-% % ax = axes('Units', 'normalized', 'Parent',fH, 'FontSize', fontSize); hold on;
-% % plotMeanAndSTD(ax, andyStandupData.time, andyStandupData.legPower_statistics_mean', andyStandupData.legPower_statistics_confidence');
-% % xlabel('time[s]');
-% % ylabel('');
-% % title('Leg Power')
-
-% %% Leg Norm
-% fH = figure;
-% ax = axes('Units', 'normalized', 'Parent',fH, 'FontSize', fontSize); hold on;
-% plotMeanAndSTD(ax, andyStandupData.time, andyStandupData.legTorqueNorm_statistics_mean', andyStandupData.legTorqueNorm_statistics_confidence');
-% xlabel('time[s]');
-% ylabel('');
-% title('Leg Torques Norm')
+save2pdf(fullfile(strcat(fullPlotFolder, '/robotPlots/'), 'MultiDataSetLyapunovFunction.pdf'),fH,300);

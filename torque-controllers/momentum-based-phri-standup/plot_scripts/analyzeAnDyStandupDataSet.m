@@ -1,6 +1,5 @@
-function allData = analyzeAnDyStandupDataSet(dataSetFolder)
+function allData = analyzeAnDyStandupDataSet(dataSetFolder, timeTolerance, endBufferTime)
 
-    timeTolerance = 0.0;
     
     global t_critical;
 
@@ -52,6 +51,10 @@ function allData = analyzeAnDyStandupDataSet(dataSetFolder)
     
     time = [];
     
+    state2time = [];
+    state3time = [];
+    state4time = [];
+    
     comXMes_data = [];
     comYMes_data = [];
     comZMes_data = [];
@@ -87,12 +90,18 @@ function allData = analyzeAnDyStandupDataSet(dataSetFolder)
         state = data.comData.signals(4).values;
         
         state2StartIndex = find(state == 2,1);
+        state3StartIndex = find(state == 3,1);
         state4StartIndex = find(state == 4,1);
         
         state2StartTime = currentTime(state2StartIndex);
+        state3StartTime = currentTime(state3StartIndex);
         state4StartTime = currentTime(state4StartIndex);
         
-        endTimeIndex = find(currentTime > state4StartTime + 3.5,1);
+        state2time = [state2time; state2StartTime];
+        state3time = [state3time; state3StartTime];
+        state4time = [state4time; state4StartTime];
+        
+        endTimeIndex = find(currentTime > state4StartTime + endBufferTime,1);
         if isempty(endTimeIndex)
             endTimeIndex = length(currentTime);
         end
@@ -333,6 +342,10 @@ function allData = analyzeAnDyStandupDataSet(dataSetFolder)
     LyapunovV_confidence = (LyapunovV_statistics_std * t_student_param)./ sqrt(dataSize);
 
     allData.time = time;
+    
+    allData.start2time = state2time;
+    allData.start3time = state3time;
+    allData.start4time = state4time;
     
     allData.comXMes_data = comXMes_data;
     allData.comYMes_data = comYMes_data;
