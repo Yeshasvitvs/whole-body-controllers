@@ -27,15 +27,15 @@ clc
 % and set the environmental variable YARP_ROBOT_NAME = icubGazeboSim.
 % To do this, you can uncomment the 
 
-% setenv('YARP_ROBOT_NAME','iCubGenova04');
 % setenv('YARP_ROBOT_NAME','icubGazeboSim');
-  setenv('YARP_ROBOT_NAME','iCubGenova02');
+% setenv('YARP_ROBOT_NAME','iCubGenova02');
+setenv('YARP_ROBOT_NAME','iCubGenova04');
 % setenv('YARP_ROBOT_NAME','iCubGazeboV2_5');
 
 %% Flags for considering the standup scenario
 Config.USING_SOLO_ROBOT       = false;
-Config.USING_ROBOT_ASSISTANT  = true;
-Config.USING_HUMAN_ASSISTANT  = false;
+Config.USING_ROBOT_ASSISTANT  = false;
+Config.USING_HUMAN_ASSISTANT  = true;
 
 %% Check if standup scenario is set correctly
 if ((Config.USING_SOLO_ROBOT && Config.USING_ROBOT_ASSISTANT) || (Config.USING_SOLO_ROBOT && Config.USING_HUMAN_ASSISTANT))
@@ -55,9 +55,9 @@ if (Config.USING_ROBOT_ASSISTANT && Config.USING_HUMAN_ASSISTANT)
 end
 
 %% iCub STANDUP demo physical interaction options
-Config.STANDUP_WITH_ASSISTANT_FORCE           = false;
-Config.MEASURED_FT                            = false;
-Config.STANDUP_WITH_ASSISTANT_TORQUE          = true;
+Config.STANDUP_WITH_ASSISTANT_FORCE           = true;
+Config.MEASURED_FT                            = true;
+Config.STANDUP_WITH_ASSISTANT_TORQUE          = false;
 
 if (Config.USING_SOLO_ROBOT && (Config.STANDUP_WITH_ASSISTANT_FORCE || Config.MEASURED_FT || Config.STANDUP_WITH_ASSISTANT_TORQUE))
     error('Standup scenario set up with only solo robot but some of the physical interaction options is set to True. \n%s', 'Please set that flags to false.');
