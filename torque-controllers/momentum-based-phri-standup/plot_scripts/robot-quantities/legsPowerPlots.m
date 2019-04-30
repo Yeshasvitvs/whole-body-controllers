@@ -1,7 +1,9 @@
 function legsPowerPlots(time, timeIndexes, tauMes, tauMes_left_leg, tauMes_right_leg,...
                           range, lineWidth, verticleLineWidth,...
                           fontSize, legendFontSize, axesLineWidth, axesFontSize,...
-                          xLabelFontSize, yLabelFontSize, titleFontSize, markerSize, statesMarker, colors, state_colors, fullPlotFolder)
+                          xLabelFontSize, yLabelFontSize, titleFontSize, markerSize,...
+                          statesMarker, colors, state_colors,...
+                          gridOption, minorGridOption, axisOption, fullPlotFolder)
                       
     %% Legs Torque Norm
     legs_torque_norm = zeros(1, size(tauMes_left_leg,1));
@@ -43,6 +45,13 @@ function legsPowerPlots(time, timeIndexes, tauMes, tauMes_left_leg, tauMes_right
             s(j).Color = state_colors(j,:);
             uistack(p(1));
         end
+        
+        ax = gca;
+        axis(ax,axisOption);
+        ax.XGrid = gridOption;
+        ax.YGrid = gridOption;
+        ax.XMinorGrid = minorGridOption;
+        ax.YMinorGrid = minorGridOption;
     end
 
 end

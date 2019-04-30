@@ -1,6 +1,8 @@
 function vLyapunovFunctionPlots(time, timeIndexes, vLyap, range, lineWidth, verticleLineWidth,...
                                 fontSize, legendFontSize, axesLineWidth, axesFontSize,...
-                                xLabelFontSize, yLabelFontSize, titleFontSize, markerSize, statesMarker, colors, state_colors, fullPlotFolder)
+                                xLabelFontSize, yLabelFontSize, titleFontSize, markerSize,...
+                                statesMarker, colors, state_colors,...
+                                gridOption, minorGridOption, axisOption, fullPlotFolder)
                             
     %% Lyapunov Function 
     p = plot(time(1:range),vLyap(1:range),'-','LineWidth',lineWidth); hold on;
@@ -24,6 +26,13 @@ function vLyapunovFunctionPlots(time, timeIndexes, vLyap, range, lineWidth, vert
         s(j).Color = state_colors(j,:);
         uistack(p);
     end
+    
+    ax = gca;
+    axis(ax,axisOption);
+    ax.XGrid = gridOption;
+    ax.YGrid = gridOption;
+    ax.XMinorGrid = minorGridOption;
+    ax.YMinorGrid = minorGridOption;
 
     lgd = legend([p s(1) s(2) s(3)],...
                 {'$\mathrm{V}_{lyapunov}$','State 2','State 3', 'State 4'},...

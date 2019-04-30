@@ -1,6 +1,8 @@
 function posturalTaskErrorPlots(time, timeIndexes, qError, range, lineWidth, verticleLineWidth,...
                                      fontSize, legendFontSize, axesLineWidth, axesFontSize,...
-                                     xLabelFontSize, yLabelFontSize, titleFontSize, markerSize, statesMarker, colors, state_colors, fullPlotFolder)
+                                     xLabelFontSize, yLabelFontSize, titleFontSize, markerSize,...
+                                     statesMarker, colors, state_colors,...
+                                     gridOption, minorGridOption, axisOption, fullPlotFolder)
     
     %% Postural Task Error
     qError_norm = vecnorm(qError,2,2).*(pi/180);
@@ -15,6 +17,13 @@ function posturalTaskErrorPlots(time, timeIndexes, qError, range, lineWidth, ver
         s(j).Color = state_colors(j,:);
         uistack(p);
     end
+    
+    ax = gca;
+    axis(ax,axisOption);
+    ax.XGrid = gridOption;
+    ax.YGrid = gridOption;
+    ax.XMinorGrid = minorGridOption;
+    ax.YMinorGrid = minorGridOption;
 
     xlabel('time $[\mathrm{s}]$', 'Interpreter', 'latex', 'FontSize', xLabelFontSize);
     ylabel('$|q_j - q_j^d|$ $[\mathrm{rad}]$', 'Interpreter', 'latex', 'FontSize', yLabelFontSize);

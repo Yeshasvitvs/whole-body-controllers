@@ -1,7 +1,9 @@
 function measureTorquePlots(time, timeIndexes, tauMes,...
                             range, lineWidth, verticleLineWidth,...
                             fontSize, legendFontSize, axesLineWidth, axesFontSize,...
-                            xLabelFontSize, yLabelFontSize, titleFontSize, markerSize, statesMarker, colors, state_colors, fullPlotFolder)
+                            xLabelFontSize, yLabelFontSize, titleFontSize, markerSize,...
+                            statesMarker, colors, state_colors,...
+                            gridOption, minorGridOption, axisOption, fullPlotFolder)
                         
     %% Measured Torques with subplots
 
@@ -32,6 +34,14 @@ function measureTorquePlots(time, timeIndexes, tauMes,...
             s(j).Color = state_colors(j,:);
             uistack(p(1));
         end
+        
+        ax = gca;
+        axis(ax,axisOption);
+        ax.XGrid = gridOption;
+        ax.YGrid = gridOption;
+        ax.XMinorGrid = minorGridOption;
+        ax.YMinorGrid = minorGridOption;
+        
         lgd.String(end)   = {"State 4"};
         lgd.String(end-1) = {"State 3"};
         lgd.String(end-2) = {"State 2"};

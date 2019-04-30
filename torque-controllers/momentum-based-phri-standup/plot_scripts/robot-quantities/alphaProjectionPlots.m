@@ -1,6 +1,8 @@
 function alphaProjectionPlots(time, timeIndexes, alpha, range, lineWidth, verticleLineWidth,...
                                    fontSize, legendFontSize, axesLineWidth, axesFontSize,...
-                                   xLabelFontSize, yLabelFontSize, titleFontSize, markerSize, statesMarker, colors, state_colors, fullPlotFolder)
+                                   xLabelFontSize, yLabelFontSize, titleFontSize, markerSize,...
+                                   statesMarker, colors, state_colors,...
+                                   gridOption, minorGridOption, axisOption, fullPlotFolder)
                                
     %% Alpha Projection
     
@@ -15,6 +17,13 @@ function alphaProjectionPlots(time, timeIndexes, alpha, range, lineWidth, vertic
         s(j).Color = state_colors(j,:);
         uistack(p);
     end
+    
+    ax = gca;
+    axis(ax,axisOption);
+    ax.XGrid = gridOption;
+    ax.YGrid = gridOption;
+    ax.XMinorGrid = minorGridOption;
+    ax.YMinorGrid = minorGridOption;
 
     lgd = legend([p s(1) s(2) s(3)],...
                 {'$\alpha$','State 2','State 3', 'State 4'},...

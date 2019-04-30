@@ -1,6 +1,8 @@
 function momentumErrorPlots(time, timeIndexes, Htilde, range, lineWidth, verticleLineWidth,...
                                  fontSize, legendFontSize, axesLineWidth, axesFontSize,...
-                                 xLabelFontSize, yLabelFontSize, titleFontSize, markerSize, statesMarker, colors, state_colors, fullPlotFolder)
+                                 xLabelFontSize, yLabelFontSize, titleFontSize, markerSize,...
+                                 statesMarker, colors, state_colors,...
+                                 gridOption, minorGridOption, axisOption, fullPlotFolder)
                              
     %% Momentum Error Norm
     mom_label_dict1 = ["X $[Kg-m/s]$","Y $[Kg-m/s]$","Z $[Kg-m/s]$"];
@@ -23,6 +25,14 @@ function momentumErrorPlots(time, timeIndexes, Htilde, range, lineWidth, verticl
                 s.Color = state_colors(k,:);
                 uistack(p);
             end
+            
+            ax = gca;
+            axis(ax,axisOption);
+            ax.XGrid = gridOption;
+            ax.YGrid = gridOption;
+            ax.XMinorGrid = minorGridOption;
+            ax.YMinorGrid = minorGridOption;
+            
             index = index + 1;
             if j ==1 
                 ylabel(mom_label_dict1(i),'Interpreter', 'latex', 'FontSize', yLabelFontSize);

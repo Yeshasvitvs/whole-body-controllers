@@ -1,7 +1,9 @@
 function torquesNormPlots(time, timeIndexes, tauMes,...
                           range, lineWidth, verticleLineWidth,...
                           fontSize, legendFontSize, axesLineWidth, axesFontSize,...
-                          xLabelFontSize, yLabelFontSize, titleFontSize, markerSize, statesMarker, colors, fullPlotFolder)
+                          xLabelFontSize, yLabelFontSize, titleFontSize, markerSize,...
+                          statesMarker, colors,...
+                          gridOption, minorGridOption, axisOption, fullPlotFolder)
                       
     %% Measured Torque Norm
     tauMes_norm = vecnorm(tauMes,2,2).*(pi/180);
@@ -17,6 +19,13 @@ function torquesNormPlots(time, timeIndexes, tauMes,...
         s(j).Color = colors(j+3,:);
         uistack(p);
     end
+    
+    ax = gca;
+    axis(ax,axisOption);
+    ax.XGrid = gridOption;
+    ax.YGrid = gridOption;
+    ax.XMinorGrid = minorGridOption;
+    ax.YMinorGrid = minorGridOption;
 
     xlabel('time $[\mathrm{s}]$', 'Interpreter', 'latex', 'FontSize', xLabelFontSize);
     title('Robot Torques Norm', 'FontSize', titleFontSize);

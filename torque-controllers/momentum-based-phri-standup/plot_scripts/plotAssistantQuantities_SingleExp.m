@@ -1,7 +1,9 @@
 function plotAssistantQuantities_SingleExp(andyStandupData, assistant, time, timeIndexes,...
                                                 range, lineWidth, verticleLineWidth,...
                                                 fontSize, legendFontSize, axesLineWidth, axesFontSize,...
-                                                xLabelFontSize, yLabelFontSize, titleFontSize, markerSize, statesMarker, colors, fullPlotFolder)
+                                                xLabelFontSize, yLabelFontSize, titleFontSize,...
+                                                markerSize, statesMarker, colors,...
+                                                gridOption, minorGridOption, axisOption, fullPlotFolder)
                                             
     if (assistant == "Robot")
         
@@ -69,6 +71,14 @@ function plotAssistantQuantities_SingleExp(andyStandupData, assistant, time, tim
                 s(j).Color = colors(j+3,:);
                 uistack(p(1));
             end
+            
+            ax = gca;
+            axis(ax,axisOption);
+            ax.XGrid = gridOption;
+            ax.YGrid = gridOption;
+            ax.XMinorGrid = minorGridOption;
+            ax.YMinorGrid = minorGridOption;
+        
             lgd.String(end)   = {"State 4"};
             lgd.String(end-1) = {"State 3"};
             lgd.String(end-2) = {"State 2"};
@@ -150,6 +160,14 @@ function plotAssistantQuantities_SingleExp(andyStandupData, assistant, time, tim
                 s(j).Color = colors(j+3,:);
                 uistack(p(1));
             end
+            
+            ax = gca;
+            axis(ax,axisOption);
+            ax.XGrid = gridOption;
+            ax.YGrid = gridOption;
+            ax.XMinorGrid = minorGridOption;
+            ax.YMinorGrid = minorGridOption;
+            
             lgd.String(end)   = {"State 4"};
             lgd.String(end-1) = {"State 3"};
             lgd.String(end-2) = {"State 2"};
