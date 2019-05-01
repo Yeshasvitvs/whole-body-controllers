@@ -23,14 +23,14 @@ verticleLineWidth = 2;
 titleFontSize     = 10;
 gridOption        = 'on';
 minorGridOption   = 'off';
-axisOption        = 'normal';
+axisOption        = 'tight';
 
 colors = [0        0.4470   0.7410;
           0.8500   0.3250   0.0980;
           0.9290   0.6940   0.1250;
           0.4940   0.1840   0.5560;
           0.4660   0.6740   0.1880;
-          0.9010   0.2450   0.630];
+          0.9010   0.2450   0.6300];
       
 state_colors = [0.725 0.22 0.35;
                 0.35 0.725 0.22;
@@ -39,31 +39,35 @@ state_colors = [0.725 0.22 0.35;
 statesMarker = ["o",":","d"];
 
 %% Time tolerance in data
-timeTolerance = 0.2;
-endBufferTime = 3.5;
+timeTolerance = 0.05;
+endBufferTime = 5;
 
 %% Load data folder
-dataFolder = 'andy_standup_experiments_data';
+dataFolder = 'andy_standup_experiments_data_30_april_2019';
 addpath(strcat('./',dataFolder));
 
 normalStandupDataFolder = dataFolder + "/normal";
-pHRIMeasuredFTStandupDataFolder = dataFolder + "/pHRI-measured-ft";
-pRRIStandupDataFolder = dataFolder + "/pRRI";
+pHRI1HelpStandupDataFolder = dataFolder + "/pHRI1-help";
+pHRI1OpposeStandupDataFolder = dataFolder + "/pHRI1-oppose";
 
 %% Analyze data set
 normalStandUpData = analyzeAnDyStandupDataSet(normalStandupDataFolder, timeTolerance, endBufferTime);
-% % pHRIMeasuredFTStandUpData = analyzeAnDyStandupDataSet(pHRIMeasuredFTStandupDataFolder, timeTolerance, endBufferTime);
-pRRIStandUpData = analyzeAnDyStandupDataSet(pRRIStandupDataFolder, timeTolerance, endBufferTime);
+pHRI1HelpStandUpData = analyzeAnDyStandupDataSet(pHRI1HelpStandupDataFolder, timeTolerance, endBufferTime);
+pHRI1OpposeStandUpData = analyzeAnDyStandupDataSet(pHRI1OpposeStandupDataFolder, timeTolerance, endBufferTime);
+
+allData = {normalStandUpData pHRI1HelpStandUpData pHRI1OpposeStandUpData};
+legendOptions = {'Normal Standup', 'pHRI1 Help Standup', 'pHRI1 Oppose Standup',...
+                 'State 2', 'State 3', 'State 4'};
 
 %% Get state times
 state2time = 0.0;
-state3time = mean(pRRIStandUpData.start3time-pRRIStandUpData.start2time);
-state4time = mean(pRRIStandUpData.start3time-pRRIStandUpData.start2time)... 
-             + mean(pRRIStandUpData.start4time-pRRIStandUpData.start3time);
+state3time = mean(allData{1,1}.start3time-allData{1,1}.start2time);
+state4time = mean(allData{1,1}.start3time-allData{1,1}.start2time)... 
+             + mean(allData{1,1}.start4time-allData{1,1}.start3time);
 
 timeIndexes = [state2time state3time state4time];
 
-%% CoM Plots
+%% CoM Error Plots
 fH = figure('units','normalized','outerposition',[0 0 1 1]);
 ax = axes('Units', 'normalized', 'Parent',fH, 'FontSize', fontSize);
 yLimits = [];
@@ -73,17 +77,13 @@ for i = 1:3
     sH = subplot(3,1,i); hold on;
     sH.FontSize = fontSize;
     sH.Units = 'normalized';
-    normalHandle = plotMeanAndSTD(sH, normalStandUpData.time,...
-                                      normalStandUpData.comErr_statistics_mean(i,:)',...
-                                      normalStandUpData.comErr_statistics_confidence(i,:)',...
-                                      lineWidth, colors(1,:));
-
-    hold on;
-    pRRIHandle = plotMeanAndSTD(sH, pRRIStandUpData.time,...
-                                    pRRIStandUpData.comErr_statistics_mean(i,:)',...
-                                    pRRIStandUpData.comErr_statistics_confidence(i,:)',...
-                                    lineWidth, colors(4,:));
-    hold on;
+    for d = 1:size(allData,2)
+        dataHandle(d) = plotMeanAndSTD(sH, allData{1,d}.time,...
+                                       allData{1,d}.comErr_statistics_mean(i,:)',...
+                                       allData{1,d}.comErr_statistics_confidence(i,:)',...
+                                       lineWidth, colors(d,:));
+        hold on;
+    end
     
     set (gca, 'FontSize' , axesFontSize, 'LineWidth', axesLineWidth);
     yLimits(i,:) = get(gca,'YLim');
@@ -92,7 +92,7 @@ for i = 1:3
         yValues = linspace(yLimits(i,1)-0.001,yLimits(i,2)+0.001,10)';
         s(j) = plot(xvalues,yValues,statesMarker(j),'LineWidth', verticleLineWidth); hold on;
         s(j).Color = state_colors(j,:);
-        uistack(pRRIHandle);
+        uistack(dataHandle);
     end
     
     ax = gca;
@@ -104,8 +104,7 @@ for i = 1:3
     
     ylabel(CoM_label_dict(i), 'FontSize', yLabelFontSize);
     xlabel('time $[\mathrm{s}]$', 'Interpreter', 'latex', 'FontSize', xLabelFontSize);
-    lgd = legend([normalHandle pRRIHandle s(1) s(2) s(3)],...
-                {'Normal Standup','pRRI Standup','State 2','State 3', 'State 4'},...
+    lgd = legend([dataHandle s(1) s(2) s(3)], legendOptions,...
                  'Location','best','Box','off','FontSize',legendFontSize);
     lgd.NumColumns = size(lgd.String,2);
 end
@@ -131,17 +130,14 @@ for i=1:3
         sH = subplot(3,2,index); hold on;
         sH.FontSize = fontSize;
         sH.Units = 'normalized';
-        normalHandle = plotMeanAndSTD(sH, normalStandUpData.time,...
-                                      normalStandUpData.Htilde_statistics_mean(i+3*(j-1),:)',...
-                                      normalStandUpData.Htilde_statistics_confidence(i+3*(j-1),:)',...
-                                      lineWidth, colors(1,:));
+        for d = 1:size(allData,2)
+            dataHandle(d) = plotMeanAndSTD(sH, allData{1,d}.time,...
+                                           allData{1,d}.Htilde_statistics_mean(i+3*(j-1),:)',...
+                                           allData{1,d}.Htilde_statistics_confidence(i+3*(j-1),:)',...
+                                           lineWidth, colors(d,:));
+            hold on;
+        end
 
-        hold on;
-        pRRIHandle = plotMeanAndSTD(sH, pRRIStandUpData.time,...
-                                    pRRIStandUpData.Htilde_statistics_mean(i+3*(j-1),:)',...
-                                    pRRIStandUpData.Htilde_statistics_confidence(i+3*(j-1),:)',...
-                                    lineWidth, colors(4,:));
-        hold on;
         set (gca, 'FontSize' , axesFontSize, 'LineWidth', axesLineWidth);
         yLimits(index,:) = get(gca,'YLim');
         for k=1:3
@@ -149,7 +145,7 @@ for i=1:3
             yValues = linspace(yLimits(index,1),yLimits(index,2),10)';
             s(k) = plot(xvalues,yValues,statesMarker(k),'LineWidth', verticleLineWidth); hold on;
             s(k).Color = state_colors(k,:);
-            uistack(pRRIHandle);
+            uistack(dataHandle);
         end
         index = index + 1;
         
@@ -167,9 +163,8 @@ for i=1:3
             ylabel(mom_label_dict2(i),'Interpreter', 'latex', 'FontSize', yLabelFontSize);
         end
         
-        lgd = legend([normalHandle pRRIHandle s(1) s(2) s(3)],...
-                     {'Normal Standup','pRRI Standup','State 2', 'State 3', 'State 4'},...
-                     'Location','best','Box','off','FontSize',legendFontSize);
+        lgd = legend([dataHandle s(1) s(2) s(3)], legendOptions,...
+                 'Location','best','Box','off','FontSize',legendFontSize);
         lgd.NumColumns = 2;
         
     end
@@ -184,17 +179,14 @@ save2pdf(fullfile(strcat(fullPlotFolder, '/robotPlots/'), 'MultiDataSetMomentumE
 %% Lyapunov Function Plots
 fH = figure('units','normalized','outerposition',[0 0 1 1]);
 ax = axes('Units', 'normalized', 'Parent',fH, 'FontSize', fontSize);
-normalHandle = plotMeanAndSTD(ax, normalStandUpData.time,...
-                                  normalStandUpData.LyapunovV_statistics_mean',...
-                                  normalStandUpData.LyapunovV_statistics_confidence',...
-                                  lineWidth, colors(1,:));
-hold on;
-pRRIHandle = plotMeanAndSTD(ax, pRRIStandUpData.time,...
-                                pRRIStandUpData.LyapunovV_statistics_mean',...
-                                pRRIStandUpData.LyapunovV_statistics_confidence',...
-                                lineWidth, colors(4,:));
-hold on;  
-
+for d = 1:size(allData,2)
+    dataHandle(d) = plotMeanAndSTD(ax, allData{1,d}.time,...
+                                           allData{1,d}.LyapunovV_statistics_mean',...
+                                           allData{1,d}.LyapunovV_statistics_confidence',...
+                                           lineWidth, colors(d,:));
+    hold on;
+end
+  
 set (gca, 'FontSize' , axesFontSize, 'LineWidth', axesLineWidth);
 yLimits = get(gca,'YLim');
 for j=1:3
@@ -202,7 +194,7 @@ for j=1:3
         yValues = linspace(yLimits(1)-1,yLimits(2)+1,10)';
         s(j) = plot(xvalues,yValues,statesMarker(j),'LineWidth',verticleLineWidth); hold on;
         s(j).Color = state_colors(j,:);
-        uistack(pRRIHandle);
+        uistack(dataHandle);
 end
 
 ax = gca;
@@ -212,9 +204,10 @@ ax.YGrid = gridOption;
 ax.XMinorGrid = minorGridOption;
 ax.YMinorGrid = minorGridOption;
 
-legend([normalHandle pRRIHandle s(1) s(2) s(3)],...
-       {'Normal Standup','pRRI Standup','State 2', 'State 3', 'State 4'},...
-       'Location','best','Box','off','FontSize',legendFontSize);
+lgd = legend([dataHandle s(1) s(2) s(3)], legendOptions,...
+             'Location','best','Box','off','FontSize',legendFontSize);
+lgd.NumColumns = 2;
+
 xlabel('time $[\mathrm{s}]$', 'Interpreter', 'latex', 'FontSize', xLabelFontSize);
 ylabel('$V_{lyap}$', 'Interpreter', 'latex', 'FontSize', yLabelFontSize);
 title('Lyapunov Function', 'FontSize', titleFontSize);
@@ -224,16 +217,13 @@ save2pdf(fullfile(strcat(fullPlotFolder, '/robotPlots/'), 'MultiDataSetLyapunovF
 %% Effort Plots
 fH = figure('units','normalized','outerposition',[0 0 1 1]);
 ax = axes('Units', 'normalized', 'Parent',fH, 'FontSize', fontSize);
-normalHandle = plotMeanAndSTD(ax, normalStandUpData.time,...
-                                  normalStandUpData.effort_statistics_mean',...
-                                  normalStandUpData.effort_statistics_confidence',...
-                                  lineWidth, colors(1,:));
-hold on;
-pRRIHandle = plotMeanAndSTD(ax, pRRIStandUpData.time,...
-                                pRRIStandUpData.effort_statistics_mean',...
-                                pRRIStandUpData.effort_statistics_confidence',...
-                                lineWidth, colors(4,:));
-hold on;
+for d = 1:size(allData,2)
+    dataHandle(d) = plotMeanAndSTD(ax, allData{1,d}.time,...
+                                       allData{1,d}.effort_statistics_mean',...
+                                       allData{1,d}.effort_statistics_confidence',...
+                                       lineWidth, colors(d,:));
+    hold on;
+end
 
 set (gca, 'FontSize' , axesFontSize, 'LineWidth', axesLineWidth);
 yLimits = get(gca,'YLim');
@@ -242,7 +232,7 @@ for j=1:3
         yValues = linspace(yLimits(1)-1,yLimits(2)+1,10)';
         s(j) = plot(xvalues,yValues,statesMarker(j),'LineWidth',verticleLineWidth); hold on;
         s(j).Color = state_colors(j,:);
-        uistack(pRRIHandle);
+        uistack(dataHandle);
 end
 
 ax = gca;
@@ -252,9 +242,9 @@ ax.YGrid = gridOption;
 ax.XMinorGrid = minorGridOption;
 ax.YMinorGrid = minorGridOption;
 
-legend([normalHandle pRRIHandle s(1) s(2) s(3)],...
-       {'Normal Standup','pRRI Standup','State 2', 'State 3', 'State 4'},...
-       'Location','best','Box','off','FontSize',legendFontSize);
+lgd = legend([dataHandle s(1) s(2) s(3)], legendOptions,...
+             'Location','best','Box','off','FontSize',legendFontSize);
+lgd.NumColumns = 2;
 xlabel('time $[\mathrm{s}]$', 'Interpreter', 'latex', 'FontSize', xLabelFontSize);
 ylabel('Joint Effort', 'Interpreter', 'latex', 'FontSize', yLabelFontSize);
 title('Robot Joint Efforts', 'FontSize', titleFontSize);
@@ -264,16 +254,13 @@ save2pdf(fullfile(strcat(fullPlotFolder, '/robotPlots/'), 'MultiDataSetRobotEffo
 %% Leg Power Plots
 fH = figure('units','normalized','outerposition',[0 0 1 1]);
 ax = axes('Units', 'normalized', 'Parent',fH, 'FontSize', fontSize);
-normalHandle = plotMeanAndSTD(ax, normalStandUpData.time,...
-                                  normalStandUpData.legPower_statistics_mean',...
-                                  normalStandUpData.legPower_statistics_confidence',...
-                                  lineWidth, colors(1,:));
-hold on;
-pRRIHandle = plotMeanAndSTD(ax, pRRIStandUpData.time,...
-                                pRRIStandUpData.legPower_statistics_mean',...
-                                pRRIStandUpData.legPower_statistics_confidence',...
-                                lineWidth, colors(4,:));
-hold on;
+for d = 1:size(allData,2)
+    dataHandle(d) = plotMeanAndSTD(ax, allData{1,d}.time,...
+                                       allData{1,d}.legPower_statistics_mean',...
+                                       allData{1,d}.legPower_statistics_confidence',...
+                                       lineWidth, colors(d,:));
+    hold on;
+end
 
 set (gca, 'FontSize' , axesFontSize, 'LineWidth', axesLineWidth);
 yLimits = get(gca,'YLim');
@@ -282,7 +269,7 @@ for j=1:3
         yValues = linspace(yLimits(1)-1,yLimits(2)+1,10)';
         s(j) = plot(xvalues,yValues,statesMarker(j),'LineWidth',verticleLineWidth); hold on;
         s(j).Color = state_colors(j,:);
-        uistack(pRRIHandle);
+        uistack(dataHandle);
 end
 
 ax = gca;
@@ -292,9 +279,9 @@ ax.YGrid = gridOption;
 ax.XMinorGrid = minorGridOption;
 ax.YMinorGrid = minorGridOption;
 
-legend([normalHandle pRRIHandle s(1) s(2) s(3)],...
-       {'Normal Standup','pRRI Standup','State 2', 'State 3', 'State 4'},...
-       'Location','best','Box','off','FontSize',legendFontSize);
+lgd = legend([dataHandle s(1) s(2) s(3)], legendOptions,...
+             'Location','best','Box','off','FontSize',legendFontSize);
+lgd.NumColumns = 2;
 xlabel('time $[\mathrm{s}]$', 'Interpreter', 'latex', 'FontSize', xLabelFontSize);
 ylabel('Power', 'Interpreter', 'latex', 'FontSize', yLabelFontSize);
 title('Robot Legs Power', 'FontSize', titleFontSize);
@@ -304,16 +291,13 @@ save2pdf(fullfile(strcat(fullPlotFolder, '/robotPlots/'), 'MultiDataSetLegsPower
 %% Leg Torque Norm Plots
 fH = figure('units','normalized','outerposition',[0 0 1 1]);
 ax = axes('Units', 'normalized', 'Parent',fH, 'FontSize', fontSize);
-normalHandle = plotMeanAndSTD(ax, normalStandUpData.time,...
-                                  normalStandUpData.legTorqueNorm_statistics_mean',...
-                                  normalStandUpData.legTorqueNorm_statistics_confidence',...
-                                  lineWidth, colors(1,:));
-hold on;
-pRRIHandle = plotMeanAndSTD(ax, pRRIStandUpData.time,...
-                                pRRIStandUpData.legTorqueNorm_statistics_mean',...
-                                pRRIStandUpData.legTorqueNorm_statistics_confidence',...
-                                lineWidth, colors(4,:));
-hold on;
+for d = 1:size(allData,2)
+    dataHandle(d) = plotMeanAndSTD(ax, allData{1,d}.time,...
+                                       allData{1,d}.legTorqueNorm_statistics_mean',...
+                                       allData{1,d}.legTorqueNorm_statistics_confidence',...
+                                       lineWidth, colors(d,:));
+    hold on;
+end
 
 set (gca, 'FontSize' , axesFontSize, 'LineWidth', axesLineWidth);
 yLimits = get(gca,'YLim');
@@ -322,7 +306,7 @@ for j=1:3
         yValues = linspace(yLimits(1)-1,yLimits(2)+1,10)';
         s(j) = plot(xvalues,yValues,statesMarker(j),'LineWidth',verticleLineWidth); hold on;
         s(j).Color = state_colors(j,:);
-        uistack(pRRIHandle);
+        uistack(dataHandle);
 end
 
 ax = gca;
@@ -332,9 +316,9 @@ ax.YGrid = gridOption;
 ax.XMinorGrid = minorGridOption;
 ax.YMinorGrid = minorGridOption;
 
-legend([normalHandle pRRIHandle s(1) s(2) s(3)],...
-       {'Normal Standup','pRRI Standup','State 2', 'State 3', 'State 4'},...
-       'Location','best','Box','off','FontSize',legendFontSize);
+lgd = legend([dataHandle s(1) s(2) s(3)], legendOptions,...
+             'Location','best','Box','off','FontSize',legendFontSize);
+lgd.NumColumns = 2;
 xlabel('time $[\mathrm{s}]$', 'Interpreter', 'latex', 'FontSize', xLabelFontSize);
 ylabel('Torque Norm', 'Interpreter', 'latex', 'FontSize', yLabelFontSize);
 title('Robot Legs Torques Norm', 'FontSize', titleFontSize);
