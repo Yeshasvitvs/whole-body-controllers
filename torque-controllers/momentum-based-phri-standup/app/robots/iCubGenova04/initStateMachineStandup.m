@@ -78,13 +78,13 @@ Sm.wrench_thresholdContactRFoot  = [0     % NOT USED
                                     0];   % NOT USED
                      
 % external forces at arms threshold                    
-Sm.wrench_thresholdContactRHand  = [7.5   % state ==  1  BALANCING ON THE LEGS
+Sm.wrench_thresholdContactRHand  = [1   % state ==  1  BALANCING ON THE LEGS
                                     0;    % NOT USED
                                     0;    % NOT USED
                                     0];   % NOT USED
 
                       
-Sm.wrench_thresholdContactLHand  = [7.5   % state ==  1  BALANCING ON THE LEGS
+Sm.wrench_thresholdContactLHand  = [1   % state ==  1  BALANCING ON THE LEGS
                                     0;    % NOT USED
                                     0;    % NOT USED
                                     0];   % NOT USED

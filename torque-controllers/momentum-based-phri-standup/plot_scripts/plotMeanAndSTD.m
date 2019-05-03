@@ -32,7 +32,7 @@
 
 
 %% To be used for subplots
-function [meanHandle,fHandle] = plotMeanAndSTD( axes_handle, xAxisValues,  meanValues, stdValues,lineWidth,color)
+function [meanHandle,fHandle] = plotMeanAndSTD(axes_handle, xAxisValues,  meanValues, stdValues, lineWidth, color)
 
     meanHandle = [];
     fHandle = [];

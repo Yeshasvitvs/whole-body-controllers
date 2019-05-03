@@ -14,7 +14,7 @@ function vLyapunovFunctionPlots(time, timeIndexes, vLyap, range, lineWidth, vert
     
     %% pRRI
     rectangle('Position',[1 vLyap(100)-750 1 1500], 'EdgeColor','r', 'LineWidth',axesLineWidth);
-    rectangle('Position',[16 vLyap(1600)-750 1 1500], 'EdgeColor','r', 'LineWidth',axesLineWidth);
+    rectangle('Position',[12 vLyap(1200)-750 1 1500], 'EdgeColor','r', 'LineWidth',axesLineWidth);
     
     set (gca, 'FontSize' , axesFontSize, 'LineWidth', axesLineWidth);
     yLimits = get(gca,'YLim');
@@ -52,7 +52,7 @@ function vLyapunovFunctionPlots(time, timeIndexes, vLyap, range, lineWidth, vert
 
 % %     ax = axes('Parent', gcf, 'Position', [handle(1)+0.45 handle(2)+0.55 handle(3)-0.67 handle(4)-0.67]); %% pHRI
     ax = axes('Parent', gcf, 'Position', [handle(1)+0.375 handle(2)+0.35 handle(3)-0.67 handle(4)-0.67]); %% pRRI
-    plot(time(1600:1700),vLyap(1600:1700),'-','LineWidth',lineWidth); hold on;
+    plot(time(1200:1300),vLyap(1200:1300),'-','LineWidth',lineWidth); hold on;
     set (gca, 'FontSize' , axesFontSize, 'LineWidth', axesLineWidth);
     yLimits = get(gca,'YLim');
     xLimits = get(gca,'XLim');

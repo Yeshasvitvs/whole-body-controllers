@@ -55,9 +55,9 @@ if (Config.USING_ROBOT_ASSISTANT && Config.USING_HUMAN_ASSISTANT)
 end
 
 %% iCub STANDUP demo physical interaction options
-Config.STANDUP_WITH_ASSISTANT_FORCE           = true;
-Config.MEASURED_FT                            = true;
-Config.STANDUP_WITH_ASSISTANT_TORQUE          = false;
+Config.STANDUP_WITH_ASSISTANT_FORCE           = false;
+Config.MEASURED_FT                            = false;
+Config.STANDUP_WITH_ASSISTANT_TORQUE          = true;
 
 if (Config.USING_SOLO_ROBOT && (Config.STANDUP_WITH_ASSISTANT_FORCE || Config.MEASURED_FT || Config.STANDUP_WITH_ASSISTANT_TORQUE))
     error('Standup scenario set up with only solo robot but some of the physical interaction options is set to True. \n%s', 'Please set that flags to false.');
@@ -88,14 +88,14 @@ if (~Config.ANALYTICAL_TRAJECTORY && ~Config.TRAJECTORY_PARAMETRIZATION)
     disp('Using simulink minimum-jerk trajectory with normal time parametrization');
 elseif (~Config.ANALYTICAL_TRAJECTORY && Config.TRAJECTORY_PARAMETRIZATION)
     error('Trajectory parametrization cannot be achived using simulink minimum-jerk trajectory. \n%s', 'Please verify the options you are setting.')
-elseif (Config.ANALYTICAL_TRAJECTORY && ~Config.TRAJECTORY_PARAMETRIZATIOtrueN)
+elseif (Config.ANALYTICAL_TRAJECTORY && ~Config.TRAJECTORY_PARAMETRIZATION)
     disp('Using analytical minimum-jerk trajectory with normal time parametrization')
 elseif (Config.ANALYTICAL_TRAJECTORY && Config.TRAJECTORY_PARAMETRIZATION)
     disp('Using analytical minimum-jerk trajectory with trajectory parametrization')
 end
 
 % Simulation time in seconds
-Config.SIMULATION_TIME = inf;
+Config.SIMULATION_TIME = 15;
 
 %% PRELIMINARY CONFIGURATIONS 
 % Sm.SM_TYPE: defines the kind of state machines that can be chosen.

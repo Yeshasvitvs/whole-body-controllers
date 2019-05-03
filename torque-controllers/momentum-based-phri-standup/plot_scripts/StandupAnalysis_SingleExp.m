@@ -39,9 +39,9 @@ state_colors = [0.725 0.22 0.35;
 statesMarker = ["o",":","d"];
       
 %% Load data
-dataFolder = 'experiments19-Apr-2019';
+dataFolder = 'experiments02-May-2019';
 addpath(strcat('./',dataFolder));
-andyStandupData = load('exp_17-37');
+andyStandupData = load('exp_12-3');
 
 time  = andyStandupData.tauMeasuredData.time;
 

@@ -40,23 +40,27 @@ statesMarker = ["o",":","d"];
 
 %% Time tolerance in data
 timeTolerance = 0.05;
-endBufferTime = 5;
+endBufferTime = 3;
 
 %% Load data folder
-dataFolder = 'andy_standup_experiments_data_30_april_2019';
+dataFolder = 'andy_standup_experiments_data_02_may_2019';
 addpath(strcat('./',dataFolder));
 
 normalStandupDataFolder = dataFolder + "/normal";
 pHRI1HelpStandupDataFolder = dataFolder + "/pHRI1-help";
 pHRI1OpposeStandupDataFolder = dataFolder + "/pHRI1-oppose";
+pHRI1UntrainedStandupDataFolder = dataFolder + "/pHRI1-untrained";
+pHRI3StandupDataFolder = dataFolder + "/pHRI3";
 
 %% Analyze data set
 normalStandUpData = analyzeAnDyStandupDataSet(normalStandupDataFolder, timeTolerance, endBufferTime);
 pHRI1HelpStandUpData = analyzeAnDyStandupDataSet(pHRI1HelpStandupDataFolder, timeTolerance, endBufferTime);
 pHRI1OpposeStandUpData = analyzeAnDyStandupDataSet(pHRI1OpposeStandupDataFolder, timeTolerance, endBufferTime);
+pHRI1UntrainedStandUpData = analyzeAnDyStandupDataSet(pHRI1UntrainedStandupDataFolder, timeTolerance, endBufferTime);
+pHRI3StandUpData = analyzeAnDyStandupDataSet(pHRI3StandupDataFolder, timeTolerance, endBufferTime);
 
-allData = {normalStandUpData pHRI1HelpStandUpData pHRI1OpposeStandUpData};
-legendOptions = {'Normal Standup', 'pHRI1 Help Standup', 'pHRI1 Oppose Standup',...
+allData = {normalStandUpData pHRI1HelpStandUpData pHRI3StandUpData};
+legendOptions = {'Normal Standup', 'pHRI1 Trained Helping Standup', 'pHRI3 Standup'...
                  'State 2', 'State 3', 'State 4'};
 
 %% Get state times
@@ -66,6 +70,54 @@ state4time = mean(allData{1,1}.start3time-allData{1,1}.start2time)...
              + mean(allData{1,1}.start4time-allData{1,1}.start3time);
 
 timeIndexes = [state2time state3time state4time];
+
+%% CoM Desired Plots
+fH = figure('units','normalized','outerposition',[0 0 1 1]);
+ax = axes('Units', 'normalized', 'Parent',fH, 'FontSize', fontSize);
+yLimits = [];
+CoM_label_dict = ["CoM X [m]","CoM Y [m]","CoM Z [m]"];
+
+for i = 1:3
+    sH = subplot(3,1,i); hold on;
+    sH.FontSize = fontSize;
+    sH.Units = 'normalized';
+    for d = 1:size(allData,2)
+        dataHandle(d) = plotMeanAndSTD(sH, allData{1,d}.time,...
+                                       allData{1,d}.comDes_statistics_mean(i,:)',...
+                                       allData{1,d}.comDes_statistics_confidence(i,:)',...
+                                       lineWidth, colors(d,:));
+        hold on;
+    end
+    
+    set (gca, 'FontSize' , axesFontSize, 'LineWidth', axesLineWidth);
+    yLimits(i,:) = get(gca,'YLim');
+    for j=1:3
+        xvalues = timeIndexes(j)*ones(10,1);
+        yValues = linspace(yLimits(i,1)-0.001,yLimits(i,2)+0.001,10)';
+        s(j) = plot(xvalues,yValues,statesMarker(j),'LineWidth', verticleLineWidth); hold on;
+        s(j).Color = state_colors(j,:);
+        uistack(dataHandle);
+    end
+    
+    ax = gca;
+    axis(ax,axisOption);
+    ax.XGrid = gridOption;
+    ax.YGrid = gridOption;
+    ax.XMinorGrid = minorGridOption;
+    ax.YMinorGrid = minorGridOption;
+    
+    ylabel(CoM_label_dict(i), 'FontSize', yLabelFontSize);
+    xlabel('time $[\mathrm{s}]$', 'Interpreter', 'latex', 'FontSize', xLabelFontSize);
+    lgd = legend([dataHandle s(1) s(2) s(3)], legendOptions,...
+                 'Location','best','Box','off','FontSize',legendFontSize);
+    lgd.NumColumns = 2;
+end
+
+
+currentFigure = gcf;
+title(currentFigure.Children(end), 'Center of Mass Desired', 'FontSize', titleFontSize);
+
+save2pdf(fullfile(strcat(fullPlotFolder, '/robotPlots/'), 'MultiDataSetCoMDesired.pdf'),fH,300);
 
 %% CoM Error Plots
 fH = figure('units','normalized','outerposition',[0 0 1 1]);
@@ -106,7 +158,7 @@ for i = 1:3
     xlabel('time $[\mathrm{s}]$', 'Interpreter', 'latex', 'FontSize', xLabelFontSize);
     lgd = legend([dataHandle s(1) s(2) s(3)], legendOptions,...
                  'Location','best','Box','off','FontSize',legendFontSize);
-    lgd.NumColumns = size(lgd.String,2);
+    lgd.NumColumns = 2;
 end
 
 

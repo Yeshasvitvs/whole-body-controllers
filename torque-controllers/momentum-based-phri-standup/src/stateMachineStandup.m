@@ -62,7 +62,7 @@ function  [w_H_b, constraints, CoM_des, qj_des, impedances, KPCoM, KDCoM, curren
         CoM_des                   = xCoM_0 + transpose(Sm.CoM_delta(state,:));
         jointsAndCoMSmoothingTime = Sm.smoothingTimeCoM_Joints(state);
         
-        if (wrench_rightFoot(3)+wrench_leftFoot(3)) > (Sm.wrench_thresholdContactLFoot(state) + Sm.wrench_thresholdContactRFoot(state)) && tDelta > 1.5 
+        if (wrench_rightFoot(3)+wrench_leftFoot(3)) > (Sm.wrench_thresholdContactLFoot(state) + Sm.wrench_thresholdContactRFoot(state)) && tDelta > 1.5
             state           = 3;
             w_H_fixedLink   = w_H_fixedLink * l_upper_leg_contact_H_b/l_sole_H_b;
             tSwitch         = t;
