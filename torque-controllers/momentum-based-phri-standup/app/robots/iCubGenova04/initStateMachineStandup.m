@@ -29,28 +29,57 @@ Reg.pinvTol        = 1e-5;
 Reg.impedances     = 0.1;
 Reg.dampings       = 0;
 Reg.HessianQP      = 1e-2; 
-Reg.norm_tolerance = 1e-4;
+
+if (Config.USING_HUMAN_ASSISTANT && Config.STANDUP_WITH_ASSISTANT_TORQUE)
+    
+    Reg.norm_tolerance = 1e-4;
+    
+    %% COM AND JOINT GAINS 
+    Gain.KP_COM     =      [75   75  75;     % state ==  1  BALANCING ON THE LEGS
+                            75   75  75;     % state ==  2  MOVE COM FORWARD
+                            75   75  75;     % state ==  3  TWO FEET BALANCING
+                            75   75  75];    % state ==  4  LIFTING UP
+
+    Gain.KD_COM = 2*sqrt(Gain.KP_COM)*0;
+
+    Gain.KP_AngularMomentum  = 2;
+    Gain.KD_AngularMomentum  = 2*sqrt(Gain.KP_AngularMomentum);
+
+    %                   %   TORSO  %%      LEFT ARM   %%      RIGHT ARM   %%        LEFT LEG            %%         RIGHT LEG          %% 
+    Gain.impedances  = [10   40   40, 30   10    10    8, 30   10    10    8, 30   50   30    60    50  50, 30   50   30    60    50  50;   % state ==  1  BALANCING ON THE LEGS
+                        10   40   40, 30   10    10    8, 30   10    10    8, 30   50   30    60    50  50, 30   50   30    60    50  50;   % state ==  2  MOVE COM FORWARD
+                        10   40   40, 30   10    10    8, 30   10    10    8, 30   50   30    60    50  50, 30   50   30    60    50  50;   % state ==  3  TWO FEET BALANCING
+                        10   40   40, 30   20    10    8, 30   20    10    8, 30   50   30    60    50  50, 30   50   30    60    50  50];  % state ==  4  LIFTING UP
+
+    Gain.impedances(3,:) = Gain.impedances(3,:)./2;      
+    Gain.dampings        = 0*sqrt(Gain.impedances(1,:));  
+    
+else
+    
+    Reg.norm_tolerance = 1e-4;
+    
+    %% COM AND JOINT GAINS 
+    Gain.KP_COM     =      [50   50  50;     % state ==  1  BALANCING ON THE LEGS
+                            50   50  50;     % state ==  2  MOVE COM FORWARD
+                            50   50  50;     % state ==  3  TWO FEET BALANCING
+                            50   50  50];    % state ==  4  LIFTING UP
+
+    Gain.KD_COM = 2*sqrt(Gain.KP_COM)*0;
+
+    Gain.KP_AngularMomentum  = 2;
+    Gain.KD_AngularMomentum  = 2*sqrt(Gain.KP_AngularMomentum);
+
+    %                   %   TORSO  %%      LEFT ARM   %%      RIGHT ARM   %%        LEFT LEG            %%         RIGHT LEG          %% 
+    Gain.impedances  = [10   40   40, 30   10    10    8, 30   10    10    8, 30   50   30    60    50  50, 30   50   30    60    50  50;   % state ==  1  BALANCING ON THE LEGS
+                        10   40   40, 30   10    10    8, 30   10    10    8, 30   50   30    60    50  50, 30   50   30    60    50  50;   % state ==  2  MOVE COM FORWARD
+                        10   40   40, 30   10    10    8, 30   10    10    8, 30   50   30    60    50  50, 30   50   30    60    50  50;   % state ==  3  TWO FEET BALANCING
+                        10   40   40, 30   20    10    8, 30   20    10    8, 30   50   30    60    50  50, 30   50   30    60    50  50];  % state ==  4  LIFTING UP
+
+    Gain.impedances(3,:) = Gain.impedances(3,:)./2;      
+    Gain.dampings        = 0*sqrt(Gain.impedances(1,:));
+    
+end
                             
-%% COM AND JOINT GAINS 
-Gain.KP_COM     =      [50   50  50;     % state ==  1  BALANCING ON THE LEGS
-                        50   50  50;     % state ==  2  MOVE COM FORWARD
-                        50   50  50;     % state ==  3  TWO FEET BALANCING
-                        50   50  50];    % state ==  4  LIFTING UP
-
-Gain.KD_COM = 2*sqrt(Gain.KP_COM)*0;
-
-Gain.KP_AngularMomentum  = 2;
-Gain.KD_AngularMomentum  = 2*sqrt(Gain.KP_AngularMomentum);
-
-%                   %   TORSO  %%      LEFT ARM   %%      RIGHT ARM   %%        LEFT LEG            %%         RIGHT LEG          %% 
-Gain.impedances  = [10   40   40, 30   10    10    8, 30   10    10    8, 30   50   30    60    50  50, 30   50   30    60    50  50;   % state ==  1  BALANCING ON THE LEGS
-                    10   40   40, 30   10    10    8, 30   10    10    8, 30   50   30    60    50  50, 30   50   30    60    50  50;   % state ==  2  MOVE COM FORWARD
-                    10   40   40, 30   10    10    8, 30   10    10    8, 30   50   30    60    50  50, 30   50   30    60    50  50;   % state ==  3  TWO FEET BALANCING
-                    10   40   40, 30   20    10    8, 30   20    10    8, 30   50   30    60    50  50, 30   50   30    60    50  50];  % state ==  4  LIFTING UP
-
-Gain.impedances(3,:) = Gain.impedances(3,:)./2;      
-Gain.dampings        = 0*sqrt(Gain.impedances(1,:));  
-
 % Smoothing time gain scheduling (STANDUP DEMO ONLY)
 Gain.SmoothingTimeGainScheduling = 2;
 
