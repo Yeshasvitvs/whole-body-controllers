@@ -24,7 +24,7 @@ CMakeLists.txt.user*
 slprj/
 
 # Matlab binary .mat files
-*.mat
+#*.mat
 
 # Matlab figures
 *.fig

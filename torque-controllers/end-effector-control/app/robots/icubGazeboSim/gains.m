@@ -10,13 +10,13 @@ if (Config.TRAJECTORY_TYPE == 1 || Config.TRAJECTORY_TYPE == 2)
     
     Config.FREQUENCY = 0.1;
     Config.AMPLITUDE = -0.05;
-    Config.SDOT_REGULARIZATION = 1e-3;
+    Config.SDOT_REGULARIZATION = 1e-2;
     
 elseif (Config.TRAJECTORY_TYPE == 3)
     
     Config.FREQUENCY = 0.1;
     Config.AMPLITUDE = -0.05;
-    Config.SDOT_REGULARIZATION = 1e-2;
+    Config.SDOT_REGULARIZATION = 1e-1;
     
 end
 

@@ -13,7 +13,7 @@ fi
 
 COMMAND=$1
 
-FORCE=5.5
+FORCE=10
 TIME=0.75
 
 if [[ ${COMMAND} == "x" ]] ; then
