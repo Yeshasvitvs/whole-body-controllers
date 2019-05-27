@@ -68,7 +68,7 @@ end
 Config.ANALYTICAL_TRAJECTORY            = true;
 
 %% Trajectory parametrization control
-Config.TRAJECTORY_PARAMETRIZATION       = false;
+Config.TRAJECTORY_PARAMETRIZATION       = true;
 
 %% Sdot upper limit
 Config.SDOT_UPPER_LIMIT                 = 2.5;

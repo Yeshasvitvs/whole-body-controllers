@@ -16,13 +16,13 @@ if (Config.TRAJECTORY_TYPE == 1 || Config.TRAJECTORY_TYPE == 2)
     
     Config.FREQUENCY = 0.1;
     Config.AMPLITUDE = -0.1;
-    Config.SDOT_REGULARIZATION = 1e-2;
+    Config.SDOT_REGULARIZATION = 10000000;
     
 elseif (Config.TRAJECTORY_TYPE == 3)
     
     Config.FREQUENCY = 0.1;
-    Config.AMPLITUDE = -0.1;
-    Config.SDOT_REGULARIZATION = 1e-1;
+    Config.AMPLITUDE = -0.05;
+    Config.SDOT_REGULARIZATION = 10000000;
     
 end
 
@@ -53,17 +53,17 @@ if(strcmp(Config.PARTS,'single_arm'))
 else
     %% Position control gains
     GAINS.POSITION.Kp			    = diag([300,100,300]);
-    GAINS.POSITION.Kd			    = 2*sqrt(GAINS.POSITION.Kp)/20;
+    GAINS.POSITION.Kd			    = 2*sqrt(GAINS.POSITION.Kp)/10;
     GAINS.POSITION.Eps			    = 1e-5;
 
     %% Orientation control gains
     GAINS.ORIENTATION.Kp			= diag([600,600,600]);
-    GAINS.ORIENTATION.Kd			= 0*2*sqrt(GAINS.ORIENTATION.Kp);
+    GAINS.ORIENTATION.Kd			= 2*sqrt(GAINS.ORIENTATION.Kp)/10;
     GAINS.ORIENTATION.Eps			= 1e-5;
 
     %% Postural task gains
     GAINS.POSTURAL.Kp			    = diag([30,30,30,5,5,5,5,5,30,30,30,30,30]);
-    GAINS.POSTURAL.Kd			    = 0.1;
+    GAINS.POSTURAL.Kd			    = 2*sqrt(GAINS.POSTURAL.Kp)/10;
 end
 
 
