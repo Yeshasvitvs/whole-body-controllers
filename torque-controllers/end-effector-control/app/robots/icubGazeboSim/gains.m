@@ -6,6 +6,12 @@
 Config.ON_GAZEBO = true;
 Config.WAIT_TIME = 2; %Time to wait before starting tracking
 
+%% WBD Configuration
+Frames.LEFT_HAND         = 'l_hand';
+Frames.RIGHT_HAND        = 'r_hand';
+Ports.RIGHT_ARM        = '/wholeBodyDynamics/right_arm/endEffectorWrench:o';
+Ports.LEFT_ARM         = '/wholeBodyDynamics/left_arm/endEffectorWrench:o';
+
 if (Config.TRAJECTORY_TYPE == 1 || Config.TRAJECTORY_TYPE == 2)
     
     Config.FREQUENCY = 0.1;

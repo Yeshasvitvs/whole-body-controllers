@@ -26,13 +26,13 @@ clc;
 % and set the environmental variable YARP_ROBOT_NAME = icubGazeboSim.
 % To do this, you can uncomment the
 
-setenv('YARP_ROBOT_NAME','icubGazeboSim');
-% % setenv('YARP_ROBOT_NAME','iCubGenova04'); %%Greeny
+% % setenv('YARP_ROBOT_NAME','icubGazeboSim');
+setenv('YARP_ROBOT_NAME','iCubGenova04'); %%Greeny
 % % setenv('YARP_ROBOT_NAME','iCubGenova02'); %%Purple
 
 
 % Simulation time in seconds
-Config.SIMULATION_TIME = 20;
+Config.SIMULATION_TIME = inf;
 
 % If Config.SAVE_WORKSPACE = True, every time the simulink model is run the
 % workspace is saved after stopping the simulation
@@ -68,20 +68,20 @@ end
 Config.ANALYTICAL_TRAJECTORY            = true;
 
 %% Trajectory parametrization control
-Config.TRAJECTORY_PARAMETRIZATION       = true;
+Config.TRAJECTORY_PARAMETRIZATION       = false;
 
 %% Sdot upper limit
 Config.SDOT_UPPER_LIMIT                 = 2.5;
 
 %% Trajectory type
 %% straight-y (1) straight-z (2) or circular (3)
-Config.TRAJECTORY_TYPE                  = 3;
+Config.TRAJECTORY_TYPE                  = 2;
 
 %% Configuration Object
 WBTConfigRobot                          = WBToolbox.Configuration;
 
 %% RobotConfiguration Data
-WBTConfigRobot.RobotName                = 'icubSim';
+WBTConfigRobot.RobotName                = 'icub';
 WBTConfigRobot.UrdfFile                 = 'model.urdf';
 
 if(strcmp(Config.PARTS,'single_arm') && strcmp(Config.EE,'r_hand'))
@@ -116,12 +116,6 @@ else
 end
 
 WBTConfigRobot.LocalName                = 'WBT';
-
-%% WBD Configuration
-Frames.LEFT_HAND         = 'l_hand';
-Frames.RIGHT_HAND        = 'r_hand';
-Ports.RIGHT_ARM        = '/wholeBodyDynamics/right_arm/endEffectorWrench:o';
-Ports.LEFT_ARM         = '/wholeBodyDynamics/left_arm/endEffectorWrench:o';
 
 %% Checking Configuration Success
 if ~WBTConfigRobot.ValidConfiguration

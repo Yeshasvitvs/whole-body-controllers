@@ -3,7 +3,7 @@
 %
 
 %% --- Initialization ---
-Config.ON_GAZEBO         = false;
+Config.ON_GAZEBO = false;
 Config.WAIT_TIME = 2; %Time to wait before starting tracking
 
 %% WBD Configuration
@@ -15,13 +15,13 @@ Ports.LEFT_ARM         = '/wholeBodyDynamics/left_arm/cartesianEndEffectorWrench
 if (Config.TRAJECTORY_TYPE == 1 || Config.TRAJECTORY_TYPE == 2)
     
     Config.FREQUENCY = 0.1;
-    Config.AMPLITUDE = -0.05;
+    Config.AMPLITUDE = -0.1;
     Config.SDOT_REGULARIZATION = 1e-2;
     
 elseif (Config.TRAJECTORY_TYPE == 3)
     
     Config.FREQUENCY = 0.1;
-    Config.AMPLITUDE = -0.05;
+    Config.AMPLITUDE = -0.1;
     Config.SDOT_REGULARIZATION = 1e-1;
     
 end
@@ -52,18 +52,18 @@ if(strcmp(Config.PARTS,'single_arm'))
     GAINS.POSTURAL.Kd			    = 2;
 else
     %% Position control gains
-    GAINS.POSITION.Kp			    = 200;
-    GAINS.POSITION.Kd			    = 0*2*sqrt(GAINS.POSITION.Kp);
-    GAINS.POSITION.Eps			    = 1e-7;
+    GAINS.POSITION.Kp			    = diag([300,100,300]);
+    GAINS.POSITION.Kd			    = 2*sqrt(GAINS.POSITION.Kp)/20;
+    GAINS.POSITION.Eps			    = 1e-5;
 
     %% Orientation control gains
-    GAINS.ORIENTATION.Kp			= 50;
+    GAINS.ORIENTATION.Kp			= diag([600,600,600]);
     GAINS.ORIENTATION.Kd			= 0*2*sqrt(GAINS.ORIENTATION.Kp);
-    GAINS.ORIENTATION.Eps			= 1e-7;
+    GAINS.ORIENTATION.Eps			= 1e-5;
 
     %% Postural task gains
-    GAINS.POSTURAL.Kp			    = diag([30,30,30,5,5,5,5,5,5,5,5,5,5]);
-    GAINS.POSTURAL.Kd			    = 2;
+    GAINS.POSTURAL.Kp			    = diag([30,30,30,5,5,5,5,5,30,30,30,30,30]);
+    GAINS.POSTURAL.Kd			    = 0.1;
 end
 
 
