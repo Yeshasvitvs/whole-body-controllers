@@ -26,8 +26,8 @@ clc;
 % and set the environmental variable YARP_ROBOT_NAME = icubGazeboSim.
 % To do this, you can uncomment the
 
-% % setenv('YARP_ROBOT_NAME','icubGazeboSim');
-setenv('YARP_ROBOT_NAME','iCubGenova04'); %%Greeny
+setenv('YARP_ROBOT_NAME','icubGazeboSim');
+% % setenv('YARP_ROBOT_NAME','iCubGenova04'); %%Greeny
 % % setenv('YARP_ROBOT_NAME','iCubGenova02'); %%Purple
 
 
@@ -36,7 +36,7 @@ Config.SIMULATION_TIME = inf;
 
 % If Config.SAVE_WORKSPACE = True, every time the simulink model is run the
 % workspace is saved after stopping the simulation
-Config.SAVE_WORKSPACE        = true;
+Config.SAVE_WORKSPACE  = true;
 
 % Controller period [s]
 Config.Ts              = 0.01; 
@@ -55,8 +55,9 @@ Config.EE                               = 'r_hand';
 %               the torso of the robot
 %               moved along a desired trajectory using 
 
-%Config.PARTS                            = 'single_arm';
+% %Config.PARTS                            = 'single_arm';
 Config.PARTS                            = 'upper_body';
+% % Config.PARTS                            = 'lower_body';
 
 if(strcmp(Config.PARTS,'single_arm'))
     Config.SOLO_ARM                     = true;
@@ -64,24 +65,26 @@ else
     Config.SOLO_ARM                     = false;
 end
 
-%% Trajectory generation flag
+%% Trajectory generation flagr_hand
 Config.ANALYTICAL_TRAJECTORY            = true;
 
 %% Trajectory parametrization control
-Config.TRAJECTORY_PARAMETRIZATION       = true;
+Config.TRAJECTORY_PARAMETRIZATION       = false;
 
 %% Sdot upper limit
 Config.SDOT_UPPER_LIMIT                 = 2.5;
 
 %% Trajectory type
 %% straight-y (1) straight-z (2) or circular (3)
-Config.TRAJECTORY_TYPE                  = 2;
+Config.TRAJECTORY_TYPE                  = 1;
 
+
+%% WBD Configuration
 %% Configuration Object
 WBTConfigRobot                          = WBToolbox.Configuration;
 
 %% RobotConfiguration Data
-WBTConfigRobot.RobotName                = 'icub';
+WBTConfigRobot.RobotName                = 'icubSim';
 WBTConfigRobot.UrdfFile                 = 'model.urdf';
 
 if(strcmp(Config.PARTS,'single_arm') && strcmp(Config.EE,'r_hand'))
@@ -102,7 +105,7 @@ elseif (strcmp(Config.PARTS,'single_arm') && strcmp(Config.EE,'l_hand'))
                                           };
     WBTConfigRobot.ControlBoardsNames   = {'left_arm'};
     
-else
+elseif (strcmp(Config.PARTS,'upper_body'))
     
     WBTConfigRobot.ControlledJoints     = {...
                                            'torso_yaw','torso_roll','torso_pitch',...
@@ -112,6 +115,20 @@ else
                                            'l_wrist_prosup',...
                                           };
     WBTConfigRobot.ControlBoardsNames   = {'torso','left_arm','right_arm'};
+
+elseif (strcmp(Config.PARTS,'lower_body') && strcmp(Config.EE,'r_leg'))
+    
+    WBTConfigRobot.ControlledJoints     = {'r_hip_pitch','r_hip_roll','r_hip_yaw',...
+                                           'r_knee','r_ankle_pitch','r_ankle_roll'
+                                          };
+    WBTConfigRobot.ControlBoardsNames   = {'right_leg'};
+    
+elseif (strcmp(Config.PARTS,'lower_body') && strcmp(Config.EE,'l_leg'))
+    
+    WBTConfigRobot.ControlledJoints     = {'l_hip_pitch','l_hip_roll','l_hip_yaw',...
+                                           'l_knee','l_ankle_pitch','l_ankle_roll'
+                                          };
+    WBTConfigRobot.ControlBoardsNames   = {'left_leg'};
 
 end
 
