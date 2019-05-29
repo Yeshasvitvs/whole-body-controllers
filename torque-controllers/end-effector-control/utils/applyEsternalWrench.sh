@@ -15,7 +15,7 @@ COMMAND=$1
 
 FORCE=10
 TIME=0.75
-EE_LINK="iCub::r_hand"
+EE_LINK="iCub::r_foot"
 
 if [[ ${COMMAND} == "x" ]] ; then
   echo "${EE_LINK} ${FORCE} 0 0 0 0 0 ${TIME}" | yarp rpc /iCub/applyExternalWrench/rpc:i

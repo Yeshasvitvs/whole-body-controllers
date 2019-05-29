@@ -24,7 +24,16 @@ if (Config.TRAJECTORY_TYPE == 0 || Config.TRAJECTORY_TYPE == 1 || Config.TRAJECT
     
     Config.FREQUENCY = 0.1;
     Config.AMPLITUDE = -0.05;
-    Config.SDOT_REGULARIZATION = 1e-2;
+    
+    if (strcmp(Config.PARTS,'upper_body') || strcmp(Config.PARTS,'single_arm'))
+        
+        Config.SDOT_REGULARIZATION = 1e-2;
+        
+    elseif (strcmp(Config.PARTS,'lower_body'))
+        
+        Config.SDOT_REGULARIZATION = 1e-2;
+        
+    end
     
 elseif (Config.TRAJECTORY_TYPE == 3)
     
@@ -87,12 +96,12 @@ elseif(strcmp(Config.PARTS,'lower_body'))
     ROBOT_DOF                       = 6;
     
     %% Position control gains
-    GAINS.POSITION.Kp			    = diag([100,100,100])*0.75;
+    GAINS.POSITION.Kp			    = diag([100,100,100])*5;
     GAINS.POSITION.Kd			    = 2*sqrt(GAINS.POSITION.Kp);
     GAINS.POSITION.Eps			    = 1e-20;
 
     %% Orientation control gains
-    GAINS.ORIENTATION.Kp			= 10*0.05;
+    GAINS.ORIENTATION.Kp			= 10*3.5;
     GAINS.ORIENTATION.Kd			= 2*sqrt(GAINS.ORIENTATION.Kp);
     GAINS.ORIENTATION.Eps			= 1e-20;
 

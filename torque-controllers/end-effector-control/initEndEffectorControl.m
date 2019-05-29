@@ -32,7 +32,7 @@ setenv('YARP_ROBOT_NAME','icubGazeboSim');
 
 
 % Simulation time in seconds
-Config.SIMULATION_TIME = inf;
+Config.SIMULATION_TIME = 20;
 
 % If Config.SAVE_WORKSPACE = True, every time the simulink model is run the
 % workspace is saved after stopping the simulation
@@ -42,7 +42,7 @@ Config.SAVE_WORKSPACE  = true;
 Config.Ts              = 0.01; 
 
 % End Effector link name
-Config.EE                               = 'r_hand';
+Config.EE                               = 'r_foot';
 
 % This sections contains information on the robot parts considered
 %
@@ -56,8 +56,8 @@ Config.EE                               = 'r_hand';
 %               moved along a desired trajectory using 
 
 % %Config.PARTS                            = 'single_arm';
-Config.PARTS                           = 'upper_body';
-% % Config.PARTS                           = 'lower_body';
+% % Config.PARTS                           = 'upper_body';
+Config.PARTS                           = 'lower_body';
 
 if(strcmp(Config.PARTS,'single_arm'))
     Config.SOLO_ARM                     = true;
