@@ -262,176 +262,18 @@ addpath(strcat('./',dataFolder));
 % % save2pdf(fullfile(fullPlotFolder, 'wrench-x.pdf'),fH,300);
 
 
-% % 
-% % %% 1D Y Plots
-% % assistiveYTrajectoryData = load('assistive-y-timed');
-% % agnosticYTrajectoryData = load('agnostic-y-timed');
-% % 
-% % allYData = {assistiveYTrajectoryData agnosticYTrajectoryData};
-% % yPlotColors = [colors(2,:);colors(1,:)];
-% % legendOptions = {'Assistive Wrench', 'Agnostic Wrench'};
-% % fileNameSuffixes = ["Helping", "Agnostic"];
-% % 
-% % %%Time
-% % totalTime = allYData{1,1}.tout;
-% % 
-% % %% Time indexes
-% % startTimeIndex = ceil(size(totalTime,1)*0.1);
-% % endTimeIndex = ceil(size(totalTime,1));
-% % 
-% % %% Trim time
-% % trimTime = totalTime(startTimeIndex:endTimeIndex);
-% % 
-% % %% Reference Trajectory Plots
-% % fH = figure('units','normalized','outerposition',[0 0 1 1]);
-% % ax = axes('Units', 'normalized', 'Parent',fH, 'FontSize', fontSize);
-% % 
-% % for d = 1:size(allYData,2)
-% %        
-% %     Xdesired = allYData{1,d}.Xdesired.signals.values(startTimeIndex:endTimeIndex,:);
-% %     
-% %     plot(trimTime,Xdesired(:,2), 'LineWidth',lineWidth,'Color',yPlotColors(d,:));
-% %     hold on;
-% %     
-% %     ax = gca;
-% %     axis(ax,axisOption);
-% %     ax.XGrid = gridOption;
-% %     ax.YGrid = gridOption;
-% %     ax.XMinorGrid = minorGridOption;
-% %     ax.YMinorGrid = minorGridOption;
-% %     ax.FontSize = axesFontSize;
-% %     ax.LineWidth = axesLineWidth;
-% %      
-% %     ylabel('Y $[m]$', 'Interpreter', 'latex', 'FontSize', yLabelFontSize);
-% %     xlabel('Time $[s]$', 'Interpreter', 'latex', 'FontSize', xLabelFontSize);
-% %     
-% % end
-% % 
-% % currentFigure = gcf;
-% % title(currentFigure.Children(end), 'Reference 1D Trajectory along Y-axis',...
-% %       'Interpreter', 'latex','FontSize', titleFontSize);
-% % lgd = legend(legendOptions,...
-% %                  'Location','best','Box','off','FontSize',legendFontSize);
-% % 
-% % save2pdf(fullfile(fullPlotFolder, 'ReferenceTrajectory-y.pdf'),fH,300);
-% % 
-% % %% Trajectory Tracking Error Plots
-% % fH = figure('units','normalized','outerposition',[0 0 1 1]);
-% % ax = axes('Units', 'normalized', 'Parent',fH, 'FontSize', fontSize);
-% % 
-% % for d = 1:size(allYData,2)
-% %        
-% %     Xdesired = allYData{1,d}.Xdesired.signals.values(startTimeIndex:endTimeIndex,:);
-% %     Xactual = allYData{1,d}.Xactual.signals.values(startTimeIndex:endTimeIndex,:);
-% %     
-% %     plot(trimTime,Xdesired(:,2)-Xactual(:,2), 'LineWidth',lineWidth,'Color',yPlotColors(d,:));
-% %     hold on;
-% %     
-% %     ax = gca;
-% %     axis(ax,axisOption);
-% %     ax.XGrid = gridOption;
-% %     ax.YGrid = gridOption;
-% %     ax.XMinorGrid = minorGridOption;
-% %     ax.YMinorGrid = minorGridOption;
-% %     ax.FontSize = axesFontSize;
-% %     ax.LineWidth = axesLineWidth;
-% %      
-% %     ylabel('Y $[m]$', 'Interpreter', 'latex', 'FontSize', yLabelFontSize);
-% %     xlabel('Time $[s]$', 'Interpreter', 'latex', 'FontSize', xLabelFontSize);
-% %     
-% % end
-% % 
-% % currentFigure = gcf;
-% % title(currentFigure.Children(end), 'Trajectory Tracking Error along Y-axis',...
-% %       'Interpreter', 'latex','FontSize', titleFontSize);
-% % lgd = legend(legendOptions,...
-% %                  'Location','best','Box','off','FontSize',legendFontSize);
-% % 
-% % save2pdf(fullfile(fullPlotFolder, 'TrajectoryTrackingError-y.pdf'),fH,300);
-% % 
-% % %% S value Plots
-% % fH = figure('units','normalized','outerposition',[0 0 1 1]);
-% % ax = axes('Units', 'normalized', 'Parent',fH, 'FontSize', fontSize);
-% % 
-% % for d = 1:size(allYData,2)
-% %        
-% %     s = allYData{1,d}.s.signals.values(startTimeIndex:endTimeIndex,:);
-% %     
-% %     plot(trimTime,s, 'LineWidth',lineWidth,'Color',yPlotColors(d,:));
-% %     hold on;
-% %     
-% %     ax = gca;
-% %     axis(ax,axisOption);
-% %     ax.XGrid = gridOption;
-% %     ax.YGrid = gridOption;
-% %     ax.XMinorGrid = minorGridOption;
-% %     ax.YMinorGrid = minorGridOption;
-% %     ax.FontSize = axesFontSize;
-% %     ax.LineWidth = axesLineWidth;
-% %     
-% %     ylabel('$\psi$', 'Interpreter', 'latex', 'FontSize', yLabelFontSize);
-% %     xlabel('Time $[s]$', 'Interpreter', 'latex', 'FontSize', xLabelFontSize);
-% %     
-% % end
-% % 
-% % currentFigure = gcf;
-% % title(currentFigure.Children(end), 'Trajectory Free Parameter $\psi$',...
-% %       'Interpreter', 'latex','FontSize', titleFontSize);
-% % lgd = legend(legendOptions,...
-% %                  'Location','best','Box','off','FontSize',legendFontSize);
-% % 
-% % save2pdf(fullfile(fullPlotFolder, 'Svalue-y.pdf'),fH,300);
-% % 
-% % %% Wrench Plots
-% % fH = figure('units','normalized','outerposition',[0 0 1 1]);
-% % ax = axes('Units', 'normalized', 'Parent',fH, 'FontSize', fontSize);
-% % 
-% % for d = 1:size(allYData,2)
-% %     
-% %     sH = subplot(size(allYData,2),1,d); hold on;
-% %     sH.FontSize = fontSize;
-% %     sH.Units = 'normalized';
-% %     
-% %     rHandForces = allYData{1,d}.ee_wrench.signals.values(startTimeIndex:endTimeIndex,1:3);
-% %     
-% %     plot(trimTime,rHandForces, 'LineWidth',lineWidth);
-% %     hold on;
-% %     
-% %     ax = gca;
-% %     axis(ax,axisOption);
-% %     ax.XGrid = gridOption;
-% %     ax.YGrid = gridOption;
-% %     ax.XMinorGrid = minorGridOption;
-% %     ax.YMinorGrid = minorGridOption;
-% %     ax.FontSize = axesFontSize;
-% %     ax.LineWidth = axesLineWidth;
-% %     
-% %     ylabel('Force $[N]$', 'Interpreter', 'latex', 'FontSize', yLabelFontSize);
-% %     xlabel('Time $[s]$', 'Interpreter', 'latex', 'FontSize', xLabelFontSize);
-% %     
-% %     lgd = legend('f_x','f_y','f_z','Interpreter', 'latex',...
-% %                  'Location','best','Box','off');
-% %     lgd.NumColumns = 3;
-% %     lgd.Box = 'off';
-% %     title(legendOptions(d), 'FontSize', titleFontSize,...
-% %           'Interpreter', 'latex');
-% %         
-% % end
-% % 
-% % save2pdf(fullfile(fullPlotFolder, 'wrench-y.pdf'),fH,300);
 
+%% 1D Y Plots
+assistiveYTrajectoryData = load('assistive-y-timed');
+agnosticYTrajectoryData = load('agnostic-y-timed');
 
-%% 1D XY Plots
-assistiveXYTrajectoryData = load('assistive-xy-timed');
-agnosticXYTrajectoryData = load('agnostic-xy-timed');
-
-allXYData = {assistiveXYTrajectoryData agnosticXYTrajectoryData};
-xyPlotColors = [colors(1,:);colors(2,:);colors(3,:);colors(3,:)];
+allYData = {assistiveYTrajectoryData agnosticYTrajectoryData};
+yPlotColors = [colors(2,:);colors(3,:)];
 legendOptions = {'Assistive Wrench', 'Agnostic Wrench'};
 fileNameSuffixes = ["Helping", "Agnostic"];
 
 %%Time
-totalTime = allXYData{1,1}.tout;
+totalTime = allYData{1,1}.tout;
 
 %% Time indexes
 startTimeIndex = ceil(size(totalTime,1)*0.1);
@@ -443,104 +285,79 @@ trimTime = totalTime(startTimeIndex:endTimeIndex);
 %% Reference Trajectory Plots
 fH = figure('units','normalized','outerposition',[0 0 1 1]);
 ax = axes('Units', 'normalized', 'Parent',fH, 'FontSize', fontSize);
-yLabelOptions = ["X $[m]$","Y $[m]$"];
-colorCount = 1;
 
-for d = 1:size(allXYData,2)
+for d = 1:size(allYData,2)
        
-    Xdesired = allXYData{1,d}.Xdesired.signals.values(startTimeIndex:endTimeIndex,:);
+    Xdesired = allYData{1,d}.Xdesired.signals.values(startTimeIndex:endTimeIndex,:);
     
-    for i = 1:2
-        sH = subplot(2,1,i); hold on;
-        sH.FontSize = fontSize;
-        sH.Units = 'normalized';
+    plot(trimTime,Xdesired(:,2), 'LineWidth',lineWidth,'Color',yPlotColors(d,:));
+    hold on;
     
-        plot(trimTime,Xdesired(:,0+i), 'LineWidth',lineWidth,'Color',xyPlotColors(colorCount,:));
-        colorCount = colorCount + 1;
-        hold on;
-    
-        ax = gca;
-        axis(ax,axisOption);
-        ax.XGrid = gridOption;
-        ax.YGrid = gridOption;
-        ax.XMinorGrid = minorGridOption;
-        ax.YMinorGrid = minorGridOption;
-        ax.FontSize = axesFontSize;
-        ax.LineWidth = axesLineWidth;
+    ax = gca;
+    axis(ax,axisOption);
+    ax.XGrid = gridOption;
+    ax.YGrid = gridOption;
+    ax.XMinorGrid = minorGridOption;
+    ax.YMinorGrid = minorGridOption;
+    ax.FontSize = axesFontSize;
+    ax.LineWidth = axesLineWidth;
      
-        ylabel(yLabelOptions(i), 'Interpreter', 'latex', 'FontSize', yLabelFontSize);
-        xlabel('Time $[s]$', 'Interpreter', 'latex', 'FontSize', xLabelFontSize);
-        
-        lgd = legend(legendOptions,...
-                 'Location','best','Box','off','FontSize',legendFontSize);
-        lgd.NumColumns = 1;
+    ylabel('Y $[m]$', 'Interpreter', 'latex', 'FontSize', yLabelFontSize);
+    xlabel('Time $[s]$', 'Interpreter', 'latex', 'FontSize', xLabelFontSize);
     
-    end
-        
 end
 
 currentFigure = gcf;
-title(currentFigure.Children(end), 'Reference 2D Trajectory along XY-plane',...
+title(currentFigure.Children(end), 'Reference 1D Trajectory along Y-axis',...
       'Interpreter', 'latex','FontSize', titleFontSize);
+lgd = legend(legendOptions,...
+                 'Location','best','Box','off','FontSize',legendFontSize);
 
-save2pdf(fullfile(fullPlotFolder, 'ReferenceTrajectory-xy.pdf'),fH,300);
+save2pdf(fullfile(fullPlotFolder, 'ReferenceTrajectory-y.pdf'),fH,300);
 
 %% Trajectory Tracking Error Plots
 fH = figure('units','normalized','outerposition',[0 0 1 1]);
 ax = axes('Units', 'normalized', 'Parent',fH, 'FontSize', fontSize);
-yLabelOptions = ["X $[m]$","Y $[m]$"];
-colorCount = 1;
 
-for d = 1:size(allXYData,2)
+for d = 1:size(allYData,2)
        
-    Xdesired = allXYData{1,d}.Xdesired.signals.values(startTimeIndex:endTimeIndex,:);
-    Xactual = allXYData{1,d}.Xactual.signals.values(startTimeIndex:endTimeIndex,:);
+    Xdesired = allYData{1,d}.Xdesired.signals.values(startTimeIndex:endTimeIndex,:);
+    Xactual = allYData{1,d}.Xactual.signals.values(startTimeIndex:endTimeIndex,:);
     
-    for i = 1:2
-        sH = subplot(2,1,i); hold on;
-        sH.FontSize = fontSize;
-        sH.Units = 'normalized';
+    plot(trimTime,Xdesired(:,2)-Xactual(:,2), 'LineWidth',lineWidth,'Color',yPlotColors(d,:));
+    hold on;
     
-        plot(trimTime,Xdesired(:,0+i)-Xactual(:,0+i), 'LineWidth',lineWidth,'Color',xyPlotColors(colorCount,:));
-        colorCount = colorCount + 1;
-        hold on;
-    
-        ax = gca;
-        axis(ax,axisOption);
-        ax.XGrid = gridOption;
-        ax.YGrid = gridOption;
-        ax.XMinorGrid = minorGridOption;
-        ax.YMinorGrid = minorGridOption;
-        ax.FontSize = axesFontSize;
-        ax.LineWidth = axesLineWidth;
+    ax = gca;
+    axis(ax,axisOption);
+    ax.XGrid = gridOption;
+    ax.YGrid = gridOption;
+    ax.XMinorGrid = minorGridOption;
+    ax.YMinorGrid = minorGridOption;
+    ax.FontSize = axesFontSize;
+    ax.LineWidth = axesLineWidth;
      
-        ylabel(yLabelOptions(i), 'Interpreter', 'latex', 'FontSize', yLabelFontSize);
-        xlabel('Time $[s]$', 'Interpreter', 'latex', 'FontSize', xLabelFontSize);
-        
-        lgd = legend(legendOptions,...
-                 'Location','best','Box','off','FontSize',legendFontSize);
-        lgd.NumColumns = 2;
+    ylabel('Y $[m]$', 'Interpreter', 'latex', 'FontSize', yLabelFontSize);
+    xlabel('Time $[s]$', 'Interpreter', 'latex', 'FontSize', xLabelFontSize);
     
-    end
-        
 end
 
 currentFigure = gcf;
-title(currentFigure.Children(end), 'Trajectory Tracking Error along XY-plane',...
+title(currentFigure.Children(end), 'Trajectory Tracking Error along Y-axis',...
       'Interpreter', 'latex','FontSize', titleFontSize);
+lgd = legend(legendOptions,...
+                 'Location','best','Box','off','FontSize',legendFontSize);
 
-save2pdf(fullfile(fullPlotFolder, 'TrajectoryTrackingError-xy.pdf'),fH,300);
+save2pdf(fullfile(fullPlotFolder, 'TrajectoryTrackingError-y.pdf'),fH,300);
 
 %% S value Plots
 fH = figure('units','normalized','outerposition',[0 0 1 1]);
 ax = axes('Units', 'normalized', 'Parent',fH, 'FontSize', fontSize);
-xyPlotColors = [colors(4,:);colors(1,:)];
 
-for d = 1:size(allXYData,2)
+for d = 1:size(allYData,2)
        
-    s = allXYData{1,d}.s.signals.values(startTimeIndex:endTimeIndex,:);
+    s = allYData{1,d}.s.signals.values(startTimeIndex:endTimeIndex,:);
     
-    plot(trimTime,s, 'LineWidth',lineWidth,'Color',xyPlotColors(d,:));
+    plot(trimTime,s, 'LineWidth',lineWidth,'Color',yPlotColors(d,:));
     hold on;
     
     ax = gca;
@@ -563,19 +380,19 @@ title(currentFigure.Children(end), 'Trajectory Free Parameter $\psi$',...
 lgd = legend(legendOptions,...
                  'Location','best','Box','off','FontSize',legendFontSize);
 
-save2pdf(fullfile(fullPlotFolder, 'Svalue-xy.pdf'),fH,300);
+save2pdf(fullfile(fullPlotFolder, 'Svalue-y.pdf'),fH,300);
 
 %% Wrench Plots
 fH = figure('units','normalized','outerposition',[0 0 1 1]);
 ax = axes('Units', 'normalized', 'Parent',fH, 'FontSize', fontSize);
 
-for d = 1:size(allXYData,2)
+for d = 1:size(allYData,2)
     
-    sH = subplot(size(allXYData,2),1,d); hold on;
+    sH = subplot(size(allYData,2),1,d); hold on;
     sH.FontSize = fontSize;
     sH.Units = 'normalized';
     
-    rHandForces = allXYData{1,d}.ee_wrench.signals.values(startTimeIndex:endTimeIndex,1:3);
+    rHandForces = allYData{1,d}.ee_wrench.signals.values(startTimeIndex:endTimeIndex,1:3);
     
     plot(trimTime,rHandForces, 'LineWidth',lineWidth);
     hold on;
@@ -601,6 +418,189 @@ for d = 1:size(allXYData,2)
         
 end
 
-save2pdf(fullfile(fullPlotFolder, 'wrench-xy.pdf'),fH,300);
+save2pdf(fullfile(fullPlotFolder, 'wrench-y.pdf'),fH,300);
+
+
+% % %% 1D XY Plots
+% % assistiveXYTrajectoryData = load('assistive-xy-timed');
+% % agnosticXYTrajectoryData = load('agnostic-xy-timed');
+% % 
+% % allXYData = {assistiveXYTrajectoryData agnosticXYTrajectoryData};
+% % xyPlotColors = [colors(1,:);colors(2,:);colors(3,:);colors(3,:)];
+% % legendOptions = {'Assistive Wrench', 'Agnostic Wrench'};
+% % fileNameSuffixes = ["Helping", "Agnostic"];
+% % 
+% % %%Time
+% % totalTime = allXYData{1,1}.tout;
+% % 
+% % %% Time indexes
+% % startTimeIndex = ceil(size(totalTime,1)*0.1);
+% % endTimeIndex = ceil(size(totalTime,1));
+% % 
+% % %% Trim time
+% % trimTime = totalTime(startTimeIndex:endTimeIndex);
+% % 
+% % %% Reference Trajectory Plots
+% % fH = figure('units','normalized','outerposition',[0 0 1 1]);
+% % ax = axes('Units', 'normalized', 'Parent',fH, 'FontSize', fontSize);
+% % yLabelOptions = ["X $[m]$","Y $[m]$"];
+% % colorCount = 1;
+% % 
+% % for d = 1:size(allXYData,2)
+% %        
+% %     Xdesired = allXYData{1,d}.Xdesired.signals.values(startTimeIndex:endTimeIndex,:);
+% %     
+% %     for i = 1:2
+% %         sH = subplot(2,1,i); hold on;
+% %         sH.FontSize = fontSize;
+% %         sH.Units = 'normalized';
+% %     
+% %         plot(trimTime,Xdesired(:,0+i), 'LineWidth',lineWidth,'Color',xyPlotColors(colorCount,:));
+% %         colorCount = colorCount + 1;
+% %         hold on;
+% %     
+% %         ax = gca;
+% %         axis(ax,axisOption);
+% %         ax.XGrid = gridOption;
+% %         ax.YGrid = gridOption;
+% %         ax.XMinorGrid = minorGridOption;
+% %         ax.YMinorGrid = minorGridOption;
+% %         ax.FontSize = axesFontSize;
+% %         ax.LineWidth = axesLineWidth;
+% %      
+% %         ylabel(yLabelOptions(i), 'Interpreter', 'latex', 'FontSize', yLabelFontSize);
+% %         xlabel('Time $[s]$', 'Interpreter', 'latex', 'FontSize', xLabelFontSize);
+% %         
+% %         lgd = legend(legendOptions,...
+% %                  'Location','best','Box','off','FontSize',legendFontSize);
+% %         lgd.NumColumns = 1;
+% %     
+% %     end
+% %         
+% % end
+% % 
+% % currentFigure = gcf;
+% % title(currentFigure.Children(end), 'Reference 2D Trajectory along XY-plane',...
+% %       'Interpreter', 'latex','FontSize', titleFontSize);
+% % 
+% % save2pdf(fullfile(fullPlotFolder, 'ReferenceTrajectory-xy.pdf'),fH,300);
+% % 
+% % %% Trajectory Tracking Error Plots
+% % fH = figure('units','normalized','outerposition',[0 0 1 1]);
+% % ax = axes('Units', 'normalized', 'Parent',fH, 'FontSize', fontSize);
+% % yLabelOptions = ["X $[m]$","Y $[m]$"];
+% % colorCount = 1;
+% % 
+% % for d = 1:size(allXYData,2)
+% %        
+% %     Xdesired = allXYData{1,d}.Xdesired.signals.values(startTimeIndex:endTimeIndex,:);
+% %     Xactual = allXYData{1,d}.Xactual.signals.values(startTimeIndex:endTimeIndex,:);
+% %     
+% %     for i = 1:2
+% %         sH = subplot(2,1,i); hold on;
+% %         sH.FontSize = fontSize;
+% %         sH.Units = 'normalized';
+% %     
+% %         plot(trimTime,Xdesired(:,0+i)-Xactual(:,0+i), 'LineWidth',lineWidth,'Color',xyPlotColors(colorCount,:));
+% %         colorCount = colorCount + 1;
+% %         hold on;
+% %     
+% %         ax = gca;
+% %         axis(ax,axisOption);
+% %         ax.XGrid = gridOption;
+% %         ax.YGrid = gridOption;
+% %         ax.XMinorGrid = minorGridOption;
+% %         ax.YMinorGrid = minorGridOption;
+% %         ax.FontSize = axesFontSize;
+% %         ax.LineWidth = axesLineWidth;
+% %      
+% %         ylabel(yLabelOptions(i), 'Interpreter', 'latex', 'FontSize', yLabelFontSize);
+% %         xlabel('Time $[s]$', 'Interpreter', 'latex', 'FontSize', xLabelFontSize);
+% %         
+% %         lgd = legend(legendOptions,...
+% %                  'Location','best','Box','off','FontSize',legendFontSize);
+% %         lgd.NumColumns = 2;
+% %     
+% %     end
+% %         
+% % end
+% % 
+% % currentFigure = gcf;
+% % title(currentFigure.Children(end), 'Trajectory Tracking Error along XY-plane',...
+% %       'Interpreter', 'latex','FontSize', titleFontSize);
+% % 
+% % save2pdf(fullfile(fullPlotFolder, 'TrajectoryTrackingError-xy.pdf'),fH,300);
+% % 
+% % %% S value Plots
+% % fH = figure('units','normalized','outerposition',[0 0 1 1]);
+% % ax = axes('Units', 'normalized', 'Parent',fH, 'FontSize', fontSize);
+% % xyPlotColors = [colors(4,:);colors(1,:)];
+% % 
+% % for d = 1:size(allXYData,2)
+% %        
+% %     s = allXYData{1,d}.s.signals.values(startTimeIndex:endTimeIndex,:);
+% %     
+% %     plot(trimTime,s, 'LineWidth',lineWidth,'Color',xyPlotColors(d,:));
+% %     hold on;
+% %     
+% %     ax = gca;
+% %     axis(ax,axisOption);
+% %     ax.XGrid = gridOption;
+% %     ax.YGrid = gridOption;
+% %     ax.XMinorGrid = minorGridOption;
+% %     ax.YMinorGrid = minorGridOption;
+% %     ax.FontSize = axesFontSize;
+% %     ax.LineWidth = axesLineWidth;
+% %     
+% %     ylabel('$\psi$', 'Interpreter', 'latex', 'FontSize', yLabelFontSize);
+% %     xlabel('Time $[s]$', 'Interpreter', 'latex', 'FontSize', xLabelFontSize);
+% %     
+% % end
+% % 
+% % currentFigure = gcf;
+% % title(currentFigure.Children(end), 'Trajectory Free Parameter $\psi$',...
+% %       'Interpreter', 'latex','FontSize', titleFontSize);
+% % lgd = legend(legendOptions,...
+% %                  'Location','best','Box','off','FontSize',legendFontSize);
+% % 
+% % save2pdf(fullfile(fullPlotFolder, 'Svalue-xy.pdf'),fH,300);
+% % 
+% % %% Wrench Plots
+% % fH = figure('units','normalized','outerposition',[0 0 1 1]);
+% % ax = axes('Units', 'normalized', 'Parent',fH, 'FontSize', fontSize);
+% % 
+% % for d = 1:size(allXYData,2)
+% %     
+% %     sH = subplot(size(allXYData,2),1,d); hold on;
+% %     sH.FontSize = fontSize;
+% %     sH.Units = 'normalized';
+% %     
+% %     rHandForces = allXYData{1,d}.ee_wrench.signals.values(startTimeIndex:endTimeIndex,1:3);
+% %     
+% %     plot(trimTime,rHandForces, 'LineWidth',lineWidth);
+% %     hold on;
+% %     
+% %     ax = gca;
+% %     axis(ax,axisOption);
+% %     ax.XGrid = gridOption;
+% %     ax.YGrid = gridOption;
+% %     ax.XMinorGrid = minorGridOption;
+% %     ax.YMinorGrid = minorGridOption;
+% %     ax.FontSize = axesFontSize;
+% %     ax.LineWidth = axesLineWidth;
+% %     
+% %     ylabel('Force $[N]$', 'Interpreter', 'latex', 'FontSize', yLabelFontSize);
+% %     xlabel('Time $[s]$', 'Interpreter', 'latex', 'FontSize', xLabelFontSize);
+% %     
+% %     lgd = legend('f_x','f_y','f_z','Interpreter', 'latex',...
+% %                  'Location','best','Box','off');
+% %     lgd.NumColumns = 3;
+% %     lgd.Box = 'off';
+% %     title(legendOptions(d), 'FontSize', titleFontSize,...
+% %           'Interpreter', 'latex');
+% %         
+% % end
+% % 
+% % save2pdf(fullfile(fullPlotFolder, 'wrench-xy.pdf'),fH,300);
 
 
