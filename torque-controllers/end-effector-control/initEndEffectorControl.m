@@ -56,8 +56,8 @@ Config.EE                               = 'r_hand';
 %               moved along a desired trajectory using 
 
 % %Config.PARTS                            = 'single_arm';
-Config.PARTS                            = 'upper_body';
-% % Config.PARTS                            = 'lower_body';
+Config.PARTS                           = 'upper_body';
+% % Config.PARTS                           = 'lower_body';
 
 if(strcmp(Config.PARTS,'single_arm'))
     Config.SOLO_ARM                     = true;
@@ -69,13 +69,13 @@ end
 Config.ANALYTICAL_TRAJECTORY            = true;
 
 %% Trajectory parametrization control
-Config.TRAJECTORY_PARAMETRIZATION       = false;
+Config.TRAJECTORY_PARAMETRIZATION       = true;
 
 %% Sdot upper limit
 Config.SDOT_UPPER_LIMIT                 = 2.5;
 
 %% Trajectory type
-%% straight-y (1) straight-z (2) or circular (3)
+%% straight-x (0) straight-y (1) straight-z (2) or circular (3)
 Config.TRAJECTORY_TYPE                  = 1;
 
 
@@ -116,14 +116,14 @@ elseif (strcmp(Config.PARTS,'upper_body'))
                                           };
     WBTConfigRobot.ControlBoardsNames   = {'torso','left_arm','right_arm'};
 
-elseif (strcmp(Config.PARTS,'lower_body') && strcmp(Config.EE,'r_leg'))
+elseif (strcmp(Config.PARTS,'lower_body') && strcmp(Config.EE,'r_foot'))
     
     WBTConfigRobot.ControlledJoints     = {'r_hip_pitch','r_hip_roll','r_hip_yaw',...
                                            'r_knee','r_ankle_pitch','r_ankle_roll'
                                           };
     WBTConfigRobot.ControlBoardsNames   = {'right_leg'};
     
-elseif (strcmp(Config.PARTS,'lower_body') && strcmp(Config.EE,'l_leg'))
+elseif (strcmp(Config.PARTS,'lower_body') && strcmp(Config.EE,'l_foot'))
     
     WBTConfigRobot.ControlledJoints     = {'l_hip_pitch','l_hip_roll','l_hip_yaw',...
                                            'l_knee','l_ankle_pitch','l_ankle_roll'

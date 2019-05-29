@@ -10,7 +10,7 @@ function offlinePositionErrorPlots
     Xact = evalin('base', 'Xactual');
 
     figure;
-    view(90,0); hold on;
+%     view(90,0); hold on;
     grid on;
     xlabel('x');
     ylabel('y');
@@ -59,13 +59,13 @@ function offlinePositionErrorPlots
     legend('Desired Position','Actual Position','Location','NorthWest');
 
     figure;
-    view(90,0); hold on;
+%     view(90,0); hold on;
     grid on;
     xlabel('x');
     ylabel('y');
     zlabel('z');
     title('EE Position Error'); hold on;
-    axis([-0.2 0.2 -0.2 0.2 -0.2 0.2]);
+%     axis([-0.2 0.2 -0.2 0.2 -0.2 0.2]);
 
     if(animated_plot)
 

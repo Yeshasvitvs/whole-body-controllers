@@ -20,7 +20,7 @@ elseif(strcmp(Config.PARTS,'lower_body'))
     end
 end
 
-if (Config.TRAJECTORY_TYPE == 1 || Config.TRAJECTORY_TYPE == 2)
+if (Config.TRAJECTORY_TYPE == 0 || Config.TRAJECTORY_TYPE == 1 || Config.TRAJECTORY_TYPE == 2)
     
     Config.FREQUENCY = 0.1;
     Config.AMPLITUDE = -0.05;
@@ -87,18 +87,18 @@ elseif(strcmp(Config.PARTS,'lower_body'))
     ROBOT_DOF                       = 6;
     
     %% Position control gains
-    GAINS.POSITION.Kp			    = diag([500,500,500]);
+    GAINS.POSITION.Kp			    = diag([100,100,100])*0.75;
     GAINS.POSITION.Kd			    = 2*sqrt(GAINS.POSITION.Kp);
     GAINS.POSITION.Eps			    = 1e-20;
 
     %% Orientation control gains
-    GAINS.ORIENTATION.Kp			= 50;
+    GAINS.ORIENTATION.Kp			= 10*0.05;
     GAINS.ORIENTATION.Kd			= 2*sqrt(GAINS.ORIENTATION.Kp);
     GAINS.ORIENTATION.Eps			= 1e-20;
 
     %% Postural task gains
-    GAINS.POSTURAL.Kp			    = diag([5.0,5.0,5.0,5.0,5.0,5.0]);
-    GAINS.POSTURAL.Kd			    = diag([2.0,2.0,2.0,2.0,2.0,2.0]);
+    GAINS.POSTURAL.Kp			    = diag([50.0,50.0,50.0,50.0,50.0,50.0])*0;
+    GAINS.POSTURAL.Kd			    = diag([2.0,2.0,2.0,2.0,2.0,2.0])*0;
     
 end
 
