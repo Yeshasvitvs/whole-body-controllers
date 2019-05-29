@@ -75,8 +75,8 @@ Config.TRAJECTORY_PARAMETRIZATION       = true;
 Config.SDOT_UPPER_LIMIT                 = 2.5;
 
 %% Trajectory type
-%% straight-x (0) straight-y (1) straight-z (2) or circular (3)
-Config.TRAJECTORY_TYPE                  = 1;
+%% straight-x (0) straight-y (1) straight-z (2) or circular-yz (3) circular-xz (4) circular-xy (5)
+Config.TRAJECTORY_TYPE                  = 5;
 
 
 %% WBD Configuration

@@ -35,12 +35,21 @@ if (Config.TRAJECTORY_TYPE == 0 || Config.TRAJECTORY_TYPE == 1 || Config.TRAJECT
         
     end
     
-elseif (Config.TRAJECTORY_TYPE == 3)
+elseif (Config.TRAJECTORY_TYPE == 3 || Config.TRAJECTORY_TYPE == 4 || Config.TRAJECTORY_TYPE == 5)
     
     Config.FREQUENCY = 0.1;
     Config.AMPLITUDE = -0.05;
-    Config.SDOT_REGULARIZATION = 1e-1;
     
+    if (strcmp(Config.PARTS,'upper_body') || strcmp(Config.PARTS,'single_arm'))
+        
+        Config.SDOT_REGULARIZATION = 1e-2;
+        
+    elseif (strcmp(Config.PARTS,'lower_body'))
+        
+        Config.SDOT_REGULARIZATION = 1e-2;
+        
+    end
+        
 end
 
 
