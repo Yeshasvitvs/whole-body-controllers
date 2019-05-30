@@ -32,7 +32,7 @@ setenv('YARP_ROBOT_NAME','icubGazeboSim');
 
 
 % Simulation time in seconds
-Config.SIMULATION_TIME = 20;
+Config.SIMULATION_TIME = inf;
 
 % If Config.SAVE_WORKSPACE = True, every time the simulink model is run the
 % workspace is saved after stopping the simulation
@@ -72,11 +72,11 @@ Config.ANALYTICAL_TRAJECTORY            = true;
 Config.TRAJECTORY_PARAMETRIZATION       = true;
 
 %% Sdot upper limit
-Config.SDOT_UPPER_LIMIT                 = 2.5;
+Config.SDOT_UPPER_LIMIT                 = 5;
 
 %% Trajectory type
 %% straight-x (0) straight-y (1) straight-z (2) or circular-yz (3) circular-xz (4) circular-xy (5)
-Config.TRAJECTORY_TYPE                  = 5;
+Config.TRAJECTORY_TYPE                  = 0;
 
 
 %% WBD Configuration
