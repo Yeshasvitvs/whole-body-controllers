@@ -42,14 +42,14 @@ dataFolder = 'experiments/reactive-control/simulation/x-direction';
 addpath(strcat('./',dataFolder));
 
 %% Load data
-assistiveData = load('assistive-wrench-timed-backwards-lower-wrench');
-opposingData = load('opposing-wrench-timed-backwards-lower-wrench');
-agnosticData = load('agnostic-wrench-timed-backwards-lower-wrench');
+assistiveData = load('assistive-wrench-timed-forwards');
+opposingData = load('opposing-wrench-timed-forwards');
+% agnosticData = load('agnostic-wrench-timed-backwards-lower-wrench');
 
-allData = {assistiveData opposingData agnosticData};
+allData = {assistiveData opposingData};
 yPlotColors = [colors(1,:);colors(2,:);colors(3,:)];
-legendOptions = {'Assistive Wrench', 'Opposing Wrench', 'Agnostic Wrench'};
-fileNameSuffixes = ["Assistive", "Opposing", "Agnostic"];
+legendOptions = {'Assistive Wrench', 'Opposing Wrench'};
+fileNameSuffixes = ["Assistive", "Opposing"];
 
 %%Time
 totalTime = allData{1,1}.tout;
@@ -100,6 +100,46 @@ lgd = legend(legendOptions,...
 
 % % save2pdf(fullfile(fullPlotFolder, 'ee-joint-efforts.pdf'),fH,300);
 
+%% End-Effector Wrench
+fH = figure('units','normalized','outerposition',[0 0 1 1]);
+ax = axes('Units', 'normalized', 'Parent',fH, 'FontSize', fontSize);
+legendOptions = {'$f_x$', '$f_y$', '$f_z$','$\tau_x$','$\tau_y$','$\tau_z$'};
+yLabelOption = {'Assistive Wrench', 'Opposing Wrench', 'Agnostic Wrench'};
+
+for d = 1:size(allData,2)
+    
+    eeWrench = allData{1,d}.ee_wrench.signals.values(startTimeIndex:endTimeIndex,:);
+    
+    sH = subplot(size(allData,2),1,d); hold on;
+    sH.FontSize = fontSize;
+    sH.Units = 'normalized';
+   
+    plot(trimTime,eeWrench(:,1:3), 'LineWidth',lineWidth);
+    hold on;
+    
+    ax = gca;
+    axis(ax,axisOption);
+    ax.XGrid = gridOption;
+    ax.YGrid = gridOption;
+    ax.XMinorGrid = minorGridOption;
+    ax.YMinorGrid = minorGridOption;
+    ax.FontSize = axesFontSize;
+    ax.LineWidth = axesLineWidth;
+     
+    ylabel(yLabelOption{d}, 'Interpreter', 'latex', 'FontSize', yLabelFontSize);
+    xlabel('Time $[s]$', 'Interpreter', 'latex', 'FontSize', xLabelFontSize);
+    
+    lgd = legend(legendOptions,...
+                 'Location','best','Box','off','FontSize',legendFontSize,...
+                 'Interpreter', 'latex');
+    lgd.NumColumns = 3;
+    
+end
+
+ currentFigure = gcf;
+title(currentFigure.Children(end), 'End-Effector Wrench',...
+      'Interpreter', 'latex','FontSize', titleFontSize);
+
 %% Correction From Support Wrench
 fH = figure('units','normalized','outerposition',[0 0 1 1]);
 ax = axes('Units', 'normalized', 'Parent',fH, 'FontSize', fontSize);
@@ -139,4 +179,41 @@ end
  currentFigure = gcf;
 title(currentFigure.Children(end), 'Correction From Support Wrench',...
       'Interpreter', 'latex','FontSize', titleFontSize);
+  
+%% Lyapunov Function
+fH = figure('units','normalized','outerposition',[0 0 1 1]);
+ax = axes('Units', 'normalized', 'Parent',fH, 'FontSize', fontSize);
+legendOptions = {'Lyapunov Function'};
+
+for d = 1:size(allData,2)
+    
+    v_lyap = allData{1,d}.V_lyap.signals.values(startTimeIndex:endTimeIndex,:);
+   
+    plot(trimTime,v_lyap, 'LineWidth',lineWidth);
+    hold on;
+    
+    ax = gca;
+    axis(ax,axisOption);
+    ax.XGrid = gridOption;
+    ax.YGrid = gridOption;
+    ax.XMinorGrid = minorGridOption;
+    ax.YMinorGrid = minorGridOption;
+    ax.FontSize = axesFontSize;
+    ax.LineWidth = axesLineWidth;
+     
+    ylabel('$V_{lyapunov}$', 'Interpreter', 'latex', 'FontSize', yLabelFontSize);
+    xlabel('Time $[s]$', 'Interpreter', 'latex', 'FontSize', xLabelFontSize);
+    
+    lgd = legend(legendOptions,...
+                 'Location','best','Box','off','FontSize',legendFontSize,...
+                 'Interpreter', 'latex');
+    lgd.NumColumns = 3;
+    
+end
+
+ currentFigure = gcf;
+title(currentFigure.Children(end), 'Correction From Support Wrench',...
+      'Interpreter', 'latex','FontSize', titleFontSize);
+
+
 

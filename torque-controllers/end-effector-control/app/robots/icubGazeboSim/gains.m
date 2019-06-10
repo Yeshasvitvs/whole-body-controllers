@@ -6,6 +6,15 @@
 Config.ON_GAZEBO = true;
 Config.WAIT_TIME = 2; %Time to wait before starting tracking
 
+%% External Wrench
+Config.EXT_WRENCH_PORT      = '/iCub/applyExternalWrench/rpc:i';
+Config.EXT_WRENCH_SMOOTHING = 'smoothing on';
+Config.EXT_WRENCH_COMMAND   = 'r_foot -10 0 0 0 0 0 1';
+
+%% Rpc Port
+Config.WBD_RPC_PORT         = '/wholeBodyDynamics/rpc';
+Config.WBD_CALIB            = 'calibStandingOnOneLink root_link 300';
+
 if(strcmp(Config.PARTS,'single_arm') || strcmp(Config.PARTS,'upper_body'))
     if(strcmp(Config.EE,'r_hand'))
         Ports.EE         = '/wholeBodyDynamics/right_arm/endEffectorWrench:o'; %%Given frames (r_hand,r_hand_dh_frame,root_link)

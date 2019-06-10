@@ -7,7 +7,7 @@ time = 0:0.01:10;
 
 %% Set points
 Xi = [0 0 0];
-Xf = [10 10 10];
+Xf = [10 -10 10];
 
 d = time(end);
 N = length(time);
