@@ -42,8 +42,8 @@ dataFolder = 'experiments/reactive-control/simulation/x-direction';
 addpath(strcat('./',dataFolder));
 
 %% Load data
-assistiveData = load('assistive-wrench-timed-forwards');
-opposingData = load('opposing-wrench-timed-forwards');
+assistiveData = load('assistive-wrench-timed-forwards-reactive');
+opposingData = load('opposing-wrench-timed-forwards-reactive');
 % agnosticData = load('agnostic-wrench-timed-backwards-lower-wrench');
 
 allData = {assistiveData opposingData};
@@ -183,7 +183,7 @@ title(currentFigure.Children(end), 'Correction From Support Wrench',...
 %% Lyapunov Function
 fH = figure('units','normalized','outerposition',[0 0 1 1]);
 ax = axes('Units', 'normalized', 'Parent',fH, 'FontSize', fontSize);
-legendOptions = {'Lyapunov Function'};
+legendOptions = {'Assistive Wrench', 'Opposing Wrench'};
 
 for d = 1:size(allData,2)
     
@@ -212,7 +212,7 @@ for d = 1:size(allData,2)
 end
 
  currentFigure = gcf;
-title(currentFigure.Children(end), 'Correction From Support Wrench',...
+title(currentFigure.Children(end), 'Lyapunov Function',...
       'Interpreter', 'latex','FontSize', titleFontSize);
 
 

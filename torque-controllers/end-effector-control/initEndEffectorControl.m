@@ -69,7 +69,7 @@ end
 Config.ANALYTICAL_TRAJECTORY            = true;
 
 %% Reactive control option
-Config.REACTIVE_CONTROL                 = false;
+Config.REACTIVE_CONTROL                 = true;
 
 %% Trajectory parametrization control
 Config.TRAJECTORY_PARAMETRIZATION       = false;

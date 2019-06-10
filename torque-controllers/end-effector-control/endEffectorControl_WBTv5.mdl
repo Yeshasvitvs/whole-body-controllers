@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.1703"
+    ComputedModelVersion    "1.1704"
     NumModelReferences	    0
     NumTestPointedSignals   0
     NumProvidedFunctions    0
@@ -261,8 +261,8 @@ Model {
 	  ViewObjType		  "SimulinkTopLevel"
 	  LoadSaveID		  "0"
 	  Extents		  [1882.0, 870.0]
-	  ZoomFactor		  [0.54184117698783707]
-	  Offset		  [-517.90172956324568, -106.83782959764653]
+	  ZoomFactor		  [0.54165326471534259]
+	  Offset		  [-518.504221719121, -106.84679334916859]
 	}
 	Object {
 	  $ObjectID		  7
@@ -280,7 +280,7 @@ Model {
 	  LoadSaveID		  "288"
 	  Extents		  [1920.0, 1080.0]
 	  ZoomFactor		  [2.8576368566804207]
-	  Offset		  [-6.6725904372522109, -4.2127897434861268]
+	  Offset		  [-6.6725904372522677, -4.2127897434861268]
 	}
 	Object {
 	  $ObjectID		  9
@@ -298,7 +298,7 @@ Model {
 	  LoadSaveID		  "291"
 	  Extents		  [1920.0, 1080.0]
 	  ZoomFactor		  [0.85490753911806538]
-	  Offset		  [-266.05237364808636, -281.3760399334443]
+	  Offset		  [-266.05237364808613, -281.3760399334443]
 	}
 	Object {
 	  $ObjectID		  11
@@ -325,7 +325,7 @@ Model {
 	  LoadSaveID		  "351"
 	  Extents		  [1882.0, 870.0]
 	  ZoomFactor		  [1.7659770799226078]
-	  Offset		  [-97.927622707657633, 200.67743729773454]
+	  Offset		  [-97.92762270765752, 200.67743729773454]
 	}
 	Object {
 	  $ObjectID		  14
@@ -334,7 +334,7 @@ Model {
 	  LoadSaveID		  "318"
 	  Extents		  [1882.0, 870.0]
 	  ZoomFactor		  [5.8857142857142861]
-	  Offset		  [42.621359223300573, -10.407766990291051]
+	  Offset		  [42.621359223300544, -10.407766990291037]
 	}
 	PropName		"EditorsInfo"
       }
@@ -370,9 +370,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "yeshi"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Jun 10 20:45:34 2019"
-  RTWModifiedTimeStamp	  482100129
-  ModelVersionFormat	  "1.%<AutoIncrement:1703>"
+  LastModifiedDate	  "Mon Jun 10 21:42:15 2019"
+  RTWModifiedTimeStamp	  482103606
+  ModelVersionFormat	  "1.%<AutoIncrement:1704>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "disabled"
@@ -1856,7 +1856,7 @@ Model {
       RequestExecContextInheritance off
       System {
 	Name			"Control"
-	Location		[8, 35, 2568, 1448]
+	Location		[0, 27, 1920, 1080]
 	Open			on
 	PortBlocksUseCompactNotation off
 	SetDomainSpec		off
@@ -3704,7 +3704,7 @@ Model {
       RequestExecContextInheritance off
       System {
 	Name			"References"
-	Location		[8, 35, 2568, 1448]
+	Location		[0, 27, 1920, 1080]
 	Open			on
 	PortBlocksUseCompactNotation off
 	SetDomainSpec		off
@@ -3815,7 +3815,7 @@ Model {
 	  RequestExecContextInheritance	off
 	  System {
 	    Name		    "Orientation Control Objective"
-	    Location		    [8, 35, 2568, 1448]
+	    Location		    [0, 27, 1920, 1080]
 	    Open		    on
 	    PortBlocksUseCompactNotation off
 	    SetDomainSpec	    off
@@ -4713,7 +4713,7 @@ Model {
 	  RequestExecContextInheritance	off
 	  System {
 	    Name		    "Position task reference"
-	    Location		    [8, 35, 2568, 1448]
+	    Location		    [0, 27, 1920, 1080]
 	    Open		    on
 	    PortBlocksUseCompactNotation off
 	    SetDomainSpec	    off
@@ -6094,7 +6094,7 @@ Model {
 	      RequestExecContextInheritance off
 	      System {
 		Name			"Real time plot"
-		Location		[8, 35, 2568, 1448]
+		Location		[0, 27, 1920, 1080]
 		Open			on
 		PortBlocksUseCompactNotation off
 		SetDomainSpec		off
@@ -12658,9 +12658,6 @@ Stateflow {
     screen		    [1 1 3600 1200 1.180555555555556]
     treeNode		    [0 128 0 0]
     viewObj		    127
-    visible		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -12784,9 +12781,6 @@ Stateflow {
     screen		    [1 1 3600 1200 1.180555555555556]
     treeNode		    [0 135 0 0]
     viewObj		    134
-    visible		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
