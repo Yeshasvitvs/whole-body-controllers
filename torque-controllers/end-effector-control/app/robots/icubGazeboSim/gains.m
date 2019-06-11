@@ -9,7 +9,7 @@ Config.WAIT_TIME = 2; %Time to wait before starting tracking
 %% External Wrench
 Config.EXT_WRENCH_PORT      = '/iCub/applyExternalWrench/rpc:i';
 Config.EXT_WRENCH_SMOOTHING = 'smoothing on';
-Config.EXT_WRENCH_COMMAND   = 'r_foot -10 0 0 0 0 0 1';
+Config.EXT_WRENCH_COMMAND   = 'r_foot 10 0 0 0 0 0 1';
 
 %% Rpc Port
 Config.WBD_RPC_PORT         = '/wholeBodyDynamics/rpc';
