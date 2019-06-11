@@ -42,28 +42,28 @@ dataFolder = 'experiments/reactive-control/simulation/x-direction';
 addpath(strcat('./',dataFolder));
 
 %% Load data
-noWrenchNormal = load('no-external-wrench-timed-normal');
-noWrenchReactive = load('no-external-wrench-timed-reactive');
+dataFileNames = ["no-external-wrench-timed-normal",...
+                 "no-external-wrench-timed-reactive",...
+                 "assistive-wrench-timed-forwards-normal",...
+                 "opposing-wrench-timed-forwards-normal",...
+                 "assistive-wrench-timed-forwards-reactive",...
+                 "opposing-wrench-timed-forwards-reactive",...
+                 "assistive-wrench-timed-backwards-normal",...
+                 "opposing-wrench-timed-backwards-normal",...
+                 "assistive-wrench-timed-backwards-reactive",...
+                 "opposing-wrench-timed-backwards-reactive"];
 
-assistiveDataForwardsNormal = load ('assistive-wrench-timed-forwards-normal');
-opposingDataForwardsNormal = load ('opposing-wrench-timed-forwards-normal');
-
-assistiveDataForwardsReactive = load ('assistive-wrench-timed-forwards-reactive');
-opposingDataForwardsReactive = load ('opposing-wrench-timed-forwards-reactive');
-
-assistiveDataBackwardsNormal = load ('assistive-wrench-timed-backwards-normal');
-opposingDataBackwardsNormal = load ('opposing-wrench-timed-backwards-normal');
-
-assistiveDataBackwardsReactive = load ('assistive-wrench-timed-backwards-reactive');
-opposingDataBackwardsReactive = load ('opposing-wrench-timed-backwards-reactive');
-
-
-allData = {noWrenchNormal noWrenchReactive};
+allData = cell(size(dataFileNames));
+legendOptions = cell(size(dataFileNames));
+             
+for i = 1:size(dataFileNames,2)
+    allData{i} = load(dataFileNames{i});
+    legendOptions{i} = dataFileNames{i};
+end
 
 %%  Common plot options
 xLabelOptions = 'Time $[s]$';
-yPlotColors = [colors(1,:);colors(2,:);colors(3,:)];
-legendOptions = {'No External Wrench Normal', 'No External Wrench Reactive'};
+yPlotColors = colors;
 fileNameSuffixes = ["Assistive", "Opposing",'No External Wrench'];
 
 %%Time
@@ -76,13 +76,11 @@ endTimeIndex = ceil(size(totalTime,1));
 %% Trim time
 trimTime = totalTime(startTimeIndex:endTimeIndex);
 
-
-
 %% Plot Joints Effort
 yLabelOptions = 'Joint Effort';
 plotTitle = 'End-Effector Joint Efforts';
 subplotOption = false;
-usePlotColoring = true;
+usePlotColoring = false;
 legendColumns = 1;
 allDataEEJointEfforts = cell(1, size(allData,2));
 
@@ -110,7 +108,7 @@ plotRobotQuantity(allDataEEJointEfforts, trimTime, subplotOption, usePlotColorin
 yLabelOptions = '$V_{lypunov}$';
 plotTitle = 'Lyapunov Function';
 subplotOption = false;
-usePlotColoring = true;
+usePlotColoring = false;
 legendColumns = 1;
 allDataLypunovFunction = cell(1, size(allData,2));
 
@@ -127,12 +125,11 @@ plotRobotQuantity(allDataLypunovFunction, trimTime, subplotOption, usePlotColori
                   xLabelOptions, yLabelOptions, fileNameSuffixes, fullPlotFolder);
 
 
-
 %% Alpha Value
 yLabelOptions = '$\alpha$';
 plotTitle = 'Alpha';
 subplotOption = false;
-usePlotColoring = true;
+usePlotColoring = false;
 legendColumns = 1;
 allDataAlphaValue = cell(1, size(allData,2));
 
