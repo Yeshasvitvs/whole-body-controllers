@@ -32,7 +32,7 @@ setenv('YARP_ROBOT_NAME','icubGazeboSim');
 
 
 % Simulation time in seconds
-Config.SIMULATION_TIME = 10;
+Config.SIMULATION_TIME = 15;
 
 % If Config.SAVE_WORKSPACE = True, every time the simulink model is run the
 % workspace is saved after stopping the simulation

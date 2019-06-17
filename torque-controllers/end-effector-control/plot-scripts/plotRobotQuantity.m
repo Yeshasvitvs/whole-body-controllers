@@ -2,10 +2,10 @@ function plotRobotQuantity(robotQuantity, trimTime, subplotOption, usePlotColori
                            yPlotColors, legendOptions, legendFontSize, legendColumns,...
                            fontSize, xLabelFontSize, yLabelFontSize, titleFontSize,...
                            axisOption, axesFontSize, axesLineWidth,...
-                           gridOption, minorGridOption, lineWidth, plotTitle,...
+                           gridOption, minorGridOption, lineWidth, plotTitle, subplotTitles,...
                            xLabelOptions, yLabelOptions, fileNameSuffixes, fullPlotFolder)
 
-                       fH = figure('units','normalized','outerposition',[0 0 1 1]);
+fH = figure('units','normalized','outerposition',[0 0 1 1]);
 ax = axes('Units', 'normalized', 'Parent',fH, 'FontSize', fontSize);
 
 for d = 1:size(robotQuantity,2)
@@ -37,23 +37,41 @@ for d = 1:size(robotQuantity,2)
     xlabel(xLabelOptions, 'Interpreter', 'latex', 'FontSize', xLabelFontSize);
     
     if (subplotOption)
+        title(sH,subplotTitles{d},...
+              'Interpreter', 'latex','FontSize', titleFontSize);
         lgd = legend(legendOptions,'Interpreter', 'latex',...
                  'Location','best','Box','off','FontSize',legendFontSize);
         lgd.NumColumns = legendColumns;
     end
-    
+    hold on;
 end
 
 currentFigure = gcf;
-title(currentFigure.Children(end), plotTitle,...
-      'Interpreter', 'latex','FontSize', titleFontSize);
 
-if (~subplotOption)
+if (subplotOption)
+    ax = currentFigure.Children(end);
+    textLocation = ax.Title.Position;
+    TextH = text(textLocation(1) - (textLocation(1)/0.99), textLocation(2) + (textLocation(2)/2.75), plotTitle,...
+                 'FontSize', titleFontSize,...
+                 'Interpreter', 'latex',...
+                 'HorizontalAlignment', 'center', ...
+                 'VerticalAlignment', 'top',...
+                 'Rotation', 90);
+
+else
+    
+    
+    
+    title(currentFigure.Children(end), plotTitle,...
+          'Interpreter', 'latex','FontSize', titleFontSize);
+    
     lgd = legend(legendOptions,'Interpreter', 'latex',...
                  'Location','best','Box','off','FontSize',legendFontSize);
     lgd.NumColumns = legendColumns;
+
 end
              
-% % save2pdf(fullfile(fullPlotFolder, 'ee-joint-efforts.pdf'),fH,300);
+% % save2pdf(fullfile(fullPlotFolder, fileNameSuffixes),fH,300);
+print(gcf,fullfile(fullPlotFolder, fileNameSuffixes),'-dpng','-r300');
                       
 end

@@ -4,7 +4,7 @@
 
 %% --- Initialization ---
 Config.ON_GAZEBO = true;
-Config.WAIT_TIME = 2; %Time to wait before starting tracking
+Config.WAIT_TIME = 5; %Time to wait before starting tracking
 
 %% External Wrench
 Config.EXT_WRENCH_PORT      = '/iCub/applyExternalWrench/rpc:i';
@@ -42,7 +42,7 @@ if (Config.TRAJECTORY_TYPE == 0 || Config.TRAJECTORY_TYPE == 1 || Config.TRAJECT
     elseif (strcmp(Config.PARTS,'lower_body'))
         
         Config.SDOT_REGULARIZATION = 1e-2;
-        Config.WRENCH_REGULARIZATION = 1e-10;
+        Config.WRENCH_REGULARIZATION = 1e-5;
         
     end
     
@@ -118,7 +118,7 @@ elseif(strcmp(Config.PARTS,'lower_body'))
     ROBOT_DOF                       = 6;
     
     %% Position control gains
-    GAINS.POSITION.Kp			    = diag([100,100,100])*15;
+    GAINS.POSITION.Kp			    = diag([100,100,100])*2.5;
     GAINS.POSITION.Kd			    = 2*sqrt(GAINS.POSITION.Kp);
     GAINS.POSITION.Eps			    = 1e-20;
 

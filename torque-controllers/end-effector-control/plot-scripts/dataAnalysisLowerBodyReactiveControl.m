@@ -16,8 +16,8 @@ fontSize          = 20;
 legendFontSize    = 20;
 axesLineWidth     = 2.5;
 axesFontSize      = 25;
-xLabelFontSize    = 25;
-yLabelFontSize    = 25;
+xLabelFontSize    = 15;
+yLabelFontSize    = 15;
 markerSize        = 2;
 verticleLineWidth = 2;
 titleFontSize     = 20;
@@ -42,17 +42,18 @@ dataFolder = 'experiments/reactive-control/simulation/x-direction';
 addpath(strcat('./',dataFolder));
 
 %% Load data
-dataFileNames = ["no-external-wrench-timed-normal",...
-                 "no-external-wrench-timed-reactive",...
-                 "assistive-wrench-timed-forwards-normal",...
-                 "opposing-wrench-timed-forwards-normal",...
-                 "assistive-wrench-timed-forwards-reactive",...
-                 "opposing-wrench-timed-forwards-reactive",...
-                 "assistive-wrench-timed-backwards-normal",...
-                 "opposing-wrench-timed-backwards-normal",...
-                 "assistive-wrench-timed-backwards-reactive",...
-                 "opposing-wrench-timed-backwards-reactive"];
+% % dataFileNames = ["no-external-wrench-normal",...
+% %                  "no-external-wrench-reactive",...
+% %                  "forward-wrench-forward-motion-normal",...
+% %                  "forward-wrench-forward-motion-reactive",...
+% %                  "backward-wrench-forward-motion-normal",...
+% %                  "backward-wrench-forward-motion-reactive"];
 
+dataFileNames = ["forward-wrench-forward-motion-reactive",...
+                 "backward-wrench-forward-motion-reactive",...
+                 "orthogonal-y-wrench-forward-motion-reactive",...
+                 "orthogonal-z-wrench-forward-motion-reactive"];
+             
 allData = cell(size(dataFileNames));
 legendOptions = cell(size(dataFileNames));
              
@@ -64,7 +65,9 @@ end
 %%  Common plot options
 xLabelOptions = 'Time $[s]$';
 yPlotColors = colors;
-fileNameSuffixes = ["Assistive", "Opposing",'No External Wrench'];
+subplotOption = false;
+usePlotColoring = false;
+legendColumns = 1;
 
 %%Time
 totalTime = allData{1,1}.tout;
@@ -79,9 +82,8 @@ trimTime = totalTime(startTimeIndex:endTimeIndex);
 %% Plot Joints Effort
 yLabelOptions = 'Joint Effort';
 plotTitle = 'End-Effector Joint Efforts';
-subplotOption = false;
-usePlotColoring = false;
-legendColumns = 1;
+subplotTitles = [];
+fileNameSuffixes = "ee-joint-effort";
 allDataEEJointEfforts = cell(1, size(allData,2));
 
 %% EE Joints Efforts
@@ -100,16 +102,14 @@ plotRobotQuantity(allDataEEJointEfforts, trimTime, subplotOption, usePlotColorin
                   yPlotColors, legendOptions, legendFontSize, legendColumns,...
                   fontSize, xLabelFontSize, yLabelFontSize, titleFontSize,...
                   axisOption, axesFontSize, axesLineWidth,...
-                  gridOption, minorGridOption, lineWidth, plotTitle,...
+                  gridOption, minorGridOption, lineWidth, plotTitle, subplotTitles,...
                   xLabelOptions, yLabelOptions, fileNameSuffixes, fullPlotFolder);
 
 
 %% Lyapunov Function
 yLabelOptions = '$V_{lypunov}$';
 plotTitle = 'Lyapunov Function';
-subplotOption = false;
-usePlotColoring = false;
-legendColumns = 1;
+fileNameSuffixes = "lyapunov-function";
 allDataLypunovFunction = cell(1, size(allData,2));
 
 for d = 1:size(allData,2)
@@ -121,16 +121,13 @@ plotRobotQuantity(allDataLypunovFunction, trimTime, subplotOption, usePlotColori
                   yPlotColors, legendOptions, legendFontSize, legendColumns,...
                   fontSize, xLabelFontSize, yLabelFontSize, titleFontSize,...
                   axisOption, axesFontSize, axesLineWidth,...
-                  gridOption, minorGridOption, lineWidth, plotTitle,...
+                  gridOption, minorGridOption, lineWidth, plotTitle, subplotTitles,...
                   xLabelOptions, yLabelOptions, fileNameSuffixes, fullPlotFolder);
-
-
+              
 %% Alpha Value
 yLabelOptions = '$\alpha$';
 plotTitle = 'Alpha';
-subplotOption = false;
-usePlotColoring = false;
-legendColumns = 1;
+fileNameSuffixes = "alpha";
 allDataAlphaValue = cell(1, size(allData,2));
 
 for d = 1:size(allData,2)
@@ -142,20 +139,27 @@ plotRobotQuantity(allDataAlphaValue, trimTime, subplotOption, usePlotColoring,..
                   yPlotColors, legendOptions, legendFontSize, legendColumns,...
                   fontSize, xLabelFontSize, yLabelFontSize, titleFontSize,...
                   axisOption, axesFontSize, axesLineWidth,...
-                  gridOption, minorGridOption, lineWidth, plotTitle,...
+                  gridOption, minorGridOption, lineWidth, plotTitle, subplotTitles,...
                   xLabelOptions, yLabelOptions, fileNameSuffixes, fullPlotFolder);
               
 
 %% Legend common options for wrench plots
-yPlotColors = colors;
-legendOptions = {'$f_x$', '$f_y$', '$f_z$', '$\tau_x$', '$\tau_y$', '$\tau_z$'};
-              
-%% End-Effector Wrench
-yLabelOptions = '$N$';
-plotTitle = 'End-Effector Wrench';
 subplotOption = true;
 usePlotColoring = false;
-legendColumns = 2;
+yPlotColors = colors;
+yLabelOptions = '$N$';
+legendOptions = {'$f_x$', '$f_y$', '$f_z$', '$\tau_x$', '$\tau_y$', '$\tau_z$'};
+legendColumns = 1;
+
+subplotTitles = cell(size(dataFileNames));
+             
+for i = 1:size(dataFileNames,2)
+    subplotTitles{i} = dataFileNames{i};
+end
+              
+%% End-Effector Wrench
+plotTitle = 'End-Effector Wrench';
+fileNameSuffixes = "ee-wrench";
 allDataEEWrench = cell(1, size(allData,2));
 
 for d = 1:size(allData,2)
@@ -167,15 +171,12 @@ plotRobotQuantity(allDataEEWrench, trimTime, subplotOption, usePlotColoring,...
                   yPlotColors, legendOptions, legendFontSize, legendColumns,...
                   fontSize, xLabelFontSize, yLabelFontSize, titleFontSize,...
                   axisOption, axesFontSize, axesLineWidth,...
-                  gridOption, minorGridOption, lineWidth, plotTitle,...
+                  gridOption, minorGridOption, lineWidth, plotTitle, subplotTitles,...
                   xLabelOptions, yLabelOptions, fileNameSuffixes, fullPlotFolder);
 
 %% Correction From Support Wrench
-yLabelOptions = '$N$';
 plotTitle = 'Correction From Support Wrench';
-subplotOption = true;
-usePlotColoring = false;
-legendColumns = 2;
+fileNameSuffixes = "correction-from-support-wrench";
 allDataCorrectionFromSupportWrench = cell(1, size(allData,2));
 
 for d = 1:size(allData,2)
@@ -187,7 +188,51 @@ plotRobotQuantity(allDataCorrectionFromSupportWrench, trimTime, subplotOption, u
                   yPlotColors, legendOptions, legendFontSize, legendColumns,...
                   fontSize, xLabelFontSize, yLabelFontSize, titleFontSize,...
                   axisOption, axesFontSize, axesLineWidth,...
-                  gridOption, minorGridOption, lineWidth, plotTitle,...
+                  gridOption, minorGridOption, lineWidth, plotTitle, subplotTitles,...
                   xLabelOptions, yLabelOptions, fileNameSuffixes, fullPlotFolder);
+
+
+%% Legend common options for wrench plots
+subplotOption = true;
+usePlotColoring = false;
+yPlotColors = colors;
+yLabelOptions = '$m/s$';
+legendOptions = {'$v_x$', '$v_y$', '$v_z$', '$\omega_x$', '$\omega_y$', '$\omega_z$'};
+legendColumns = 1;
+
+%% Velocity Error
+plotTitle = 'Velocity Error $\dot{\widetilde{x}}$';
+fileNameSuffixes = "velocity-error";
+allDataVelocityError = cell(1, size(allData,2));
+
+for d = 1:size(allData,2)
+    vel_error = allData{1,d}.vel_error.signals.values(startTimeIndex:endTimeIndex,1:3);
+    allDataVelocityError{d} = vel_error;
+end
+
+plotRobotQuantity(allDataVelocityError, trimTime, subplotOption, usePlotColoring,...
+                  yPlotColors, legendOptions, legendFontSize, legendColumns,...
+                  fontSize, xLabelFontSize, yLabelFontSize, titleFontSize,...
+                  axisOption, axesFontSize, axesLineWidth,...
+                  gridOption, minorGridOption, lineWidth, plotTitle, subplotTitles,...
+                  xLabelOptions, yLabelOptions, fileNameSuffixes, fullPlotFolder);
+              
+%% Velocity Error Parallel
+plotTitle = 'Velocity Error Parallel  $\dot{\widetilde{x}}^{\parallel}$';
+fileNameSuffixes = "velocity-error-parallel";
+allDataVelocityErrorParallel = cell(1, size(allData,2));
+
+for d = 1:size(allData,2)
+    vel_error_parallel = allData{1,d}.vel_error_parallel.signals.values(startTimeIndex:endTimeIndex,1:3);
+    allDataVelocityErrorParallel{d} = vel_error_parallel;
+end
+
+plotRobotQuantity(allDataVelocityErrorParallel, trimTime, subplotOption, usePlotColoring,...
+                  yPlotColors, legendOptions, legendFontSize, legendColumns,...
+                  fontSize, xLabelFontSize, yLabelFontSize, titleFontSize,...
+                  axisOption, axesFontSize, axesLineWidth,...
+                  gridOption, minorGridOption, lineWidth, plotTitle, subplotTitles,...
+                  xLabelOptions, yLabelOptions, fileNameSuffixes, fullPlotFolder);
+
 
 
