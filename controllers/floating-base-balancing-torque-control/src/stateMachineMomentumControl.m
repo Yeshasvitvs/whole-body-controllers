@@ -113,7 +113,7 @@ function  [w_H_b, pos_CoM_des, jointPos_des, feetContactStatus, KP_postural_diag
 
         jointPos_des      = StateMachine.joints_references(currentState,:)'; 
 
-        if time > (t_switch + StateMachine.tBalancingBeforeYoga) 
+        if time > (t_switch + StateMachine.tBalancingBeforeYoga) && time > inf
             
             currentState = 4;
             t_switch     = time;
