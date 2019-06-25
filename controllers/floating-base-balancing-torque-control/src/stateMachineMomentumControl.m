@@ -1,6 +1,6 @@
 function  [w_H_b, pos_CoM_des, jointPos_des, feetContactStatus, KP_postural_diag, KP_CoM_diag, KD_CoM_diag, state, smoothingTimeJoints, smoothingTimeCoM] = ...
               stateMachineMomentumControl(pos_CoM_0, jointPos_0, pos_CoM_fixed_l_sole, pos_CoM_fixed_r_sole, jointPos, ...
-                                          time, wrench_rightFoot, wrench_leftFoot, l_sole_H_b, r_sole_H_b, StateMachine, Gain, Config)
+                                          time, wrench_rightFoot, wrench_leftFoot, l_sole_H_b, r_sole_H_b, retargetingJointReferences, StateMachine, Gain, Config)
 
     % STATEMACHINEMOMENTUMCONTROL generates the references for performing
     %                             two demos:
@@ -14,6 +14,7 @@ function  [w_H_b, pos_CoM_des, jointPos_des, feetContactStatus, KP_postural_diag
     %% --- Initialization ---
 
     persistent currentState;
+    persistent retargetingBalancingState;
     persistent t_switch;
     persistent w_H_fixedLink;
     persistent yogaMovesetCounter;
@@ -21,6 +22,10 @@ function  [w_H_b, pos_CoM_des, jointPos_des, feetContactStatus, KP_postural_diag
     if isempty(currentState) 
         
         currentState = StateMachine.initialState;        
+    end
+    if isempty(retargetingBalancingState) 
+        
+        retargetingBalancingState = false;        
     end
     if isempty(t_switch)
     
@@ -115,13 +120,42 @@ function  [w_H_b, pos_CoM_des, jointPos_des, feetContactStatus, KP_postural_diag
 
         if time > (t_switch + StateMachine.tBalancingBeforeYoga) && time > inf
             
-            currentState = 4;
-            t_switch     = time;
-            
-            if StateMachine.skipYoga
+            if (Config.RETARGETING)
+                retargetingBalancingState = true;
+                currentState = 4;
+            else
+                currentState = 4;
+                t_switch     = time;
                 
-                currentState = 5;
+                if StateMachine.skipYoga
+                    
+                    currentState = 5;
+                end
             end
+            
+        end
+    end
+    
+    %% RETARGETING YOGA LEFT FOOT
+    if currentState == 4 && retargetingBalancingState
+        
+        w_H_b = w_H_fixedLink * l_sole_H_b;
+
+        % Set the center of mass projection onto the x-y plane to be
+        % coincident to the origin of the left foot (l_sole) plus a
+        % configurable delta
+        pos_CoM_des        = [w_H_fixedLink(1:2,4); pos_CoM_0(3)] + StateMachine.CoM_delta(currentState,:)';         
+        feetContactStatus  = [1; 0];
+        
+        % joint reference from retargeting
+        jointPos_des       = retargetingJointReferences;
+%         jointPos_des       = StateMachine.joints_references(currentState,:)';
+        
+        
+        % TODO: Should have some logic to switch to two feet balancing state
+        % for example getting input from oculus joypads or something
+        if time > 20
+            currentState = 5;
         end
     end
     

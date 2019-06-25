@@ -52,6 +52,13 @@ Config.tStep           = 0.01;
 % 
 DEMO_TYPE                     = 'YOGA';
 
+
+% Retargeting flag
+Config.RETARGETING = true;
+
+% Retargeting joint references port
+Config.RETARGETING_JOINT_REFERENCES_PORT = '/HDE/RobotStateWrapper/state:o';
+
 % Config.SCOPES: debugging scopes activation
 Config.SCOPES_WRENCHES        = true;
 Config.SCOPES_GAIN_SCHE_INFO  = true;
