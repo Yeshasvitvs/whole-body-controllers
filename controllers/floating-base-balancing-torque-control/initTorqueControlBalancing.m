@@ -57,8 +57,8 @@ DEMO_TYPE                     = 'YOGA';
 Config.RETARGETING = true;
 
 % Retargeting joint references port
-Config.RETARGETING_JOINT_REFERENCES_PORT = '/HDE/RobotStateWrapper/state:o';
-
+RETARGETING_JOINT_REFERENCES_PORT = '/HDE/RobotStateWrapper/state:o';
+% '/XsensRetargeting/jointPosition:o'
 % Config.SCOPES: debugging scopes activation
 Config.SCOPES_WRENCHES        = true;
 Config.SCOPES_GAIN_SCHE_INFO  = true;

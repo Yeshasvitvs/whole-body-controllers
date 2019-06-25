@@ -118,9 +118,9 @@ function  [w_H_b, pos_CoM_des, jointPos_des, feetContactStatus, KP_postural_diag
 
         jointPos_des      = StateMachine.joints_references(currentState,:)'; 
 
-        if time > (t_switch + StateMachine.tBalancingBeforeYoga) && time > inf
+        if time > (t_switch + StateMachine.tBalancingBeforeYoga)
             
-            if (Config.RETARGETING)
+            if Config.RETARGETING == true
                 retargetingBalancingState = true;
                 currentState = 4;
             else
@@ -136,33 +136,33 @@ function  [w_H_b, pos_CoM_des, jointPos_des, feetContactStatus, KP_postural_diag
         end
     end
     
-    %% RETARGETING YOGA LEFT FOOT
-    if currentState == 4 && retargetingBalancingState
-        
-        w_H_b = w_H_fixedLink * l_sole_H_b;
-
-        % Set the center of mass projection onto the x-y plane to be
-        % coincident to the origin of the left foot (l_sole) plus a
-        % configurable delta
-        pos_CoM_des        = [w_H_fixedLink(1:2,4); pos_CoM_0(3)] + StateMachine.CoM_delta(currentState,:)';         
-        feetContactStatus  = [1; 0];
-        
-        % joint reference from retargeting
-        jointPos_des       = retargetingJointReferences;
-%         jointPos_des       = StateMachine.joints_references(currentState,:)';
-        
-        
-        % TODO: Should have some logic to switch to two feet balancing state
-        % for example getting input from oculus joypads or something
-        if time > 20
-            currentState = 5;
-        end
-    end
-    
     %% STATE 4: YOGA LEFT FOOT
-    if currentState == 4 
+    if currentState == 4
         
-        w_H_b = w_H_fixedLink * l_sole_H_b;
+        %% RETARGETING YOGA
+        if retargetingBalancingState
+            
+            w_H_b = w_H_fixedLink * l_sole_H_b;
+            
+            % Set the center of mass projection onto the x-y plane to be
+            % coincident to the origin of the left foot (l_sole) plus a
+            % configurable delta
+            pos_CoM_des        = [w_H_fixedLink(1:2,4); pos_CoM_0(3)] + StateMachine.CoM_delta(currentState,:)';
+            feetContactStatus  = [1; 0];
+            
+            % joint reference from retargeting
+            jointPos_des       = retargetingJointReferences;
+            %         jointPos_des       = StateMachine.joints_references(currentState,:)';
+            
+            % TODO: Should have some logic to switch to two feet balancing state
+            % for example getting input from oculus joypads or something
+            if time > 20
+                currentState = 5;
+            end
+        
+        else
+            
+            w_H_b = w_H_fixedLink * l_sole_H_b;
 
         % Set the center of mass projection onto the x-y plane to be
         % coincident to the origin of the left foot (l_sole) plus a
@@ -197,7 +197,10 @@ function  [w_H_b, pos_CoM_des, jointPos_des, feetContactStatus, KP_postural_diag
                     currentState  = 5;
                 end
             end
-        end        
+        end  
+        
+        end
+            
     end
     
     %% STATE 5: PREPARING FOR SWITCHING
