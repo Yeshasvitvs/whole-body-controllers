@@ -53,10 +53,14 @@ Config.tStep           = 0.01;
 DEMO_TYPE                     = 'YOGA';
 
 % Retargeting flag
-Config.RETARGETING = true;
+Config.RETARGETING                 = true;
 
 % Retargeting joint references port
-RETARGETING_JOINT_REFERENCES_PORT = '/XsensRetargeting/jointPosition:o';
+RETARGETING_JOINT_REFERENCES_PORT  = '/XsensRetargeting/jointPosition:o';
+
+% Retargeting wrench ports
+RETARGETING_RIGHT_FOOT_WRENCH_PORT = '/ft/ftShoe_Right/analog:o';
+RETARGETING_LEFT_FOOT_WRENCH_PORT  = '/ft/ftShoe_Left/analog:o';
 
 % Config.SCOPES: debugging scopes activation
 Config.SCOPES_WRENCHES        = true;

@@ -1,6 +1,10 @@
 function  [w_H_b, pos_CoM_des, jointPos_des, feetContactStatus, KP_postural_diag, KP_CoM_diag, KD_CoM_diag, state, smoothingTimeJoints, smoothingTimeCoM] = ...
               stateMachineMomentumControl(pos_CoM_0, jointPos_0, pos_CoM_fixed_l_sole, pos_CoM_fixed_r_sole, jointPos, ...
-                                          time, wrench_rightFoot, wrench_leftFoot, l_sole_H_b, r_sole_H_b, retargetingJointReferences, StateMachine, Gain, Config)
+                                          time, wrench_rightFoot, wrench_leftFoot, l_sole_H_b, r_sole_H_b,...
+                                          retargeting_wrench_rightFoot, retargeting_wrench_leftFoot,...
+                                          retargeting_jointPos_0, retargeting_jointPos, retargeting_pos_CoM_0,...
+                                          retargeting_pos_CoM_fixed_l_sole, retargeting_pos_CoM_fixed_r_sole,...
+                                          StateMachine, Gain, Config)
 
     % STATEMACHINEMOMENTUMCONTROL generates the references for performing
     %                             two demos:
@@ -18,6 +22,7 @@ function  [w_H_b, pos_CoM_des, jointPos_des, feetContactStatus, KP_postural_diag
     persistent t_switch;
     persistent w_H_fixedLink;
     persistent yogaMovesetCounter;
+    persistent retartgetingInitializationDone;
     
     if isempty(currentState) 
         
@@ -41,9 +46,19 @@ function  [w_H_b, pos_CoM_des, jointPos_des, feetContactStatus, KP_postural_diag
     end
     
     % initialize outputs
-    pos_CoM_des       = pos_CoM_0;
+    retartgetingInitializationDone = false;
+    if ~Config.RETARGETING
+        pos_CoM_des       = pos_CoM_0;
+        jointPos_des      = jointPos_0;
+    elseif Config.RETARGETING && ~retartgetingInitializationDone
+        pos_CoM_des       = retargeting_pos_CoM_0; %%Assuming left feet as inertial frame at the beginning
+        jointPos_des      = retargeting_jointPos_0;
+        retartgetingInitializationDone = true;
+    end
+    
+    %% Todo: How  to handle the contactstatus in case of retargeting
     feetContactStatus = [1; 1];
-    jointPos_des      = jointPos_0;
+    
     w_H_b             = eye(4);
 
     %% STATE 1: TWO FEET BALANCING
@@ -67,7 +82,7 @@ function  [w_H_b, pos_CoM_des, jointPos_des, feetContactStatus, KP_postural_diag
                 frequency   = Config.frequencyOfOscillation;
                 pos_CoM_des = pos_CoM_0 + Amplitude*sin(2*pi*frequency*time)*Config.directionOfOscillation;        
             end        
-        else          
+        elseif ~Config.RETARGETING %% Normal yoga
             % after tBalancing time start moving the weight to the left
             if time > StateMachine.tBalancing
          
@@ -79,28 +94,78 @@ function  [w_H_b, pos_CoM_des, jointPos_des, feetContactStatus, KP_postural_diag
                     currentState  = 8;
                end           
             end
+        elseif Config.RETARGETING %% retargeting yoga
+            
+            pos_CoM_des       = retargeting_pos_CoM_fixed_l_sole;
+            jointPos_des      = retargeting_jointPos;
+            
+            retargetingCoMShiftThreshold = 0.01;
+            retargetingCoMShift = abs(retargeting_pos_CoM_fixed_l_sole(2,4)-retargeting_pos_CoM_0(2,4));
+            
+            %% Check if the CoM has moved to left or right beyond a threshold
+            %% Double check the threshold direction
+            if abs(retargetingCoMShift) >  retargetingCoMShiftThreshold && retargetingCoMShift > 0 %% Start transition to left foot
+                
+                currentState = 2;
+                
+            elseif abs(retargetingCoMShift) >  retargetingCoMShiftThreshold && retargetingCoMShift < 0 %% Start transition to right foot
+                
+                w_H_fixedLink = w_H_fixedLink*l_sole_H_b/r_sole_H_b;
+                currentState  = 8;
+
+            end
+            
         end
     end
 
     %% STATE 2: TRANSITION TO THE LEFT FOOT
     if currentState == 2 
         
-        w_H_b = w_H_fixedLink * l_sole_H_b;
-
-        % Set the center of mass projection onto the x-y plane to be
-        % coincident to the origin of the left foot (l_sole) plus a
-        % configurable delta
-        pos_CoM_des       = [w_H_fixedLink(1:2,4); pos_CoM_0(3)] + StateMachine.CoM_delta(currentState,:)';         
-        
-        fixed_link_CoMDes = w_H_fixedLink\[pos_CoM_des; 1];
-        pos_CoM_error     = fixed_link_CoMDes(1:3) - pos_CoM_fixed_l_sole(1:3);
-        jointPos_des      = StateMachine.joints_references(currentState,:)';
-        
-        if norm(pos_CoM_error(2)) < StateMachine.CoM_threshold && wrench_rightFoot(3) < StateMachine.wrench_thresholdContactOff
+        if Config.RETARGETING
             
-           currentState = 3; 
-           t_switch     = time;
+            w_H_b = w_H_fixedLink * l_sole_H_b;
+            
+            pos_CoM_des       = retargeting_pos_CoM_fixed_l_sole;
+            jointPos_des      = retargeting_jointPos;
+            
+            % Set the center of mass projection onto the x-y plane to be
+            % close to the origin of the left foot (l_sole)
+            left_foot_CoM_Projection = [w_H_fixedLink(1:2,4); retargeting_pos_CoM_fixed_l_sole(3)];
+            
+            fixed_link_CoMDes = w_H_fixedLink\[left_foot_CoM_Projection; 1];
+            
+            pos_CoM_error     = fixed_link_CoMDes(1:3) - pos_CoM_fixed_l_sole(1:3);
+            
+            %% Assuming human is switching to one foot in a balanced way,
+            %% we can transition to next state based on contact thershold from FTShoes
+            
+            if norm(pos_CoM_error(2)) < StateMachine.CoM_threshold && retargeting_wrench_rightFoot(3) < StateMachine.wrench_thresholdContactOff
+                
+                currentState = 3;
+                
+            end
+            
+        else
+            
+            w_H_b = w_H_fixedLink * l_sole_H_b;
+            
+            % Set the center of mass projection onto the x-y plane to be
+            % coincident to the origin of the left foot (l_sole) plus a
+            % configurable delta
+            pos_CoM_des       = [w_H_fixedLink(1:2,4); pos_CoM_0(3)] + StateMachine.CoM_delta(currentState,:)';
+            
+            fixed_link_CoMDes = w_H_fixedLink\[pos_CoM_des; 1];
+            pos_CoM_error     = fixed_link_CoMDes(1:3) - pos_CoM_fixed_l_sole(1:3);
+            jointPos_des      = StateMachine.joints_references(currentState,:)';
+            
+            if norm(pos_CoM_error(2)) < StateMachine.CoM_threshold && wrench_rightFoot(3) < StateMachine.wrench_thresholdContactOff
+                
+                currentState = 3;
+                t_switch     = time;
+            end
+            
         end
+        
     end
 
     %% STATE 3: LEFT FOOT BALANCING 
@@ -151,7 +216,7 @@ function  [w_H_b, pos_CoM_des, jointPos_des, feetContactStatus, KP_postural_diag
             feetContactStatus  = [1; 0];
             
             % joint reference from retargeting
-            jointPos_des       = retargetingJointReferences;
+            jointPos_des       = retargeting_jointPos;
             %         jointPos_des       = StateMachine.joints_references(currentState,:)';
             
             % TODO: Should have some logic to switch to two feet balancing state
