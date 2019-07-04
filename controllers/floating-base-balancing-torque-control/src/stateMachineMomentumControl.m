@@ -156,7 +156,7 @@ function  [w_H_b, pos_CoM_des, jointPos_des, feetContactStatus, KP_postural_diag
             
             % TODO: Should have some logic to switch to two feet balancing state
             % for example getting input from oculus joypads or something
-            if time > 20
+            if time > inf
                 currentState = 5;
             end
         
