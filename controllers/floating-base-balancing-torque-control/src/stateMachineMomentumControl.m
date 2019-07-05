@@ -142,7 +142,7 @@ function  [w_H_b, pos_CoM_des, jointPos_des, feetContactStatus, KP_postural_diag
             if norm(pos_CoM_error(2)) < StateMachine.CoM_threshold && retargeting_wrench_rightFoot(3) < StateMachine.wrench_thresholdContactOff
                 
                 currentState = 3;
-                
+                t_switch     = time;
             end
             
         else
@@ -171,24 +171,19 @@ function  [w_H_b, pos_CoM_des, jointPos_des, feetContactStatus, KP_postural_diag
     %% STATE 3: LEFT FOOT BALANCING 
     if currentState == 3 
         
-        w_H_b = w_H_fixedLink * l_sole_H_b;
-
-        % Set the center of mass projection onto the x-y plane to be
-        % coincident to the origin of the left foot (l_sole) plus a
-        % configurable delta
-        pos_CoM_des       = [w_H_fixedLink(1:2,4); pos_CoM_0(3)] + StateMachine.CoM_delta(currentState,:)';         
- 
-        % right foot is no longer in contact
-        feetContactStatus = [1; 0];
-
-        jointPos_des      = StateMachine.joints_references(currentState,:)'; 
-
-        if time > (t_switch + StateMachine.tBalancingBeforeYoga)
+        if Config.RETARGETING
             
-            if Config.RETARGETING == true
-                retargetingBalancingState = true;
-                currentState = 4;
-            else
+            w_H_b = w_H_fixedLink * l_sole_H_b;
+            
+            %% Assuming that the human is balacing well on one foot
+            pos_CoM_des       = retargeting_pos_CoM_fixed_l_sole;
+            jointPos_des      = retargeting_jointPos;
+            
+            % right foot is no longer in contact
+            feetContactStatus = [1; 0];
+            
+            if time > (t_switch + StateMachine.tBalancingBeforeYoga)
+                
                 currentState = 4;
                 t_switch     = time;
                 
@@ -196,6 +191,33 @@ function  [w_H_b, pos_CoM_des, jointPos_des, feetContactStatus, KP_postural_diag
                     
                     currentState = 5;
                 end
+                
+            end
+            
+        else
+            
+            w_H_b = w_H_fixedLink * l_sole_H_b;
+            
+            % Set the center of mass projection onto the x-y plane to be
+            % coincident to the origin of the left foot (l_sole) plus a
+            % configurable delta
+            pos_CoM_des       = [w_H_fixedLink(1:2,4); pos_CoM_0(3)] + StateMachine.CoM_delta(currentState,:)';
+            
+            % right foot is no longer in contact
+            feetContactStatus = [1; 0];
+            
+            jointPos_des      = StateMachine.joints_references(currentState,:)';
+            
+            if time > (t_switch + StateMachine.tBalancingBeforeYoga)
+                
+                currentState = 4;
+                t_switch     = time;
+                
+                if StateMachine.skipYoga
+                    
+                    currentState = 5;
+                end
+                
             end
             
         end
@@ -205,7 +227,24 @@ function  [w_H_b, pos_CoM_des, jointPos_des, feetContactStatus, KP_postural_diag
     if currentState == 4
         
         %% RETARGETING YOGA
-        if retargetingBalancingState
+        if Config.RETARGETING
+            
+            w_H_b = w_H_fixedLink * l_sole_H_b;
+            
+      
+            %% Assuming that the human is balacing well on one foot
+            pos_CoM_des       = retargeting_pos_CoM_fixed_l_sole;
+            jointPos_des      = retargeting_jointPos;
+            
+            % TODO: Should have some logic to switch to two feet balancing state
+            % for example getting input from oculus joypads or something
+            if time > 50
+                currentState = 5;
+            end
+            
+            feetContactStatus  = [1; 0];
+            
+        else
             
             w_H_b = w_H_fixedLink * l_sole_H_b;
             
@@ -214,56 +253,36 @@ function  [w_H_b, pos_CoM_des, jointPos_des, feetContactStatus, KP_postural_diag
             % configurable delta
             pos_CoM_des        = [w_H_fixedLink(1:2,4); pos_CoM_0(3)] + StateMachine.CoM_delta(currentState,:)';
             feetContactStatus  = [1; 0];
+            jointPos_des       = StateMachine.joints_references(currentState,:)';
             
-            % joint reference from retargeting
-            jointPos_des       = retargeting_jointPos;
-            %         jointPos_des       = StateMachine.joints_references(currentState,:)';
-            
-            % TODO: Should have some logic to switch to two feet balancing state
-            % for example getting input from oculus joypads or something
-            if time > inf
-                currentState = 5;
-            end
-        
-        else
-            
-            w_H_b = w_H_fixedLink * l_sole_H_b;
-
-        % Set the center of mass projection onto the x-y plane to be
-        % coincident to the origin of the left foot (l_sole) plus a
-        % configurable delta
-        pos_CoM_des        = [w_H_fixedLink(1:2,4); pos_CoM_0(3)] + StateMachine.CoM_delta(currentState,:)';         
-        feetContactStatus  = [1; 0]; 
-        jointPos_des       = StateMachine.joints_references(currentState,:)';
-
-        % iterate over the yoga positions
-        for i = 1: size(StateMachine.joints_leftYogaRef,1)-1
-            
-            % positions for the yoga movements
-            if time > (StateMachine.joints_leftYogaRef(i,1) + t_switch) && time <= (StateMachine.joints_leftYogaRef(i+1,1)+ t_switch)
+            % iterate over the yoga positions
+            for i = 1: size(StateMachine.joints_leftYogaRef,1)-1
                 
-                jointPos_des = StateMachine.joints_leftYogaRef(i,2:end)';
-            end 
-        end
-        if time > (StateMachine.joints_leftYogaRef(end,1) + t_switch)
-            
-            jointPos_des = StateMachine.joints_leftYogaRef(end,2:end)';
-            
-            % if StateMachine.yogaCounter > 1, yoga in the loop. Repeat the Yoga movements N times
-            if time > (StateMachine.joints_leftYogaRef(end,1) + t_switch + StateMachine.jointsSmoothingTime(currentState) + StateMachine.joints_pauseBetweenYogaMoves)
-                 
-                t_switch           = time;
-                yogaMovesetCounter = yogaMovesetCounter +1;
-                
-                % if the robot repeated the Yoga moveset for the number of
-                % times required by the user, then exit the loop
-                if yogaMovesetCounter > StateMachine.yogaCounter || ~StateMachine.oneFootYogaInLoop
-                   
-                    currentState  = 5;
+                % positions for the yoga movements
+                if time > (StateMachine.joints_leftYogaRef(i,1) + t_switch) && time <= (StateMachine.joints_leftYogaRef(i+1,1)+ t_switch)
+                    
+                    jointPos_des = StateMachine.joints_leftYogaRef(i,2:end)';
                 end
             end
-        end  
-        
+            if time > (StateMachine.joints_leftYogaRef(end,1) + t_switch)
+                
+                jointPos_des = StateMachine.joints_leftYogaRef(end,2:end)';
+                
+                % if StateMachine.yogaCounter > 1, yoga in the loop. Repeat the Yoga movements N times
+                if time > (StateMachine.joints_leftYogaRef(end,1) + t_switch + StateMachine.jointsSmoothingTime(currentState) + StateMachine.joints_pauseBetweenYogaMoves)
+                    
+                    t_switch           = time;
+                    yogaMovesetCounter = yogaMovesetCounter +1;
+                    
+                    % if the robot repeated the Yoga moveset for the number of
+                    % times required by the user, then exit the loop
+                    if yogaMovesetCounter > StateMachine.yogaCounter || ~StateMachine.oneFootYogaInLoop
+                        
+                        currentState  = 5;
+                    end
+                end
+            end
+            
         end
             
     end
