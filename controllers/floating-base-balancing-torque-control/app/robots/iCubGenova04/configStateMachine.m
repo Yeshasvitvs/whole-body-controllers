@@ -39,8 +39,12 @@ StateMachine.joints_pauseBetweenYogaMoves = 5;
 StateMachine.wrench_thresholdContactOn    = 50;
 StateMachine.wrench_thresholdContactOff   = 100;
 
+StateMachine.retargeting_wrench_thresholdContactOn    = 50;
+StateMachine.retargeting_wrench_thresholdContactOff   = 100;
+
 % threshold on CoM and joints error
 StateMachine.CoM_threshold                = 0.02; 
+StateMachine.retargetingCoMShiftThreshold = 0.02;
 StateMachine.joints_thresholdNotInContact = 15;
 StateMachine.joints_thresholdInContact    = 50;
 

@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.3520"
+    ComputedModelVersion    "1.3521"
     NumModelReferences	    0
     NumTestPointedSignals   0
     NumProvidedFunctions    0
@@ -499,11 +499,11 @@ Model {
 	$ObjectID		5
 	$ClassName		"Simulink.EditorInfo"
 	IsActive		[1]
-	ViewObjType		"SimulinkSubsys"
-	LoadSaveID		"2163"
+	ViewObjType		"SimulinkTopLevel"
+	LoadSaveID		"0"
 	Extents			[2522.0, 1236.0]
-	ZoomFactor		[1.6516556291390729]
-	Offset			[-873.47634322373688, -18.170008019246154]
+	ZoomFactor		[5.0383838383838384]
+	Offset			[777.22133119486762, 362.34161988773053]
       }
       Object {
 	$PropName		"DockComponentsInfo"
@@ -537,9 +537,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "yeshi"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Fri Jul 05 01:06:55 2019"
-  RTWModifiedTimeStamp	  484189612
-  ModelVersionFormat	  "1.%<AutoIncrement:3520>"
+  LastModifiedDate	  "Fri Jul 05 03:03:29 2019"
+  RTWModifiedTimeStamp	  484196339
+  ModelVersionFormat	  "1.%<AutoIncrement:3521>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "disabled"
@@ -1712,7 +1712,7 @@ Model {
   System {
     Name		    "torqueControlBalancing"
     Location		    [1920, 27, 4480, 1440]
-    Open		    off
+    Open		    on
     PortBlocksUseCompactNotation off
     SetDomainSpec	    off
     DomainSpecType	    "Deduce"
@@ -14363,7 +14363,7 @@ Model {
 	      System {
 		Name			"State Machine"
 		Location		[1920, 27, 4480, 1440]
-		Open			on
+		Open			off
 		PortBlocksUseCompactNotation off
 		SetDomainSpec		off
 		DomainSpecType		"Deduce"
@@ -16005,7 +16005,6 @@ Model {
 		  ZOrder		  418
 		  SrcBlock		  "xCom2"
 		  SrcPort		  1
-		  Points		  [0, 0]
 		  DstBlock		  "STATE MACHINE"
 		  DstPort		  4
 		}
@@ -20439,9 +20438,6 @@ Stateflow {
     screen		    [1 1 1280 1024 1.000677131425054]
     treeNode		    [0 86 0 0]
     viewObj		    85
-    visible		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    94
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
