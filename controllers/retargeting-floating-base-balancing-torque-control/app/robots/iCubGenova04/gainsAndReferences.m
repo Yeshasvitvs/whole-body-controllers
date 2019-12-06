@@ -72,17 +72,17 @@ StateMachine.CoMSmoothingTime      = [1;    %% state ==  1  TWO FEET BALANCING
 % Smoothing time for joints references 
 StateMachine.jointsSmoothingTime   = [1;    %% state ==  1  TWO FEET BALANCING
                                       1;    %% state ==  2  COM TRANSITION TO LEFT FOOT
-                                      1;    %% state ==  3  LEFT FOOT BALANCING 
-                                      0.9;  %% state ==  4  YOGA LEFT FOOT
+                                      2;    %% state ==  3  LEFT FOOT BALANCING 
+                                      0.05; %% state ==  4  YOGA LEFT FOOT
                                       2;    %% state ==  5  PREPARING FOR SWITCHING
                                       2;    %% state ==  6  LOOKING FOR CONTACT 
-                                      1;    %% state ==  7  TRANSITION INIT POSITION
+                                      0.05; %% state ==  7  TRANSITION INIT POSITION
                                       1;    %% state ==  8  COM TRANSITION TO RIGHT FOOT
-                                      1;    %% state ==  9  RIGHT FOOT BALANCING 
-                                      0.9;  %% state == 10  YOGA RIGHT FOOT
+                                      2;    %% state ==  9  RIGHT FOOT BALANCING 
+                                      0.05; %% state == 10  YOGA RIGHT FOOT
                                       2;    %% state == 11  PREPARING FOR SWITCHING
                                       2;    %% state == 12  LOOKING FOR CONTACT 
-                                      5];   %% state == 13  TRANSITION INIT POSITION
+                                      0.05];%% state == 13  TRANSITION INIT POSITION
 
 
 % scale factor smoothing time multiplies the smoothing factor during the
@@ -90,7 +90,11 @@ StateMachine.jointsSmoothingTime   = [1;    %% state ==  1  TWO FEET BALANCING
 % the reference to converge to the next position, but without changing also
 % the valuse stored in Sm.joints_leftYogaRef/Sm.joints_rightYogaRef
 StateMachine.scaleFactorSmoothingTime = 0.9;
-                                
+
+% additional parameters for Yoga retargeting
+StateMachine.timeWaitBeforeDecreasingSmoothingJointsRetargeting = 3.0;
+StateMachine.initSmoothingTimeJointRetargeting                  = 1.0;
+
 %% CoM delta
 
 % To be summed to the reference CoM position
@@ -104,10 +108,10 @@ StateMachine.CoM_delta  = [% THIS REFERENCE IS USED AS A DELTA W.R.T. THE POSITI
                            0.0,  0.00,  0.0;   %% state ==  7  TWO FEET BALANCING
                            % THIS REFERENCE IS USED AS A DELTA W.R.T. THE POSITION OF THE RIGHT FOOT
                            0.0,  0.00,  0.0;   %% state ==  8  COM TRANSITION TO RIGHT FOOT
-                           0.0, -0.005,  0.0;  %% state ==  9  RIGHT FOOT BALANCING 
+                           0.0, -0.005, 0.0;   %% state ==  9  RIGHT FOOT BALANCING 
                            0.0, -0.005, 0.0;   %% state == 10  YOGA RIGHT FOOT
-                           0.0, -0.015, 0.0;   %% state == 11  PREPARING FOR SWITCHING
-                           0.02, 0.02,  0.0;   %% state == 12  LOOKING FOR CONTACT 
+                           0.0, -0.005, 0.0;   %% state == 11  PREPARING FOR SWITCHING
+                           0.02, 0.09,  0.0;   %% state == 12  LOOKING FOR CONTACT 
                            0.0,  0.00,  0.0];  %% NOT USED
 
 %% Joint references

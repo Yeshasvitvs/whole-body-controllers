@@ -41,7 +41,7 @@ Frames.COM        = 'com';
 % Config.SATURATE_TORQUE_DERIVATIVE: if true, the derivative of the control
 % input is saturated. In this way, it is possible to reduce high frequency
 % oscillations and discontinuities in the control input.
-Config.SATURATE_TORQUE_DERIVATIVE         = true;
+Config.SATURATE_TORQUE_DERIVATIVE  = true;
 
 % if TRUE, the controller will STOP if the joints hit the joints limits
 % and/or if the (unsigned) difference between two consecutive joints
@@ -65,7 +65,7 @@ Config.INCLUDE_HARMONIC_DRIVE_INERTIA = true;
 % If set to true, the base orientation is estimated by using the IMU, while
 % the base position by assuming that the origin of either the right or the
 % left foot do not move. 
-Config.USE_IMU4EST_BASE  = false;
+Config.USE_IMU4EST_BASE = false;
 
 % Config.YAW_IMU_FILTER when the flag Config.USE_IMU4EST_BASE = true, then 
 % the orientation of the floating base is estimated as explained above. However,
@@ -87,10 +87,10 @@ Config.CORRECT_NECK_IMU = false;
 Config.USE_QP_SOLVER    = true; 
 
 % Ports name list
-Ports.IMU               = ['/' WBTConfigRobot.RobotName '/inertial'];
-Ports.NECK_POS          = ['/' WBTConfigRobot.RobotName '/head/state:o'];
 Ports.WRENCH_LEFT_FOOT  = '/wholeBodyDynamics/left_foot/cartesianEndEffectorWrench:o';
 Ports.WRENCH_RIGHT_FOOT = '/wholeBodyDynamics/right_foot/cartesianEndEffectorWrench:o';
+Ports.IMU               = ['/' WBTConfigRobot.RobotName '/inertial'];
+Ports.NECK_POS          = ['/' WBTConfigRobot.RobotName '/head/state:o'];
 
 % Ports dimensions
 Ports.NECK_POS_PORT_SIZE         = 6;
